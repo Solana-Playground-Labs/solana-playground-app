@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
@@ -18,5 +20,21 @@ class StatementsBuilderCubit extends Cubit<StatementsBuilderState> {
 
   add(StatementBuilder statementBuilder) {
     builder.add(statementBuilder);
+  }
+
+  remove(StatementBuilder statementBuilder) {
+    builder.remove(statementBuilder);
+  }
+
+  moveUp(StatementBuilder statementBuilder) {
+    final index = builder.statements.indexOf(statementBuilder);
+    if (index == -1) return;
+    builder.moveTo(statementBuilder, min(index + 1, builder.statements.length));
+  }
+
+  moveDown(StatementBuilder statementBuilder) {
+    final index = builder.statements.indexOf(statementBuilder);
+    if (index == -1) return;
+    builder.moveTo(statementBuilder, max(index - 1, 0));
   }
 }

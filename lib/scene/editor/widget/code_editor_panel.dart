@@ -24,9 +24,9 @@ class CodeEditorPanel extends StatelessWidget {
 
                   Widget builderWidget = Container();
                   if (statement is DeclareVariableBuilder) {
-                    builderWidget = DeclareVariableBuilderWidget(declareVariableBuilder: statement);
+                    builderWidget = DeclareVariableBuilderWidget(builder: statement);
                   } else if (statement is DeclareVariablesBuilder) {
-                    builderWidget = DeclareVariablesBuilderWidget(declareVariablesBuilder: statement);
+                    builderWidget = DeclareVariablesBuilderWidget(builder: statement);
                   }
 
                   return Padding(

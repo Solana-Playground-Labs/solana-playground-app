@@ -12,6 +12,7 @@ class CodeEditorCubit extends Cubit<CodeEditorState> {
   }
 
   void focus(StatementBuilder statementBuilder) {
+    print(statementBuilder.id);
     emit(state.copyWith(focusedBuilder: statementBuilder));
   }
 }

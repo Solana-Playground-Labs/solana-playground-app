@@ -5,9 +5,9 @@ import 'abstract_value.dart';
 class ConstantValue extends Value {
   final dynamic constant;
 
-  const ConstantValue({required InternalType type, required this.constant}) : super(type);
+  const ConstantValue({required this.constant}) : super();
 
   factory ConstantValue.string(String value) {
-    return ConstantValue(type: const InternalString(), constant: value);
+    return ConstantValue(constant: value);
   }
 }

@@ -1,32 +1,61 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:solana_playground_app/common/card.dart';
-import 'package:solana_playground_app/common/code.dart';
 import 'package:solana_playground_app/common/label.dart';
 import 'package:solana_playground_app/common/textfield.dart';
+import 'package:solana_playground_app/library/focuse_listener.dart';
+import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
-class DeclareVariableBuilderWidget extends StatelessWidget {
-  final DeclareVariableBuilder declareVariableBuilder;
+import 'declare_variable_builder_cubit.dart';
 
-  const DeclareVariableBuilderWidget({Key? key, required this.declareVariableBuilder}) : super(key: key);
+class DeclareVariableBuilderWidget extends StatelessWidget {
+  final DeclareVariableBuilder builder;
+
+  DeclareVariableBuilderWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider<DeclareVariableBuilderCubit>(
+      create: (context) => DeclareVariableBuilderCubit(builder),
+      child: Builder(
+        builder: (context) => content(context),
+      ),
+    );
+  }
+
+  Widget content(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         IntrinsicWidth(
           child: PGLabel(
             style: PGLabelStyle.orange,
-            child: TextField(
-              maxLines: 1,
-              style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.black),
-              decoration: SPTextField.compactInputDecoration.copyWith(
-                hintText: "Variable name"
+            child: FocusListener(
+              onFocusChange: (focus) {
+                if (focus) context.read<CodeEditorCubit>().focus(builder);
+              },
+              child: TextField(
+                controller: context.read<DeclareVariableBuilderCubit>().nameTextController,
+                maxLines: 1,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.black),
+                decoration: SPTextField.compactInputDecoration.copyWith(hintText: "Variable"),
               ),
             ),
           ),
+        ),
+        BlocBuilder<DeclareVariableBuilderCubit, DeclareVariableBuilderState>(
+          builder: (context, state) {
+            if (state.internalType is InternalString) {
+              return const Text(" : String");
+            } else if (state.internalType is InternalBool) {
+              return const Text(" : Bool");
+            } else if (state.internalType is InternalNumber) {
+              return const Text(" : Number");
+            }
+            return Container();
+          },
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -37,10 +66,9 @@ class DeclareVariableBuilderWidget extends StatelessWidget {
             style: PGLabelStyle.green,
             child: TextField(
               maxLines: 1,
+              textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.black),
-              decoration: SPTextField.compactInputDecoration.copyWith(
-                hintText: "Constant value"
-              ),
+              decoration: SPTextField.compactInputDecoration.copyWith(hintText: "Constant"),
             ),
           ),
         ),

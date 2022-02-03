@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/scene/editor/common/statement_builder_focus.dart';
 import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
+import 'package:solana_playground_app/scene/editor/cubit/statements_builder_cubit.dart';
 import 'package:solana_playground_app/scene/editor/widget/statement_builder/declare_variable/declare_variable_builder_widget.dart';
 import 'package:solana_playground_app/scene/editor/widget/statement_builder/declare_variables/declare_variables_builder_cubit.dart';
+import 'package:solana_playground_app/scene/editor/widget/statement_builder/statement_builder_action.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 class DeclareVariablesBuilderWidget extends StatelessWidget {
-  final DeclareVariablesBuilder declareVariablesBuilder;
+  final DeclareVariablesBuilder builder;
 
-  const DeclareVariablesBuilderWidget({Key? key, required this.declareVariablesBuilder}) : super(key: key);
+  DeclareVariablesBuilderWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DeclareVariablesBuilderCubit(declareVariablesBuilder),
+      create: (context) => DeclareVariablesBuilderCubit(builder),
       child: Builder(
         builder: (context) => content(context),
       ),
@@ -25,23 +27,36 @@ class DeclareVariablesBuilderWidget extends StatelessWidget {
     final theme = Theme.of(context);
     return BlocBuilder<DeclareVariablesBuilderCubit, DeclareVariablesBuilderState>(
       builder: (context, state) => StatementBuilderFocus(
-        statementBuilder: declareVariablesBuilder,
+        statementBuilder: builder,
         builder: (context, isFocus) => Material(
           type: MaterialType.transparency,
           child: InkWell(
             onTap: () {
-              context.read<CodeEditorCubit>().focus(declareVariablesBuilder);
+              FocusManager.instance.primaryFocus?.unfocus();
+              context.read<CodeEditorCubit>().focus(builder);
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text("Declare variables", style: theme.textTheme.headline6),
-                for (var declareVariableBuilder in state.children)
+                for (var child in state.children)
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4.0),
-                    child: DeclareVariableBuilderWidget(declareVariableBuilder: declareVariableBuilder),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        DeclareVariableBuilderWidget(builder: child),
+                        if (isFocus && state.children.length > 1)
+                          IconButton(
+                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            constraints: const BoxConstraints(),
+                            onPressed: () => builder.removeChild(child),
+                            icon: const Icon(Icons.remove, color: Colors.red),
+                          )
+                      ],
+                    ),
                   ),
-                if (isFocus) const Icon(Icons.add),
+                if (isFocus) StatementBuilderAction(builder: builder)
               ],
             ),
           ),

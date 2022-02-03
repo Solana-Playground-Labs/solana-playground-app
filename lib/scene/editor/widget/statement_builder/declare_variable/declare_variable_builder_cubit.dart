@@ -8,10 +8,14 @@ part 'declare_variable_builder_state.dart';
 class DeclareVariableBuilderCubit extends Cubit<DeclareVariableBuilderState> {
   final DeclareVariableBuilder builder;
   final nameTextController = TextEditingController();
-  final valueTextController = TextEditingController();
 
-  DeclareVariableBuilderCubit(this.builder) : super(DeclareVariableBuilderState(statement: builder.statement)) {
+  DeclareVariableBuilderCubit(this.builder) : super(DeclareVariableBuilderState(internalType: builder.internalType)) {
     builder.addListener(listener);
+
+    nameTextController.text = builder.name;
+    nameTextController.addListener(() {
+      builder.name = nameTextController.text;
+    });
   }
 
   listener() {
@@ -20,12 +24,7 @@ class DeclareVariableBuilderCubit extends Cubit<DeclareVariableBuilderState> {
       nameTextController.text = name;
     }
 
-    final value = builder.statement.value;
-    if (value is ConstantValue) {
-      if (value.constant != nameTextController.text) {
-        valueTextController.text = value.constant;
-      }
-    }
+    emit(state.copyWith(internalType: builder.internalType));
   }
 
   @override

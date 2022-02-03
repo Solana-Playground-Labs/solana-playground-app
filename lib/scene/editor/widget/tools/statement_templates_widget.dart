@@ -12,12 +12,12 @@ class StatementTemplatesWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        TemplateWidget(
-          title: "Declare variable",
-          onTap: () {
-            context.read<StatementsBuilderCubit>().add(DeclareVariableBuilder.standard());
-          },
-        ),
+        // TemplateWidget(
+        //   title: "Declare variable",
+        //   onTap: () {
+        //     context.read<StatementsBuilderCubit>().add(DeclareVariableBuilder.standard());
+        //   },
+        // ),
         TemplateWidget(
           title: "Declare variables",
           onTap: () {

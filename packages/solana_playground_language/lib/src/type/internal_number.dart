@@ -1,3 +1,5 @@
 import 'type.dart';
 
-class InternalNumber extends InternalType {}
+class InternalNumber extends InternalType {
+  const InternalNumber();
+}
