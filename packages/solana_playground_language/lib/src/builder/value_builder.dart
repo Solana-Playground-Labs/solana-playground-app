@@ -27,9 +27,11 @@ class ConstantValueBuilder extends ValueBuilder {
 
   ConstantValueBuilder(dynamic constant, InternalType type) : _constant = constant;
 
+  factory ConstantValueBuilder.standard() => ConstantValueBuilder("", const InternalString());
+
   dynamic get constant => _constant;
 
-  set value(dynamic value) {
+  set constant(dynamic value) {
     _constant = value;
     notifyListeners();
   }

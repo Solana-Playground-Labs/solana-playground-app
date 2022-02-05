@@ -11,8 +11,8 @@ class CodeEditorCubit extends Cubit<CodeEditorState> {
     emit(state.unfocus());
   }
 
-  void focus(StatementBuilder statementBuilder) {
-    print(statementBuilder.id);
-    emit(state.copyWith(focusedBuilder: statementBuilder));
+  void focus(BaseBuilder builder) {
+    print("Focus to ${builder.runtimeType.toString()} with ${builder.id}");
+    emit(state.copyWith(focusedBuilder: builder));
   }
 }

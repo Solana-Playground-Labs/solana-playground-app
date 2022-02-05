@@ -35,6 +35,7 @@ class ProgramBuilderImpl extends ProgramBuilder {
   }
 
   void moveTo(StatementBuilder builder, int index) {
+    if (index < 0 || index >= _statements.length) return;
     if (!_statements.contains(builder)) return;
 
     _statements.remove(builder);

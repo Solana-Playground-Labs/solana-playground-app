@@ -5,6 +5,7 @@ import 'package:solana_playground_app/common/label.dart';
 import 'package:solana_playground_app/common/textfield.dart';
 import 'package:solana_playground_app/library/focuse_listener.dart';
 import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
+import 'package:solana_playground_app/scene/editor/widget/statement_builder/value/value_root_builder_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import 'declare_variable_builder_cubit.dart';
@@ -29,8 +30,8 @@ class DeclareVariableBuilderWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         IntrinsicWidth(
-          child: PGLabel(
-            style: PGLabelStyle.orange,
+          child: SPLabel(
+            style: SPLabelStyle.orange,
             child: FocusListener(
               onFocusChange: (focus) {
                 if (focus) context.read<CodeEditorCubit>().focus(builder);
@@ -62,15 +63,7 @@ class DeclareVariableBuilderWidget extends StatelessWidget {
           child: SvgPicture.asset("assets/icon/equal.svg"),
         ),
         IntrinsicWidth(
-          child: PGLabel(
-            style: PGLabelStyle.green,
-            child: TextField(
-              maxLines: 1,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.black),
-              decoration: SPTextField.compactInputDecoration.copyWith(hintText: "Constant"),
-            ),
-          ),
+          child: ValueRootBuilderWidget(rootBuilder: builder.valueRootBuilder),
         ),
       ],
     );

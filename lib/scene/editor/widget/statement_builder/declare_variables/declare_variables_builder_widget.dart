@@ -30,34 +30,39 @@ class DeclareVariablesBuilderWidget extends StatelessWidget {
         statementBuilder: builder,
         builder: (context, isFocus) => Material(
           type: MaterialType.transparency,
+          borderRadius: BorderRadius.circular(8),
+          clipBehavior: Clip.hardEdge,
           child: InkWell(
             onTap: () {
               FocusManager.instance.primaryFocus?.unfocus();
               context.read<CodeEditorCubit>().focus(builder);
             },
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Declare variables", style: theme.textTheme.headline6),
-                for (var child in state.children)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        DeclareVariableBuilderWidget(builder: child),
-                        if (isFocus && state.children.length > 1)
-                          IconButton(
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
-                            constraints: const BoxConstraints(),
-                            onPressed: () => builder.removeChild(child),
-                            icon: const Icon(Icons.remove, color: Colors.red),
-                          )
-                      ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Declare variables", style: theme.textTheme.headline6),
+                  for (var child in state.children)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          DeclareVariableBuilderWidget(builder: child),
+                          if (isFocus && state.children.length > 1)
+                            IconButton(
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              constraints: const BoxConstraints(),
+                              onPressed: () => builder.removeChild(child),
+                              icon: const Icon(Icons.remove, color: Colors.red),
+                            )
+                        ],
+                      ),
                     ),
-                  ),
-                if (isFocus) StatementBuilderAction(builder: builder)
-              ],
+                  if (isFocus) StatementBuilderAction(builder: builder)
+                ],
+              ),
             ),
           ),
         ),

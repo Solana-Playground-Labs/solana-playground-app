@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
 import 'package:solana_playground_app/scene/editor/widget/tools/inspector/declare_variable_inspector_widget.dart';
 import 'package:solana_playground_app/scene/editor/widget/tools/inspector/declare_variables_inspector_widget.dart';
+import 'package:solana_playground_app/scene/editor/widget/tools/inspector/value_root_inspector.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 class StatementBuilderInspectorWidget extends StatelessWidget {
@@ -20,12 +21,14 @@ class StatementBuilderInspectorWidget extends StatelessWidget {
     );
   }
 
-  Widget mapping(BuildContext context, StatementBuilder builder) {
+  Widget mapping(BuildContext context, BaseBuilder builder) {
     Widget widget = Container();
     if (builder is DeclareVariableBuilder) {
       widget = DeclareVariableInspectorWidget(builder: builder);
     } else if (builder is DeclareVariablesBuilder) {
       widget = DeclareVariablesInspectorWidget(builder: builder);
+    } else if (builder is ValueRootBuilder) {
+      widget = ValueRootInspectorWidget(builder: builder);
     }
 
     return Column(

@@ -17,11 +17,11 @@ class StatementBuilderAction extends StatelessWidget {
           child: const Text("Delete"),
         ),
         TextButton(
-          onPressed: () => context.read<StatementsBuilderCubit>().moveUp(builder),
+          onPressed: () => context.read<StatementsBuilderCubit>().moveDown(builder),
           child: const Text("Up"),
         ),
         TextButton(
-          onPressed: () => context.read<StatementsBuilderCubit>().moveDown(builder),
+          onPressed: () => context.read<StatementsBuilderCubit>().moveUp(builder),
           child: const Text("Down"),
         ),
       ],

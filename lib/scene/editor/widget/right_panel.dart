@@ -14,8 +14,8 @@ class RightPanel extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: const [
-          Expanded(child: StatementTemplatesWidget()),
-          Divider(),
+          // Expanded(child: StatementTemplatesWidget()),
+          // Divider(),
           Expanded(child: StatementBuilderInspectorWidget()),
         ],
       ),

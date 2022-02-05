@@ -4,11 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
-class DeclareVariableInspectorCubit extends Cubit<DeclareVariableInspectorState> {
+class _DeclareVariableInspectorCubit extends Cubit<_DeclareVariableInspectorState> {
   final DeclareVariableBuilder builder;
 
-  DeclareVariableInspectorCubit(this.builder)
-      : super(DeclareVariableInspectorState(internalType: builder.internalType)) {
+  _DeclareVariableInspectorCubit(this.builder)
+      : super(_DeclareVariableInspectorState(
+          internalType: builder.internalType,
+        )) {
     builder.addListener(listener);
   }
 
@@ -20,6 +22,8 @@ class DeclareVariableInspectorCubit extends Cubit<DeclareVariableInspectorState>
     builder.internalType = internalType;
   }
 
+  void setSource() {}
+
   @override
   Future<void> close() {
     builder.removeListener(listener);
@@ -27,30 +31,27 @@ class DeclareVariableInspectorCubit extends Cubit<DeclareVariableInspectorState>
   }
 }
 
-class DeclareVariableInspectorState extends Equatable {
+class _DeclareVariableInspectorState extends Equatable {
   final InternalType internalType;
 
-  const DeclareVariableInspectorState({required this.internalType});
+  const _DeclareVariableInspectorState({required this.internalType});
 
   @override
   List<Object> get props => [internalType];
 
-  DeclareVariableInspectorState copyWith({
-    InternalType? internalType,
-  }) {
-    return DeclareVariableInspectorState(
-      internalType: internalType ?? this.internalType,
-    );
+  _DeclareVariableInspectorState copyWith({InternalType? internalType}) {
+    return _DeclareVariableInspectorState(internalType: internalType ?? this.internalType);
   }
 }
 
-class DeclareVariableInspectorWidget extends CubitWidget<DeclareVariableInspectorCubit, DeclareVariableInspectorState> {
+class DeclareVariableInspectorWidget
+    extends CubitWidget<_DeclareVariableInspectorCubit, _DeclareVariableInspectorState> {
   final DeclareVariableBuilder builder;
 
   DeclareVariableInspectorWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
 
   @override
-  Widget content(BuildContext context, DeclareVariableInspectorState state) {
+  Widget content(BuildContext context, _DeclareVariableInspectorState state) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,7 +63,7 @@ class DeclareVariableInspectorWidget extends CubitWidget<DeclareVariableInspecto
             ChoiceChip(
               label: Text(internalType.runtimeType.toString()),
               onSelected: (value) {
-                context.read<DeclareVariableInspectorCubit>().setInternalType(internalType);
+                context.read<_DeclareVariableInspectorCubit>().setInternalType(internalType);
               },
               selected: state.internalType == internalType,
             ),
@@ -72,5 +73,5 @@ class DeclareVariableInspectorWidget extends CubitWidget<DeclareVariableInspecto
   }
 
   @override
-  DeclareVariableInspectorCubit cubit(BuildContext context) => DeclareVariableInspectorCubit(builder);
+  _DeclareVariableInspectorCubit cubit(BuildContext context) => _DeclareVariableInspectorCubit(builder);
 }

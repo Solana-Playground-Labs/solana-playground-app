@@ -1,7 +1,7 @@
 part of 'code_editor_cubit.dart';
 
 class CodeEditorState extends Equatable {
-  final StatementBuilder? focusedBuilder;
+  final BaseBuilder? focusedBuilder;
 
   const CodeEditorState({this.focusedBuilder});
 
@@ -11,7 +11,7 @@ class CodeEditorState extends Equatable {
   CodeEditorState unfocus() => copyWith();
 
   CodeEditorState copyWith({
-    StatementBuilder? focusedBuilder,
+    BaseBuilder? focusedBuilder,
   }) {
     return CodeEditorState(
       focusedBuilder: focusedBuilder ?? this.focusedBuilder,
