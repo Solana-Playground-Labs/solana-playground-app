@@ -36,4 +36,9 @@ class DeclareVariableBuilder extends StatementBuilder {
         type: internalType,
         value: valueRootBuilder.valueBuilder.value,
       );
+
+  @override
+  DeclareVariableBuilder copy() {
+    return DeclareVariableBuilder(_name, _internalType);
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
+import 'package:solana_playground_app/scene/editor/widget/statement_builder/statement_feedback.dart';
 import 'package:solana_playground_app/scene/editor/widget/statement_builder/statements_builder_cubit.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,43 +22,39 @@ class StatementTemplatesWidget extends StatelessWidget {
         // ),
         TemplateWidget(
           title: "Declare variables",
-          onTap: () {
-            context
-                .read<CodeEditorCubit>()
-                .programBuilder
-                .add(DeclareVariablesBuilder.standard());
-          },
+          statementBuilder: DeclareVariablesBuilder.standard(),
         ),
         TemplateWidget(
           title: "Print",
-          onTap: () {
-            context
-                .read<CodeEditorCubit>()
-                .programBuilder
-                .add(PrintBuilder.standard());
-          },
+          statementBuilder: PrintBuilder.standard(),
         )
       ],
     );
   }
 }
 
-class TemplateWidget extends StatelessWidget {
+class TemplateWidget<T extends StatementBuilder> extends StatelessWidget {
   final String title;
-  final VoidCallback? onTap;
+  final T statementBuilder;
 
-  const TemplateWidget({Key? key, required this.title, required this.onTap}) : super(key: key);
+  const TemplateWidget({Key? key, required this.title, required this.statementBuilder}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: PGCard(
-        child: InkWell(
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Center(child: Text(title)),
+    return Draggable<T>(
+      data: statementBuilder,
+      feedback: StatementFeedback(builder: statementBuilder),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: PGCard(
+          child: InkWell(
+            onTap: () {
+              context.read<CodeEditorCubit>().programBuilder.add(statementBuilder.copy());
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Center(child: Text(title)),
+            ),
           ),
         ),
       ),

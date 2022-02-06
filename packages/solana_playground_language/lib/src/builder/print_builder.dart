@@ -23,4 +23,9 @@ class PrintBuilder extends StatementBuilder {
   void moveTo(ValueRootBuilder valueRootBuilder, int index) {
     if (_valueRootBuilders.moveTo(valueRootBuilder, index)) notifyListeners();
   }
+
+  @override
+  PrintBuilder copy() {
+    return PrintBuilder(_valueRootBuilders.map((e) => e.copy()).toList());
+  }
 }

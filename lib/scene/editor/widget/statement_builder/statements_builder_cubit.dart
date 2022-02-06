@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 part 'statements_builder_state.dart';
@@ -9,8 +10,7 @@ part 'statements_builder_state.dart';
 class StatementsBuilderCubit extends Cubit<StatementsBuilderState> {
   final ProgramBuilder builder;
 
-  StatementsBuilderCubit(this.builder)
-      : super(StatementsBuilderState(statements: builder.statements)) {
+  StatementsBuilderCubit(this.builder) : super(StatementsBuilderState(statements: builder.statements)) {
     builder.addListener(listener);
   }
 
@@ -24,6 +24,34 @@ class StatementsBuilderCubit extends Cubit<StatementsBuilderState> {
 
   remove(StatementBuilder statementBuilder) {
     builder.remove(statementBuilder);
+  }
+
+  insertBefore(StatementBuilder oldBuilder, StatementBuilder newBuilder) {
+    if (!builder.statements.contains(oldBuilder)) return;
+    final index = builder.statements.indexOf(oldBuilder);
+
+    if (builder.statements.contains(newBuilder)) {
+      // Move
+      builder.remove(newBuilder);
+      builder.insert(index, newBuilder);
+    } else {
+      // Insert
+      builder.insert(index, newBuilder);
+    }
+  }
+
+  insertAfter(StatementBuilder oldBuilder, StatementBuilder newBuilder) {
+    if (!builder.statements.contains(oldBuilder)) return;
+    final index = builder.statements.indexOf(oldBuilder);
+
+    if (builder.statements.contains(newBuilder)) {
+      // Move
+      builder.remove(newBuilder);
+      builder.insert(index, newBuilder);
+    } else {
+      // Insert
+      builder.insert(index + 1 , newBuilder);
+    }
   }
 
   moveDown(StatementBuilder statementBuilder) {

@@ -12,8 +12,11 @@ abstract class ProgramBuilder extends ChangeNotifier {
   List<StatementBuilder> get statements;
 
   void insert(int at, StatementBuilder statementBuilder);
+
   void add(StatementBuilder statementBuilder);
+
   void remove(StatementBuilder statementBuilder);
+
   void moveTo(StatementBuilder builder, int index);
 
   Program build();
@@ -27,6 +30,7 @@ class ProgramBuilderImpl extends ProgramBuilder {
 
   @override
   void insert(int at, StatementBuilder statementBuilder) {
+    if (at < 0 || at > _statements.length) return;
     _statements.insert(at, statementBuilder);
     notifyListeners();
   }

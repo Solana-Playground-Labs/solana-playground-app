@@ -7,7 +7,7 @@ class ValueRootBuilder extends BaseBuilder {
   ValueRootBuilder(ValueBuilder valueBuilder) : _valueBuilder = valueBuilder;
 
   factory ValueRootBuilder.standard() {
-    return ValueRootBuilder(ConstantValueBuilder("", const InternalString()));
+    return ValueRootBuilder(ConstantValueBuilder(""));
   }
 
   factory ValueRootBuilder.variable() {
@@ -20,6 +20,11 @@ class ValueRootBuilder extends BaseBuilder {
     _valueBuilder = value;
     notifyListeners();
   }
+
+  @override
+  ValueRootBuilder copy() {
+    return ValueRootBuilder(_valueBuilder);
+  }
 }
 
 abstract class ValueBuilder extends BaseBuilder {
@@ -29,9 +34,9 @@ abstract class ValueBuilder extends BaseBuilder {
 class ConstantValueBuilder extends ValueBuilder {
   dynamic _constant;
 
-  ConstantValueBuilder(dynamic constant, InternalType type) : _constant = constant;
+  ConstantValueBuilder(dynamic constant) : _constant = constant;
 
-  factory ConstantValueBuilder.standard() => ConstantValueBuilder("", const InternalString());
+  factory ConstantValueBuilder.standard() => ConstantValueBuilder("");
 
   dynamic get constant => _constant;
 
@@ -44,14 +49,19 @@ class ConstantValueBuilder extends ValueBuilder {
   Value get value {
     return ConstantValue(constant: _constant);
   }
+
+  @override
+  ConstantValueBuilder copy() {
+    return ConstantValueBuilder(_constant);
+  }
 }
 
 class VariableValueBuilder extends ValueBuilder {
-  dynamic _name;
+  String _name;
 
-  VariableValueBuilder(dynamic constant) : _name = constant;
+  VariableValueBuilder(String constant) : _name = constant;
 
-  dynamic get name => _name;
+  String get name => _name;
 
   set name(dynamic value) {
     _name = value;
@@ -62,11 +72,21 @@ class VariableValueBuilder extends ValueBuilder {
   Value get value {
     return VariableValue(name);
   }
+
+  @override
+  VariableValueBuilder copy() {
+    return VariableValueBuilder(_name);
+  }
 }
 
 class ReadValueBuilder extends ValueBuilder {
   @override
   Value get value {
     return const ReadValue();
+  }
+
+  @override
+  ReadValueBuilder copy() {
+    return ReadValueBuilder();
   }
 }

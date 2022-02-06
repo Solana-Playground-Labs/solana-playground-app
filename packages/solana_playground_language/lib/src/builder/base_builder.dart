@@ -6,6 +6,8 @@ abstract class BaseBuilder with ChangeNotifier {
 
   BaseBuilder() : id = const Uuid().v4();
 
+  BaseBuilder copy();
+
   @override
   bool operator ==(Object other) => identical(this, other) || other is BaseBuilder && id == other.id;
 

@@ -24,4 +24,9 @@ class DeclareVariablesBuilder extends StatementBuilder {
     _children.remove(child);
     notifyListeners();
   }
+
+  @override
+  DeclareVariablesBuilder copy() {
+    return DeclareVariablesBuilder(children: _children.map((e) => e.copy()).toList());
+  }
 }

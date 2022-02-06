@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
-import 'package:solana_playground_app/scene/editor/widget/statement_builder/statements_builder.dart';
 import 'package:solana_playground_app/scene/editor/widget/statement_builder/statements_builder_cubit.dart';
+
+import 'statement_builder_widget.dart';
+import 'statement_builder_draggable.dart';
 
 class StatementsBuilderWidget extends CubitWidget<StatementsBuilderCubit, StatementsBuilderState> {
   const StatementsBuilderWidget({Key? key}) : super(key: key);
@@ -13,15 +15,14 @@ class StatementsBuilderWidget extends CubitWidget<StatementsBuilderCubit, Statem
     return SliverList(
       delegate: SliverChildBuilderDelegate((context, index) {
         final builder = state.statements[index];
-        Widget builderWidget = StatementsBuilder.mapping(builder);
 
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
+        return StatementBuilderDraggable(
+          builder: builder,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
+                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(minWidth: 20),
                   child: Text("${index + 1}", style: Theme.of(context).textTheme.headline6, textAlign: TextAlign.end),
@@ -37,7 +38,7 @@ class StatementsBuilderWidget extends CubitWidget<StatementsBuilderCubit, Statem
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: builderWidget,
+                    child: StatementBuilderWidget(builder: builder),
                   ),
                 ),
               ),
