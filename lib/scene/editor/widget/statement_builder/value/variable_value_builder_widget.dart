@@ -7,16 +7,26 @@ import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 class _VariableValueBuilderCubit extends Cubit<_VariableValueBuilderState> {
+  final nameTextController = TextEditingController();
   final VariableValueBuilder builder;
 
   _VariableValueBuilderCubit(this.builder) : super(_VariableValueBuilderState()) {
+    nameTextController.text = builder.name;
+    nameTextController.addListener(() {
+      builder.name = nameTextController.text;
+    });
     builder.addListener(listener);
   }
 
-  void listener() {}
+  void listener() {
+    if (nameTextController.text != builder.name) {
+      nameTextController.text = builder.name;
+    }
+  }
 
   @override
   Future<void> close() async {
+    nameTextController.dispose();
     builder.removeListener(listener);
     return super.close();
   }
@@ -39,6 +49,7 @@ class VariableValueBuilderWidget extends CubitWidget<_VariableValueBuilderCubit,
     return SPLabel(
       style: SPLabelStyle.orange,
       child: TextField(
+        controller: context.read<_VariableValueBuilderCubit>().nameTextController,
         maxLines: 1,
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.black),
