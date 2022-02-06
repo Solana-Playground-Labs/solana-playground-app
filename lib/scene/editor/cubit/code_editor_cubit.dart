@@ -5,7 +5,9 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 part 'code_editor_state.dart';
 
 class CodeEditorCubit extends Cubit<CodeEditorState> {
-  CodeEditorCubit() : super(const CodeEditorState());
+  final ProgramBuilder programBuilder;
+
+  CodeEditorCubit(this.programBuilder) : super(const CodeEditorState());
 
   void unfocus() {
     emit(state.unfocus());

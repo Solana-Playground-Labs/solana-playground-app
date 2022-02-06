@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:solana_playground_app/scene/editor/cubit/statements_builder_cubit.dart';
+import 'package:solana_playground_app/scene/editor/widget/statement_builder/statements_builder_cubit.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 class StatementBuilderAction extends StatelessWidget {

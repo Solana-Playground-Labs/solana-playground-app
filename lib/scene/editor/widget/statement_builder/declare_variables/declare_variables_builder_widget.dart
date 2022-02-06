@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/scene/editor/common/statement_builder_focus.dart';
 import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
-import 'package:solana_playground_app/scene/editor/cubit/statements_builder_cubit.dart';
+import 'package:solana_playground_app/scene/editor/widget/statement_builder/statements_builder_cubit.dart';
 import 'package:solana_playground_app/scene/editor/widget/statement_builder/declare_variable/declare_variable_builder_widget.dart';
 import 'package:solana_playground_app/scene/editor/widget/statement_builder/declare_variables/declare_variables_builder_cubit.dart';
 import 'package:solana_playground_app/scene/editor/widget/statement_builder/statement_builder_action.dart';

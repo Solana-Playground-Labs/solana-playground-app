@@ -11,6 +11,11 @@ abstract class Program {
 abstract class ProgramBuilder extends ChangeNotifier {
   List<StatementBuilder> get statements;
 
+  void insert(int at, StatementBuilder statementBuilder);
+  void add(StatementBuilder statementBuilder);
+  void remove(StatementBuilder statementBuilder);
+  void moveTo(StatementBuilder builder, int index);
+
   Program build();
 }
 
@@ -20,21 +25,25 @@ class ProgramBuilderImpl extends ProgramBuilder {
   @override
   List<StatementBuilder> get statements => List.of(_statements);
 
+  @override
   void insert(int at, StatementBuilder statementBuilder) {
     _statements.insert(at, statementBuilder);
     notifyListeners();
   }
 
+  @override
   void add(StatementBuilder statementBuilder) {
     _statements.add(statementBuilder);
     notifyListeners();
   }
 
+  @override
   void remove(StatementBuilder statementBuilder) {
     _statements.remove(statementBuilder);
     notifyListeners();
   }
 
+  @override
   void moveTo(StatementBuilder builder, int index) {
     if (_statements.moveTo(builder, index)) notifyListeners();
   }

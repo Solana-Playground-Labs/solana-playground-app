@@ -7,10 +7,10 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 part 'statements_builder_state.dart';
 
 class StatementsBuilderCubit extends Cubit<StatementsBuilderState> {
-  final builder = ProgramBuilderImpl();
+  final ProgramBuilder builder;
 
-  StatementsBuilderCubit(ProgramBuilder programBuilder)
-      : super(StatementsBuilderState(statements: programBuilder.statements)) {
+  StatementsBuilderCubit(this.builder)
+      : super(StatementsBuilderState(statements: builder.statements)) {
     builder.addListener(listener);
   }
 

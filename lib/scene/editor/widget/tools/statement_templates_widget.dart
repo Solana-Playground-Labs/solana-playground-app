@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solana_playground_app/common/card.dart';
-import 'package:solana_playground_app/scene/editor/cubit/statements_builder_cubit.dart';
+import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
+import 'package:solana_playground_app/scene/editor/widget/statement_builder/statements_builder_cubit.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,13 +22,19 @@ class StatementTemplatesWidget extends StatelessWidget {
         TemplateWidget(
           title: "Declare variables",
           onTap: () {
-            context.read<StatementsBuilderCubit>().add(DeclareVariablesBuilder.standard());
+            context
+                .read<CodeEditorCubit>()
+                .programBuilder
+                .add(DeclareVariablesBuilder.standard());
           },
         ),
         TemplateWidget(
           title: "Print",
           onTap: () {
-            context.read<StatementsBuilderCubit>().add(PrintBuilder.standard());
+            context
+                .read<CodeEditorCubit>()
+                .programBuilder
+                .add(PrintBuilder.standard());
           },
         )
       ],

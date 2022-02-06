@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
-import 'package:solana_playground_app/scene/editor/cubit/statements_builder_cubit.dart';
+import 'package:solana_playground_app/scene/editor/widget/statement_builder/statements_builder_cubit.dart';
 import 'package:solana_playground_app/scene/editor/widget/code_editor_panel.dart';
 import 'package:solana_playground_app/scene/editor/widget/left_panel.dart';
 import 'package:solana_playground_app/scene/editor/widget/right_panel.dart';
@@ -19,8 +19,7 @@ class EditorView extends StatelessWidget {
       themeData: EditorThemeData(),
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => CodeEditorCubit()),
-          BlocProvider(create: (context) => StatementsBuilderCubit(ProgramBuilderImpl())),
+          BlocProvider(create: (context) => CodeEditorCubit(ProgramBuilderImpl())),
         ],
         child: Builder(
           builder: (context) => Scaffold(
