@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
 import 'package:solana_playground_app/scene/editor/cubit/statements_builder_cubit.dart';
 import 'package:solana_playground_app/scene/editor/widget/statement_builder/declare_variable/declare_variable_builder_widget.dart';
+import 'package:solana_playground_app/scene/editor/widget/statement_builder/print/print_builder_widget.dart';
 import 'package:solana_playground_app/theme/editor_theme.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
@@ -25,13 +26,15 @@ class CodeEditorPanel extends StatelessWidget {
               slivers: [
                 SliverList(
                   delegate: SliverChildBuilderDelegate((context, index) {
-                    final statement = state.statements[index];
+                    final builder = state.statements[index];
 
                     Widget builderWidget = Container();
-                    if (statement is DeclareVariableBuilder) {
-                      builderWidget = DeclareVariableBuilderWidget(builder: statement);
-                    } else if (statement is DeclareVariablesBuilder) {
-                      builderWidget = DeclareVariablesBuilderWidget(builder: statement);
+                    if (builder is DeclareVariableBuilder) {
+                      builderWidget = DeclareVariableBuilderWidget(builder: builder);
+                    } else if (builder is DeclareVariablesBuilder) {
+                      builderWidget = DeclareVariablesBuilderWidget(builder: builder);
+                    } else if (builder is PrintBuilder) {
+                      builderWidget = PrintBuilderWidget(builder: builder);
                     }
 
                     return Padding(
@@ -43,11 +46,24 @@ class CodeEditorPanel extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
                             child: ConstrainedBox(
                               constraints: const BoxConstraints(minWidth: 20),
-                              child:
-                                  Text("${index + 1}", style: Theme.of(context).textTheme.headline6, textAlign: TextAlign.end),
+                              child: Text("${index + 1}",
+                                  style: Theme.of(context).textTheme.headline6, textAlign: TextAlign.end),
                             ),
                           ),
-                          builderWidget,
+                          Material(
+                            type: MaterialType.transparency,
+                            borderRadius: BorderRadius.circular(8),
+                            clipBehavior: Clip.hardEdge,
+                            child: InkWell(
+                              onTap: () {
+                                context.read<CodeEditorCubit>().focus(builder);
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: builderWidget,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     );

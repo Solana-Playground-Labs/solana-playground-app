@@ -23,6 +23,12 @@ class StatementTemplatesWidget extends StatelessWidget {
           onTap: () {
             context.read<StatementsBuilderCubit>().add(DeclareVariablesBuilder.standard());
           },
+        ),
+        TemplateWidget(
+          title: "Print",
+          onTap: () {
+            context.read<StatementsBuilderCubit>().add(PrintBuilder.standard());
+          },
         )
       ],
     );

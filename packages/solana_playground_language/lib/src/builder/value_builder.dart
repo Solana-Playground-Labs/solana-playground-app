@@ -10,6 +10,10 @@ class ValueRootBuilder extends BaseBuilder {
     return ValueRootBuilder(ConstantValueBuilder("", const InternalString()));
   }
 
+  factory ValueRootBuilder.variable() {
+    return ValueRootBuilder(VariableValueBuilder(""));
+  }
+
   ValueBuilder get valueBuilder => _valueBuilder;
 
   set valueBuilder(ValueBuilder value) {

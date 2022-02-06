@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:solana_playground_language/src/statement/statement.dart';
+import 'package:solana_playground_language/utils/list_extension.dart';
 
 import 'builder/statement_builder.dart';
 
@@ -35,13 +36,7 @@ class ProgramBuilderImpl extends ProgramBuilder {
   }
 
   void moveTo(StatementBuilder builder, int index) {
-    if (index < 0 || index >= _statements.length) return;
-    if (!_statements.contains(builder)) return;
-
-    _statements.remove(builder);
-    _statements.insert(index, builder);
-
-    notifyListeners();
+    if (_statements.moveTo(builder, index)) notifyListeners();
   }
 
   @override

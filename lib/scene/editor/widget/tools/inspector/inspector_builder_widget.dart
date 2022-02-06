@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
+import 'package:solana_playground_app/scene/editor/widget/statement_builder/print/print_builder_widget.dart';
 import 'package:solana_playground_app/scene/editor/widget/tools/inspector/declare_variable_inspector_widget.dart';
 import 'package:solana_playground_app/scene/editor/widget/tools/inspector/declare_variables_inspector_widget.dart';
+import 'package:solana_playground_app/scene/editor/widget/tools/inspector/print/print_inspector_widget.dart_widget.dart';
 import 'package:solana_playground_app/scene/editor/widget/tools/inspector/value_root_inspector.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
-class StatementBuilderInspectorWidget extends StatelessWidget {
-  const StatementBuilderInspectorWidget({Key? key}) : super(key: key);
+class InspectorBuilderWidget extends StatelessWidget {
+  const InspectorBuilderWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,8 @@ class StatementBuilderInspectorWidget extends StatelessWidget {
       widget = DeclareVariablesInspectorWidget(builder: builder);
     } else if (builder is ValueRootBuilder) {
       widget = ValueRootInspectorWidget(builder: builder);
+    } else if (builder is PrintBuilder) {
+      widget = PrintInspectorWidget(builder: builder);
     }
 
     return Column(

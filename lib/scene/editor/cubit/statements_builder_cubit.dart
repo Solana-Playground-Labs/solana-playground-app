@@ -26,15 +26,21 @@ class StatementsBuilderCubit extends Cubit<StatementsBuilderState> {
     builder.remove(statementBuilder);
   }
 
-  moveUp(StatementBuilder statementBuilder) {
-    final index = builder.statements.indexOf(statementBuilder);
-    if (index == -1) return;
-    builder.moveTo(statementBuilder, min(index + 1, builder.statements.length));
-  }
-
   moveDown(StatementBuilder statementBuilder) {
     final index = builder.statements.indexOf(statementBuilder);
     if (index == -1) return;
+
+    print(builder.statements.map((e) => e.id));
+    builder.moveTo(statementBuilder, min(index + 1, builder.statements.length));
+    print(builder.statements.map((e) => e.id));
+  }
+
+  moveUp(StatementBuilder statementBuilder) {
+    final index = builder.statements.indexOf(statementBuilder);
+    if (index == -1) return;
+
+    print(builder.statements.map((e) => e.id));
     builder.moveTo(statementBuilder, max(index - 1, 0));
+    print(builder.statements.map((e) => e.id));
   }
 }
