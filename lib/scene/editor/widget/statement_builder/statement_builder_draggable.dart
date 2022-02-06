@@ -46,7 +46,7 @@ class _StatementBuilderDraggableState extends State<StatementBuilderDraggable> {
                 feedback: StatementFeedback(builder: widget.builder),
                 child: widget.child,
                 childWhenDragging: Opacity(
-                  opacity: 0.5,
+                  opacity: 0.2,
                   child: widget.child,
                 ),
               ),
