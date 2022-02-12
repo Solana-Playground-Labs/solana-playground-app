@@ -13,15 +13,16 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text('SOLANA', style: TextStyle(color: Colors.white)),
+        title: const Text('SOLANA', style: TextStyle(color: Colors.white)),
         centerTitle: false,
         actions: [
           SvgPicture.asset('assets/icons/user.svg'),
-          Center(
-              child: Padding(
-            padding: EdgeInsets.only(left: 10, right: 20),
-            child: Text("@darklong97x"),
-          )),
+          const Center(
+            child: Padding(
+              padding: EdgeInsets.only(left: 10, right: 20),
+              child: Text("@darklong97x"),
+            ),
+          ),
         ],
       ),
       body: Column(
@@ -30,7 +31,7 @@ class HomeView extends StatelessWidget {
             spacing: 35,
             children: [
               SolanaCard(),
-              SolanaCookBookCard(),
+              const SolanaCookBookCard(),
             ],
           ),
           ElevatedButton(
