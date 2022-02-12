@@ -27,6 +27,14 @@ class Response<T extends Object> extends Equatable {
       result: map['result'] as T,
     );
   }
+
+  factory Response.fromMapWithDecoder(Map<String, dynamic> map, T Function(Map<String, dynamic> map) decode) {
+    return Response(
+      id: map['id'] as int,
+      jsonrpc: map['jsonrpc'] as String,
+      result: decode(map['result']),
+    );
+  }
 }
 
 abstract class Result extends Equatable {}
