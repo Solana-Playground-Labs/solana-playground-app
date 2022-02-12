@@ -19,4 +19,7 @@ class SolanaApi {
     var response = await dio.post('', data: request.toMap());
     return Response.fromMapWithDecoder(response.data, VoteAccountsData.fromMap);
   }
+
+  Future<Response<>> getRecentPerformanceSamples() async {
+  }
 }
