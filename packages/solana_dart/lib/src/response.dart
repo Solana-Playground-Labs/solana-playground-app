@@ -28,7 +28,7 @@ class Response<T extends Object> extends Equatable {
     );
   }
 
-  factory Response.fromMapWithDecoder(Map<String, dynamic> map, T Function(Map<String, dynamic> map) decode) {
+  static Response<T> fromMapWithDecoder<T extends Object, U>(Map<String, dynamic> map, T Function(U map) decode) {
     return Response(
       id: map['id'] as int,
       jsonrpc: map['jsonrpc'] as String,

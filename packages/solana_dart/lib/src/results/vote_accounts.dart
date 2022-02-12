@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class VoteAccountsData extends Equatable {
-  const VoteAccountsData({
+class VoteAccounts extends Equatable {
+  const VoteAccounts({
     required this.current,
     required this.delinquent,
   });
@@ -19,8 +19,8 @@ class VoteAccountsData extends Equatable {
     };
   }
 
-  factory VoteAccountsData.fromMap(Map<String, dynamic> map) {
-    return VoteAccountsData(
+  factory VoteAccounts.fromMap(dynamic map) {
+    return VoteAccounts(
       current: List.from(map["current"].map((x) => EpochCredit.fromMap(x))),
       delinquent: List.from(map["delinquent"].map((x) => EpochCredit.fromMap(x))),
     );
@@ -69,11 +69,11 @@ class EpochCredit extends Equatable {
     };
   }
 
-  factory EpochCredit.fromMap(Map<String, dynamic> map) {
+  factory EpochCredit.fromMap(dynamic map) {
     return EpochCredit(
       commission: map['commission'] as int,
       epochVoteAccount: map['epochVoteAccount'] as bool,
-      epochCredits: map['epochCredits'] as List<List<int>>,
+      epochCredits: List.castFrom(map['epochCredits']),
       nodePubkey: map['nodePubkey'] as String,
       lastVote: map['lastVote'] as int,
       activatedStake: map['activatedStake'] as int,
