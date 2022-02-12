@@ -1,0 +1,1 @@
+library solana_dart;
