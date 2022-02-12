@@ -11,6 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
 
   cupertino_icons: ^1.0.2
   auto_route: ^3.2.2
@@ -20,6 +21,7 @@ dependencies:
 
   solana_playground_language:
     path: ./packages/solana_playground_language
+  dio: ^4.0.4
   flutter_svg: ^1.0.3
 
 dev_dependencies:
