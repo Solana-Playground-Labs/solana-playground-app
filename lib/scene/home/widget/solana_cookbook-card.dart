@@ -24,11 +24,14 @@ class SolanaCookBookCard extends StatelessWidget {
                   fontSize: 18),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 12),
-            child: Text(
-              'Developer resource that provides the essential concepts and recipes for building applications on Solana.',
-              style: TextStyle(color: Colors.black, fontSize: 16),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 12),
+              child: Text(
+                'Developer resource that provides the essential concepts and recipes for building applications on Solana.',
+                maxLines: 3,
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              ),
             ),
           ),
           Padding(
