@@ -1,5 +1,6 @@
-export 'abstract_value.dart';
-export 'constant_value.dart';
-export 'read_value.dart';
-export 'null_value.dart';
-export 'variable_value.dart';
+export 'variable/variable.dart';
+export 'read/read.dart';
+export 'base_value.dart';
+export 'value_builder.dart';
+export 'null/null.dart';
+export 'constant/constant.dart';

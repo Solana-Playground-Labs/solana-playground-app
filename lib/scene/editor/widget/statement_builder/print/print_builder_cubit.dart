@@ -11,7 +11,7 @@ class _PrintBuilderCubit extends Cubit<_PrintBuilderState> {
     emit(state.copyWith(valueRootBuilders: builder.valueRootBuilders));
   }
 
-  void remove(ValueRootBuilder valueRootBuilder) {
+  void remove(ValueContainerBuilder valueRootBuilder) {
     builder.remove(valueRootBuilder);
   }
 

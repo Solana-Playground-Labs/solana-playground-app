@@ -11,7 +11,7 @@ import 'package:solana_playground_app/scene/editor/widget/statement_builder/valu
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 class _ValueRootBuilderCubit extends Cubit<_ValueRootBuilderState> {
-  final ValueRootBuilder builder;
+  final ValueContainerBuilder builder;
 
   _ValueRootBuilderCubit(this.builder)
       : super(_ValueRootBuilderState(valueBuilder: builder.valueBuilder)) {
@@ -47,7 +47,7 @@ class _ValueRootBuilderState extends Equatable {
 }
 
 class ValueRootBuilderWidget extends CubitWidget<_ValueRootBuilderCubit, _ValueRootBuilderState> {
-  final ValueRootBuilder rootBuilder;
+  final ValueContainerBuilder rootBuilder;
 
   const ValueRootBuilderWidget({Key? key, required this.rootBuilder}) : super(key: key);
 

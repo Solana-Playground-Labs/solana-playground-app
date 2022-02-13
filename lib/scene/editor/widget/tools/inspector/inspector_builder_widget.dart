@@ -29,7 +29,7 @@ class InspectorBuilderWidget extends StatelessWidget {
       widget = DeclareVariableInspectorWidget(builder: builder);
     } else if (builder is DeclareVariablesBuilder) {
       widget = DeclareVariablesInspectorWidget(builder: builder);
-    } else if (builder is ValueRootBuilder) {
+    } else if (builder is ValueContainerBuilder) {
       widget = ValueRootInspectorWidget(builder: builder);
     } else if (builder is PrintBuilder) {
       widget = PrintInspectorWidget(builder: builder);

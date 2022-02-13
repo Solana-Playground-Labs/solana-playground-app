@@ -6,7 +6,7 @@ import 'package:solana_playground_app/scene/editor/widget/model/value_souce.dart
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 class _ValueRootInspectorCubit extends Cubit<_ValueRootInspectorState> {
-  final ValueRootBuilder builder;
+  final ValueContainerBuilder builder;
 
   _ValueRootInspectorCubit(this.builder)
       : super(_ValueRootInspectorState(sourceType: ValueSource.valueBuilderToSourceType(builder.valueBuilder))) {
@@ -46,7 +46,7 @@ class _ValueRootInspectorState extends Equatable {
 }
 
 class ValueRootInspectorWidget extends CubitWidget<_ValueRootInspectorCubit, _ValueRootInspectorState> {
-  final ValueRootBuilder builder;
+  final ValueContainerBuilder builder;
 
   ValueRootInspectorWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
 

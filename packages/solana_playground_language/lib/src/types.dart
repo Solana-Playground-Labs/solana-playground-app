@@ -1,4 +1,4 @@
-import 'statement/abstract_statement.dart';
+import 'statement/base_statement.dart';
 
 typedef Variable = String;
-typedef Block = List<Statement>;
+typedef Block = List<BaseStatement>;

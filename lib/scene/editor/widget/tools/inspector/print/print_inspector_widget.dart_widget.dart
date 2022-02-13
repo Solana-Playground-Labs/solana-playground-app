@@ -19,7 +19,7 @@ class PrintInspectorWidget extends CubitWidget<_PrintInspectorCubit, _PrintInspe
       children: [
         OutlinedButton(
           onPressed: () {
-            builder.add(ValueRootBuilder.variable());
+            builder.add(ValueContainerBuilder.variable());
           },
           child: const Text("Add variable"),
         ),
