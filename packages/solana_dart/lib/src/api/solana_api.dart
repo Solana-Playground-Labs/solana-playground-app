@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart' as network;
-import 'package:solana_dart/src/request.dart';
-import 'package:solana_dart/src/response.dart';
-import 'package:solana_dart/src/results/perf_sample.dart';
-import 'package:solana_dart/src/results/vote_accounts.dart';
+import 'package:solana_dart/src/api/request.dart';
+import 'package:solana_dart/src/api/response.dart';
+
+import './models/models.dart';
 
 class SolanaApi {
   final network.Dio dio;
