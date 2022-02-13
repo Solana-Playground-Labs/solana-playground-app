@@ -1,5 +1,5 @@
-import 'package:solana_playground_language/extensions/extensions.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
+import 'package:solana_playground_language/src/extensions/extensions.dart';
 
 class BlockBuilder extends StatementBuilder {
   final List<StatementBuilder> _statementBuilders;

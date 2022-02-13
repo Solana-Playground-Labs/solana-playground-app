@@ -1,5 +1,5 @@
-import 'package:solana_playground_language/extensions/list_extension.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
+import 'package:solana_playground_language/src/extensions/extensions.dart';
 
 class PrintBuilder extends StatementBuilder {
   final List<ValueContainerBuilder> _valueRootBuilders;
