@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:solana_dart/src/api/models/models.dart';
 
-import 'package:solana_dart/src/results/perf_sample.dart';
-import 'package:solana_dart/src/results/vote_accounts.dart';
 import 'package:solana_dart/src/api/solana_api.dart';
 
 void main() {

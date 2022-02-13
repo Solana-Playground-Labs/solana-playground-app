@@ -1,6 +1,6 @@
-import 'package:equatable/equatable.dart';
+import 'package:solana_playground_language/solana_playground_language.dart';
 
-abstract class BaseValue extends Equatable {
+abstract class BaseValue extends BaseStatement {
   const BaseValue();
 
   @override

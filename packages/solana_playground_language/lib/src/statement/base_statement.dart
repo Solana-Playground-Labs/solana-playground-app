@@ -9,3 +9,7 @@ abstract class BaseStatement extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class BaseMultipleStatement<T extends BaseStatement> extends BaseStatement {
+  final List<T>
+}
