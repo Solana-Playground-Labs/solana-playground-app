@@ -5,9 +5,16 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 part 'code_editor_state.dart';
 
 class CodeEditorCubit extends Cubit<CodeEditorState> {
-  final ProgramBuilder programBuilder;
+  final SPPackageBuilder packageBuilder = SPPackageBuilder(
+    packageType: SPPackageType.application,
+    functionBuilders: [
+      SPFunctionBuilder(name: "main", blockBuilder: BlockBuilder(statementBuilders: []), returnType: const InternalVoid())
+    ],
+  );
 
-  CodeEditorCubit(this.programBuilder) : super(const CodeEditorState());
+  CodeEditorCubit() : super(const CodeEditorState()) {
+    emit(state.copyWith(currentFunction: packageBuilder.functionBuilders.first));
+  }
 
   void unfocus() {
     emit(state.unfocus());

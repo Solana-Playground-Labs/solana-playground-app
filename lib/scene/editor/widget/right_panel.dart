@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:solana_playground_app/scene/editor/widget/tools/inspector/inspector_builder_widget.dart';
-import 'package:solana_playground_app/scene/editor/widget/tools/statement_templates_widget.dart';
 import 'package:solana_playground_app/theme/editor_theme.dart';
+
+import '../solana_playground/tools/inspector/inspector.dart';
 
 class RightPanel extends StatelessWidget {
   const RightPanel({Key? key}) : super(key: key);

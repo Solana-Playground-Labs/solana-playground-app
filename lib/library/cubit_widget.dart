@@ -6,8 +6,18 @@ abstract class CubitWidget<T extends Cubit<S>, S> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _cubit = cubit(context);
+
+    if (_cubit == null) {
+      return BlocBuilder<T, S>(
+        builder: (context, state) {
+          return content(context, state);
+        },
+      );
+    }
+
     return BlocProvider(
-      create: (context) => cubit(context),
+      create: (context) => _cubit,
       child: Builder(
         builder: (context) => BlocBuilder<T, S>(
           builder: (context, state) {
@@ -18,7 +28,7 @@ abstract class CubitWidget<T extends Cubit<S>, S> extends StatelessWidget {
     );
   }
 
-  T cubit(BuildContext context);
+  T? cubit(BuildContext context) => null;
 
   Widget content(BuildContext context, S state);
 }

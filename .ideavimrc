@@ -1,0 +1,9 @@
+set relativenumber
+set number
+set surround
+
+set ideamarks
+
+set commentary
+
+map <A-r> :action RenameElement

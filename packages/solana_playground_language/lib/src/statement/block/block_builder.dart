@@ -6,7 +6,7 @@ class BlockBuilder extends StatementBuilder {
 
   BlockBuilder({required List<StatementBuilder> statementBuilders}) : _statementBuilders = statementBuilders;
 
-  List<StatementBuilder> get statementBuilders => List.of(_statementBuilders);
+  List<StatementBuilder> get statements => List.of(_statementBuilders);
 
   void insert(int at, StatementBuilder statementBuilder) {
     if (at < 0 || at > _statementBuilders.length) return;
@@ -29,7 +29,7 @@ class BlockBuilder extends StatementBuilder {
   }
 
   StatementBuilder copy() {
-    return BlockBuilder(statementBuilders: statementBuilders);
+    return BlockBuilder(statementBuilders: statements);
   }
 
   @override
