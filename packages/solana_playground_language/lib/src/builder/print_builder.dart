@@ -28,4 +28,9 @@ class PrintBuilder extends StatementBuilder {
   PrintBuilder copy() {
     return PrintBuilder(_valueRootBuilders.map((e) => e.copy()).toList());
   }
+
+  @override
+  PrintStatement get statement => PrintStatement(variables: _valueRootBuilders.map((e) => e.valueBuilder.value).toList());
+
+
 }

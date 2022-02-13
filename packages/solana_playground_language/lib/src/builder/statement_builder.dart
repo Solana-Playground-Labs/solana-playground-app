@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:solana_playground_language/solana_playground_language.dart';
 import 'package:solana_playground_language/src/builder/base_builder.dart';
 
 abstract class StatementBuilder extends BaseBuilder {
@@ -6,4 +7,6 @@ abstract class StatementBuilder extends BaseBuilder {
 
   @override
   StatementBuilder copy();
+
+  Statement get statement;
 }

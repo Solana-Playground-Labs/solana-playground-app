@@ -1,4 +1,5 @@
 import 'package:solana_playground_language/src/type/type.dart';
+import 'package:solana_playground_language/src/types.dart';
 import 'package:solana_playground_language/src/value/value.dart';
 
 import 'abstract_statement.dart';
@@ -19,7 +20,7 @@ class DeclareVariableStatement extends Statement {
     required this.value,
   });
 
-  final String name;
+  final Variable name;
   final InternalType type;
   final Value value;
 

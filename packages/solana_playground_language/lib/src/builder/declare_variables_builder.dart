@@ -5,15 +5,13 @@ import 'package:solana_playground_language/src/builder/statement_builder.dart';
 class DeclareVariablesBuilder extends StatementBuilder {
   final List<DeclareVariableBuilder> _children;
 
-  List<DeclareVariableBuilder> get children => List.of(_children);
-
-  DeclareVariablesStatement get statement => DeclareVariablesStatement(children.map((e) => e.statement).toList());
-
   DeclareVariablesBuilder({required List<DeclareVariableBuilder> children}) : _children = children;
 
   factory DeclareVariablesBuilder.standard() {
     return DeclareVariablesBuilder(children: [DeclareVariableBuilder.standard()]);
   }
+
+  List<DeclareVariableBuilder> get children => List.of(_children);
 
   void appendChild() {
     _children.add(DeclareVariableBuilder.standard());
@@ -29,4 +27,7 @@ class DeclareVariablesBuilder extends StatementBuilder {
   DeclareVariablesBuilder copy() {
     return DeclareVariablesBuilder(children: _children.map((e) => e.copy()).toList());
   }
+
+  @override
+  DeclareVariablesStatement get statement => DeclareVariablesStatement(children.map((e) => e.statement).toList());
 }
