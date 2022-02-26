@@ -60,6 +60,7 @@ class ConstantValueBuilderWidget extends CubitWidget<_ConstantValueBuilderCubit,
     return SPLabel(
       style: SPLabelStyle.green,
       child: TextField(
+        controller: context.read<_ConstantValueBuilderCubit>().constantTextController,
         maxLines: 1,
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.black),

@@ -1,35 +1,20 @@
 import 'package:solana_playground_language/solana_playground_language.dart';
-import 'package:solana_playground_language/src/extensions/extensions.dart';
 
 class PrintBuilder extends StatementBuilder {
-  final List<ValueContainerBuilder> _valueRootBuilders;
+  final ListBaseBuilder<ValueContainerBuilder> _valueRootBuilders;
 
-  PrintBuilder(List<ValueContainerBuilder> valueRootBuilders) : _valueRootBuilders = valueRootBuilders;
-
-  List<ValueContainerBuilder> get valueRootBuilders => List.of(_valueRootBuilders);
+  PrintBuilder(List<ValueContainerBuilder> valueRootBuilders) : _valueRootBuilders = ListBaseBuilder(valueRootBuilders);
 
   factory PrintBuilder.standard() => PrintBuilder([ValueContainerBuilder.variable()]);
 
-  void add(ValueContainerBuilder valueBuilder) {
-    _valueRootBuilders.add(valueBuilder);
-    notifyListeners();
-  }
-
-  void remove(ValueContainerBuilder valueBuilder) {
-    _valueRootBuilders.remove(valueBuilder);
-    notifyListeners();
-  }
-
-  void moveTo(ValueContainerBuilder valueRootBuilder, int index) {
-    if (_valueRootBuilders.moveTo(valueRootBuilder, index)) notifyListeners();
-  }
+  ListBaseBuilder<ValueContainerBuilder> get variables => _valueRootBuilders;
 
   @override
   PrintBuilder copy() {
-    return PrintBuilder(_valueRootBuilders.map((e) => e.copy()).toList());
+    return PrintBuilder(_valueRootBuilders.builders.map((e) => e.copy()).toList());
   }
 
   @override
   PrintStatement get statement =>
-      PrintStatement(variables: _valueRootBuilders.map((e) => e.valueBuilder.value).toList());
+      PrintStatement(variables: _valueRootBuilders.builders.map((e) => e.valueBuilder.value).toList());
 }

@@ -25,10 +25,13 @@ class ValueContainerBuilder extends BaseBuilder {
 
   @override
   ValueContainerBuilder copy() {
-    return ValueContainerBuilder(_valueBuilder);
+    return ValueContainerBuilder(_valueBuilder.copy());
   }
 }
 
 abstract class ValueBuilder extends BaseBuilder {
   BaseValue get value;
+
+  @override
+  ValueBuilder copy();
 }

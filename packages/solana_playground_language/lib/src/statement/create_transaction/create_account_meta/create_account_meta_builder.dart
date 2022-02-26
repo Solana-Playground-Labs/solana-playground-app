@@ -18,7 +18,7 @@ class CreateAccountMetaBuilder extends StatementBuilder {
   }
 
   @override
-  BaseStatement get statement => CreateAccountMetaStatement(
+  CreateAccountMetaStatement get statement => CreateAccountMetaStatement(
         pubkey: pubkey.valueBuilder.value,
         isSigner: isSigner.valueBuilder.value,
         isWritable: isWritable.valueBuilder.value,
