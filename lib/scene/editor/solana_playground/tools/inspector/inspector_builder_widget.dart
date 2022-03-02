@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Builder;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
@@ -20,17 +20,8 @@ class InspectorBuilderWidget extends StatelessWidget {
     );
   }
 
-  Widget mapping(BuildContext context, BaseBuilder builder) {
+  Widget mapping(BuildContext context, Builder builder) {
     Widget widget = Container();
-    if (builder is DeclareVariableBuilder) {
-      widget = DeclareVariableInspectorWidget(builder: builder);
-    } else if (builder is DeclareVariablesBuilder) {
-      widget = DeclareVariablesInspectorWidget(builder: builder);
-    } else if (builder is ValueContainerBuilder) {
-      widget = ValueRootInspectorWidget(builder: builder);
-    } else if (builder is PrintBuilder) {
-      widget = PrintInspectorWidget(builder: builder);
-    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

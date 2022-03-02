@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
-import 'package:solana_playground_app/scene/editor/solana_playground/statement_builder/block_builder_widget.dart';
+import 'package:solana_playground_app/scene/editor/solana_playground/command_builder/block_builder_widget.dart';
 import 'package:solana_playground_app/theme/editor_theme.dart';
 
 class CodeEditorPanel extends CubitWidget<CodeEditorCubit, CodeEditorState> {
@@ -18,7 +18,9 @@ class CodeEditorPanel extends CubitWidget<CodeEditorCubit, CodeEditorState> {
           },
           child: CustomScrollView(
             slivers: [
-              if (state.currentScript != null) BlockBuilderWidget(builder: state.currentScript!.blockCommandBuilder),
+              if (state.currentScript != null)
+                BlockBuilderWidget(
+                    builder: state.currentScript!.blockCommandBuilder),
             ],
           )),
     );

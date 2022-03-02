@@ -8,6 +8,12 @@ class PrintCommandBuilder extends CommandBuilder {
 
   PrintCommandBuilder({required this.expression});
 
+  factory PrintCommandBuilder.empty() {
+    return PrintCommandBuilder(
+      expression: ExpressionBuilder.withConstantValue(),
+    );
+  }
+
   @override
   PrintCommand build() {
     return PrintCommand(expression: expression.build());

@@ -10,6 +10,13 @@ class DeclareVariableCommandBuilder extends CommandBuilder {
     required this.expressionBuilder,
   });
 
+  factory DeclareVariableCommandBuilder.empty() {
+    return DeclareVariableCommandBuilder(
+      variable: "",
+      expressionBuilder: ExpressionBuilder.withConstantValue(),
+    );
+  }
+
   @override
   DeclareVariableCommand build() {
     return DeclareVariableCommand(

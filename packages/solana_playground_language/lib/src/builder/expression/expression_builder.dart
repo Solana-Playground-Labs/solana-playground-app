@@ -1,12 +1,13 @@
-import 'package:solana_playground_language/src/core/expression/abstract_expression.dart';
-import 'package:solana_playground_language/src/core/expression/value.dart';
-
-import '../core_builder.dart';
+import 'package:solana_playground_language/solana_playground_language.dart';
 
 class ExpressionBuilder extends Builder {
   ValueBuilder valueBuilder;
 
   ExpressionBuilder({required this.valueBuilder});
+
+  factory ExpressionBuilder.withConstantValue() {
+    return ExpressionBuilder(valueBuilder: ConstantValueBuilder(value: ""));
+  }
 
   Expression build() {
     return Expression(value: valueBuilder.build());

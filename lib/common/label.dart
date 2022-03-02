@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum SPLabelStyle { blue, green, orange, purple }
+enum SPLabelStyle { blue, green, orange, purple, grey }
 
 Color _styleToColor(SPLabelStyle style) {
   switch (style) {
@@ -10,6 +10,8 @@ Color _styleToColor(SPLabelStyle style) {
       return const Color.fromRGBO(112, 237, 157, 1);
     case SPLabelStyle.orange:
       return const Color.fromRGBO(255, 163, 97, 1);
+    case SPLabelStyle.grey:
+      return const Color.fromRGBO(106, 106, 106, 1.0);
     case SPLabelStyle.purple:
       return const Color.fromRGBO(206, 97, 236, 1.0);
   }

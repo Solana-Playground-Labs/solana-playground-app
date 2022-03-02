@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 part 'code_editor_state.dart';
@@ -9,7 +8,11 @@ class CodeEditorCubit extends Cubit<CodeEditorState> {
   final SPPackageBuilder packageBuilder = SPPackageBuilder(
     packageType: PackageType.application,
     functionBuilders: [
-      ScriptBuilder(name: "main", blockBuilder: BlockBuilder(statementBuilders: []), returnType: const InternalVoid())
+      ScriptBuilder(
+          name: "main",
+          blockCommandBuilder: BlockCommandBuilder(
+            commands: ListBuilder.empty(),
+          ))
     ],
   );
 
@@ -21,7 +24,7 @@ class CodeEditorCubit extends Cubit<CodeEditorState> {
     emit(state.unfocus());
   }
 
-  void focus(BaseBuilder builder) {
+  void focus(Builder builder) {
     print("Focus to ${builder.runtimeType.toString()} with ${builder.id}");
     emit(state.copyWith(focusedBuilder: builder));
   }

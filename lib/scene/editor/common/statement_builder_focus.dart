@@ -6,17 +6,17 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 typedef StatementWidgetBuilder = Widget Function(BuildContext context, bool isFocused);
 
 class StatementBuilderFocus extends StatelessWidget {
-  final StatementBuilder statementBuilder;
+  final CommandBuilder commandBuilder;
   final StatementWidgetBuilder builder;
 
-  const StatementBuilderFocus({Key? key, required this.statementBuilder, required this.builder}) : super(key: key);
+  const StatementBuilderFocus({Key? key, required this.commandBuilder, required this.builder}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CodeEditorCubit, CodeEditorState>(
       buildWhen: (p, n) => p.focusedBuilder != n.focusedBuilder,
       builder: (context, state) {
-        return builder(context, state.focusedBuilder == statementBuilder);
+        return builder(context, state.focusedBuilder == commandBuilder);
       },
     );
   }

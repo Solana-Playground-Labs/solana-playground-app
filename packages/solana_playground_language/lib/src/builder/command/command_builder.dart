@@ -12,10 +12,10 @@ abstract class CommandBuilder extends Builder {
 
 extension ListBuilderExtension on ListBuilder<CommandBuilder> {
   List<Command> build() {
-    return data.map((e) => e.build()).toList();
+    return map((e) => e.build()).toList();
   }
 
   ListBuilder<CommandBuilder> clone() {
-    return ListBuilder(data.map((e) => e.clone()).toList());
+    return ListBuilder(map((e) => e.clone()).toList());
   }
 }

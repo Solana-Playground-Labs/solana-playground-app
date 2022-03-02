@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solana_playground_app/theme/editor_theme.dart';
 
-import '../solana_playground/tools/statement_templates_widget.dart';
+import '../solana_playground/tools/command_templates_widget.dart';
 
 class LeftPanel extends StatelessWidget {
   const LeftPanel({Key? key}) : super(key: key);
@@ -14,7 +14,7 @@ class LeftPanel extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: const [
-          Expanded(child: StatementTemplatesWidget()),
+          Expanded(child: CommandTemplatesWidget()),
         ],
       ),
     );
