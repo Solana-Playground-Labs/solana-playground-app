@@ -1,7 +1,7 @@
 import 'package:solana_playground_language/src/core/expression/expression.dart';
 import 'package:solana_playground_language/src/core/expression/value.dart';
 
-import '../builder.dart';
+import '../core_builder.dart';
 
 class ExpressionBuilder extends Builder {
   ValueBuilder valueBuilder;

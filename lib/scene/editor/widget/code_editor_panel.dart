@@ -18,7 +18,7 @@ class CodeEditorPanel extends CubitWidget<CodeEditorCubit, CodeEditorState> {
           },
           child: CustomScrollView(
             slivers: [
-              if (state.currentFunction != null) BlockBuilderWidget(builder: state.currentFunction!.blockBuilder),
+              if (state.currentScript != null) BlockBuilderWidget(builder: state.currentScript!.blockCommandBuilder),
             ],
           )),
     );

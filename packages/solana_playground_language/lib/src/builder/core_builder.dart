@@ -26,7 +26,19 @@ abstract class Builder extends Unique with ChangeNotifier {
 }
 
 class ListBuilder<T extends Builder> extends ChangeNotifier {
-  final List<T> data;
+  List<T> _data;
 
-  ListBuilder(this.data);
+  ListBuilder(this._data);
+
+  List<T> get data => _data;
+
+  set data(List<T> value) {
+    _data = value;
+    notifyListeners();
+  }
+
+  void insert(int index, T element) {
+    _data.insert(index, element);
+    notifyListeners();
+  }
 }

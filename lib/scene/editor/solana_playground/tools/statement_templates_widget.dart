@@ -43,7 +43,7 @@ class TemplateWidget<T extends StatementBuilder> extends StatelessWidget {
         child: PGCard(
           child: InkWell(
             onTap: () {
-              context.read<CodeEditorCubit>().state.currentFunction?.blockBuilder.add(statementBuilder.copy());
+              context.read<CodeEditorCubit>().state.currentScript?.blockBuilder.add(statementBuilder.copy());
             },
             child: Padding(
               padding: const EdgeInsets.all(12.0),

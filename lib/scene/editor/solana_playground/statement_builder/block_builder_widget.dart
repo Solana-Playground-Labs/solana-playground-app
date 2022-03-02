@@ -9,7 +9,7 @@ import 'statement_builder_draggable.dart';
 import 'block_builder_cubit.dart';
 
 class BlockBuilderWidget extends CubitWidget<BlockBuilderCubit, StatementsBuilderState> {
-  final BlockBuilder builder;
+  final BlockCommandBuilder builder;
 
   BlockBuilderWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
 

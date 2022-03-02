@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
-import 'builder/builder.dart';
+import 'builder/core_builder.dart';
 
 enum PackageType { application, library }
 

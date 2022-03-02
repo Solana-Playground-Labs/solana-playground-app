@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:solana_playground_language/src/builder/builder.dart';
+import 'package:solana_playground_language/src/builder/core_builder.dart';
 import 'package:solana_playground_language/src/builder/command/block_command_builder.dart';
 import 'package:solana_playground_language/src/core/command/block_command.dart';
 

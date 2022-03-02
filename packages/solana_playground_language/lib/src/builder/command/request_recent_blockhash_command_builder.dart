@@ -1,4 +1,4 @@
-import 'package:solana_playground_language/src/builder/builder.dart';
+import 'package:solana_playground_language/src/builder/core_builder.dart';
 import 'package:solana_playground_language/src/core/command/request_recent_blockhash_command.dart';
 
 class RequestRecentBlockhashBuilder extends CommandBuilder {

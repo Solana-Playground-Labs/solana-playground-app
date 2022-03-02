@@ -1,4 +1,4 @@
-import 'package:solana_playground_language/src/builder/builder.dart';
+import 'package:solana_playground_language/src/builder/core_builder.dart';
 import 'package:solana_playground_language/src/core/command/declare_variable_command.dart';
 
 class DeclareVariableCommandBuilder extends CommandBuilder {
