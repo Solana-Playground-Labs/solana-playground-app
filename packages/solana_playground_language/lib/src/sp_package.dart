@@ -1,36 +1,47 @@
 import 'package:equatable/equatable.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
-import 'package:solana_playground_language/src/sp_function.dart';
 
-enum SPPackageType { application, library }
+import 'builder/builder.dart';
 
-class SPPackage extends Equatable {
-  final SPPackageType packageType;
-  final List<SPFunction> functions;
+enum PackageType { application, library }
 
-  const SPPackage({required this.packageType, required this.functions});
+class Package extends Equatable {
+  final PackageType packageType;
+  final List<Script> scripts;
+
+  const Package({required this.packageType, required this.scripts});
 
   @override
-  List<Object> get props => [packageType, functions];
+  List<Object> get props => [packageType, scripts];
 }
 
-class SPPackageBuilder extends BaseBuilder {
-  SPPackageType _packageType;
-  List<SPFunctionBuilder> _functionBuilders;
+class SPPackageBuilder extends Builder {
+  PackageType _packageType;
+  List<ScriptBuilder> _functionBuilders;
 
   SPPackageBuilder({
-    required SPPackageType packageType,
-    required List<SPFunctionBuilder> functionBuilders,
+    required PackageType packageType,
+    required List<ScriptBuilder> functionBuilders,
   })  : _packageType = packageType,
         _functionBuilders = functionBuilders;
 
-
-  SPPackageType get packageType => _packageType;
-
-  List<SPFunctionBuilder> get functionBuilders => _functionBuilders;
-
   @override
-  BaseBuilder copy() {
-    return SPPackageBuilder(packageType: packageType, functionBuilders: functionBuilders);
+  SPPackageBuilder clone() {
+    return SPPackageBuilder(
+        packageType: packageType, functionBuilders: functionBuilders);
+  }
+
+  List<ScriptBuilder> get functionBuilders => _functionBuilders;
+
+  set functionBuilders(List<ScriptBuilder> value) {
+    _functionBuilders = value;
+    notifyListeners();
+  }
+
+  PackageType get packageType => _packageType;
+
+  set packageType(PackageType value) {
+    _packageType = value;
+    notifyListeners();
   }
 }

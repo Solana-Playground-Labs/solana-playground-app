@@ -12,14 +12,14 @@ class DeclareVariableBuilderCubit extends Cubit<DeclareVariableBuilderState> {
   DeclareVariableBuilderCubit(this.builder) : super(DeclareVariableBuilderState(internalType: builder.internalType)) {
     builder.addListener(listener);
 
-    nameTextController.text = builder.name;
+    nameTextController.text = builder.variable;
     nameTextController.addListener(() {
-      builder.name = nameTextController.text;
+      builder.variable = nameTextController.text;
     });
   }
 
   listener() {
-    final name = builder.statement.name;
+    final name = builder.statement.variable;
     if (name != nameTextController.text) {
       nameTextController.text = name;
     }

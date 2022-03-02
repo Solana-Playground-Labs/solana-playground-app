@@ -6,9 +6,9 @@ part 'code_editor_state.dart';
 
 class CodeEditorCubit extends Cubit<CodeEditorState> {
   final SPPackageBuilder packageBuilder = SPPackageBuilder(
-    packageType: SPPackageType.application,
+    packageType: PackageType.application,
     functionBuilders: [
-      SPFunctionBuilder(name: "main", blockBuilder: BlockBuilder(statementBuilders: []), returnType: const InternalVoid())
+      ScriptBuilder(name: "main", blockBuilder: BlockBuilder(statementBuilders: []), returnType: const InternalVoid())
     ],
   );
 

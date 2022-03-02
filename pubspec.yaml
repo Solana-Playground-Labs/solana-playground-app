@@ -19,6 +19,7 @@ dependencies:
   provider: ^6.0.2
   equatable: ^2.0.3
 
+
   solana_playground_language:
     path: ./packages/solana_playground_language
   dio: ^4.0.4

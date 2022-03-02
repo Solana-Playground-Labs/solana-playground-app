@@ -11,16 +11,16 @@ class _VariableValueBuilderCubit extends Cubit<_VariableValueBuilderState> {
   final VariableValueBuilder builder;
 
   _VariableValueBuilderCubit(this.builder) : super(_VariableValueBuilderState()) {
-    nameTextController.text = builder.name;
+    nameTextController.text = builder.variable;
     nameTextController.addListener(() {
-      builder.name = nameTextController.text;
+      builder.variable = nameTextController.text;
     });
     builder.addListener(listener);
   }
 
   void listener() {
-    if (nameTextController.text != builder.name) {
-      nameTextController.text = builder.name;
+    if (nameTextController.text != builder.variable) {
+      nameTextController.text = builder.variable;
     }
   }
 
