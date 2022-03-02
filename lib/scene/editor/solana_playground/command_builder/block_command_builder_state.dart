@@ -1,9 +1,9 @@
-part of 'block_builder_cubit.dart';
+part of 'block_command_builder_cubit.dart';
 
-class StatementsBuilderState extends Equatable {
+class BlockCommandBuilderState extends Equatable {
   final List<CommandBuilder> commands;
 
-  const StatementsBuilderState({this.commands = const []});
+  const BlockCommandBuilderState({this.commands = const []});
 
   CommandBuilder? before(CommandBuilder builder) {
     final index = commands.indexOf(builder);
@@ -20,10 +20,10 @@ class StatementsBuilderState extends Equatable {
   @override
   List<Object?> get props => [commands];
 
-  StatementsBuilderState copyWith({
+  BlockCommandBuilderState copyWith({
     List<CommandBuilder>? commands,
   }) {
-    return StatementsBuilderState(
+    return BlockCommandBuilderState(
       commands: commands ?? this.commands,
     );
   }

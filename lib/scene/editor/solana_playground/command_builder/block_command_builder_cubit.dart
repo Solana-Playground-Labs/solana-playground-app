@@ -5,13 +5,13 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
-part 'block_builder_state.dart';
+part 'block_command_builder_state.dart';
 
-class BlockBuilderCubit extends Cubit<StatementsBuilderState> {
+class BlockCommandBuilderCubit extends Cubit<BlockCommandBuilderState> {
   final BlockCommandBuilder builder;
 
-  BlockBuilderCubit(this.builder)
-      : super(StatementsBuilderState(commands: List.of(builder.commands))) {
+  BlockCommandBuilderCubit(this.builder)
+      : super(BlockCommandBuilderState(commands: List.of(builder.commands))) {
     builder.commands.addListener(listener);
   }
 

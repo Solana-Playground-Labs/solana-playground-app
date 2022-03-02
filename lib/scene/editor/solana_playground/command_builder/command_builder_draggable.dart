@@ -3,24 +3,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/common/stack.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
-import 'block_builder_cubit.dart';
-import 'statement_builder_widget.dart';
-import 'statement_feedback.dart';
+import 'block_command_builder_cubit.dart';
+import 'command_builder_widget.dart';
+import 'command_feedback.dart';
 
-class StatementBuilderDraggable extends StatefulWidget {
+class CommandBuilderDraggable extends StatefulWidget {
   final CommandBuilder builder;
   final Widget child;
 
-  StatementBuilderDraggable(
+  CommandBuilderDraggable(
       {Key? key, required this.builder, required this.child})
       : super(key: Key(builder.id));
 
   @override
-  State<StatementBuilderDraggable> createState() =>
-      _StatementBuilderDraggableState();
+  State<CommandBuilderDraggable> createState() =>
+      _CommandBuilderDraggableState();
 }
 
-class _StatementBuilderDraggableState extends State<StatementBuilderDraggable> {
+class _CommandBuilderDraggableState extends State<CommandBuilderDraggable> {
   bool? acceptUp;
   bool? acceptDown;
   CommandBuilder? dropUp;
@@ -41,12 +41,12 @@ class _StatementBuilderDraggableState extends State<StatementBuilderDraggable> {
                 Padding(
                   padding: const EdgeInsets.only(
                       bottom: 8.0, left: _leftDropWidgetSpace),
-                  child: StatementBuilderWidget(builder: dropUp!),
+                  child: CommandBuilderWidget(builder: dropUp!),
                 ),
               Draggable<CommandBuilder>(
                 key: Key(widget.builder.id),
                 data: widget.builder,
-                feedback: StatementFeedback(builder: widget.builder),
+                feedback: CommandFeedback(builder: widget.builder),
                 onDragCompleted: () {},
                 child: widget.child,
                 childWhenDragging: Opacity(
@@ -58,7 +58,7 @@ class _StatementBuilderDraggableState extends State<StatementBuilderDraggable> {
                 Padding(
                   padding: const EdgeInsets.only(
                       top: 8.0, left: _leftDropWidgetSpace),
-                  child: StatementBuilderWidget(builder: dropDown!),
+                  child: CommandBuilderWidget(builder: dropDown!),
                 ),
             ],
           ),
@@ -89,7 +89,7 @@ class _StatementBuilderDraggableState extends State<StatementBuilderDraggable> {
       },
       onAcceptWithDetails: (drag) {
         context
-            .read<BlockBuilderCubit>()
+            .read<BlockCommandBuilderCubit>()
             .insertBefore(widget.builder, drag.data);
         setState(() => dropUp = null);
       },
@@ -112,7 +112,7 @@ class _StatementBuilderDraggableState extends State<StatementBuilderDraggable> {
       },
       onAcceptWithDetails: (drag) {
         context
-            .read<BlockBuilderCubit>()
+            .read<BlockCommandBuilderCubit>()
             .insertAfter(widget.builder, drag.data);
         setState(() => dropDown = null);
       },

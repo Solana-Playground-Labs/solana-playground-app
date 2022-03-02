@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
-class StatementFeedback extends StatelessWidget {
+class CommandFeedback extends StatelessWidget {
   final CommandBuilder builder;
 
-  const StatementFeedback({Key? key, required this.builder}) : super(key: key);
+  const CommandFeedback({Key? key, required this.builder}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

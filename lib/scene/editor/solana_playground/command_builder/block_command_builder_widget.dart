@@ -4,22 +4,22 @@ import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
-import 'statement_builder_widget.dart';
-import 'statement_builder_draggable.dart';
-import 'block_builder_cubit.dart';
+import 'command_builder_widget.dart';
+import 'command_builder_draggable.dart';
+import 'block_command_builder_cubit.dart';
 
-class BlockBuilderWidget extends CubitWidget<BlockBuilderCubit, StatementsBuilderState> {
+class BlockCommandBuilderWidget extends CubitWidget<BlockCommandBuilderCubit, BlockCommandBuilderState> {
   final BlockCommandBuilder builder;
 
-  BlockBuilderWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
+  BlockCommandBuilderWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
 
   @override
-  Widget content(BuildContext context, StatementsBuilderState state) {
+  Widget content(BuildContext context, BlockCommandBuilderState state) {
     return SliverList(
       delegate: SliverChildBuilderDelegate((context, index) {
         final builder = state.commands[index];
 
-        return StatementBuilderDraggable(
+        return CommandBuilderDraggable(
           builder: builder,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +41,7 @@ class BlockBuilderWidget extends CubitWidget<BlockBuilderCubit, StatementsBuilde
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: StatementBuilderWidget(builder: builder),
+                    child: CommandBuilderWidget(builder: builder),
                   ),
                 ),
               ),
@@ -53,5 +53,5 @@ class BlockBuilderWidget extends CubitWidget<BlockBuilderCubit, StatementsBuilde
   }
 
   @override
-  cubit(BuildContext context) => BlockBuilderCubit(builder);
+  cubit(BuildContext context) => BlockCommandBuilderCubit(builder);
 }

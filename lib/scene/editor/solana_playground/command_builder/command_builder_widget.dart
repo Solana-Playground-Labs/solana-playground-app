@@ -7,10 +7,10 @@ Widget _mapping(CommandBuilder builder) {
   return widget;
 }
 
-class StatementBuilderWidget extends StatelessWidget {
+class CommandBuilderWidget extends StatelessWidget {
   final CommandBuilder builder;
 
-  StatementBuilderWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
+  CommandBuilderWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
 
   @override
   Widget build(BuildContext context) {

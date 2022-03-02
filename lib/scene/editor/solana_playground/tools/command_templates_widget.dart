@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
-import 'package:solana_playground_app/scene/editor/solana_playground/command_builder/statement_feedback.dart';
+import 'package:solana_playground_app/scene/editor/solana_playground/command_builder/command_feedback.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,7 +38,7 @@ class TemplateWidget<T extends CommandBuilder> extends StatelessWidget {
   Widget build(BuildContext context) {
     return Draggable<T>(
       data: commandBuilder,
-      feedback: StatementFeedback(builder: commandBuilder),
+      feedback: CommandFeedback(builder: commandBuilder),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: PGCard(
