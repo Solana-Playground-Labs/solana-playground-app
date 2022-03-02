@@ -1,4 +1,4 @@
-import 'command.dart';
+import 'abstract_command.dart';
 
 class RequestRecentBlockhash extends Command {
   final String variable;

@@ -1,4 +1,4 @@
-import 'package:solana_playground_language/src/core/expression/expression.dart';
+import 'package:solana_playground_language/src/core/expression/abstract_expression.dart';
 import 'package:solana_playground_language/src/core/expression/special/account_meta_value.dart';
 import 'package:solana_playground_language/src/core/expression/value.dart';
 

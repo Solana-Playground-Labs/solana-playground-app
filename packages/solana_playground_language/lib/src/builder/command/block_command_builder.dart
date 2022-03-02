@@ -1,6 +1,6 @@
 import 'package:solana_playground_language/src/builder/core_builder.dart';
 import 'package:solana_playground_language/src/core/command/block_command.dart';
-import 'package:solana_playground_language/src/core/command/command.dart';
+import 'package:solana_playground_language/src/core/command/abstract_command.dart';
 
 class BlockCommandBuilder extends CommandBuilder {
   ListBuilder<CommandBuilder> commands;

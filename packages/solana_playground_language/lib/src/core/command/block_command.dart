@@ -1,4 +1,4 @@
-import 'package:solana_playground_language/src/core/command/command.dart';
+import 'package:solana_playground_language/src/core/command/abstract_command.dart';
 
 class BlockCommand extends Command {
   final List<Command> commands;

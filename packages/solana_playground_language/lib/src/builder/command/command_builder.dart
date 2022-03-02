@@ -1,5 +1,5 @@
 import 'package:observable/observable.dart';
-import 'package:solana_playground_language/src/core/command/command.dart';
+import 'package:solana_playground_language/src/core/command/abstract_command.dart';
 
 import '../core_builder.dart';
 

@@ -1,7 +1,7 @@
 import 'package:solana_playground_language/src/builder/core_builder.dart';
-import 'package:solana_playground_language/src/core/expression/expression.dart';
+import 'package:solana_playground_language/src/core/expression/abstract_expression.dart';
 
-import 'command.dart';
+import 'abstract_command.dart';
 
 class CreateTransactionCommand extends Command {
   /// Should be {publicKey: string, signature: String}
