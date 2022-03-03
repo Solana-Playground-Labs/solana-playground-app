@@ -14,9 +14,9 @@ class StatementBuilderFocus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CodeEditorCubit, CodeEditorState>(
-      buildWhen: (p, n) => p.focusedBuilder != n.focusedBuilder,
+      buildWhen: (p, n) => p.focusBuilder != n.focusBuilder,
       builder: (context, state) {
-        return builder(context, state.focusedBuilder == commandBuilder);
+        return builder(context, state.focusBuilder == commandBuilder);
       },
     );
   }

@@ -10,6 +10,7 @@ class VariableValueBuilder extends ValueBuilder {
 
   set variable(String variable) {
     _variable = variable;
+    notifyListeners();
   }
 
   @override
@@ -18,7 +19,7 @@ class VariableValueBuilder extends ValueBuilder {
   }
 
   @override
-  Builder clone() {
+  VariableValueBuilder clone() {
     return VariableValueBuilder(variable: variable);
   }
 }

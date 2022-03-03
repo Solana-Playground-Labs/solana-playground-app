@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 
-class PGCard extends StatelessWidget {
+class SPCard extends StatelessWidget {
   final Widget child;
+  final EdgeInsets padding;
 
-  const PGCard({Key? key, required this.child}) : super(key: key);
+  const SPCard({
+    Key? key,
+    required this.child,
+    this.padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8)
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: padding,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,

@@ -11,7 +11,7 @@ class CommandFeedback extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       type: MaterialType.transparency,
-      child: PGCard(
+      child: SPCard(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(

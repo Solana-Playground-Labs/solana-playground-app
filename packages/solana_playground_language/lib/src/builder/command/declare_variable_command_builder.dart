@@ -2,19 +2,34 @@ import 'package:solana_playground_language/src/builder/core_builder.dart';
 import 'package:solana_playground_language/src/core/command/declare_variable_command.dart';
 
 class DeclareVariableCommandBuilder extends CommandBuilder {
-  final String variable;
-  final ExpressionBuilder expressionBuilder;
+  String _variable;
+  ExpressionBuilder _expressionBuilder;
 
   DeclareVariableCommandBuilder({
-    required this.variable,
-    required this.expressionBuilder,
-  });
+    required String variable,
+    required ExpressionBuilder expressionBuilder,
+  })  : _variable = variable,
+        _expressionBuilder = expressionBuilder;
 
   factory DeclareVariableCommandBuilder.empty() {
     return DeclareVariableCommandBuilder(
       variable: "",
       expressionBuilder: ExpressionBuilder.withConstantValue(),
     );
+  }
+
+  ExpressionBuilder get expressionBuilder => _expressionBuilder;
+
+  set expressionBuilder(ExpressionBuilder expressionBuilder) {
+    _expressionBuilder = expressionBuilder;
+    notifyListeners();
+  }
+
+  String get variable => _variable;
+
+  set variable(String variable) {
+    _variable = variable;
+    notifyListeners();
   }
 
   @override

@@ -41,7 +41,7 @@ class TemplateWidget<T extends CommandBuilder> extends StatelessWidget {
       feedback: CommandFeedback(builder: commandBuilder),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: PGCard(
+        child: SPCard(
           child: InkWell(
             onTap: () {
               context

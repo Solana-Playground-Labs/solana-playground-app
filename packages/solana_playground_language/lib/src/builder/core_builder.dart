@@ -15,8 +15,7 @@ abstract class Unique {
 
   @override
   bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is Unique && runtimeType == other.runtimeType && id == other.id;
+      identical(this, other) || other is Unique && id == other.id;
 
   @override
   int get hashCode => id.hashCode;
@@ -35,19 +34,19 @@ class ListBuilder<T> extends ListBase<T> with ChangeNotifier {
 
   @override
   void insert(int index, T element) {
-    super.insert(index, element);
+    _data.insert(index, element);
     notifyListeners();
   }
 
   @override
   void add(T element) {
-    super.add(element);
+    _data.add(element);
     notifyListeners();
   }
 
   @override
   bool remove(Object? element) {
-    final r = super.remove(element);
+    final r = _data.remove(element);
     notifyListeners();
     return r;
   }

@@ -1,23 +1,36 @@
 part of 'code_editor_cubit.dart';
 
 class CodeEditorState extends Equatable {
-  final Builder? focusedBuilder;
+  final FocusBuilder? focusBuilder;
   final ScriptBuilder? currentScript;
 
-  const CodeEditorState({this.focusedBuilder, this.currentScript});
+  const CodeEditorState({this.focusBuilder, this.currentScript});
 
   @override
-  List<Object?> get props => [focusedBuilder, currentScript];
+  List<Object?> get props => [focusBuilder, currentScript];
 
   CodeEditorState unfocus() => copyWith();
 
   CodeEditorState copyWith({
-    Builder? focusedBuilder,
+    FocusBuilder? focusBuilder,
     ScriptBuilder? currentScript,
   }) {
     return CodeEditorState(
-      focusedBuilder: focusedBuilder ?? this.focusedBuilder,
+      focusBuilder: focusBuilder ?? this.focusBuilder,
       currentScript: currentScript ?? this.currentScript,
     );
   }
+}
+
+class FocusBuilder extends Equatable {
+  final Builder builder;
+
+  const FocusBuilder({
+    required this.builder,
+  });
+
+  @override
+  List<Object?> get props => [
+        builder,
+      ];
 }

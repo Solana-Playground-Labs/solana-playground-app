@@ -11,24 +11,27 @@ import 'variable_value_builder_cubit.dart';
 class VariableValueBuilderWidget
     extends CubitWidget<VariableValueBuilderCubit, VariableValueBuilderState> {
   final VariableValueBuilder builder;
+  final FocusNode? focusNode;
 
-  VariableValueBuilderWidget({Key? key, required this.builder})
+  VariableValueBuilderWidget({Key? key, required this.builder, this.focusNode})
       : super(key: Key(builder.id));
 
   @override
   Widget content(BuildContext context, VariableValueBuilderState state) {
-    return SPLabel(
-      style: SPLabelStyle.orange,
-      child: TextField(
-        controller: context.read<VariableValueBuilderCubit>().inputController,
-        maxLines: 1,
-        textAlign: TextAlign.center,
-        style: Theme.of(context)
-            .textTheme
-            .bodyText1
-            ?.copyWith(color: Colors.black),
-        decoration:
-            SPTextField.compactInputDecoration.copyWith(hintText: "Variable"),
+    return IntrinsicWidth(
+      child: SPLabel(
+        style: SPLabelStyle.orange,
+        child: TextField(
+          controller: context.read<VariableValueBuilderCubit>().inputController,
+          maxLines: 1,
+          textAlign: TextAlign.center,
+          style: Theme.of(context)
+              .textTheme
+              .bodyText1
+              ?.copyWith(color: Colors.black),
+          decoration:
+              SPTextField.compactInputDecoration.copyWith(hintText: "Variable"),
+        ),
       ),
     );
   }

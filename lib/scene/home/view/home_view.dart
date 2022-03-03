@@ -16,7 +16,7 @@ class HomeView extends StatelessWidget {
         title: const Text('SOLANA', style: TextStyle(color: Colors.white)),
         centerTitle: false,
         actions: [
-          SvgPicture.asset('assets/icons/user.svg'),
+          SvgPicture.asset('assets/icon/user.svg'),
           const Center(
             child: Padding(
               padding: EdgeInsets.only(left: 10, right: 20),

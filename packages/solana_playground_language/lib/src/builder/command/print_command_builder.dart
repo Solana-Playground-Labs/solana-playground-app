@@ -21,6 +21,6 @@ class PrintCommandBuilder extends CommandBuilder {
 
   @override
   CommandBuilder clone() {
-    return PrintCommandBuilder(expression: expression);
+    return PrintCommandBuilder(expression: expression.clone());
   }
 }
