@@ -26,9 +26,11 @@ abstract class Builder extends Unique with ChangeNotifier {
 }
 
 class ListBuilder<T> extends ListBase<T> with ChangeNotifier {
+  final String id;
+
   final List<T> _data;
 
-  ListBuilder(this._data);
+  ListBuilder(this._data) : id = _uuid.v4();
 
   factory ListBuilder.empty() => ListBuilder<T>([]);
 

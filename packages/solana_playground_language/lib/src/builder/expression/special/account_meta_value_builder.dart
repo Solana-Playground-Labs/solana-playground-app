@@ -1,5 +1,7 @@
 import 'package:solana_playground_language/solana_playground_language.dart';
 
+import 'meta_value_builder.dart';
+
 class AccountMetaValueBuilder extends MetaValueBuilder {
   final ExpressionBuilder isSigner;
   final ExpressionBuilder isWritable;
@@ -10,6 +12,18 @@ class AccountMetaValueBuilder extends MetaValueBuilder {
     required this.isWritable,
     required this.pubkey,
   });
+
+  factory AccountMetaValueBuilder.fromJsonValue(JsonValueBuilder jsonValue) {
+    jsonValue.data["isSigner"] ??= ExpressionBuilder.withConstantValue();
+    jsonValue.data["isWritable"] ??= ExpressionBuilder.withConstantValue();
+    jsonValue.data["pubkey"] ??= ExpressionBuilder.withConstantValue();
+
+    return AccountMetaValueBuilder(
+      isSigner: jsonValue.data["isSigner"],
+      isWritable: jsonValue.data["isWritable"],
+      pubkey: jsonValue.data["pubkey"],
+    );
+  }
 
   @override
   Value build() {

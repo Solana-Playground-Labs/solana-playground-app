@@ -1,8 +1,8 @@
 import 'dart:typed_data';
 
 import 'package:solana_playground_language/solana_playground_language.dart';
-import 'package:solana_playground_language/src/builder/expression/binary_value_builder.dart';
-import 'package:solana_playground_language/src/builder/expression/special/account_meta_value_builder.dart';
+
+import 'meta_value_builder.dart';
 
 class InstructionMetaValueBuilder extends MetaValueBuilder {
   ExpressionBuilder programId;

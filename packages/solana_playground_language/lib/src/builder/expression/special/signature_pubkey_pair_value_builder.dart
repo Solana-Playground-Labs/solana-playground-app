@@ -9,6 +9,16 @@ class SignaturePubkeyParsMetaValueBuilder extends MetaValueBuilder {
     required this.signature,
   });
 
+  factory SignaturePubkeyParsMetaValueBuilder.fromJsonValue(JsonValueBuilder jsonValue) {
+    jsonValue.data["publicKey"] ??= ExpressionBuilder.withConstantValue();
+    jsonValue.data["signature"] ??= ExpressionBuilder.withConstantValue();
+
+    return SignaturePubkeyParsMetaValueBuilder(
+      publicKey: jsonValue.data["publicKey"],
+      signature: jsonValue.data["signature"],
+    );
+  }
+
   @override
   JsonValue build() {
     return JsonValue(data: {

@@ -3,12 +3,19 @@ import 'package:flutter/material.dart';
 class SPCard extends StatelessWidget {
   final Widget child;
   final EdgeInsets padding;
+  final int level;
 
-  const SPCard({
+  SPCard({
     Key? key,
     required this.child,
-    this.padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8)
+    this.padding = const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+    this.level = 1,
   }) : super(key: key);
+
+  final Map<int, Color Function(BuildContext)> _levelMapping = {
+    1: (context) => Theme.of(context).colorScheme.surface,
+    2: (context) => const Color(0xFF606060),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +23,8 @@ class SPCard extends StatelessWidget {
       padding: padding,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
+        color:
+            _levelMapping[level]?.call(context) ?? _levelMapping[1]!(context),
         borderRadius: const BorderRadius.all(Radius.circular(12)),
       ),
       child: Material(

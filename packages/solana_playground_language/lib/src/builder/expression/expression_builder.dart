@@ -38,7 +38,3 @@ abstract class ValueBuilder extends Builder {
   @override
   ValueBuilder clone();
 }
-
-abstract class MetaValueBuilder extends Builder {
-  Value build();
-}
