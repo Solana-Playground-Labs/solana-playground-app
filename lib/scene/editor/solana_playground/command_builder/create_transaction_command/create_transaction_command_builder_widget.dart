@@ -50,6 +50,15 @@ class CreateTransactionCommandBuilderWidget extends CubitWidget<
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
+              Text("Recent block hash:", style: theme.textTheme.bodyText1),
+              const SizedBox(width: 8),
+              ExpressionBuilderWidget(builder: builder.recentBlockhash),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
               Text("Fee payer:", style: theme.textTheme.bodyText1),
               const SizedBox(width: 8),
               ExpressionBuilderWidget(builder: builder.feePayer),
@@ -60,13 +69,29 @@ class CreateTransactionCommandBuilderWidget extends CubitWidget<
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Keys:", style: theme.textTheme.bodyText1),
+              Text("Signatures:", style: theme.textTheme.bodyText1),
               const SizedBox(width: 16),
               ExpressionBuilderWidget(
                 builder: builder.signatures,
                 metaValueInfo: const MetaValueInfo(
                   isMultiple: true,
                   metaType: SignaturePubkeyParsMetaValueBuilder,
+                ),
+              )
+            ],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Instructions:", style: theme.textTheme.bodyText1),
+              const SizedBox(width: 16),
+              ExpressionBuilderWidget(
+                builder: builder.instructions,
+                metaValueInfo: const MetaValueInfo(
+                  isMultiple: true,
+                  metaType: TransactionInstructionMetaValueBuilder,
                 ),
               )
             ],

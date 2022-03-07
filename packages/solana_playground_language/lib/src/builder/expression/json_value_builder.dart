@@ -23,7 +23,7 @@ class JsonValueBuilder extends ValueBuilder {
   }
 
   @override
-  ValueBuilder clone() {
+  JsonValueBuilder clone() {
     if (data is List) {
       return JsonValueBuilder(data: List.of(data)); 
     } else if (data is Map) {

@@ -16,12 +16,14 @@ class CodeEditorPanel extends CubitWidget<CodeEditorCubit, CodeEditorState> {
           onTap: () {
             context.read<CodeEditorCubit>().unfocus();
           },
-          child: CustomScrollView(
-            slivers: [
-              if (state.currentScript != null)
-                BlockCommandBuilderWidget(
-                    builder: state.currentScript!.blockCommandBuilder),
-            ],
+          child: Scrollbar(
+            child: CustomScrollView(
+              slivers: [
+                if (state.currentScript != null)
+                  BlockCommandBuilderWidget(
+                      builder: state.currentScript!.blockCommandBuilder),
+              ],
+            ),
           )),
     );
   }

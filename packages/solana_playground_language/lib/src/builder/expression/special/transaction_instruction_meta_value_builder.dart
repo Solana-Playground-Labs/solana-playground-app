@@ -2,25 +2,19 @@ import 'dart:typed_data';
 
 import 'package:solana_playground_language/solana_playground_language.dart';
 
-import 'meta_value_builder.dart';
+class TransactionInstructionMetaValueBuilder extends MetaValueBuilder {
+  JsonValueBuilder builder;
 
-class InstructionMetaValueBuilder extends MetaValueBuilder {
-  ExpressionBuilder programId;
-  ListBuilder<AccountMetaValueBuilder> keys;
-  BinaryValueBuilder binaryValueBuilder;
+  ExpressionBuilder get programId => builder.data['programId'];
 
-  InstructionMetaValueBuilder({
-    required this.programId,
-    required this.keys,
-    required this.binaryValueBuilder,
-  });
+  ListBuilder<dynamic> get keys => ListBuilder(builder.data['keys']);
 
-  factory InstructionMetaValueBuilder.empty() {
-    return InstructionMetaValueBuilder(
-      programId: ExpressionBuilder.withConstantValue(),
-      keys: ListBuilder.empty(),
-      binaryValueBuilder: BinaryValueBuilder(data: Uint8List.fromList([])),
-    );
+  BinaryValueBuilder get data => BinaryValueBuilder(data: builder.data['data']);
+
+  TransactionInstructionMetaValueBuilder({required this.builder}) {
+    builder.data['programId'] ??= ExpressionBuilder.withConstantValue();
+    builder.data['keys'] ??= [];
+    builder.data['data'] ??= [];
   }
 
   @override
@@ -29,17 +23,15 @@ class InstructionMetaValueBuilder extends MetaValueBuilder {
       data: {
         "programId": programId.build(),
         "keys": keys.map((e) => e.build()).toList(),
-        "binaryValueBuilder": binaryValueBuilder,
+        "binaryValueBuilder": data.build(),
       },
     );
   }
 
   @override
   Builder clone() {
-    return InstructionMetaValueBuilder(
-      programId: programId,
-      keys: keys,
-      binaryValueBuilder: binaryValueBuilder,
+    return TransactionInstructionMetaValueBuilder(
+      builder: builder.clone(),
     );
   }
 }

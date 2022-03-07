@@ -23,7 +23,21 @@ class ListMetaValueBuilder extends MetaValueBuilder with ChangeNotifier {
   }
 
   void add(dynamic rawData) {
-    data.add(rawData);
+    _builder.update((data) {
+      (data as List).add(rawData);
+    });
+  }
+
+  void moveTo(Object object, int index) {
+    _builder.update((data) {
+      (data as List).moveTo(object, index);
+    });
+  }
+
+  void remove(object) {
+    _builder.update((data) {
+      (data as List).remove(object);
+    });
   }
 
   @override
