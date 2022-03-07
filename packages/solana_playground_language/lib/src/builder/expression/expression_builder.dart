@@ -11,6 +11,10 @@ class ExpressionBuilder extends Builder {
     return ExpressionBuilder(valueBuilder: ConstantValueBuilder(value: ""));
   }
 
+  factory ExpressionBuilder.withVariable() {
+    return ExpressionBuilder(valueBuilder: VariableValueBuilder(variable: ""));
+  }
+
   ValueBuilder get valueBuilder => _valueBuilder;
 
   set valueBuilder(ValueBuilder valueBuilder) {
@@ -33,4 +37,8 @@ abstract class ValueBuilder extends Builder {
 
   @override
   ValueBuilder clone();
+}
+
+abstract class MetaValueBuilder extends Builder {
+  Value build();
 }

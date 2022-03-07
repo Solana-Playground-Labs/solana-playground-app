@@ -20,7 +20,11 @@ class CommandTemplatesWidget extends StatelessWidget {
         TemplateWidget(
           title: "Print",
           commandBuilder: PrintCommandBuilder.empty(),
-        )
+        ),
+        TemplateWidget(
+          title: "Create transaction",
+          commandBuilder: CreateTransactionCommandBuilder.empty(),
+        ),
       ],
     );
   }

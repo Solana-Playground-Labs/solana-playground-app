@@ -5,6 +5,7 @@ import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/common/label.dart';
 import 'package:solana_playground_app/common/textfield.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
+import 'package:solana_playground_app/scene/editor/common/common.dart';
 import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
 import 'package:solana_playground_app/scene/editor/solana_playground/expression_builder/expression_builder_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
@@ -34,21 +35,10 @@ class DeclareVariableCommandBuilderWidget extends CubitWidget<
               if (hasFocus) context.read<CodeEditorCubit>().focus(builder);
             },
             child: IntrinsicWidth(
-              child: SPLabel(
-                style: SPLabelStyle.orange,
-                child: TextField(
-                  controller: context
-                      .read<DeclareVariableCommandBuilderCubit>()
-                      .variableInputController,
-                  maxLines: 1,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      ?.copyWith(color: Colors.black),
-                  decoration: SPTextField.compactInputDecoration
-                      .copyWith(hintText: "Variable"),
-                ),
+              child: VariableInputWidget(
+                controller: context
+                    .read<DeclareVariableCommandBuilderCubit>()
+                    .variableInputController,
               ),
             ),
           ),

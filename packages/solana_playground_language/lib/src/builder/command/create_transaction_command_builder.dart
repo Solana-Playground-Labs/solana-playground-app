@@ -1,3 +1,4 @@
+import 'package:solana_playground_language/solana_playground_language.dart';
 import 'package:solana_playground_language/src/builder/core_builder.dart';
 import 'package:solana_playground_language/src/core/command/create_transaction_command.dart';
 
@@ -16,6 +17,15 @@ class CreateTransactionCommandBuilder extends CommandBuilder {
     required this.feePayer,
     required this.recentBlockhash,
   });
+
+  factory CreateTransactionCommandBuilder.empty() {
+    return CreateTransactionCommandBuilder(
+      signatures: ExpressionBuilder(valueBuilder: JsonValueBuilder(data: [])),
+      instructions: ExpressionBuilder(valueBuilder: JsonValueBuilder(data: [])),
+      feePayer: ExpressionBuilder.withConstantValue(),
+      recentBlockhash: ExpressionBuilder.withVariable(),
+    );
+  }
 
   @override
   CreateTransactionCommand build() {

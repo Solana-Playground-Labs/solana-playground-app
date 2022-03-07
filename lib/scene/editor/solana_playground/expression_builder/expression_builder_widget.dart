@@ -9,10 +9,10 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 
 import 'expression_builder_cubit.dart';
 
-typedef MappingBuilder = Widget Function(
+typedef _MappingBuilder = Widget Function(
     BuildContext context, dynamic, FocusNode focusNode);
 
-final Map<Type, MappingBuilder> _mapping = {
+final Map<Type, _MappingBuilder> _mapping = {
   ConstantValueBuilder: (context, builder, focus) =>
       ConstantValueBuilderWidget(builder: builder, focusNode: focus),
   VariableValueBuilder: (context, builder, focus) =>
