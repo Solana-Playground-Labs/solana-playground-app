@@ -27,25 +27,32 @@ class DeclareVariableCommandBuilderWidget extends CubitWidget<
     final theme = Theme.of(context);
     return SPCard(
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text("Declare", style: theme.textTheme.bodyText1),
           const SizedBox(width: 12),
-          Focus(
-            onFocusChange: (hasFocus) {
-              if (hasFocus) context.read<CodeEditorCubit>().focus(builder);
-            },
-            child: IntrinsicWidth(
-              child: VariableInputWidget(
-                controller: context
-                    .read<DeclareVariableCommandBuilderCubit>()
-                    .variableInputController,
+          Flexible(
+            flex: 1,
+            child: Focus(
+              onFocusChange: (hasFocus) {
+                if (hasFocus) context.read<CodeEditorCubit>().focus(builder);
+              },
+              child: IntrinsicWidth(
+                child: VariableInputWidget(
+                  controller: context
+                      .read<DeclareVariableCommandBuilderCubit>()
+                      .variableInputController,
+                ),
               ),
             ),
           ),
           const SizedBox(width: 12),
           Text("with", style: theme.textTheme.bodyText1),
           const SizedBox(width: 12),
-          ExpressionBuilderWidget(builder: builder.expressionBuilder),
+          Flexible(
+            flex: 1,
+            child: ExpressionBuilderWidget(builder: builder.expressionBuilder),
+          ),
         ],
       ),
     );

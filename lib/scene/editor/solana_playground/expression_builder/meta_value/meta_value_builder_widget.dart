@@ -54,7 +54,9 @@ class MetaValueBuilderWidget extends StatelessWidget {
           builder: SignaturePubkeyParsMetaValueBuilder.fromJsonValue(builder),
         );
       case TransactionInstructionMetaValueBuilder:
-        return TransactionInstructionMetaValueBuilderWidget(builder: builder);
+        return TransactionInstructionMetaValueBuilderWidget(
+          builder: TransactionInstructionMetaValueBuilder(builder: builder),
+        );
       default:
         return const Text("Unknown meta data");
     }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
+import 'package:solana_playground_app/scene/editor/solana_playground/expression_builder/expression_builder_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import 'account_meta_value_builder_cubit.dart';
@@ -15,7 +15,41 @@ class AccountMetaValueBuilderWidget extends CubitWidget<
 
   @override
   Widget content(BuildContext context, AccountMetaValueBuilderState state) {
-    return Text("account meta");
+    final theme = Theme.of(context);
+    return SPCard(
+      level: 3,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text("Pubkey: ", style: theme.textTheme.bodyText1),
+              IntrinsicWidth(
+                  child: ExpressionBuilderWidget(builder: builder.pubkey)),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              Text("Is writable", style: theme.textTheme.bodyText1),
+              const SizedBox(width: 12),
+              IntrinsicWidth(
+                child: ExpressionBuilderWidget(builder: builder.isWritable),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              Text("Is signer: ", style: theme.textTheme.bodyText1),
+              IntrinsicWidth(
+                child: ExpressionBuilderWidget(builder: builder.isSigner),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 
   @override

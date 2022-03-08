@@ -19,7 +19,7 @@ class PrintCommandBuilderWidget extends StatelessWidget {
         children: [
           Text("Print", style: theme.textTheme.bodyText1),
           const SizedBox(width: 12),
-          ExpressionBuilderWidget(builder: builder.expression),
+          Flexible(child: ExpressionBuilderWidget(builder: builder.expression)),
         ],
       ),
     );

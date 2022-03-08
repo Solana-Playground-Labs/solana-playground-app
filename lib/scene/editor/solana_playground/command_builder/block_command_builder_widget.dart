@@ -31,17 +31,19 @@ class BlockCommandBuilderWidget extends CubitWidget<BlockCommandBuilderCubit, Bl
                   child: Text("${index + 1}", style: Theme.of(context).textTheme.headline6, textAlign: TextAlign.end),
                 ),
               ),
-              Material(
-                type: MaterialType.transparency,
-                borderRadius: BorderRadius.circular(8),
-                clipBehavior: Clip.hardEdge,
-                child: InkWell(
-                  onTap: () {
-                    context.read<CodeEditorCubit>().focus(builder);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                    child: CommandBuilderWidget(builder: builder),
+              Flexible(
+                child: Material(
+                  type: MaterialType.transparency,
+                  borderRadius: BorderRadius.circular(8),
+                  clipBehavior: Clip.hardEdge,
+                  child: InkWell(
+                    onTap: () {
+                      context.read<CodeEditorCubit>().focus(builder);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: CommandBuilderWidget(builder: builder),
+                    ),
                   ),
                 ),
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_app/scene/editor/solana_playground/expression_builder/expression_builder.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
@@ -21,23 +22,26 @@ class SignaturePubkeyPairMetaValueBuilderWidget extends CubitWidget<
     BuildContext context,
     SignaturePubkeyPairMetaValueBuilderState state,
   ) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            const Text("Public key: "),
-            ExpressionBuilderWidget(builder: builder.publicKey),
-          ],
-        ),
-        const SizedBox(height: 8),
-        Row(
-          children: [
-            const Text("Signature: "),
-            ExpressionBuilderWidget(builder: builder.signature),
-          ],
-        ),
-      ],
+    return SPCard(
+      level: 3,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Text("Public key: "),
+              ExpressionBuilderWidget(builder: builder.publicKey),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              const Text("Signature: "),
+              ExpressionBuilderWidget(builder: builder.signature),
+            ],
+          ),
+        ],
+      ),
     );
   }
 

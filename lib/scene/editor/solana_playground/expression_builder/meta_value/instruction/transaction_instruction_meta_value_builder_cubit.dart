@@ -6,7 +6,7 @@ part 'transaction_instruction_meta_value_builder_state.dart';
 
 class TransactionInstructionMetaValueBuilderCubit
     extends Cubit<TransactionInstructionMetaValueBuilderState> {
-  final JsonValueBuilder builder;
+  final TransactionInstructionMetaValueBuilder builder;
 
   TransactionInstructionMetaValueBuilderCubit(this.builder)
       : super(TransactionInstructionMetaValueBuilderState()) {

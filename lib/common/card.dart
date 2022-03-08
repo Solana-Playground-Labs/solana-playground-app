@@ -15,6 +15,8 @@ class SPCard extends StatelessWidget {
   final Map<int, Color Function(BuildContext)> _levelMapping = {
     1: (context) => Theme.of(context).colorScheme.surface,
     2: (context) => const Color(0xFF606060),
+    3: (context) => const Color(0xFF484848),
+    4: (context) => const Color(0xFF989898),
   };
 
   @override

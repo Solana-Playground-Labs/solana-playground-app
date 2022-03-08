@@ -64,7 +64,7 @@ class CreateTransactionCommandBuilderWidget extends CubitWidget<
               ExpressionBuilderWidget(builder: builder.feePayer),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 16),
           Row(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,7 +80,7 @@ class CreateTransactionCommandBuilderWidget extends CubitWidget<
               )
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 16),
           Row(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,

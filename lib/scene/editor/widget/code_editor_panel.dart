@@ -17,6 +17,7 @@ class CodeEditorPanel extends CubitWidget<CodeEditorCubit, CodeEditorState> {
             context.read<CodeEditorCubit>().unfocus();
           },
           child: Scrollbar(
+            isAlwaysShown: true,
             child: CustomScrollView(
               slivers: [
                 if (state.currentScript != null)

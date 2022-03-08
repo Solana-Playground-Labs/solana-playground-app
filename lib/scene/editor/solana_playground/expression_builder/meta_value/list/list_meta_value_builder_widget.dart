@@ -30,22 +30,14 @@ class ListMetaValueBuilderWidget
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
             if (state.builders.isEmpty)
               Text("Empty", style: theme.textTheme.caption),
             ...state.builders.map(
               (e) => Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8),
-                        child: widgetBuilder(context, e),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(width: 12),
-                  Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
@@ -64,6 +56,21 @@ class ListMetaValueBuilderWidget
                         },
                         icon: const Icon(Icons.arrow_circle_down_outlined),
                       ),
+                    ],
+                  ),
+                  const SizedBox(width: 8),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: widgetBuilder(context, e),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(width: 8),
+                  Column(
+                    children: [
                       IconButton(
                         padding: const EdgeInsets.all(4),
                         constraints: const BoxConstraints(minHeight: 0),
