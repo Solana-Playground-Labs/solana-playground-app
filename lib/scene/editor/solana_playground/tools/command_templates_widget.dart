@@ -25,6 +25,14 @@ class CommandTemplatesWidget extends StatelessWidget {
           title: "Create transaction",
           commandBuilder: CreateTransactionCommandBuilder.empty(),
         ),
+        TemplateWidget(
+          title: "Send transaction",
+          commandBuilder: SendTransactionCommandBuilder.empty(),
+        ),
+        TemplateWidget(
+          title: "Wait transaction confirmation",
+          commandBuilder: WaitConfirmationCommandBuilder.empty(),
+        ),
       ],
     );
   }
