@@ -9,6 +9,12 @@ class CodeEditorPanel extends CubitWidget<CodeEditorCubit, CodeEditorState> {
   const CodeEditorPanel({Key? key}) : super(key: key);
 
   @override
+  bool buildWhen(CodeEditorState p, CodeEditorState n) {
+    print(p.currentScript != n.currentScript);
+    return p.currentScript != n.currentScript;
+  }
+
+  @override
   Widget content(BuildContext context, CodeEditorState state) {
     return Container(
       color: EditorTheme.of(context).background3,

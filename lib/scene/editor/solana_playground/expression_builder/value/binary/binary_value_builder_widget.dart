@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/common/textfield.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
+import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
+import 'package:solana_playground_app/scene/editor/model/focus_builder.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import 'binary_value_builder_cubit.dart';

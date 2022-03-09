@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
+import 'package:solana_playground_app/scene/editor/model/focus_builder.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import 'command_builder_widget.dart';
 import 'command_builder_draggable.dart';
 import 'block_command_builder_cubit.dart';
 
-class BlockCommandBuilderWidget extends CubitWidget<BlockCommandBuilderCubit, BlockCommandBuilderState> {
+class BlockCommandBuilderWidget
+    extends CubitWidget<BlockCommandBuilderCubit, BlockCommandBuilderState> {
   final BlockCommandBuilder builder;
 
-  BlockCommandBuilderWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
+  BlockCommandBuilderWidget({Key? key, required this.builder})
+      : super(key: Key(builder.id));
 
   @override
   Widget content(BuildContext context, BlockCommandBuilderState state) {
@@ -28,7 +31,9 @@ class BlockCommandBuilderWidget extends CubitWidget<BlockCommandBuilderCubit, Bl
                 padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(minWidth: 20),
-                  child: Text("${index + 1}", style: Theme.of(context).textTheme.headline6, textAlign: TextAlign.end),
+                  child: Text("${index + 1}",
+                      style: Theme.of(context).textTheme.headline6,
+                      textAlign: TextAlign.end),
                 ),
               ),
               Flexible(
@@ -38,7 +43,12 @@ class BlockCommandBuilderWidget extends CubitWidget<BlockCommandBuilderCubit, Bl
                   clipBehavior: Clip.hardEdge,
                   child: InkWell(
                     onTap: () {
-                      context.read<CodeEditorCubit>().focus(builder);
+                      context.read<CodeEditorCubit>().focus(
+                            CommandFocusBuilder(
+                              blockBuilder: this.builder,
+                              builder: builder,
+                            ),
+                          );
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),

@@ -13,18 +13,21 @@ List<Type> _supportedValue = [
 
 String _valueToString(Type builderType) {
   switch (builderType) {
-    case ConstantValueBuilder: return "Constant";
-    case VariableValueBuilder: return "Variable";
-    default: return "Unknown";
+    case ConstantValueBuilder:
+      return "Constant";
+    case VariableValueBuilder:
+      return "Variable";
+    default:
+      return "Unknown";
   }
 }
-
 
 class ExpressionInspectorWidget
     extends CubitWidget<ExpressionInspectorCubit, ExpressionInspectorState> {
   final ExpressionBuilder builder;
+  final String? label;
 
-  ExpressionInspectorWidget({Key? key, required this.builder})
+  ExpressionInspectorWidget({Key? key, this.label, required this.builder})
       : super(key: Key(builder.id));
 
   @override
@@ -35,6 +38,7 @@ class ExpressionInspectorWidget
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          if (label != null) Text(label!),
           const Divider(),
           Text("Value type:", style: theme.textTheme.bodyText1),
           Wrap(

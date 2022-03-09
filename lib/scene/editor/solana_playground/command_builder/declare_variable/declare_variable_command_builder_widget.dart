@@ -33,16 +33,11 @@ class DeclareVariableCommandBuilderWidget extends CubitWidget<
           const SizedBox(width: 12),
           Flexible(
             flex: 1,
-            child: Focus(
-              onFocusChange: (hasFocus) {
-                if (hasFocus) context.read<CodeEditorCubit>().focus(builder);
-              },
-              child: IntrinsicWidth(
-                child: VariableInputWidget(
-                  controller: context
-                      .read<DeclareVariableCommandBuilderCubit>()
-                      .variableInputController,
-                ),
+            child: IntrinsicWidth(
+              child: VariableInputWidget(
+                controller: context
+                    .read<DeclareVariableCommandBuilderCubit>()
+                    .variableInputController,
               ),
             ),
           ),

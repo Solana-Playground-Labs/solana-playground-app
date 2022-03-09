@@ -32,17 +32,10 @@ class CreateTransactionCommandBuilderWidget extends CubitWidget<
               const SizedBox(width: 8),
               Flexible(
                 child: IntrinsicWidth(
-                  child: Focus(
-                    onFocusChange: (hasFocused) {
-                      if (hasFocused) {
-                        context.read<CodeEditorCubit>().focus(builder);
-                      }
-                    },
-                    child: VariableInputWidget(
-                      controller: context
-                          .read<CreateTransactionCommandBuilderCubit>()
-                          .variableInput,
-                    ),
+                  child: VariableInputWidget(
+                    controller: context
+                        .read<CreateTransactionCommandBuilderCubit>()
+                        .variableInput,
                   ),
                 ),
               ),
@@ -54,7 +47,10 @@ class CreateTransactionCommandBuilderWidget extends CubitWidget<
             children: [
               Text("Recent block hash:", style: theme.textTheme.bodyText1),
               const SizedBox(width: 8),
-              Flexible(child: ExpressionBuilderWidget(builder: builder.recentBlockhash)),
+              Flexible(
+                  child: ExpressionBuilderWidget(
+                      label: "Recent block hash",
+                      builder: builder.recentBlockhash)),
             ],
           ),
           const SizedBox(height: 8),
@@ -63,7 +59,12 @@ class CreateTransactionCommandBuilderWidget extends CubitWidget<
             children: [
               Text("Fee payer:", style: theme.textTheme.bodyText1),
               const SizedBox(width: 8),
-              Flexible(child: ExpressionBuilderWidget(builder: builder.feePayer)),
+              Flexible(
+                child: ExpressionBuilderWidget(
+                  label: "Fee payer",
+                  builder: builder.feePayer,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: 16),

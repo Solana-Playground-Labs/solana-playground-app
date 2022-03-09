@@ -1,6 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
+
+import '../model/focus_builder.dart';
 
 part 'code_editor_state.dart';
 
@@ -24,8 +27,13 @@ class CodeEditorCubit extends Cubit<CodeEditorState> {
     emit(state.unfocus());
   }
 
-  void focus(Builder builder) {
-    print("Focus to ${builder.runtimeType.toString()} with ${builder.id}");
-    emit(state.copyWith(focusBuilder: FocusBuilder(builder: builder)));
+  void focus(FocusBuilder focus) {
+    if (kDebugMode) {
+      print(
+        "Focus to ${focus.builder.runtimeType.toString()} with ${focus.builder.id}",
+      );
+    }
+
+    emit(state.copyWith(focusBuilder: focus));
   }
 }

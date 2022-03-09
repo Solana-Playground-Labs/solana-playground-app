@@ -21,16 +21,3 @@ class CodeEditorState extends Equatable {
     );
   }
 }
-
-class FocusBuilder extends Equatable {
-  final Builder builder;
-
-  const FocusBuilder({
-    required this.builder,
-  });
-
-  @override
-  List<Object?> get props => [
-        builder,
-      ];
-}

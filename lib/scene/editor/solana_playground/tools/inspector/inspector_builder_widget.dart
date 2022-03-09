@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart' hide Builder;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
+import 'package:solana_playground_app/scene/editor/model/focus_builder.dart';
+import 'package:solana_playground_app/scene/editor/solana_playground/tools/inspector/command/command_inspector_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import '../tools.dart';
@@ -16,17 +18,25 @@ class InspectorBuilderWidget extends StatelessWidget {
       builder: (context, state) {
         final focusBuilder = state.focusBuilder;
         if (focusBuilder == null) return Container();
-        return mapping(context, focusBuilder.builder);
+        return mapping(context, focusBuilder);
       },
     );
   }
 
-  Widget mapping(BuildContext context, Builder builder) {
+  Widget mapping(BuildContext context, FocusBuilder focusBuilder) {
     final theme = Theme.of(context);
     Widget widget = Container();
 
-    if (builder is ExpressionBuilder) {
-      widget = ExpressionInspectorWidget(builder: builder);
+    if (focusBuilder is ExpressionFocusBuilder) {
+      widget = ExpressionInspectorWidget(
+        label: focusBuilder.label,
+        builder: focusBuilder.builder as ExpressionBuilder,
+      );
+    } else if (focusBuilder is CommandFocusBuilder) {
+      widget = CommandInspectorWidget(
+        builder: focusBuilder.builder as CommandBuilder,
+        blockCommandBuilder: focusBuilder.blockBuilder,
+      );
     }
 
     return Column(
@@ -38,10 +48,6 @@ class InspectorBuilderWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text("Inspector", style: Theme.of(context).textTheme.headline6),
-              Text(
-                builder.runtimeType.toString(),
-                style: theme.textTheme.caption,
-              ),
             ],
           ),
         ),

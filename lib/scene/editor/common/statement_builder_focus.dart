@@ -5,6 +5,7 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 
 typedef StatementWidgetBuilder = Widget Function(BuildContext context, bool isFocused);
 
+@Deprecated("Old code")
 class StatementBuilderFocus extends StatelessWidget {
   final CommandBuilder commandBuilder;
   final StatementWidgetBuilder builder;
