@@ -1,7 +1,6 @@
 import 'dart:typed_data';
 
 import 'package:solana_playground_language/solana_playground_language.dart';
-import 'package:solana_playground_language/src/core/expression/binary_value.dart';
 
 class BinaryValueBuilder extends ValueBuilder {
   Uint8List _data;
@@ -12,6 +11,12 @@ class BinaryValueBuilder extends ValueBuilder {
 
   set data(Uint8List value) {
     _data = value;
+    notifyListeners();
+  }
+
+  void update(void Function(Uint8List) callback) {
+    callback(_data);
+    notifyListeners();
   }
 
   @override

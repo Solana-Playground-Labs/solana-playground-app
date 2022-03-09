@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 class ExpressionBuilder extends Builder {
@@ -13,6 +15,11 @@ class ExpressionBuilder extends Builder {
 
   factory ExpressionBuilder.withVariable() {
     return ExpressionBuilder(valueBuilder: VariableValueBuilder(variable: ""));
+  }
+
+  factory ExpressionBuilder.withBinaryValue() {
+    return ExpressionBuilder(
+        valueBuilder: BinaryValueBuilder(data: Uint8List.fromList([])));
   }
 
   ValueBuilder get valueBuilder => _valueBuilder;

@@ -9,12 +9,12 @@ class TransactionInstructionMetaValueBuilder extends MetaValueBuilder {
 
   ListBuilder<dynamic> get keys => ListBuilder(builder.data['keys']);
 
-  BinaryValueBuilder get data => BinaryValueBuilder(data: builder.data['data']);
+  ExpressionBuilder get data => builder.data['data'];
 
   TransactionInstructionMetaValueBuilder({required this.builder}) {
     builder.data['programId'] ??= ExpressionBuilder.withConstantValue();
     builder.data['keys'] ??= [];
-    builder.data['data'] ??= [];
+    builder.data['data'] ??= ExpressionBuilder.withBinaryValue();
   }
 
   @override

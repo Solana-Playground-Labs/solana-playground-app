@@ -28,16 +28,18 @@ class SignaturePubkeyPairMetaValueBuilderWidget extends CubitWidget<
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               const Text("Public key: "),
-              ExpressionBuilderWidget(builder: builder.publicKey),
+              Flexible(child: ExpressionBuilderWidget(builder: builder.publicKey)),
             ],
           ),
           const SizedBox(height: 8),
           Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               const Text("Signature: "),
-              ExpressionBuilderWidget(builder: builder.signature),
+              Flexible(child: ExpressionBuilderWidget(builder: builder.signature)),
             ],
           ),
         ],

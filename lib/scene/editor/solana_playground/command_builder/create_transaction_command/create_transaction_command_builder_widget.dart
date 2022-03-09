@@ -30,17 +30,19 @@ class CreateTransactionCommandBuilderWidget extends CubitWidget<
             children: [
               Text("Create transaction", style: theme.textTheme.bodyText1),
               const SizedBox(width: 8),
-              IntrinsicWidth(
-                child: Focus(
-                  onFocusChange: (hasFocused) {
-                    if (hasFocused) {
-                      context.read<CodeEditorCubit>().focus(builder);
-                    }
-                  },
-                  child: VariableInputWidget(
-                    controller: context
-                        .read<CreateTransactionCommandBuilderCubit>()
-                        .variableInput,
+              Flexible(
+                child: IntrinsicWidth(
+                  child: Focus(
+                    onFocusChange: (hasFocused) {
+                      if (hasFocused) {
+                        context.read<CodeEditorCubit>().focus(builder);
+                      }
+                    },
+                    child: VariableInputWidget(
+                      controller: context
+                          .read<CreateTransactionCommandBuilderCubit>()
+                          .variableInput,
+                    ),
                   ),
                 ),
               ),
@@ -52,7 +54,7 @@ class CreateTransactionCommandBuilderWidget extends CubitWidget<
             children: [
               Text("Recent block hash:", style: theme.textTheme.bodyText1),
               const SizedBox(width: 8),
-              ExpressionBuilderWidget(builder: builder.recentBlockhash),
+              Flexible(child: ExpressionBuilderWidget(builder: builder.recentBlockhash)),
             ],
           ),
           const SizedBox(height: 8),
@@ -61,41 +63,45 @@ class CreateTransactionCommandBuilderWidget extends CubitWidget<
             children: [
               Text("Fee payer:", style: theme.textTheme.bodyText1),
               const SizedBox(width: 8),
-              ExpressionBuilderWidget(builder: builder.feePayer),
+              Flexible(child: ExpressionBuilderWidget(builder: builder.feePayer)),
             ],
           ),
           const SizedBox(height: 16),
+          Text("Signatures:", style: theme.textTheme.bodyText1),
+          const SizedBox(height: 8),
           Row(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Signatures:", style: theme.textTheme.bodyText1),
-              const SizedBox(width: 16),
-              ExpressionBuilderWidget(
-                builder: builder.signatures,
-                metaValueInfo: const MetaValueInfo(
-                  isMultiple: true,
-                  metaType: SignaturePubkeyParsMetaValueBuilder,
+              Flexible(
+                child: ExpressionBuilderWidget(
+                  builder: builder.signatures,
+                  metaValueInfo: const MetaValueInfo(
+                    isMultiple: true,
+                    metaType: SignaturePubkeyParsMetaValueBuilder,
+                  ),
                 ),
               )
             ],
           ),
           const SizedBox(height: 16),
+          Text("Instructions:", style: theme.textTheme.bodyText1),
+          const SizedBox(height: 8),
           Row(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Instructions:", style: theme.textTheme.bodyText1),
-              const SizedBox(width: 16),
-              ExpressionBuilderWidget(
-                builder: builder.instructions,
-                metaValueInfo: const MetaValueInfo(
-                  isMultiple: true,
-                  metaType: TransactionInstructionMetaValueBuilder,
+              Flexible(
+                child: ExpressionBuilderWidget(
+                  builder: builder.instructions,
+                  metaValueInfo: const MetaValueInfo(
+                    isMultiple: true,
+                    metaType: TransactionInstructionMetaValueBuilder,
+                  ),
                 ),
               )
             ],
-          )
+          ),
         ],
       ),
     );

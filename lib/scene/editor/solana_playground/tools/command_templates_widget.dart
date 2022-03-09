@@ -65,8 +65,8 @@ class TemplateWidget<T extends CommandBuilder> extends StatelessWidget {
                   .add(commandBuilder.clone());
             },
             child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Center(child: Text(title)),
+              padding: const EdgeInsets.all(6.0),
+              child: Text(title),
             ),
           ),
         ),

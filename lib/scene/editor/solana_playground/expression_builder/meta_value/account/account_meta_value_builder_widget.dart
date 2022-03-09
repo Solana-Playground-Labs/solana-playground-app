@@ -22,28 +22,37 @@ class AccountMetaValueBuilderWidget extends CubitWidget<
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text("Pubkey: ", style: theme.textTheme.bodyText1),
-              IntrinsicWidth(
-                  child: ExpressionBuilderWidget(builder: builder.pubkey)),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              Text("Is writable", style: theme.textTheme.bodyText1),
-              const SizedBox(width: 12),
-              IntrinsicWidth(
-                child: ExpressionBuilderWidget(builder: builder.isWritable),
+              Flexible(
+                child: IntrinsicWidth(
+                    child: ExpressionBuilderWidget(builder: builder.pubkey)),
               ),
             ],
           ),
           const SizedBox(height: 8),
           Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text("Is writable", style: theme.textTheme.bodyText1),
+              const SizedBox(width: 12),
+              Flexible(
+                child: IntrinsicWidth(
+                  child: ExpressionBuilderWidget(builder: builder.isWritable),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text("Is signer: ", style: theme.textTheme.bodyText1),
-              IntrinsicWidth(
-                child: ExpressionBuilderWidget(builder: builder.isSigner),
+              Flexible(
+                child: IntrinsicWidth(
+                  child: ExpressionBuilderWidget(builder: builder.isSigner),
+                ),
               ),
             ],
           ),
