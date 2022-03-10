@@ -8,19 +8,22 @@ import '../model/focus_builder.dart';
 part 'code_editor_state.dart';
 
 class CodeEditorCubit extends Cubit<CodeEditorState> {
-  final SPPackageBuilder packageBuilder = SPPackageBuilder(
-    packageType: PackageType.application,
-    functionBuilders: [
-      ScriptBuilder(
-          name: "main",
-          blockCommandBuilder: BlockCommandBuilder(
-            commands: ListBuilder.empty(),
-          ))
-    ],
-  );
+  final SPPackageBuilder packageBuilder;
 
-  CodeEditorCubit() : super(const CodeEditorState()) {
+  CodeEditorCubit(this.packageBuilder) : super(const CodeEditorState()) {
     emit(state.copyWith(currentScript: packageBuilder.functionBuilders.first));
+  }
+
+  void toggleLeftPanelHidden() {
+    emit(state.copyWith(isLeftPanelHidden: !state.isLeftPanelHidden));
+  }
+
+  void toggleRightPanelHidden() {
+    emit(state.copyWith(isRightPanelHidden: !state.isRightPanelHidden));
+  }
+
+  void toggleBottomPanelHidden() {
+    emit(state.copyWith(isBottomPanelHidden: !state.isBottomPanelHidden));
   }
 
   void unfocus() {

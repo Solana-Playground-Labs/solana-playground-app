@@ -40,4 +40,8 @@ class ScriptBuilder extends Builder {
     _name = value;
     notifyListeners();
   }
+
+  Script build() {
+    return Script(name: _name, blockCommand: _blockCommandBuilder.build());
+  }
 }

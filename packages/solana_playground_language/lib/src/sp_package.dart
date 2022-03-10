@@ -44,4 +44,10 @@ class SPPackageBuilder extends Builder {
     _packageType = value;
     notifyListeners();
   }
+
+  Package build() {
+    return Package(
+        packageType: _packageType,
+        scripts: _functionBuilders.map((e) => e.build()).toList());
+  }
 }

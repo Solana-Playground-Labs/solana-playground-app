@@ -28,7 +28,7 @@ class AppRouter extends _i3.RootStackRouter {
     },
     EditorRoute.name: (routeData) {
       return _i3.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i2.EditorView());
+          routeData: routeData, child: _i2.EditorView());
     }
   };
 

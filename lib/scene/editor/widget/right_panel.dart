@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:solana_playground_app/library/cubit_widget.dart';
+import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';
 import 'package:solana_playground_app/theme/editor_theme.dart';
 
 import '../solana_playground/tools/inspector/inspector.dart';
 
-class RightPanel extends StatelessWidget {
+class RightPanel extends CubitWidget<CodeEditorCubit, CodeEditorState> {
   const RightPanel({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget content(BuildContext context, CodeEditorState state) {
+    if (state.isRightPanelHidden) return Container();
+    
     return Container(
       width: 240,
       color: EditorTheme.of(context).background2,

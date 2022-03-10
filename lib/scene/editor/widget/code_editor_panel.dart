@@ -10,7 +10,6 @@ class CodeEditorPanel extends CubitWidget<CodeEditorCubit, CodeEditorState> {
 
   @override
   bool buildWhen(CodeEditorState p, CodeEditorState n) {
-    print(p.currentScript != n.currentScript);
     return p.currentScript != n.currentScript;
   }
 

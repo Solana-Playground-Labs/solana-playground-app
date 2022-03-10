@@ -19,6 +19,13 @@ class BlockCommandBuilderCubit extends Cubit<BlockCommandBuilderState> {
     emit(state.copyWith(commands: List.of(builder.commands)));
   }
 
+
+  @override
+  Future close() async {
+    super.close();
+    builder.removeListener(listener);
+  }
+
   add(CommandBuilder commandBuilder) {
     builder.commands.add(commandBuilder);
   }

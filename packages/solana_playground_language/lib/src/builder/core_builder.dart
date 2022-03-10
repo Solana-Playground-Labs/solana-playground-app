@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:solana_playground_language/lib.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:collection';
 
@@ -51,6 +52,13 @@ class ListBuilder<T> extends ListBase<T> with ChangeNotifier {
     final r = _data.remove(element);
     notifyListeners();
     return r;
+  }
+
+  void moveTo(Object object, int index) {
+    print(_data);
+    _data.moveTo(object, index);
+    print(_data);
+    notifyListeners();
   }
 
   @override

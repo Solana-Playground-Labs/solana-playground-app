@@ -24,7 +24,6 @@ class InspectorBuilderWidget extends StatelessWidget {
   }
 
   Widget mapping(BuildContext context, FocusBuilder focusBuilder) {
-    final theme = Theme.of(context);
     Widget widget = Container();
 
     if (focusBuilder is ExpressionFocusBuilder) {

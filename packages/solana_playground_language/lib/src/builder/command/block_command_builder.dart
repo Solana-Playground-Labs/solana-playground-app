@@ -7,8 +7,13 @@ class BlockCommandBuilder extends CommandBuilder {
 
   BlockCommandBuilder({required this.commands});
 
+  void update(void Function(ListBuilder<CommandBuilder> commands) callback) {
+    callback(commands);
+    notifyListeners();
+  }
+
   @override
-  Command build() {
+  BlockCommand build() {
     return BlockCommand(commands: commands.build());
   }
 
