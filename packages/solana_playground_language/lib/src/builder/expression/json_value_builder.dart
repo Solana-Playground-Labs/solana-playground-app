@@ -15,9 +15,9 @@ class JsonValueBuilder extends ValueBuilder {
   @override
   Value build() {
     if (_data is Map) {
-      return JsonValue(data: _data.recursiveBuild());
+      return JsonValue(data: (_data as Map).recursiveBuild());
     } else if (_data is List) {
-      return JsonValue(data: _data.recursiveBuild());
+      return JsonValue(data: (_data as List).recursiveBuild());
     }
     throw Exception("Can not parse json value");
   }
@@ -38,8 +38,11 @@ extension RecursiveMapBuilder on Map {
     return map((key, value) {
       if (value is ExpressionBuilder) {
         return MapEntry(key, value.build());
+      } else if (value is List) {
+        return MapEntry(key, value.recursiveBuild());
+      } else {
+        return MapEntry(key, value);
       }
-      throw Exception("It is not expression");
     });
   }
 }
@@ -49,8 +52,11 @@ extension RecursiveListBuilder on List {
     return map((value) {
       if (value is ExpressionBuilder) {
         return value.build();
+      } else if (value is Map) {
+        return value.recursiveBuild();
+      } else {
+        return value;
       }
-      throw Exception("It is not expression");
     }).toList();
   }
 }

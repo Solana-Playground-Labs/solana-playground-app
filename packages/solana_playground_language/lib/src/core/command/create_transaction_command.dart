@@ -4,6 +4,8 @@ import 'package:solana_playground_language/src/core/expression/abstract_expressi
 import 'abstract_command.dart';
 
 class CreateTransactionCommand extends Command {
+  final String variable;
+
   /// Should be {publicKey: string, signature: String}
   final Expression signatures;
 
@@ -24,6 +26,7 @@ class CreateTransactionCommand extends Command {
   final Expression recentBlockhash;
 
   const CreateTransactionCommand({
+    required this.variable,
     required this.signatures,
     required this.instructions,
     required this.feePayer,
@@ -31,7 +34,8 @@ class CreateTransactionCommand extends Command {
   });
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
+        variable,
         signatures,
         instructions,
         feePayer,

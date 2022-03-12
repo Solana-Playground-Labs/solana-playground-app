@@ -5,7 +5,7 @@ Future<void> executeDeclareVariable(
   SPRuntime runtime,
   DeclareVariableCommand command,
 ) async {
-  runtime.memory.set(
+  runtime.memory.write(
     command.variable,
     await runtime.calculate(command.expression),
   );

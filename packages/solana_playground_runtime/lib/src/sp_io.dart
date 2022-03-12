@@ -7,10 +7,14 @@ abstract class SPOutput {
 }
 
 class SPConsole with SPOutput {
-  final StreamController streamController = StreamController();
+  final StreamController<dynamic> streamController = StreamController.broadcast();
 
   @override
   Future<void> write(data) async {
     streamController.add(data);
+  }
+
+  Future<void> dispose() async {
+    streamController.close();
   }
 }

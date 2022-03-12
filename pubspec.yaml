@@ -19,11 +19,15 @@ dependencies:
   provider: ^6.0.2
   equatable: ^2.0.3
   base_x: ^2.0.0
+  dio: ^4.0.4
+  flutter_svg: ^1.0.3
+
 
   solana_playground_language:
     path: ./packages/solana_playground_language
-  dio: ^4.0.4
-  flutter_svg: ^1.0.3
+
+  solana_playground_runtime:
+    path: ./packages/solana_playground_runtime
 
 dev_dependencies:
   flutter_test:

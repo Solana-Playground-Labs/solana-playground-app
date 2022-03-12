@@ -2,7 +2,7 @@ import 'package:solana_playground_language/lib.dart';
 
 import '../sp_runtime.dart';
 
-Future<void> calculatePrintCommand(
+Future<void> executePrintCommand(
     SPRuntime runtime,
     PrintCommand printCommand,
     ) async {

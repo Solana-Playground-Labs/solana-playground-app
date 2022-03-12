@@ -16,7 +16,7 @@ class ConstantValueBuilder extends ValueBuilder {
 
   @override
   ConstantValue build() {
-    return ConstantValue(value: value);
+    return ConstantValue(value: value.toString());
   }
 
   @override

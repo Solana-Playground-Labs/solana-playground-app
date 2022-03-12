@@ -27,7 +27,7 @@ class SendTransactionCommandBuilder extends CommandBuilder {
   @override
   Command build() {
     return SendTransactionCommand(
-      expressionBuilder: expressionBuilder.build(),
+      expression: expressionBuilder.build(),
       variable: variable,
     );
   }

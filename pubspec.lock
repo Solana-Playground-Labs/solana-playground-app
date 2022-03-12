@@ -50,6 +50,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  bip39:
+    dependency: transitive
+    description:
+      name: bip39
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.6"
   bloc:
     dependency: transitive
     description:
@@ -64,6 +71,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  borsh_annotation:
+    dependency: transitive
+    description:
+      name: borsh_annotation
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0+1"
   build:
     dependency: transitive
     description:
@@ -176,6 +190,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+  cryptography:
+    dependency: transitive
+    description:
+      name: cryptography
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.5"
   csslib:
     dependency: transitive
     description:
@@ -211,6 +232,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.4"
+  ed25519_hd_key:
+    dependency: transitive
+    description:
+      name: ed25519_hd_key
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.2.0"
   equatable:
     dependency: "direct main"
     description:
@@ -270,6 +298,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  freezed_annotation:
+    dependency: transitive
+    description:
+      name: freezed_annotation
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   frontend_server_client:
     dependency: transitive
     description:
@@ -291,6 +326,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  hex:
+    dependency: transitive
+    description:
+      name: hex
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.2.0"
   html:
     dependency: transitive
     description:
@@ -298,6 +340,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.15.0"
+  http:
+    dependency: transitive
+    description:
+      name: http
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.13.4"
   http_multi_server:
     dependency: transitive
     description:
@@ -424,6 +473,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.4.0"
+  pinenacl:
+    dependency: transitive
+    description:
+      name: pinenacl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.3"
+  pointycastle:
+    dependency: transitive
+    description:
+      name: pointycastle
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.5.2"
   pool:
     dependency: transitive
     description:
@@ -478,10 +541,24 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  solana:
+    dependency: transitive
+    description:
+      name: solana
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.20.0+1"
   solana_playground_language:
     dependency: "direct main"
     description:
       path: "packages/solana_playground_language"
+      relative: true
+    source: path
+    version: "0.0.1"
+  solana_playground_runtime:
+    dependency: "direct main"
+    description:
+      path: "packages/solana_playground_runtime"
       relative: true
     source: path
     version: "0.0.1"
@@ -612,5 +689,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=2.16.0-100.0.dev <2.18.0"
+  dart: ">=2.16.1 <2.18.0"
   flutter: ">=2.4.0-0.0.pre"

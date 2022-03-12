@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
@@ -9,6 +10,7 @@ part 'code_editor_state.dart';
 
 class CodeEditorCubit extends Cubit<CodeEditorState> {
   final SPPackageBuilder packageBuilder;
+  final ScrollController scrollController = ScrollController();
 
   CodeEditorCubit(this.packageBuilder) : super(const CodeEditorState()) {
     emit(state.copyWith(currentScript: packageBuilder.functionBuilders.first));
@@ -38,5 +40,11 @@ class CodeEditorCubit extends Cubit<CodeEditorState> {
     }
 
     emit(state.copyWith(focusBuilder: focus));
+  }
+
+  @override
+  Future<void> close() {
+    scrollController.dispose();
+    return super.close();
   }
 }

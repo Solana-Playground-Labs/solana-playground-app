@@ -16,12 +16,17 @@ class ConstantValueBuilderCubit extends Cubit<ConstantValueBuilderState> {
     inputController.text = builder.value.toString();
     inputController.addListener(() {
       final value = inputController.text;
-      if (int.tryParse(value) != null) {
+
+      if (value.startsWith('"') && value.endsWith('"')) {
+        builder.value = value.toString();
+      } else if (value == "true") {
+        builder.value = true;
+      } else if (value == "false") {
+        builder.value = false;
+      } else if (int.tryParse(value) != null) {
         builder.value = int.parse(value);
       } else if (double.tryParse(value) != null) {
-        builder.value = double.parse(value);
-      } else {
-        builder.value = value;
+        builder.value = double.tryParse(value);
       }
     });
   }

@@ -6,6 +6,6 @@ Future<void> executeBlockCommand(
   BlockCommand blockCommand,
 ) async {
   for (final command in blockCommand.commands) {
-    runtime.execute(command);
+    await runtime.execute(command);
   }
 }

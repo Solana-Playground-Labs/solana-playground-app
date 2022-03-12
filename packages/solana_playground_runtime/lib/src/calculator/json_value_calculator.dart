@@ -6,7 +6,8 @@ Future<dynamic> calculateJsonValue(
   SPRuntime runtime,
   JsonValue jsonValue,
 ) async {
-  return _recursiveCalculate(runtime, jsonValue.data);
+  print(jsonValue);
+  return await _recursiveCalculate(runtime, jsonValue.data);
 }
 
 Future<dynamic> _recursiveCalculate(
@@ -20,9 +21,10 @@ Future<dynamic> _recursiveCalculate(
     for (var key in data.keys) {
       r[key] = await _recursiveCalculate(runtime, data[key]);
     }
+    return r;
   } else if (data is Expression) {
     return await runtime.calculate(data);
   } else {
-    return data;
+    throw Exception("Invalid value '$data'");
   }
 }

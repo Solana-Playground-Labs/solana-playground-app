@@ -30,7 +30,7 @@ class SendTransactionCommandBuilderWidget extends CubitWidget<
             flex: 1,
             child: ExpressionBuilderWidget(builder: builder.expressionBuilder),
           ),
-          Text("  with result storage  ", style: theme.textTheme.bodyText1),
+          Text("  with id  ", style: theme.textTheme.bodyText1),
           Flexible(
             flex: 1,
             child: VariableInputWidget(

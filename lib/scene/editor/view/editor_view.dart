@@ -6,6 +6,8 @@ import 'package:solana_playground_app/theme/editor_theme.dart';
 import 'package:solana_playground_language/solana_playground_language.dart'
     hide Builder;
 
+import '../widget/status_bar.dart';
+
 class EditorView extends StatelessWidget {
   final packageBuilder = SPPackageBuilder(
     packageType: PackageType.application,
@@ -34,7 +36,8 @@ class EditorView extends StatelessWidget {
         child: Builder(
           builder: (context) => Scaffold(
             appBar: AppBar(
-              title: const Text("Transfer Demo"),
+              title: const StatusBar(),
+              centerTitle: true,
               backgroundColor: EditorTheme.of(context).appBarColor,
               actions: [
                 Center(

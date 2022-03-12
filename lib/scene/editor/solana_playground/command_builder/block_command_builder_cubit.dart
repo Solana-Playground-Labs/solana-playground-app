@@ -22,8 +22,8 @@ class BlockCommandBuilderCubit extends Cubit<BlockCommandBuilderState> {
 
   @override
   Future close() async {
-    super.close();
     builder.removeListener(listener);
+    super.close();
   }
 
   add(CommandBuilder commandBuilder) {

@@ -37,6 +37,7 @@ class CreateTransactionCommandBuilder extends CommandBuilder {
   @override
   CreateTransactionCommand build() {
     return CreateTransactionCommand(
+      variable: variable,
       signatures: signatures.build(),
       instructions: instructions.build(),
       feePayer: feePayer.build(),

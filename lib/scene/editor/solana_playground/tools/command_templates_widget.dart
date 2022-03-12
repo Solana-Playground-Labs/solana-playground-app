@@ -33,6 +33,10 @@ class CommandTemplatesWidget extends StatelessWidget {
           title: "Wait transaction confirmation",
           commandBuilder: WaitConfirmationCommandBuilder.empty(),
         ),
+        TemplateWidget(
+          title: "Get recent block hash",
+          commandBuilder: GetRecentBlockHashCommandBuilder.empty(),
+        ),
       ],
     );
   }

@@ -5,7 +5,7 @@ class SPMemory {
     return _data[variable];
   }
 
-  void set(String variable, dynamic value) {
+  void write(String variable, dynamic value) {
     _data[variable] = value;
   }
 }
