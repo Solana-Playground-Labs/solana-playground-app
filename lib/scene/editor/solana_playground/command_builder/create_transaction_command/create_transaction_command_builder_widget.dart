@@ -76,10 +76,10 @@ class CreateTransactionCommandBuilderWidget extends CubitWidget<
             children: [
               Flexible(
                 child: ExpressionBuilderWidget(
-                  builder: builder.signatures,
+                  builder: builder.signers,
                   metaValueInfo: const MetaValueInfo(
                     isMultiple: true,
-                    metaType: SignaturePubkeyParsMetaValueBuilder,
+                    metaType: SignerMetaValueBuilder,
                   ),
                 ),
               )

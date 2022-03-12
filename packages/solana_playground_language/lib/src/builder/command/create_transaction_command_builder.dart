@@ -1,17 +1,15 @@
 import 'package:solana_playground_language/solana_playground_language.dart';
-import 'package:solana_playground_language/src/builder/core_builder.dart';
-import 'package:solana_playground_language/src/core/command/create_transaction_command.dart';
 
 class CreateTransactionCommandBuilder extends CommandBuilder {
   String _variable;
-  ExpressionBuilder signatures;
+  ExpressionBuilder signers;
   ExpressionBuilder instructions;
   ExpressionBuilder feePayer;
   ExpressionBuilder recentBlockhash;
 
   CreateTransactionCommandBuilder({
     required String variable,
-    required this.signatures,
+    required this.signers,
     required this.instructions,
     required this.feePayer,
     required this.recentBlockhash,
@@ -20,7 +18,7 @@ class CreateTransactionCommandBuilder extends CommandBuilder {
   factory CreateTransactionCommandBuilder.empty() {
     return CreateTransactionCommandBuilder(
       variable: "",
-      signatures: ExpressionBuilder(valueBuilder: JsonValueBuilder(data: [])),
+      signers: ExpressionBuilder(valueBuilder: JsonValueBuilder(data: [])),
       instructions: ExpressionBuilder(valueBuilder: JsonValueBuilder(data: [])),
       feePayer: ExpressionBuilder.withConstantValue(),
       recentBlockhash: ExpressionBuilder.withVariable(),
@@ -38,7 +36,7 @@ class CreateTransactionCommandBuilder extends CommandBuilder {
   CreateTransactionCommand build() {
     return CreateTransactionCommand(
       variable: variable,
-      signatures: signatures.build(),
+      signatures: signers.build(),
       instructions: instructions.build(),
       feePayer: feePayer.build(),
       recentBlockhash: recentBlockhash.build(),
@@ -49,7 +47,7 @@ class CreateTransactionCommandBuilder extends CommandBuilder {
   CommandBuilder clone() {
     return CreateTransactionCommandBuilder(
         variable: _variable,
-        signatures: signatures.clone(),
+        signers: signers.clone(),
         instructions: instructions.clone(),
         feePayer: feePayer.clone(),
         recentBlockhash: recentBlockhash.clone());
