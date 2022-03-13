@@ -54,13 +54,13 @@ class HomeView extends StatelessWidget {
             ),
             const HomeHeaderWidget(header: Text("Wallets")),
             const SizedBox(
-              height: 120,
+              height: 140,
               child: WalletsSection(),
             ),
             ElevatedButton(
               child: const Text("Editor"),
               onPressed: () {
-                context.router.navigate(const EditorRoute());
+                context.router.navigate(EditorRoute());
               },
             ),
           ],

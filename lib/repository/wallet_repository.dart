@@ -12,6 +12,11 @@ class Wallet extends Equatable {
   final int change;
   final String mnemonic;
 
+  Future<String> get address async {
+    final keyPair = await Ed25519HDKeyPair.fromMnemonic(mnemonic, account: account, change: change);
+    return keyPair.address;
+  }
+
   const Wallet({
     required this.name,
     required this.account,
@@ -25,9 +30,9 @@ class Wallet extends Equatable {
   Map<String, dynamic> toMap() {
     return {
       'name': name,
-      'account': this.account,
-      'change': this.change,
-      'mnemonic': this.mnemonic,
+      'account': account,
+      'change': change,
+      'mnemonic': mnemonic,
     };
   }
 
@@ -53,13 +58,16 @@ class WalletRepository {
 
   Future<void> initialize() async {
     final rawData = await _storage.read(key: "wallets") ?? "[]";
-    _data = jsonDecode(rawData).map((e) => Wallet.fromMap(e));
+    _data = List.castFrom(
+        jsonDecode(rawData).map((e) => Wallet.fromMap(e)).toList());
+    _stream.add(_data);
   }
 
   Future<void> _save() async {
-    final data = jsonEncode(_data.map((e) => e.toMap()));
+    final data = jsonEncode(_data.map((e) => e.toMap()).toList());
     await _storage.write(key: "wallets", value: data);
     _stream.add(_data);
+
   }
 
   Future<void> generateWithMnemomic(String name,
@@ -73,6 +81,10 @@ class WalletRepository {
     );
     _data.add(wallet);
     await _save();
+  }
+
+  String generateMnemomic() {
+    return bip39.generateMnemonic();
   }
 
   Future<void> removeWallet(Wallet wallet) async {

@@ -99,7 +99,8 @@ class _InfoWidget<T> extends StatelessWidget {
                 future: future ?? _defaultValue(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
-                    return const Center(
+                    return const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: SizedBox(
                         width: 14,
                         height: 14,

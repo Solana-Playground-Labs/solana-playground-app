@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:solana/solana.dart';
 import 'package:solana_playground_app/theme/playground_theme.dart';
 
 import 'repository/wallet_repository.dart';
@@ -15,8 +16,14 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        Provider<SolanaClient>(
+          create: (context) => SolanaClient(
+            rpcUrl: Uri.parse("https://api.devnet.solana.com"),
+            websocketUrl: Uri.parse("ws://api.devnet.solana.com"),
+          ),
+        ),
         Provider<WalletRepository>(
-          create: (context) => WalletRepository(),
+          create: (context) => WalletRepository()..initialize(),
         )
       ],
       child: MaterialApp.router(
