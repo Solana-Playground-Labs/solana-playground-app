@@ -8,6 +8,8 @@ import 'package:solana_playground_app/repository/wallet_repository.dart';
 import 'package:solana_playground_app/route/app_router.gr.dart';
 import 'package:solana_playground_app/scene/home/cubit/wallets_cubit.dart';
 
+import 'key_widget.dart';
+
 class WalletsSection extends StatelessWidget {
   const WalletsSection({Key? key}) : super(key: key);
 
@@ -99,6 +101,7 @@ class WalletWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SPCard(
+      padding: EdgeInsets.zero,
       child: FutureBuilder<String>(
         future: wallet.address,
         builder: (context, snapshot) {
@@ -109,58 +112,44 @@ class WalletWidget extends StatelessWidget {
           }
 
           final text = snapshot.data!;
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
+          return InkWell(
+            onTap: () {
+              context.router.push(WalletDetailRoute(wallet: wallet));
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(wallet.name),
-                  const Spacer(),
-                  FutureBuilder<int>(
-                    future:
-                        context.read<SolanaClient>().rpcClient.getBalance(text),
-                    builder: (context, state) {
-                      if (!state.hasData) return Container();
-                      return Text("${state.data!.toString()} SOL");
-                    },
+                  Row(
+                    children: [
+                      Text(wallet.name),
+                      const Spacer(),
+                      FutureBuilder<int>(
+                        future:
+                            context.read<SolanaClient>().rpcClient.getBalance(text),
+                        builder: (context, state) {
+                          if (!state.hasData) return Container();
+                          return Text("${state.data!.toString()} SOL");
+                        },
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4),
-                  child: SPCard(
-                    level: 2,
-                    child: Center(
-                      child: RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(children: [
-                          TextSpan(
-                            text: text.substring(0, 4),
-                            style: const TextStyle(
-                              color: Colors.orange,
-                            ),
-                          ),
-                          TextSpan(
-                            text: text.substring(4, text.length - 4),
-                          ),
-                          TextSpan(
-                            text: text.substring(
-                              text.length - 4,
-                              text.length,
-                            ),
-                            style: const TextStyle(
-                              color: Colors.orange,
-                            ),
-                          ),
-                        ]),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4),
+                      child: SPCard(
+                        level: 2,
+                        child: Center(
+                          child: KeyWidget(text: text),
+                        ),
                       ),
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           );
         },
       ),

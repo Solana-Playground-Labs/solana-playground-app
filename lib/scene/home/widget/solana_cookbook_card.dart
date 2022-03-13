@@ -8,7 +8,7 @@ class SolanaCookBookCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color: Colors.deepOrange.shade300,
-          borderRadius: BorderRadius.all(Radius.circular(15.0))),
+          borderRadius: BorderRadius.all(const Radius.circular(15.0))),
       width: 300,
       child: Column(
         mainAxisSize: MainAxisSize.min,

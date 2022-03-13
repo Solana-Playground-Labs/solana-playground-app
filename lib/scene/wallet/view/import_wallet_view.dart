@@ -33,8 +33,7 @@ class ImportWalletView extends StatelessWidget {
                     TextField(
                       controller:
                           context.read<ImportWalletCubit>().mnemonicInput,
-                      decoration:
-                      const InputDecoration(hintText: "Mnemonic"),
+                      decoration: const InputDecoration(hintText: "Mnemonic"),
                     ),
                     const SizedBox(height: 16),
                     const Text("Derivation path:"),
@@ -69,6 +68,10 @@ class ImportWalletView extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 16),
+                    const Text(
+                      "🚨 Please don't provider any real wallet here! 🚨",
+                      textAlign: TextAlign.center,
+                    ),
                     OutlinedButton(
                       onPressed: () {
                         context.read<ImportWalletCubit>().save().then((value) {

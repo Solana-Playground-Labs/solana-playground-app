@@ -19,13 +19,13 @@ class HomeView extends StatelessWidget {
         title: const Text('SOLANA', style: TextStyle(color: Colors.white)),
         centerTitle: false,
         actions: [
-          SvgPicture.asset('assets/icon/user.svg'),
-          const Center(
-            child: Padding(
-              padding: EdgeInsets.only(left: 10, right: 20),
-              child: Text("@darklong97x"),
+          Center(
+            child: Text(
+              "Devnet",
+              style: theme.textTheme.bodyText1?.copyWith(color: Colors.grey),
             ),
           ),
+          const SizedBox(width: 8),
         ],
       ),
       body: SingleChildScrollView(
