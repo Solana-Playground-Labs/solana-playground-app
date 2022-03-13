@@ -2,9 +2,9 @@ import 'package:solana_playground_language/src/builder/core_builder.dart';
 import 'package:solana_playground_language/src/core/expression/constant_value.dart';
 
 class ConstantValueBuilder extends ValueBuilder {
-  dynamic _value;
+  String _value;
 
-  ConstantValueBuilder({dynamic value}): _value = value;
+  ConstantValueBuilder({required String value}): _value = value;
 
   dynamic get value => _value;
 
@@ -13,10 +13,9 @@ class ConstantValueBuilder extends ValueBuilder {
     notifyListeners();
   }
 
-
   @override
   ConstantValue build() {
-    return ConstantValue(value: value.toString());
+    return ConstantValue(value: _value);
   }
 
   @override

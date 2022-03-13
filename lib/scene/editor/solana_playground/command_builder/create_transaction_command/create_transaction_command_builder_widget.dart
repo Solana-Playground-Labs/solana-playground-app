@@ -68,7 +68,7 @@ class CreateTransactionCommandBuilderWidget extends CubitWidget<
             ],
           ),
           const SizedBox(height: 16),
-          Text("Signatures:", style: theme.textTheme.bodyText1),
+          Text("Signers:", style: theme.textTheme.bodyText1),
           const SizedBox(height: 8),
           Row(
             mainAxisSize: MainAxisSize.min,

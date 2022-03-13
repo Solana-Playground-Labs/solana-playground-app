@@ -6,11 +6,16 @@ import 'package:solana_playground_language/src/core/command/block_command.dart';
 class Script extends Equatable {
   final String name;
   final BlockCommand blockCommand;
+  final Map<String, dynamic> arguments;
 
-  const Script({required this.name, required this.blockCommand});
+  const Script({
+    required this.name,
+    required this.blockCommand,
+    required this.arguments,
+  });
 
   @override
-  List<Object> get props => [name, blockCommand];
+  List<Object> get props => [name, blockCommand, arguments];
 }
 
 class ScriptBuilder extends Builder {
@@ -42,6 +47,10 @@ class ScriptBuilder extends Builder {
   }
 
   Script build() {
-    return Script(name: _name, blockCommand: _blockCommandBuilder.build());
+    return Script(
+      name: _name,
+      blockCommand: _blockCommandBuilder.build(),
+      arguments: const {},
+    );
   }
 }

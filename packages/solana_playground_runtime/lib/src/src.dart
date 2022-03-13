@@ -3,3 +3,4 @@ export 'sp_io.dart';
 export 'sp_memory.dart';
 export 'sp_runtime.dart';
 export 'executor/executor.dart';
+export 'sp_wallets_provider.dart';

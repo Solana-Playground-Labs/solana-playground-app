@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:solana_playground_app/scene/editor/view/editor_view.dart';
+import 'package:solana_playground_app/scene/editor/view/instruction_view/instruction_builder_view.dart';
 import 'package:solana_playground_app/scene/home/view/home_view.dart';
 import 'package:solana_playground_app/scene/wallet/view/airdrop_view.dart';
 import 'package:solana_playground_app/scene/wallet/view/create_wallet_view.dart';
@@ -15,6 +16,7 @@ import 'package:solana_playground_app/scene/wallet/view/wallet_detail_view.dart'
     AutoRoute(page: WalletDetailView),
     AutoRoute(page: AirdropView),
     AutoRoute(page: EditorView),
+    AutoRoute(page: InstructionBuilderView),
   ],
 )
 class $AppRouter {}

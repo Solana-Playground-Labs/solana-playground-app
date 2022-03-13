@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:bip39/bip39.dart' as bip39;
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:equatable/equatable.dart';
 import 'package:solana/solana.dart';
@@ -13,8 +14,28 @@ class Wallet extends Equatable {
   final String mnemonic;
 
   Future<String> get address async {
-    final keyPair = await Ed25519HDKeyPair.fromMnemonic(mnemonic, account: account, change: change);
+    final keyPair = await Ed25519HDKeyPair.fromMnemonic(mnemonic,
+        account: account, change: change);
     return keyPair.address;
+  }
+
+  Future extractKeypair() async {
+    return await compute(
+      (message) async {
+        final keyPair = await Ed25519HDKeyPair.fromMnemonic(
+          mnemonic,
+          account: account,
+          change: change,
+        );
+
+        final t = await keyPair.extract();
+        return {
+          "publicKey": (await t.extractPublicKey()).bytes,
+          "privateKey": await t.extractPrivateKeyBytes(),
+        };
+      },
+      toMap(),
+    );
   }
 
   const Wallet({
@@ -67,7 +88,6 @@ class WalletRepository {
     final data = jsonEncode(_data.map((e) => e.toMap()).toList());
     await _storage.write(key: "wallets", value: data);
     _stream.add(_data);
-
   }
 
   Future<void> generateWithMnemomic(String name,

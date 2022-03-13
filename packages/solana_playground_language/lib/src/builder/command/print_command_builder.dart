@@ -10,7 +10,7 @@ class PrintCommandBuilder extends CommandBuilder {
 
   factory PrintCommandBuilder.empty() {
     return PrintCommandBuilder(
-      expression: ExpressionBuilder.withConstantValue(),
+      expression: ExpressionBuilder.withVariable(),
     );
   }
 

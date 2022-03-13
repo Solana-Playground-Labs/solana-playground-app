@@ -32,11 +32,12 @@ class SendTransactionCommandBuilderWidget extends CubitWidget<
           ),
           Text("  with id  ", style: theme.textTheme.bodyText1),
           Flexible(
-            flex: 1,
-            child: VariableInputWidget(
-              controller: context
-                  .read<SendTransactionCommandBuilderCubit>()
-                  .variableInput,
+            child: IntrinsicWidth(
+              child: VariableInputWidget(
+                controller: context
+                    .read<SendTransactionCommandBuilderCubit>()
+                    .variableInput,
+              ),
             ),
           ),
         ],

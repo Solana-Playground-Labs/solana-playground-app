@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solana_playground_app/scene/editor/editor.dart';
 import 'package:solana_playground_app/scene/editor/solana_playground/command_builder/get_recent_block_hash/get_recent_block_hash_command_builder_widget.dart';
+import 'package:solana_playground_app/scene/editor/solana_playground/command_builder/import_wallet/import_wallet_command_builder_widget.dart';
 import 'package:solana_playground_app/scene/editor/solana_playground/command_builder/send_transaction/send_transaction_command_builder_widget.dart';
 import 'package:solana_playground_app/scene/editor/solana_playground/command_builder/wait_transaction_command/wait_transaction_command_builder_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
@@ -20,6 +21,8 @@ final Map<Type, _MappingBuilder> _mapping = {
       WaitTransactionCommandBuilderWidget(builder: builder),
   GetRecentBlockHashCommandBuilder: (context, builder) =>
       GetRecentBlockHashCommandBuilderWidget(builder: builder),
+  ImportWalletCommandBuilder: (context, builder) =>
+      ImportWalletCommandBuilderWidget(builder: builder),
 };
 
 class CommandBuilderWidget extends StatelessWidget {

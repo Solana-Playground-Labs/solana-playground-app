@@ -3,6 +3,8 @@ import 'package:solana_playground_language/lib.dart';
 import 'package:collection/collection.dart';
 import 'package:solana_playground_runtime/src/executor/create_transaction_command.dart';
 import 'package:solana_playground_runtime/src/executor/get_recent_block_hash_command.dart';
+import 'package:solana_playground_runtime/src/executor/import_wallet_command.dart';
+import 'package:solana_playground_runtime/src/sp_wallets_provider.dart';
 
 import '../solana_playground_runtime.dart';
 
@@ -14,6 +16,9 @@ class SPRuntime {
 
   final SPMemory _memory = SPMemory();
   final SPConsole console = SPConsole();
+  final SPWalletProvider walletProvider;
+
+  SPRuntime({required this.walletProvider});
 
   dynamic _result;
 
@@ -46,6 +51,8 @@ class SPRuntime {
       await executeGetRecentBlockHashCommand(this, command);
     } else if (command is CreateTransactionCommand) {
       await executeCreateTransactionCommand(this, command);
+    } else if (command is ImportWalletCommand) {
+      await executeImportWalletCommand(this, command);
     } else {
       throw Exception("Unknown command ${command.runtimeType}");
     }

@@ -22,6 +22,10 @@ class CommandTemplatesWidget extends StatelessWidget {
           commandBuilder: PrintCommandBuilder.empty(),
         ),
         TemplateWidget(
+          title: "Import wallet",
+          commandBuilder: ImportWalletCommandBuilder.empty(),
+        ),
+        TemplateWidget(
           title: "Create transaction",
           commandBuilder: CreateTransactionCommandBuilder.empty(),
         ),

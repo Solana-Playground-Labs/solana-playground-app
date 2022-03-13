@@ -2,6 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:solana/solana.dart';
+import 'package:solana_playground_app/repository/wallet_repository.dart';
 import 'package:solana_playground_language/lib.dart';
 import 'package:solana_playground_runtime/solana_playground_runtime.dart';
 
@@ -10,8 +13,9 @@ part 'runtime_state.dart';
 class RuntimeCubit extends Cubit<RuntimeState> {
   final SPPackageBuilder packageBuilder;
   final StreamController<dynamic> console = StreamController.broadcast();
+  final WalletRepository walletRepository;
 
-  RuntimeCubit(this.packageBuilder)
+  RuntimeCubit(this.packageBuilder, this.walletRepository)
       : super(const RuntimeState(
           status: RuntimeStatus.idle,
           result: null,
@@ -40,7 +44,21 @@ class RuntimeCubit extends Cubit<RuntimeState> {
     await state.runtime?.dispose();
 
     try {
-      SPRuntime runtime = SPRuntime();
+
+      final wallets = await Future.wait(
+        walletRepository.data.map(
+          (wallet) async => MapEntry(
+            wallet.name,
+            await wallet.extractKeypair(),
+          ),
+        ),
+      );
+
+      SPRuntime runtime = SPRuntime(
+        walletProvider: SPWalletProvider(
+          wallets: Map.fromEntries(wallets),
+        ),
+      );
       runtime.console.streamController.stream.listen((event) {
         console.add(event);
       });
