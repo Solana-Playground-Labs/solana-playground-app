@@ -9,13 +9,13 @@ class SolanaCookBookCard extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.deepOrange.shade300,
           borderRadius: BorderRadius.all(Radius.circular(15.0))),
-      width: 280,
-      height: 150,
+      width: 300,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: const [
           Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding: EdgeInsets.all(12.0),
             child: Text(
               'Solana Cookbook',
               style: TextStyle(
@@ -24,9 +24,9 @@ class SolanaCookBookCard extends StatelessWidget {
                   fontSize: 18),
             ),
           ),
-          Expanded(
+          Flexible(
             child: Padding(
-              padding: const EdgeInsets.only(left: 12),
+              padding: EdgeInsets.only(left: 12),
               child: Text(
                 'Developer resource that provides the essential concepts and recipes for building applications on Solana.',
                 maxLines: 3,
@@ -34,10 +34,6 @@ class SolanaCookBookCard extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 12, top: 5),
-            child: ElevatedButton(onPressed: () {}, child: Text('Open')),
-          )
         ],
       ),
     );

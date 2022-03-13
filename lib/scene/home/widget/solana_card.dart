@@ -4,6 +4,7 @@ import 'package:solana_playground_app/repository/solana_repository.dart';
 class SolanaCard extends StatelessWidget {
   final SolanaRepository repository =
       SolanaRepository('https://api.mainnet-beta.solana.com');
+
   SolanaCard({Key? key}) : super(key: key);
 
   @override
@@ -11,151 +12,117 @@ class SolanaCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color: Colors.grey.shade800,
-          borderRadius: BorderRadius.all(Radius.circular(15.0))),
-      width: 280,
-      height: 150,
+          borderRadius: const BorderRadius.all(Radius.circular(15.0))),
+      width: 300,
       child: Padding(
         padding: const EdgeInsets.only(top: 8),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Padding(
               padding: const EdgeInsets.all(7.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    'Transactions per second',
-                    style: TextStyle(color: Colors.greenAccent.shade200),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(
-                          const Radius.circular(5.0),
-                        ),
-                        color: Colors.greenAccent.shade200,
-                      ),
-                      height: 18,
-                      width: 42,
-                      child: Center(
-                        child: FutureBuilder<double>(
-                          future: repository.getTransactionPerSecond(),
-                          builder: (context, snapshot) {
-                            if (!snapshot.hasData) {
-                              return Container();
-                            }
-                            return Text(
-                                '${(snapshot.data ?? 0.0).toStringAsFixed(0)}',
-                                style: TextStyle(color: Colors.black));
-                          },
-                        ),
-                      ),
-                    ),
-                  )
-                ],
+              child: _InfoWidget<double>(
+                future: repository.getTransactionPerSecond(),
+                title: "Transactions per seconds",
+                valueBuilder: (value) => value.toStringAsFixed(2),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(7.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    'Total Transactions',
-                    style: TextStyle(color: Colors.greenAccent.shade200),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(
-                          const Radius.circular(5.0),
-                        ),
-                        color: Colors.greenAccent.shade200,
-                      ),
-                      height: 18,
-                      width: 100,
-                      child: Center(
-                        child: FutureBuilder<int>(
-                          future: repository.getTransactionCount(),
-                          builder: (context, snapshot) {
-                            if (!snapshot.hasData) {
-                              return Text('Loading');
-                            }
-                            return Text('${snapshot.data ?? 'no data'}',
-                                style: TextStyle(color: Colors.black));
-                          },
-                        ),
-                      ),
-                    ),
-                  )
-                ],
+              child: _InfoWidget<int>(
+                future: repository.getTransactionCount(),
+                title: "Total transactions",
+                valueBuilder: (value) => value.toString(),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(7.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text('Avg. cost per transactions',
-                      style: TextStyle(color: Colors.greenAccent.shade200)),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(
-                            const Radius.circular(5.0),
-                          ),
-                          color: Colors.greenAccent.shade200,
-                        ),
-                        height: 18,
-                        width: 62,
-                        child: Center(
-                            child: Text('0.00025',
-                                style: TextStyle(color: Colors.black)))),
-                  )
-                ],
+              child: _InfoWidget<double>(
+                title: "Avg. cost per transactions",
+                initialValue: 0.00025,
+                valueBuilder: (value) => value.toString(),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(7.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text('Validator  nodes',
-                      style: TextStyle(color: Colors.greenAccent.shade200)),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(
-                          const Radius.circular(5.0),
-                        ),
-                        color: Colors.greenAccent.shade200,
-                      ),
-                      height: 18,
-                      width: 42,
-                      child: Center(
-                        child: FutureBuilder<int>(
-                          future: repository.getValidatorNodesCount(),
-                          builder: (context, snapshot) {
-                            if (!snapshot.hasData) {
-                              return CircularProgressIndicator();
-                            }
-                            return Text('${snapshot.data ?? 'no data'}',
-                                style: TextStyle(color: Colors.black));
-                          },
-                        ),
-                      ),
-                    ),
-                  )
-                ],
+              child: _InfoWidget<int>(
+                future: repository.getValidatorNodesCount(),
+                title: "Validator nodes",
+                valueBuilder: (value) => value.toString(),
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _InfoWidget<T> extends StatelessWidget {
+  final Future<T>? future;
+  final T? initialValue;
+  final String title;
+  final String Function(T value) valueBuilder;
+
+  const _InfoWidget({
+    Key? key,
+    this.future,
+    required this.title,
+    this.initialValue,
+    required this.valueBuilder,
+  }) : super(key: key);
+
+  Future<T> _defaultValue() async => initialValue!;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: TextStyle(color: Colors.greenAccent.shade200),
+        ),
+        Flexible(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Container(
+              height: 25,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(5.0),
+                ),
+                color: Colors.greenAccent.shade200,
+              ),
+              child: FutureBuilder<T>(
+                future: future ?? _defaultValue(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(
+                      child: SizedBox(
+                        width: 14,
+                        height: 14,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 1.2,
+                        ),
+                      ),
+                    );
+                  }
+
+                  return Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Text(
+                      valueBuilder(snapshot.data!),
+                      style: const TextStyle(color: Colors.black),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        )
+      ],
     );
   }
 }

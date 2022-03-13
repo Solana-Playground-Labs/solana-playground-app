@@ -21,7 +21,9 @@ dependencies:
   base_x: ^2.0.0
   dio: ^4.0.4
   flutter_svg: ^1.0.3
-
+  flutter_secure_storage: ^5.0.2
+  solana: ^0.21.0
+  dotted_border: ^2.0.0+2
 
   solana_playground_language:
     path: ./packages/solana_playground_language
