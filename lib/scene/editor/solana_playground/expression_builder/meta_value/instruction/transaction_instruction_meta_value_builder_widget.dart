@@ -42,34 +42,23 @@ class TransactionInstructionMetaValueBuilderWidget extends CubitWidget<
             ],
           ),
           const SizedBox(height: 8),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Keys:  ", style: theme.textTheme.bodyText1),
-              Flexible(
-                child: ExpressionBuilderWidget(
-                  builder: ExpressionBuilder(
-                    valueBuilder: JsonValueBuilder(data: builder.keys),
-                  ),
-                  metaValueInfo: const MetaValueInfo(
-                    isMultiple: true,
-                    metaType: AccountMetaValueBuilder,
-                  ),
-                ),
-              ),
-            ],
+          Text("Keys:  ", style: theme.textTheme.bodyText1),
+          const SizedBox(height: 8),
+          ExpressionBuilderWidget(
+            builder: ExpressionBuilder(
+              valueBuilder: JsonValueBuilder(data: builder.keys),
+            ),
+            metaValueInfo: const MetaValueInfo(
+              isMultiple: true,
+              metaType: AccountMetaValueBuilder,
+            ),
           ),
           const SizedBox(height: 8),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("Data:  ", style: theme.textTheme.bodyText1),
-              Flexible(
-                child: ExpressionBuilderWidget(builder: builder.data),
-              ),
-            ],
+          Text("Data:  ", style: theme.textTheme.bodyText1),
+          const SizedBox(height: 8),
+          ExpressionBuilderWidget(
+            builder: builder.data,
+            focusable: false,
           ),
           const SizedBox(height: 8),
           TextButton(

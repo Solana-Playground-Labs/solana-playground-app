@@ -55,9 +55,7 @@ class ListBuilder<T> extends ListBase<T> with ChangeNotifier {
   }
 
   void moveTo(Object object, int index) {
-    print(_data);
     _data.moveTo(object, index);
-    print(_data);
     notifyListeners();
   }
 

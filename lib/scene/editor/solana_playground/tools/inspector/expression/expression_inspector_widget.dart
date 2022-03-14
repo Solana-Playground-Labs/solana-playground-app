@@ -9,6 +9,10 @@ import 'expression_inspector_cubit.dart';
 List<Type> _supportedValue = [
   ConstantValueBuilder,
   VariableValueBuilder,
+  BinaryValueBuilder,
+  ByteValueBuilder,
+  HexValueBuilder,
+  StringByteValueBuilder,
 ];
 
 String _valueToString(Type builderType) {
@@ -17,6 +21,14 @@ String _valueToString(Type builderType) {
       return "Constant";
     case VariableValueBuilder:
       return "Variable";
+    case BinaryValueBuilder:
+      return "Binary";
+    case ByteValueBuilder:
+      return "Byte";
+    case HexValueBuilder:
+      return "Hex";
+    case StringByteValueBuilder:
+      return "String byte";
     default:
       return "Unknown";
   }
@@ -42,7 +54,7 @@ class ExpressionInspectorWidget
           const Divider(),
           Text("Value type:", style: theme.textTheme.bodyText1),
           Wrap(
-            runSpacing: 8,
+            runSpacing: 0,
             spacing: 8,
             children: _supportedValue.map((type) {
               return ChoiceChip(
@@ -56,6 +68,23 @@ class ExpressionInspectorWidget
                       break;
                     case VariableValueBuilder:
                       builder.valueBuilder = VariableValueBuilder(variable: "");
+                      break;
+                    case BinaryValueBuilder:
+                      builder.valueBuilder = BinaryValueBuilder(data: []);
+                      break;
+                    case ByteValueBuilder:
+                      builder.valueBuilder = ByteValueBuilder.empty();
+                      break;
+                    case HexValueBuilder:
+                      builder.valueBuilder = HexValueBuilder(
+                        expression: ExpressionBuilder.withConstantValue(),
+                      );
+                      break;
+                    case StringByteValueBuilder:
+                      builder.valueBuilder = StringByteValueBuilder(
+                        expression: ExpressionBuilder.withConstantValue(),
+                        base: 58,
+                      );
                       break;
                     default:
                       break;

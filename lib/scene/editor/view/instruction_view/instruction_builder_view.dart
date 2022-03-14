@@ -23,7 +23,7 @@ class InstructionBuilderView extends CubitWidget<InstructionBuilderViewCubit,
       ),
       body: Row(
         children: [
-          const InstructionTemplatesWidget(),
+          InstructionTemplatesWidget(),
         ],
       ),
     );

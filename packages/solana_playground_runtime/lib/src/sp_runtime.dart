@@ -68,6 +68,12 @@ class SPRuntime {
       return calculateBinaryValue(this, value);
     } else if (value is JsonValue) {
       return calculateJsonValue(this, value);
+    } else if (value is ByteValue) {
+      return calculateByteValue(this, value);
+    } else if (value is HexValue) {
+      return calculateHexValue(this, value);
+    } else if (value is StringByteValue) {
+      return calculateStringByteValue(this, value);
     } else {
       return null;
     }

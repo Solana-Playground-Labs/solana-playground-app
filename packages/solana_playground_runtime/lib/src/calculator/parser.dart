@@ -11,6 +11,8 @@ dynamic valueParse(String rawValue) {
     value = int.parse(rawValue);
   } else if (double.tryParse(rawValue) != null) {
     value = double.tryParse(rawValue);
+  } else if (value == null) {
+    value = null;
   } else {
     throw Exception("Can not parse constant: $rawValue");
   }

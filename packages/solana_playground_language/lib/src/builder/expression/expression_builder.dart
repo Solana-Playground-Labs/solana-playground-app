@@ -19,7 +19,8 @@ class ExpressionBuilder extends Builder {
 
   factory ExpressionBuilder.withBinaryValue() {
     return ExpressionBuilder(
-        valueBuilder: BinaryValueBuilder(data: Uint8List.fromList([])));
+      valueBuilder: BinaryValueBuilder(data: []),
+    );
   }
 
   ValueBuilder get valueBuilder => _valueBuilder;

@@ -24,12 +24,14 @@ class CommandFocusBuilder extends FocusBuilder {
 
 class ExpressionFocusBuilder extends FocusBuilder {
   final String? label;
+  final List<Type> allowValues;
 
   const ExpressionFocusBuilder({
     required this.label,
     required Builder builder,
+    this.allowValues = const [],
   }) : super(builder);
 
   @override
-  List<Object?> get props => [...super.props, label];
+  List<Object?> get props => [...super.props, label, allowValues];
 }

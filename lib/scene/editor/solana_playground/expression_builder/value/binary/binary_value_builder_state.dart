@@ -1,26 +1,20 @@
 part of 'binary_value_builder_cubit.dart';
 
 class BinaryValueBuilderState extends Equatable {
-  final int? cursorPosition;
-  final Uint8List data;
+  final List<ExpressionBuilder> builders;
 
   const BinaryValueBuilderState({
-    required this.data,
-    this.cursorPosition,
+    required this.builders,
   });
 
   @override
-  List<Object?> get props => [data, cursorPosition];
-
-  BinaryValueBuilderState clearCursorPosition() => copyWith(data: data);
+  List<Object?> get props => [builders];
 
   BinaryValueBuilderState copyWith({
-    int? cursorPosition,
-    Uint8List? data,
+    List<ExpressionBuilder>? builders,
   }) {
     return BinaryValueBuilderState(
-      cursorPosition: cursorPosition ?? this.cursorPosition,
-      data: data ?? this.data,
+      builders: builders ?? this.builders,
     );
   }
 }

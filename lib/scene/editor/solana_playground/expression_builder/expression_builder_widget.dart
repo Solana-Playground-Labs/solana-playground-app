@@ -5,6 +5,9 @@ import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_app/scene/editor/editor.dart';
 import 'package:solana_playground_app/scene/editor/model/focus_builder.dart';
 import 'package:solana_playground_app/scene/editor/solana_playground/expression_builder/value/binary/binary_value_builder_widget.dart';
+import 'package:solana_playground_app/scene/editor/solana_playground/expression_builder/value/byte/byte_value_builder_widget.dart';
+import 'package:solana_playground_app/scene/editor/solana_playground/expression_builder/value/hex/hex_value_builder_widget.dart';
+import 'package:solana_playground_app/scene/editor/solana_playground/expression_builder/value/string_byte/string_byte_value_builder_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 typedef _MappingBuilder = Widget Function(
@@ -17,6 +20,12 @@ final Map<Type, _MappingBuilder> _mapping = {
       VariableValueBuilderWidget(builder: builder, focusNode: focus),
   BinaryValueBuilder: (context, builder, focus) =>
       BinaryValueBuilderWidget(builder: builder),
+  ByteValueBuilder: (context, builder, focus) =>
+      ByteValueBuilderWidget(builder: builder),
+  HexValueBuilder: (context, builder, focus) =>
+      HexValueBuilderWidget(builder: builder),
+  StringByteValueBuilder: (context, builder, focus) =>
+      StringByteValueBuilderWidget(builder: builder),
 };
 
 class ExpressionBuilderWidget
@@ -24,40 +33,48 @@ class ExpressionBuilderWidget
   final ExpressionBuilder builder;
   final MetaValueInfo? metaValueInfo;
   final String? label;
+  final bool focusable;
 
   ExpressionBuilderWidget({
     Key? key,
     this.label,
     required this.builder,
     this.metaValueInfo,
+    this.focusable = true,
   }) : super(key: Key(builder.id));
 
   @override
   Widget content(BuildContext context, ExpressionBuilderState state) {
-    final widget = metaValueInfo != null
-        ? MetaValueBuilderWidget(
-            builder: builder.valueBuilder as JsonValueBuilder,
-            info: metaValueInfo!,
-          )
-        : Focus(
-            onFocusChange: (hasFocus) {
-              if (hasFocus) {
-                context.read<CodeEditorCubit>().focus(ExpressionFocusBuilder(
-                      label: label,
-                      builder: builder,
-                    ));
-              }
-            },
-            child: _mapping[state.valueBuilder.runtimeType]?.call(
-                    context,
-                    state.valueBuilder,
-                    context.read<ExpressionBuilderCubit>().focusNode) ??
-                const SPLabel(
-                  style: SPLabelStyle.orange,
-                  child: Text("Unknown"),
-                ),
+    if (metaValueInfo != null) {
+      return MetaValueBuilderWidget(
+        builder: builder.valueBuilder as JsonValueBuilder,
+        info: metaValueInfo!,
+      );
+    } else {
+      final Widget child = _mapping[state.valueBuilder.runtimeType]?.call(
+              context,
+              state.valueBuilder,
+              context.read<ExpressionBuilderCubit>().focusNode) ??
+          const SPLabel(
+            style: SPLabelStyle.orange,
+            child: Text("Unknown"),
           );
-    return widget;
+      if (focusable) {
+        return Focus(
+          onFocusChange: (hasFocus) {
+            if (hasFocus) {
+              context.read<CodeEditorCubit>().focus(ExpressionFocusBuilder(
+                    label: label,
+                    builder: builder,
+                  ));
+            }
+          },
+          child: child,
+        );
+      } else {
+        return child;
+      }
+    }
   }
 
   @override
