@@ -6,16 +6,22 @@ import 'builder/core_builder.dart';
 enum PackageType { application, library }
 
 class Package extends Equatable {
+  final String name;
   final PackageType packageType;
   final List<Script> scripts;
 
-  const Package({required this.packageType, required this.scripts});
+  const Package({
+    required this.name,
+    required this.packageType,
+    required this.scripts,
+  });
 
   @override
   List<Object> get props => [packageType, scripts];
 
   factory Package.fromJson(Map<String, dynamic> json) {
     return Package(
+      name: json['name'],
       packageType: json['packageType'] == 0
           ? PackageType.application
           : PackageType.library,
@@ -27,18 +33,29 @@ class Package extends Equatable {
 
   Map<String, dynamic> toJson() {
     return {
+      'name': name,
       'type': runtimeType.toString(),
       'packageType': packageType.index,
       'scripts': scripts.map((e) => e.toJson()).toList(),
     };
   }
+
+  SPPackageBuilder asBuilder() {
+    return SPPackageBuilder(
+      name: name,
+      packageType: packageType,
+      functionBuilders: scripts.map((e) => e.asBuilder()).toList(),
+    );
+  }
 }
 
 class SPPackageBuilder extends Builder {
+  String name;
   PackageType _packageType;
   List<ScriptBuilder> _functionBuilders;
 
   SPPackageBuilder({
+    required this.name,
     required PackageType packageType,
     required List<ScriptBuilder> functionBuilders,
   })  : _packageType = packageType,
@@ -47,7 +64,10 @@ class SPPackageBuilder extends Builder {
   @override
   SPPackageBuilder clone() {
     return SPPackageBuilder(
-        packageType: packageType, functionBuilders: functionBuilders);
+      name: name,
+      packageType: packageType,
+      functionBuilders: functionBuilders,
+    );
   }
 
   List<ScriptBuilder> get functionBuilders => _functionBuilders;
@@ -66,6 +86,7 @@ class SPPackageBuilder extends Builder {
 
   Package build() {
     return Package(
+        name: name,
         packageType: _packageType,
         scripts: _functionBuilders.map((e) => e.build()).toList());
   }

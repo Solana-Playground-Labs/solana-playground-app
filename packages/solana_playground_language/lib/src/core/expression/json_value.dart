@@ -37,6 +37,16 @@ class JsonValue extends Value {
       'data': jsonData,
     };
   }
+
+  @override
+  JsonValueBuilder asBuilder() {
+    if (data is Map) {
+      return JsonValueBuilder(data: (data as Map).recursiveAsBuilder());
+    } else if (data is List) {
+      return JsonValueBuilder(data: (data as List).recursiveAsBuilder());
+    }
+    return JsonValueBuilder(data: data);
+  }
 }
 
 extension _JsonMapValueSerialization on Map {
@@ -91,6 +101,34 @@ extension _JsonListValueSerialization on List {
         return value.toJson();
       } else if (value is Map) {
         return value.toJson();
+      } else {
+        return value;
+      }
+    }).toList();
+  }
+}
+
+extension RecursiveMapAsBuilder on Map {
+  Map recursiveAsBuilder() {
+    return map((key, value) {
+      if (value is Expression) {
+        return MapEntry(key, value.asBuilder());
+      } else if (value is List) {
+        return MapEntry(key, value.recursiveAsBuilder());
+      } else {
+        return MapEntry(key, value);
+      }
+    });
+  }
+}
+
+extension RecursiveListAsBuilder on List {
+  List recursiveAsBuilder() {
+    return map((value) {
+      if (value is Expression) {
+        return value.asBuilder();
+      } else if (value is Map) {
+        return value.recursiveAsBuilder();
       } else {
         return value;
       }

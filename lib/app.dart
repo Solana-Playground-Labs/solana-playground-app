@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:solana/solana.dart';
+import 'package:solana_playground_app/repository/package_repository.dart';
 import 'package:solana_playground_app/theme/playground_theme.dart';
 
 import 'repository/wallet_repository.dart';
@@ -24,7 +25,9 @@ class App extends StatelessWidget {
         ),
         Provider<WalletRepository>(
           create: (context) => WalletRepository()..initialize(),
-        )
+        ),
+        Provider<PackageRepository>(
+            create: (context) => PackageRepository()..initialize(context))
       ],
       child: MaterialApp.router(
         routerDelegate: _appRouter.delegate(),

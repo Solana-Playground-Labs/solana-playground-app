@@ -5,7 +5,6 @@ import 'package:solana_playground_app/repository/wallet_repository.dart';
 import 'package:solana_playground_app/route/app_router.gr.dart';
 import 'package:solana_playground_app/scene/editor/editor.dart';
 import 'package:solana_playground_app/scene/editor/widget/bottom_toolbar.dart';
-import 'package:solana_playground_app/scene/home/cubit/wallets_cubit.dart';
 import 'package:solana_playground_app/theme/editor_theme.dart';
 import 'package:solana_playground_language/solana_playground_language.dart'
     hide Builder;
@@ -13,18 +12,11 @@ import 'package:solana_playground_language/solana_playground_language.dart'
 import '../widget/status_bar.dart';
 
 class EditorView extends StatelessWidget {
-  final packageBuilder = SPPackageBuilder(
-    packageType: PackageType.application,
-    functionBuilders: [
-      ScriptBuilder(
-          name: "main",
-          blockCommandBuilder: BlockCommandBuilder(
-            commands: ListBuilder.empty(),
-          ))
-    ],
-  );
+  final SPPackageBuilder initialPackageBuilder;
 
-  EditorView({Key? key}) : super(key: key);
+  EditorView({Key? key, required Package initialPackage})
+      : initialPackageBuilder = initialPackage.asBuilder(),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +28,12 @@ class EditorView extends StatelessWidget {
         providers: [
           BlocProvider(
               create: (context) => RuntimeCubit(
-                    packageBuilder,
+                    initialPackageBuilder,
                     context.read(),
                   )),
-          BlocProvider(create: (context) => CodeEditorCubit(packageBuilder)),
+          BlocProvider(
+            create: (context) => CodeEditorCubit(initialPackageBuilder),
+          ),
         ],
         child: Builder(
           builder: (context) => Scaffold(
@@ -47,6 +41,12 @@ class EditorView extends StatelessWidget {
               title: const StatusBar(),
               centerTitle: true,
               backgroundColor: EditorTheme.of(context).appBarColor,
+              leading: IconButton(
+                onPressed: () {
+                  context.router.pop(initialPackageBuilder.build());
+                },
+                icon: const Icon(Icons.arrow_back_ios),
+              ),
               actions: [
                 PopupMenuButton<Wallet>(
                   child: const Icon(Icons.account_balance_wallet),

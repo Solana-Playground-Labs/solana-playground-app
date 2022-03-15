@@ -1,3 +1,6 @@
+import 'package:solana_playground_language/lib.dart';
+import 'package:solana_playground_language/src/builder/expression/expression_builder.dart';
+
 import 'value.dart';
 
 class VariableValue extends Value {
@@ -18,5 +21,10 @@ class VariableValue extends Value {
       'type': classType,
       'variable': variable,
     };
+  }
+
+  @override
+  ValueBuilder asBuilder() {
+    return VariableValueBuilder(variable: variable);
   }
 }

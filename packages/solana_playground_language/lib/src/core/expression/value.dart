@@ -29,4 +29,6 @@ abstract class Value extends Equatable with ObjectType {
   }
 
   Map<String, dynamic> toJson();
+
+  ValueBuilder asBuilder();
 }

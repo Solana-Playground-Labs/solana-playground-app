@@ -14,6 +14,14 @@ class Script extends Equatable {
     required this.arguments,
   });
 
+  factory Script.main() {
+    return const Script(
+      name: 'main',
+      blockCommand: BlockCommand(commands: []),
+      arguments: {},
+    );
+  }
+
   @override
   List<Object> get props => [name, blockCommand, arguments];
 
@@ -31,6 +39,13 @@ class Script extends Equatable {
       'name': name,
       'blockCommand': blockCommand.toJson(),
     };
+  }
+
+  ScriptBuilder asBuilder() {
+    return ScriptBuilder(
+      name: name,
+      blockCommandBuilder: blockCommand.asBuilder(),
+    );
   }
 }
 

@@ -7,6 +7,11 @@ class JsonValueBuilder extends ValueBuilder {
 
   dynamic get data => _data;
 
+  set data(dynamic value) {
+    _data = data;
+    notifyListeners();
+  }
+
   void update(void Function(dynamic data) callback) {
     callback(_data);
     notifyListeners();
@@ -25,7 +30,7 @@ class JsonValueBuilder extends ValueBuilder {
   @override
   JsonValueBuilder clone() {
     if (data is List) {
-      return JsonValueBuilder(data: List.of(data)); 
+      return JsonValueBuilder(data: List.of(data));
     } else if (data is Map) {
       return JsonValueBuilder(data: Map.of(data));
     }

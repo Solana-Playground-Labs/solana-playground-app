@@ -27,4 +27,12 @@ class ImportWalletCommand extends Command {
       'walletName': walletName.toJson(),
     };
   }
+
+  @override
+  ImportWalletCommandBuilder asBuilder() {
+    return ImportWalletCommandBuilder(
+      walletName: walletName.asBuilder(),
+      variable: variable,
+    );
+  }
 }

@@ -1,0 +1,218 @@
+{
+  "type": "Package",
+  "name": "Transfer demo",
+  "packageType": 0,
+  "scripts": [
+    {
+      "type": "Script",
+      "name": "main",
+      "blockCommand": {
+        "type": "BlockCommand",
+        "commands": [
+          {
+            "type": "ImportWalletCommand",
+            "variable": "wallet",
+            "walletName": {
+              "type": "Expression",
+              "value": {
+                "type": "ConstantValue",
+                "value": "\"demo_wallet_1\""
+              }
+            }
+          },
+          {
+            "type": "PrintCommand",
+            "expression": {
+              "type": "Expression",
+              "value": {
+                "type": "VariableValue",
+                "variable": "wallet"
+              }
+            }
+          },
+          {
+            "type": "GetRecentBlockHashCommand",
+            "variable": "rbh"
+          },
+          {
+            "type": "CreateTransactionCommand",
+            "variable": "trx",
+            "signers": {
+              "type": "Expression",
+              "value": {
+                "type": "JsonValue",
+                "data": []
+              }
+            },
+            "instructions": {
+              "type": "Expression",
+              "value": {
+                "type": "JsonValue",
+                "data": [
+                  {
+                    "programId": {
+                      "type": "Expression",
+                      "value": {
+                        "type": "ConstantValue",
+                        "value": "\"11111111111111111111111111111111\""
+                      }
+                    },
+                    "keys": [
+                      {
+                        "isSigner": {
+                          "type": "Expression",
+                          "value": {
+                            "type": "ConstantValue",
+                            "value": "true"
+                          }
+                        },
+                        "isWritable": {
+                          "type": "Expression",
+                          "value": {
+                            "type": "ConstantValue",
+                            "value": "true"
+                          }
+                        },
+                        "pubkey": {
+                          "type": "Expression",
+                          "value": {
+                            "type": "ConstantValue",
+                            "value": "\"8tPXVbrZrxjaaR42Qr9kte4CmwmUxRxj9gkwfyEXZCqH\""
+                          }
+                        }
+                      },
+                      {
+                        "isSigner": {
+                          "type": "Expression",
+                          "value": {
+                            "type": "ConstantValue",
+                            "value": "false"
+                          }
+                        },
+                        "isWritable": {
+                          "type": "Expression",
+                          "value": {
+                            "type": "ConstantValue",
+                            "value": "true"
+                          }
+                        },
+                        "pubkey": {
+                          "type": "Expression",
+                          "value": {
+                            "type": "ConstantValue",
+                            "value": "\"2x4SRHhTQjNve12guRa3aYdfuTcgEP1Gc2VFdfrkbUnC\""
+                          }
+                        }
+                      }
+                    ],
+                    "data": {
+                      "type": "Expression",
+                      "value": {
+                        "type": "BinaryValue",
+                        "data": [
+                          {
+                            "type": "Expression",
+                            "value": {
+                              "type": "ByteValue",
+                              "expression": {
+                                "type": "Expression",
+                                "value": {
+                                  "type": "ConstantValue",
+                                  "value": "2"
+                                }
+                              },
+                              "length": 4
+                            }
+                          },
+                          {
+                            "type": "Expression",
+                            "value": {
+                              "type": "ByteValue",
+                              "expression": {
+                                "type": "Expression",
+                                "value": {
+                                  "type": "ConstantValue",
+                                  "value": "5000"
+                                }
+                              },
+                              "length": 8
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "feePayer": {
+              "type": "Expression",
+              "value": {
+                "type": "VariableValue",
+                "variable": "wallet"
+              }
+            },
+            "recentBlockhash": {
+              "type": "Expression",
+              "value": {
+                "type": "VariableValue",
+                "variable": "rbh"
+              }
+            }
+          },
+          {
+            "type": "PrintCommand",
+            "expression": {
+              "type": "Expression",
+              "value": {
+                "type": "VariableValue",
+                "variable": "trx"
+              }
+            }
+          },
+          {
+            "type": "PrintCommand",
+            "expression": {
+              "type": "Expression",
+              "value": {
+                "type": "ConstantValue",
+                "value": "\"Sending\""
+              }
+            }
+          },
+          {
+            "type": "SendTransactionCommand",
+            "variable": "trx_id",
+            "expression": {
+              "type": "Expression",
+              "value": {
+                "type": "VariableValue",
+                "variable": "trx"
+              }
+            }
+          },
+          {
+            "type": "WaitTransactionConfirmationCommand",
+            "expression": {
+              "type": "Expression",
+              "value": {
+                "type": "VariableValue",
+                "variable": "trx_id"
+              }
+            }
+          },
+          {
+            "type": "PrintCommand",
+            "expression": {
+              "type": "Expression",
+              "value": {
+                "type": "ConstantValue",
+                "value": "\"Ok\""
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -23,4 +23,11 @@ class WaitTransactionConfirmationCommand extends Command {
       'expression': expression.toJson(),
     };
   }
+
+  @override
+  WaitConfirmationCommandBuilder asBuilder() {
+    return WaitConfirmationCommandBuilder(
+      expressionBuilder: expression.asBuilder(),
+    );
+  }
 }

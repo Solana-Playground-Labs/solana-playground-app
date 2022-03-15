@@ -21,4 +21,9 @@ class GetRecentBlockHashCommand extends Command {
       'variable': variable,
     };
   }
+
+  @override
+  GetRecentBlockHashCommandBuilder asBuilder() {
+    return GetRecentBlockHashCommandBuilder(variable: variable);
+  }
 }

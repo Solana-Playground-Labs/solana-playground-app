@@ -1,3 +1,5 @@
+import 'package:solana_playground_language/lib.dart';
+import 'package:solana_playground_language/src/builder/command/command_builder.dart';
 import 'package:solana_playground_language/src/core/expression/abstract_expression.dart';
 
 import 'abstract_command.dart';
@@ -28,5 +30,13 @@ class DeclareVariableCommand extends Command {
       'variable': variable,
       'expression': expression.toJson(),
     };
+  }
+
+  @override
+  DeclareVariableCommandBuilder asBuilder() {
+    return DeclareVariableCommandBuilder(
+      variable: variable,
+      expressionBuilder: expression.asBuilder(),
+    );
   }
 }

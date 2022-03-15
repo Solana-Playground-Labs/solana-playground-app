@@ -21,4 +21,8 @@ class Expression extends Equatable {
       'value': value.toJson(),
     };
   }
+
+  ExpressionBuilder asBuilder() {
+    return ExpressionBuilder(valueBuilder: value.asBuilder());
+  }
 }

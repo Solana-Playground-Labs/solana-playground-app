@@ -28,7 +28,7 @@ class ByteValueBuilderWidget
           Text("Value:  ", style: theme.textTheme.bodyText1),
           Flexible(
               child: ExpressionBuilderWidget(builder: builder.expression)),
-          Text("  with length:  ", style: theme.textTheme.bodyText1),
+          Text("  with byte length:  ", style: theme.textTheme.bodyText1),
           Flexible(
             child: IntrinsicWidth(
               child: SPLabel(

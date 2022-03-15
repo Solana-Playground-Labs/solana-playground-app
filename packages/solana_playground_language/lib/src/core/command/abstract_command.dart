@@ -26,10 +26,14 @@ abstract class Command extends Equatable with ObjectType {
       return RequestRecentBlockhash.fromJson(json);
     } else if (type == (SendTransactionCommand).toString()) {
       return SendTransactionCommand.fromJson(json);
-    } else if (type == (WaitTransactionConfirmationCommand).toString()) {}
+    } else if (type == (WaitTransactionConfirmationCommand).toString()) {
+      return WaitTransactionConfirmationCommand.fromJson(json);
+    }
 
     return UnknownCommand(rawData: json);
   }
 
   Map<String, dynamic> toJson();
+
+  CommandBuilder asBuilder();
 }

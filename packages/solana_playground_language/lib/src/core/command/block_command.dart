@@ -1,3 +1,5 @@
+import 'package:solana_playground_language/lib.dart';
+import 'package:solana_playground_language/src/builder/core_builder.dart';
 import 'package:solana_playground_language/src/core/command/abstract_command.dart';
 
 class BlockCommand extends Command {
@@ -21,4 +23,11 @@ class BlockCommand extends Command {
         "type": classType,
         "commands": commands.map((e) => e.toJson()).toList(),
       };
+
+  @override
+  BlockCommandBuilder asBuilder() {
+    return BlockCommandBuilder(
+      commands: commands.map((e) => e.asBuilder()).toList(),
+    );
+  }
 }

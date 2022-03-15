@@ -56,10 +56,11 @@ class AppRouter extends _i8.RootStackRouter {
           child: _i5.AirdropView(key: args.key, wallet: args.wallet));
     },
     EditorRoute.name: (routeData) {
-      final args = routeData.argsAs<EditorRouteArgs>(
-          orElse: () => const EditorRouteArgs());
+      final args = routeData.argsAs<EditorRouteArgs>();
       return _i8.MaterialPageX<dynamic>(
-          routeData: routeData, child: _i6.EditorView(key: args.key));
+          routeData: routeData,
+          child: _i6.EditorView(
+              key: args.key, initialPackage: args.initialPackage));
     },
     InstructionBuilderRoute.name: (routeData) {
       final args = routeData.argsAs<InstructionBuilderRouteArgs>();
@@ -160,21 +161,24 @@ class AirdropRouteArgs {
 /// generated route for
 /// [_i6.EditorView]
 class EditorRoute extends _i8.PageRouteInfo<EditorRouteArgs> {
-  EditorRoute({_i9.Key? key})
+  EditorRoute({_i9.Key? key, required _i11.Package initialPackage})
       : super(EditorRoute.name,
-            path: '/editor-view', args: EditorRouteArgs(key: key));
+            path: '/editor-view',
+            args: EditorRouteArgs(key: key, initialPackage: initialPackage));
 
   static const String name = 'EditorRoute';
 }
 
 class EditorRouteArgs {
-  const EditorRouteArgs({this.key});
+  const EditorRouteArgs({this.key, required this.initialPackage});
 
   final _i9.Key? key;
 
+  final _i11.Package initialPackage;
+
   @override
   String toString() {
-    return 'EditorRouteArgs{key: $key}';
+    return 'EditorRouteArgs{key: $key, initialPackage: $initialPackage}';
   }
 }
 

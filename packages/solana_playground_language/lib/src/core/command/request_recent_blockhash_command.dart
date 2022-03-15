@@ -1,3 +1,6 @@
+import 'package:solana_playground_language/lib.dart';
+import 'package:solana_playground_language/src/builder/command/command_builder.dart';
+
 import 'abstract_command.dart';
 
 class RequestRecentBlockhash extends Command {
@@ -18,5 +21,10 @@ class RequestRecentBlockhash extends Command {
       'type': classType,
       'variable': variable,
     };
+  }
+
+  @override
+  RequestRecentBlockhashBuilder asBuilder() {
+    return RequestRecentBlockhashBuilder(variable: variable);
   }
 }

@@ -1,3 +1,5 @@
+import 'package:solana_playground_language/lib.dart';
+import 'package:solana_playground_language/src/builder/expression/expression_builder.dart';
 import 'package:solana_playground_language/src/core/expression/value.dart';
 
 class ConstantValue extends Value {
@@ -20,5 +22,10 @@ class ConstantValue extends Value {
       'type': classType,
       'value': value,
     };
+  }
+
+  @override
+  ValueBuilder asBuilder() {
+    return ConstantValueBuilder(value: value);
   }
 }

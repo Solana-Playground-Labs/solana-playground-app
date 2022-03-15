@@ -12,7 +12,8 @@ class BinaryValue extends Value {
 
   factory BinaryValue.fromJson(Map<String, dynamic> json) {
     return BinaryValue(
-      data: List.castFrom(json['data'].map((e) => Expression.fromJson(e)).toList()),
+      data: List.castFrom(
+          json['data'].map((e) => Expression.fromJson(e)).toList()),
     );
   }
 
@@ -22,6 +23,11 @@ class BinaryValue extends Value {
       'type': classType,
       'data': data.map((e) => e.toJson()).toList(),
     };
+  }
+
+  @override
+  ValueBuilder asBuilder() {
+    return BinaryValueBuilder(data: data.map((e) => e.asBuilder()).toList());
   }
 }
 
@@ -52,6 +58,11 @@ class ByteValue extends Value {
       'length': length,
     };
   }
+
+  @override
+  ValueBuilder asBuilder() {
+    return ByteValueBuilder(expression: expression.asBuilder(), length: length);
+  }
 }
 
 class HexValue extends Value {
@@ -76,6 +87,11 @@ class HexValue extends Value {
       'type': classType,
       'expression': expression.toJson(),
     };
+  }
+
+  @override
+  ValueBuilder asBuilder() {
+    return HexValueBuilder(expression: expression.asBuilder());
   }
 }
 
@@ -105,5 +121,11 @@ class StringByteValue extends Value {
       'expression': expression.toJson(),
       'base': base,
     };
+  }
+
+  @override
+  ValueBuilder asBuilder() {
+    return StringByteValueBuilder(
+        expression: expression.asBuilder(), base: base);
   }
 }

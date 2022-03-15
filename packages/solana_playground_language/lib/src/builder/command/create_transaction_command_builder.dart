@@ -36,7 +36,7 @@ class CreateTransactionCommandBuilder extends CommandBuilder {
   CreateTransactionCommand build() {
     return CreateTransactionCommand(
       variable: variable,
-      signatures: signers.build(),
+      signers: signers.build(),
       instructions: instructions.build(),
       feePayer: feePayer.build(),
       recentBlockhash: recentBlockhash.build(),

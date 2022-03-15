@@ -8,7 +8,7 @@ Future<void> executeCreateTransactionCommand(
   final data = {
     "feePayer": await runtime.calculate(command.feePayer),
     "recentBlockhash": await runtime.calculate(command.recentBlockhash),
-    "signatures": await runtime.calculate(command.signatures),
+    "signatures": await runtime.calculate(command.signers),
     "instructions": await runtime.calculate(command.instructions),
   };
 

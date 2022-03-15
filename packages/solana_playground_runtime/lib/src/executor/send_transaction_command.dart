@@ -11,6 +11,7 @@ Future<void> executeSendTransactionCommand(
   final data = await runtime.calculate(command.expression);
 
   final recentBlockhash = data["recentBlockhash"];
+  final signers = data['signers'];
   final feePayer = data["feePayer"];
 
   final message = Message(
@@ -20,6 +21,8 @@ Future<void> executeSendTransactionCommand(
         )
         .toList()),
   );
+
+  // final signers = [];
 
   final signedTx = await signTransaction(
       RecentBlockhash(

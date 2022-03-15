@@ -5,7 +5,8 @@ import 'package:solana_playground_language/src/core/command/abstract_command.dar
 class BlockCommandBuilder extends CommandBuilder {
   ListBuilder<CommandBuilder> commands;
 
-  BlockCommandBuilder({required this.commands});
+  BlockCommandBuilder({required List<CommandBuilder> commands})
+      : commands = ListBuilder<CommandBuilder>(commands);
 
   void update(void Function(ListBuilder<CommandBuilder> commands) callback) {
     callback(commands);

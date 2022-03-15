@@ -1,4 +1,5 @@
 import 'package:solana_playground_language/lib.dart';
+import 'package:solana_playground_language/src/builder/expression/unknown_value_builder.dart';
 
 class UnknownValue extends Value {
   final dynamic rawData;
@@ -17,6 +18,11 @@ class UnknownValue extends Value {
   @override
   Map<String, dynamic> toJson() {
     return rawData;
+  }
+
+  @override
+  ValueBuilder asBuilder() {
+    return UnknownValueBuilder(rawData: rawData);
   }
 
 }

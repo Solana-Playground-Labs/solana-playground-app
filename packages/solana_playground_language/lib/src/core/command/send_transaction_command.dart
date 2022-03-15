@@ -26,4 +26,12 @@ class SendTransactionCommand extends Command {
       'expression': expression.toJson(),
     };
   }
+
+  @override
+  CommandBuilder asBuilder() {
+    return SendTransactionCommandBuilder(
+      expressionBuilder: expression.asBuilder(),
+      variable: variable,
+    );
+  }
 }
