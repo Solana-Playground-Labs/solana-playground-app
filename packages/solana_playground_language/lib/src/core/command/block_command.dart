@@ -7,4 +7,18 @@ class BlockCommand extends Command {
 
   @override
   List<Object> get props => [commands];
+
+  factory BlockCommand.fromJson(Map<String, dynamic> json) {
+    return BlockCommand(
+      commands: List.castFrom(
+        json['commands'].map((e) => Command.fromJson(e)).toList(),
+      ),
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() => {
+        "type": classType,
+        "commands": commands.map((e) => e.toJson()).toList(),
+      };
 }

@@ -11,4 +11,19 @@ class SendTransactionCommand extends Command {
 
   @override
   List<Object> get props => [expression, variable];
+
+  factory SendTransactionCommand.fromJson(Map<String, dynamic> json) {
+    return SendTransactionCommand(
+        variable: json['variable'],
+        expression: Expression.fromJson(json['expression']));
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'type': classType,
+      'variable': variable,
+      'expression': expression.toJson(),
+    };
+  }
 }

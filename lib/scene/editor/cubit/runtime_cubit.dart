@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
@@ -26,9 +27,17 @@ class RuntimeCubit extends Cubit<RuntimeState> {
     try {
       emit(state.copyWith(status: RuntimeStatus.compiling));
       final package = packageBuilder.build();
+      final json = jsonEncode(package.toJson());
+      print(json);
+      // print(json);
+      final map = jsonDecode(json);
+      final p = Package.fromJson(map);
+      print(jsonEncode(p.toJson()));
+
       emit(state.copyWith(package: package));
     } catch (e) {
       emit(state.copyWith(compilingError: e.toString()));
+      rethrow;
     } finally {
       emit(state.copyWith(status: RuntimeStatus.idle));
     }
@@ -36,6 +45,7 @@ class RuntimeCubit extends Cubit<RuntimeState> {
 
   Future<dynamic> run() async {
     await build();
+    return;
 
     if (state.package == null) {
       throw Exception("Can not find build");

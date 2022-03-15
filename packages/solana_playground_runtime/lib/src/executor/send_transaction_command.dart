@@ -1,3 +1,4 @@
+import 'package:solana/dto.dart' hide Instruction;
 import 'package:solana/encoder.dart';
 import 'package:solana/solana.dart';
 import 'package:solana_playground_language/lib.dart';
@@ -13,35 +14,45 @@ Future<void> executeSendTransactionCommand(
   final feePayer = data["feePayer"];
 
   final message = Message(
-    instructions: data["instructions"]
+    instructions: List.castFrom(data["instructions"]
         .map(
-          (e) => _InstructionParser.fromMap(e),
+          (e) => _InstructionParser.fromMap(Map.castFrom(e)),
         )
-        .toList(),
+        .toList()),
   );
 
-  final signedTx = await signTransaction(recentBlockhash, message, [
-    feePayer,
-  ]);
+  final signedTx = await signTransaction(
+      RecentBlockhash(
+        blockhash: recentBlockhash,
+        feeCalculator: const FeeCalculator(lamportsPerSignature: 500),
+      ),
+      message,
+      [
+        await Ed25519HDKeyPair.fromPrivateKeyBytes(
+            privateKey: feePayer['privateKey']),
+      ]);
 
-  final id = await runtime.solanaClient.rpcClient.sendTransaction(
-    signedTx.encode(),
-  );
+  try {
+    final id =
+        await runtime.solanaClient.rpcClient.sendTransaction(signedTx.encode());
 
-  runtime.memory.write(command.variable, id);
+    runtime.memory.write(command.variable, id);
+  } catch (e) {
+    rethrow;
+  }
 }
 
 extension _InstructionParser on Instruction {
   static Instruction fromMap(Map<String, dynamic> data) {
     return Instruction(
       programId: data["programId"],
-      accounts: data["accounts"].map((e) {
+      accounts: List.castFrom(data["keys"].map((e) {
         return AccountMeta(
-          pubKey: e["pubKey"],
-          isWriteable: e["isWriteable"],
+          pubKey: e["pubkey"],
+          isWriteable: e["isWritable"],
           isSigner: e["isSigner"],
         );
-      }),
+      }).toList()),
       data: data["data"],
     );
   }

@@ -1,9 +1,35 @@
 import 'package:equatable/equatable.dart';
+import 'package:solana_playground_language/lib.dart';
+import 'package:solana_playground_language/src/core/command/unknown_command.dart';
+import 'package:solana_playground_language/src/extensions/type_extension.dart';
 
-abstract class Command extends Equatable {
+abstract class Command extends Equatable with ObjectType {
   const Command();
 
-  // const Command.fromJson();
+  static Command fromJson(Map<String, dynamic> json) {
+    final type = json['type'];
+    if (type == (BlockCommand).toString()) {
+      return BlockCommand.fromJson(type);
+    } else if (type == (CommentCommand).toString()) {
+      return CommentCommand.fromJson(json);
+    } else if (type == (CreateTransactionCommand).toString()) {
+      return CreateTransactionCommand.fromJson(json);
+    } else if (type == (DeclareVariableCommand).toString()) {
+      return DeclareVariableCommand.fromJson(json);
+    } else if (type == (GetRecentBlockHashCommand).toString()) {
+      return GetRecentBlockHashCommand.fromJson(json);
+    } else if (type == (ImportWalletCommand).toString()) {
+      return ImportWalletCommand.fromJson(json);
+    } else if (type == (PrintCommand).toString()) {
+      return PrintCommand.fromJson(json);
+    } else if (type == (RequestRecentBlockhash).toString()) {
+      return RequestRecentBlockhash.fromJson(json);
+    } else if (type == (SendTransactionCommand).toString()) {
+      return SendTransactionCommand.fromJson(json);
+    } else if (type == (WaitTransactionConfirmationCommand).toString()) {}
 
-  // Map<String, dynamic> toJson();
+    return UnknownCommand(rawData: json);
+  }
+
+  Map<String, dynamic> toJson();
 }

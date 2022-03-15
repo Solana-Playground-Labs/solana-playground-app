@@ -13,6 +13,25 @@ class Package extends Equatable {
 
   @override
   List<Object> get props => [packageType, scripts];
+
+  factory Package.fromJson(Map<String, dynamic> json) {
+    return Package(
+      packageType: json['packageType'] == 0
+          ? PackageType.application
+          : PackageType.library,
+      scripts: List.castFrom(
+        json['scripts'].map((e) => Script.fromJson(e)).toList(),
+      ),
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'type': runtimeType.toString(),
+      'packageType': packageType.index,
+      'scripts': scripts.map((e) => e.toJson()).toList(),
+    };
+  }
 }
 
 class SPPackageBuilder extends Builder {

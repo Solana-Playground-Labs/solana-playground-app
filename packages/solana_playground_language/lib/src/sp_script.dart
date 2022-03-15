@@ -16,6 +16,22 @@ class Script extends Equatable {
 
   @override
   List<Object> get props => [name, blockCommand, arguments];
+
+  factory Script.fromJson(Map<String, dynamic> json) {
+    return Script(
+      name: json['name'],
+      blockCommand: BlockCommand.fromJson(json['blockCommand']),
+      arguments: const {},
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'type': runtimeType.toString(),
+      'name': name,
+      'blockCommand': blockCommand.toJson(),
+    };
+  }
 }
 
 class ScriptBuilder extends Builder {

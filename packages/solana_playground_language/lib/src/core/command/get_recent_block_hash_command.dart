@@ -7,4 +7,18 @@ class GetRecentBlockHashCommand extends Command {
 
   @override
   List<Object?> get props => [variable];
+
+  factory GetRecentBlockHashCommand.fromJson(Map<String, dynamic> json) {
+    return GetRecentBlockHashCommand(
+      variable: json['variable'],
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'type': classType,
+      'variable': variable,
+    };
+  }
 }

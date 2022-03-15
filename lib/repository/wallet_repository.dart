@@ -82,12 +82,26 @@ class WalletRepository {
     _data = List.castFrom(
         jsonDecode(rawData).map((e) => Wallet.fromMap(e)).toList());
     _stream.add(_data);
+
+    if (_data.isEmpty) {
+      importMnemonic(
+          "way brick valid put rule curve rookie second perfect drama enrich demise",
+          "demo_wallet_1");
+
+      importMnemonic(
+        "seminar copy situate okay number stereo elite drink wolf best mesh throw",
+        "demo_wallet_2",
+      );
+    }
   }
 
   Future<void> _save() async {
-    final data = jsonEncode(_data.map((e) => e.toMap()).toList());
-    await _storage.write(key: "wallets", value: data);
-    _stream.add(_data);
+    try {
+      final data = jsonEncode(_data.map((e) => e.toMap()).toList());
+      await _storage.write(key: "wallets", value: data);
+    } finally {
+      _stream.add(_data);
+    }
   }
 
   Future<void> generateWithMnemomic(String name,

@@ -11,4 +11,20 @@ class ImportWalletCommand extends Command {
 
   @override
   List<Object> get props => [walletName, variable];
+
+  factory ImportWalletCommand.fromJson(Map<String, dynamic> json) {
+    return ImportWalletCommand(
+      variable: json['variable'],
+      walletName: Expression.fromJson(json['walletName']),
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'type': classType,
+      'variable': variable,
+      'walletName': walletName.toJson(),
+    };
+  }
 }

@@ -4,9 +4,11 @@ import 'package:collection/collection.dart';
 import 'package:solana_playground_runtime/src/executor/create_transaction_command.dart';
 import 'package:solana_playground_runtime/src/executor/get_recent_block_hash_command.dart';
 import 'package:solana_playground_runtime/src/executor/import_wallet_command.dart';
+import 'package:solana_playground_runtime/src/executor/send_transaction_command.dart';
 import 'package:solana_playground_runtime/src/sp_wallets_provider.dart';
 
 import '../solana_playground_runtime.dart';
+import 'executor/wait_transaction_confirmation.dart';
 
 class SPRuntime {
   final SolanaClient solanaClient = SolanaClient(
@@ -53,6 +55,10 @@ class SPRuntime {
       await executeCreateTransactionCommand(this, command);
     } else if (command is ImportWalletCommand) {
       await executeImportWalletCommand(this, command);
+    } else if (command is SendTransactionCommand) {
+      await executeSendTransactionCommand(this, command);
+    } else if (command is WaitTransactionConfirmationCommand) {
+      await executeWaitTransactionConfirmation(this, command);
     } else {
       throw Exception("Unknown command ${command.runtimeType}");
     }

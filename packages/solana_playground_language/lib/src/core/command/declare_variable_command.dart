@@ -13,4 +13,20 @@ class DeclareVariableCommand extends Command {
 
   @override
   List<Object> get props => [variable, expression];
+
+  factory DeclareVariableCommand.fromJson(Map<String, dynamic> json) {
+    return DeclareVariableCommand(
+      variable: json['variable'],
+      expression: Expression.fromJson(json['expression']),
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'type': classType,
+      'variable': variable,
+      'expression': expression.toJson(),
+    };
+  }
 }

@@ -8,4 +8,18 @@ class PrintCommand extends Command {
 
   @override
   List<Object> get props => [expression];
+
+  factory PrintCommand.fromJson(Map<String, dynamic> json) {
+    return PrintCommand(
+      expression: Expression.fromJson(json['expression']),
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'type': classType,
+      'expression': expression.toJson(),
+    };
+  }
 }

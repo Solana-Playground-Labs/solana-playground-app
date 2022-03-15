@@ -7,6 +7,6 @@ Future<void> executeGetRecentBlockHashCommand(
   GetRecentBlockHashCommand command,
 ) async {
   final result = await runtime.solanaClient.rpcClient
-      .getRecentBlockhash(commitment: Commitment.confirmed);
+      .getRecentBlockhash(commitment: Commitment.finalized);
   runtime.memory.write(command.variable, result.blockhash);
 }

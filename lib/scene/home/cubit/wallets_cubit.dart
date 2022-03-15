@@ -16,7 +16,7 @@ class WalletsCubit extends Cubit<WalletsState> {
           wallets: walletRepository.data,
         )) {
     _subscription = walletRepository.onChange.stream.listen((event) {
-      emit(state.copyWith(wallets: event));
+      emit(state.copyWith(wallets: List.of(event)));
     });
   }
 

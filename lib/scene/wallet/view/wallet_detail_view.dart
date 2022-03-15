@@ -46,6 +46,18 @@ class WalletDetailView extends StatelessWidget {
                         child: KeyWidget(text: state.address!),
                       ),
               ),
+              _Cell(
+                title: const Text("Mnemonic"),
+                content: state.address == null
+                    ? const CircularProgressIndicator()
+                    : GestureDetector(
+                        onTap: () async {
+                          await Clipboard.setData(
+                              ClipboardData(text: wallet.mnemonic));
+                        },
+                        child: Text(wallet.mnemonic),
+                      ),
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -73,11 +85,10 @@ class WalletDetailView extends StatelessWidget {
               Row(
                 children: [
                   WalletActionWidget(
-                    title: "Refresh",
-                    onTap: () {
-                      context.read<WalletDetailCubit>().fetch();
-                    }
-                  ),
+                      title: "Refresh",
+                      onTap: () {
+                        context.read<WalletDetailCubit>().fetch();
+                      }),
                   WalletActionWidget(
                     title: "Airdrop",
                     onTap: () =>

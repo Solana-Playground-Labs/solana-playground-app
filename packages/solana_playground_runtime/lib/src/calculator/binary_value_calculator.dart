@@ -36,16 +36,16 @@ Future<dynamic> calculateByteValue(
   final data = ByteData(binaryValue.length);
   switch (binaryValue.length) {
     case 1:
-      data.setInt8(0, value);
+      data.setUint8(0, value);
       break;
     case 2:
-      data.setInt16(0, value);
+      data.setInt16(0, value, Endian.little);
       break;
     case 4:
-      data.setInt32(0, value);
+      data.setInt32(0, value, Endian.little);
       break;
     case 8:
-      data.setInt64(0, value);
+      data.setInt64(0, value, Endian.little);
       break;
     default:
       throw Exception(

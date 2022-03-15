@@ -5,24 +5,9 @@ import 'abstract_command.dart';
 
 class CreateTransactionCommand extends Command {
   final String variable;
-
-  /// Should be {publicKey: string, signature: String}
   final Expression signatures;
-
-  /// Should be
-  /// [
-  ///   {
-  ///     programId: String
-  ///     keys: { isSigner: boolean; isWritable: boolean; pubkey: PublicKey }
-  ///     data: String
-  ///   }
-  /// ]
   final Expression instructions;
-
-  /// String
   final Expression feePayer;
-
-  /// String
   final Expression recentBlockhash;
 
   const CreateTransactionCommand({
@@ -41,4 +26,24 @@ class CreateTransactionCommand extends Command {
         feePayer,
         recentBlockhash,
       ];
+
+  factory CreateTransactionCommand.fromJson(Map<String, dynamic> json) {
+    return CreateTransactionCommand(
+      variable: json['variable'],
+      signatures: Expression.fromJson(json['signatures']),
+      instructions: Expression.fromJson(json['instructions']),
+      feePayer: Expression.fromJson(json['feePayer']),
+      recentBlockhash: Expression.fromJson(json['recentBlockhash']),
+    );
+  }
+
+  @override
+  Map<String, dynamic> toJson() => {
+    "type": classType,
+    'variable': variable,
+    'signatures': signatures.toJson(),
+    'instructions': instructions.toJson(),
+    'feePayer': feePayer.toJson(),
+    'recentBlockhash': recentBlockhash.toJson(),
+  };
 }
