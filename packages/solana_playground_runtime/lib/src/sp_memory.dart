@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 class SPMemory {
   final Map<String, dynamic> _data = {};
 

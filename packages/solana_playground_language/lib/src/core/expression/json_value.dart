@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 import 'package:flutter/cupertino.dart';
 import 'package:solana_playground_language/lib.dart';
 import 'package:solana_playground_language/src/core/expression/value.dart';

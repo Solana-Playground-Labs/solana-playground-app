@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 part of 'wallet_detail_cubit.dart';
 
 class WalletDetailState extends Equatable {

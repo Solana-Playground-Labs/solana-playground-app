@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 import 'package:flutter/material.dart' hide Builder;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';

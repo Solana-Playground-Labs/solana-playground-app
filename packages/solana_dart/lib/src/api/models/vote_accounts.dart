@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 import 'package:equatable/equatable.dart';
 
 class VoteAccounts extends Equatable {

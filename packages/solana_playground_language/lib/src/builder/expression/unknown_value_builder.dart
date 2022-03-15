@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 import 'package:solana_playground_language/lib.dart';
 import 'package:solana_playground_language/src/core/expression/unknown_value.dart';
 

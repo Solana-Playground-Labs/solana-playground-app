@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 extension ListExtension on List {
   bool moveTo(Object object, int index) {
     if (index < 0 || index >= length) return false;

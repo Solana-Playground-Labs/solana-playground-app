@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 part of 'packages_cubit.dart';
 
 class PackagesState extends Equatable {

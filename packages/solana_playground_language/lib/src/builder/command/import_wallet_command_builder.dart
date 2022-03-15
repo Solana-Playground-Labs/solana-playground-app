@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 import 'package:solana_playground_language/src/core/command/import_wallet_command.dart';
 
 import '../../../solana_playground_language.dart';

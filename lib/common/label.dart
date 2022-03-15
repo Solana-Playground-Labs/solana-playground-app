@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 import 'package:flutter/material.dart';
 
 enum SPLabelStyle { blue, green, orange, purple, grey }

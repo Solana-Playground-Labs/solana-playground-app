@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 import 'package:auto_route/auto_route.dart';
 import 'package:solana_playground_app/scene/editor/view/editor_view.dart';
 import 'package:solana_playground_app/scene/editor/view/instruction_view/instruction_builder_view.dart';

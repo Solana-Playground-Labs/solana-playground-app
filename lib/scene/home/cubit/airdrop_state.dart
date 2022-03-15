@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 part of 'airdrop_cubit.dart';
 
 class AirdropState extends Equatable {

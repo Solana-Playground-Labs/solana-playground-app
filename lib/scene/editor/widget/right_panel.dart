@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 import 'package:flutter/material.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_app/scene/editor/cubit/code_editor_cubit.dart';

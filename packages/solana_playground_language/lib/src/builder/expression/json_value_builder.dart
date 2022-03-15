@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 class JsonValueBuilder extends ValueBuilder {

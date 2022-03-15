@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 class SPWalletProvider {
   final Map<String, dynamic> _wallets;
 

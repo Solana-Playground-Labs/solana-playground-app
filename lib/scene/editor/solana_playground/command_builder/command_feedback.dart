@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 import 'package:flutter/material.dart';
 import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';

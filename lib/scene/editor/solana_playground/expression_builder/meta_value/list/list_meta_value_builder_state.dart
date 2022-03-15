@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 part of 'list_meta_value_builder_cubit.dart';
 
 class ListMetaValueBuilderState extends Equatable {

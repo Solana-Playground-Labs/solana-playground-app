@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 class PerfSample {
   const PerfSample({
     required this.numSlots,

@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 part of 'block_command_builder_cubit.dart';
 
 class BlockCommandBuilderState extends Equatable {

@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 part of 'expression_inspector_cubit.dart';
 
 class ExpressionInspectorState extends Equatable {

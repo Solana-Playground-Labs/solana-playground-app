@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 part of 'create_wallet_cubit.dart';
 
 class CreateWalletState extends Equatable {

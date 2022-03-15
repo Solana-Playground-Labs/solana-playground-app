@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 export 'declare_variable/declare_variable.dart';
 export 'block_command_builder_cubit.dart';
 export 'command_builder_draggable.dart';

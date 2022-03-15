@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 part of 'console_cubit.dart';
 
 class ConsoleState extends Equatable {

@@ -1,3 +1,7 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 part of 'constant_value_builder_cubit.dart';
 
 class ConstantValueBuilderState extends Equatable {
