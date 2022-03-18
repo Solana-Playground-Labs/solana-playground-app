@@ -20,6 +20,10 @@ Type `flutter run --release` and then choose a device that will run the applicat
 - [ ] Network fetching
 - [ ] Instruction template
 
+## Links
+- Presentation: https://www.icloud.com/keynote/0d6-9dqJNbtD5H1SpvjGKMseQ#Solana_Playground_presentation_share
+- Video presentation: https://youtu.be/j_qmHoHy-uI
+
 ## Screenshots
 
 ![Screenshot1](./docs/screenshot-1.png)
