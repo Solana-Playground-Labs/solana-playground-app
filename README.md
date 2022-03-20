@@ -27,4 +27,5 @@ Type `flutter run --release` and then choose a device that will run the applicat
 ## Screenshots
 
 ![Screenshot1](./docs/screenshot-1.png)
-![Screenshot1](./docs/screenshot-2.png)
+![Screenshot2](./docs/screenshot-2.png)
+![Screenshot3](./docs/screenshot-3.png)
