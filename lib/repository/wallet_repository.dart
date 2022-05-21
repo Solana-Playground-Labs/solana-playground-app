@@ -32,10 +32,9 @@ class Wallet extends Equatable {
           change: change,
         );
 
-        final t = await keyPair.extract();
         return {
-          "publicKey": (await t.extractPublicKey()).bytes,
-          "privateKey": await t.extractPrivateKeyBytes(),
+          "publicKey": (await keyPair.extractPublicKey()).bytes,
+          "privateKey": await keyPair.extract(),
         };
       },
       toMap(),

@@ -47,6 +47,8 @@ class ExpressionBuilder extends Builder {
 abstract class ValueBuilder extends Builder {
   Value build();
 
+  String get name => runtimeType.toString();
+
   @override
   ValueBuilder clone();
 }

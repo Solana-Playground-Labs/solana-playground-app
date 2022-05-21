@@ -17,7 +17,7 @@ Color _styleToColor(SPLabelStyle style) {
     case SPLabelStyle.grey:
       return const Color.fromRGBO(106, 106, 106, 1.0);
     case SPLabelStyle.purple:
-      return const Color.fromRGBO(206, 97, 236, 1.0);
+      return const Color.fromRGBO(227, 165, 219, 1.0);
   }
 }
 
@@ -25,12 +25,17 @@ class SPLabel extends StatelessWidget {
   final SPLabelStyle style;
   final Widget child;
 
-  const SPLabel({Key? key, this.style = SPLabelStyle.blue, required this.child}) : super(key: key);
+  const SPLabel({
+    Key? key,
+    this.style = SPLabelStyle.blue,
+    required this.child,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
-      style: Theme
+      style:
+      Theme
           .of(context)
           .textTheme
           .bodyText1!
@@ -39,7 +44,7 @@ class SPLabel extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           color: _styleToColor(style),
-          borderRadius: const BorderRadius.all(Radius.circular(6)),
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
         ),
         child: Material(
           type: MaterialType.transparency,

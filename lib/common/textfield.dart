@@ -8,7 +8,7 @@ class SPTextField {
   static const compactInputDecoration = InputDecoration(
     isDense: true,
     constraints: BoxConstraints(minWidth: 10),
-    contentPadding: EdgeInsets.all(8),
+    contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
     hintStyle: TextStyle(color: Colors.black54),
     border: InputBorder.none,
   );

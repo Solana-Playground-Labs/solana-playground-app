@@ -18,6 +18,9 @@ class VariableValueBuilder extends ValueBuilder {
   }
 
   @override
+  String get name => "Var";
+
+  @override
   VariableValue build() {
     return VariableValue(variable: variable);
   }

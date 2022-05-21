@@ -44,40 +44,49 @@ class Package extends Equatable {
     };
   }
 
-  SPPackageBuilder asBuilder() {
-    return SPPackageBuilder(
+  PackageBuilder asBuilder() {
+    return PackageBuilder(
       name: name,
       packageType: packageType,
-      functionBuilders: scripts.map((e) => e.asBuilder()).toList(),
+      scriptBuilders: scripts.map((e) => e.asBuilder()).toList(),
     );
   }
 }
 
-class SPPackageBuilder extends Builder {
-  String name;
-  PackageType _packageType;
-  List<ScriptBuilder> _functionBuilders;
+class PackageBuilder extends Builder {
+  String _name;
 
-  SPPackageBuilder({
-    required this.name,
+  PackageType _packageType;
+  List<ScriptBuilder> _scriptBuilders;
+
+  PackageBuilder({
+    required String name,
     required PackageType packageType,
-    required List<ScriptBuilder> functionBuilders,
-  })  : _packageType = packageType,
-        _functionBuilders = functionBuilders;
+    required List<ScriptBuilder> scriptBuilders,
+  })  : _name = name,
+        _packageType = packageType,
+        _scriptBuilders = scriptBuilders;
 
   @override
-  SPPackageBuilder clone() {
-    return SPPackageBuilder(
+  PackageBuilder clone() {
+    return PackageBuilder(
       name: name,
       packageType: packageType,
-      functionBuilders: functionBuilders,
+      scriptBuilders: scriptBuilders,
     );
   }
 
-  List<ScriptBuilder> get functionBuilders => _functionBuilders;
+  String get name => _name;
 
-  set functionBuilders(List<ScriptBuilder> value) {
-    _functionBuilders = value;
+  set name(String name) {
+    _name = name;
+    notifyListeners();
+  }
+
+  List<ScriptBuilder> get scriptBuilders => _scriptBuilders;
+
+  set scriptBuilders(List<ScriptBuilder> value) {
+    _scriptBuilders = value;
     notifyListeners();
   }
 
@@ -92,6 +101,6 @@ class SPPackageBuilder extends Builder {
     return Package(
         name: name,
         packageType: _packageType,
-        scripts: _functionBuilders.map((e) => e.build()).toList());
+        scripts: _scriptBuilders.map((e) => e.build()).toList());
   }
 }

@@ -10,6 +10,6 @@ Future<void> executePrintCommand(
     SPRuntime runtime,
     PrintCommand printCommand,
     ) async {
-  final r = await runtime.calculate(printCommand.expression);
-  runtime.console.write(r);
+  // final r = await runtime.calculate(printCommand.expression);
+  // runtime.console.write(r);
 }

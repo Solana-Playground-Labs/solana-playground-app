@@ -10,7 +10,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/repository/package_repository.dart';
 import 'package:solana_playground_app/route/app_router.gr.dart';
-import 'package:solana_playground_app/scene/editor/editor.dart';
 import 'package:solana_playground_app/scene/home/cubit/packages_cubit.dart';
 import 'package:collection/collection.dart';
 import 'package:solana_playground_language/lib.dart';
@@ -46,7 +45,7 @@ class PackagesSection extends StatelessWidget {
                   ListTile(
                     title: Text(e.name),
                     onTap: () async {
-                      final result = await context.router.push(EditorRoute(initialPackage: e));
+                      final result = await context.router.push(EditorRoute());
                       if (result is Package) {
                         context.read<PackageRepository>().save(result);
                       }

@@ -36,7 +36,7 @@ class App extends StatelessWidget {
       child: MaterialApp.router(
         routerDelegate: _appRouter.delegate(),
         routeInformationParser: _appRouter.defaultRouteParser(),
-        theme: PlaygroundTheme.dart(),
+        theme: PlaygroundTheme.light(),
       ),
     );
   }

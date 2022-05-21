@@ -8,23 +8,29 @@ import 'package:solana_playground_language/src/core/command/print_command.dart';
 import 'package:solana_playground_language/src/core/expression/abstract_expression.dart';
 
 class PrintCommandBuilder extends CommandBuilder {
-  ExpressionBuilder expression;
+  ListBuilder<ExpressionBuilder> expressions;
 
-  PrintCommandBuilder({required this.expression});
+  PrintCommandBuilder({required this.expressions});
 
   factory PrintCommandBuilder.empty() {
     return PrintCommandBuilder(
-      expression: ExpressionBuilder.withVariable(),
+      expressions: ListBuilder([ExpressionBuilder.withVariable()]),
     );
   }
 
   @override
   PrintCommand build() {
-    return PrintCommand(expression: expression.build());
+    return PrintCommand(
+      expressions: expressions.map((element) => element.build()).toList(),
+    );
   }
 
   @override
   CommandBuilder clone() {
-    return PrintCommandBuilder(expression: expression.clone());
+    return PrintCommandBuilder(
+      expressions: ListBuilder(
+        expressions.map((element) => element.clone()).toList(),
+      ),
+    );
   }
 }
