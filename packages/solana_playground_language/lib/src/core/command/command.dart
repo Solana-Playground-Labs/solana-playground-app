@@ -9,4 +9,5 @@ export 'print_command.dart';
 export 'unknown_command.dart';
 export 'import_wallet_command.dart';
 export 'block_command.dart';
+export 'submit_simple_transaction.dart';
 export 'declare_variable_command.dart';

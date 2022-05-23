@@ -71,7 +71,7 @@ class ExpressionBuilderWidget
             ),
           ),
           const SizedBox(width: 4),
-          child,
+          Flexible(child: child),
         ],
       );
     }

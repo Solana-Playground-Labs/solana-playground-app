@@ -26,7 +26,7 @@ class DeclareVariableCommandBuilderWidget extends CubitWidget<
   ) {
     return ComponentHeader(
       icon: SvgPicture.asset(SPIcons.variable),
-      builder: builder,
+      trailing: CommandBuilderAction(builder: builder),
       name: "Declare variable",
       content: Column(
         mainAxisSize: MainAxisSize.min,

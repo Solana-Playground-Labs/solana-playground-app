@@ -9,4 +9,5 @@ export 'import_wallet_command_builder.dart';
 export 'request_recent_blockhash_command_builder.dart';
 export 'declare_variable_command_builder.dart';
 export 'command_builder.dart';
+export 'submit_simple_transaction_builder.dart';
 export 'commend_command.dart';

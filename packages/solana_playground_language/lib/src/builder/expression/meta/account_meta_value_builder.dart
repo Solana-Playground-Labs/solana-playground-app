@@ -7,43 +7,36 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 import 'meta_value_builder.dart';
 
 class AccountMetaValueBuilder extends MetaValueBuilder {
-  final ExpressionBuilder isSigner;
-  final ExpressionBuilder isWritable;
-  final ExpressionBuilder pubkey;
+  JsonValueBuilder builder;
+
+  ExpressionBuilder get isSigner => builder.data["isSigner"];
+
+  ExpressionBuilder get isWritable => builder.data["isWritable"];
+
+  ExpressionBuilder get pubkey => builder.data["pubkey"];
 
   AccountMetaValueBuilder({
-    required this.isSigner,
-    required this.isWritable,
-    required this.pubkey,
-  });
-
-  factory AccountMetaValueBuilder.fromJsonValue(JsonValueBuilder jsonValue) {
-    jsonValue.data["isSigner"] ??= ExpressionBuilder.withConstantValue();
-    jsonValue.data["isWritable"] ??= ExpressionBuilder.withConstantValue();
-    jsonValue.data["pubkey"] ??= ExpressionBuilder.withConstantValue();
-
-    return AccountMetaValueBuilder(
-      isSigner: jsonValue.data["isSigner"],
-      isWritable: jsonValue.data["isWritable"],
-      pubkey: jsonValue.data["pubkey"],
-    );
+    required this.builder,
+  }) {
+    builder.data["pubkey"] ??=
+        ExpressionBuilder.withConstantValue();
+    builder.data["isSigner"] ??=
+        ExpressionBuilder(valueBuilder: JsonValueBuilder(data: false));
+    builder.data["isWritable"] ??=
+        ExpressionBuilder(valueBuilder: JsonValueBuilder(data: false));
   }
 
   @override
   Value build() {
     return JsonValue(data: {
-      "isSigner": isSigner,
-      "isWritable": isWritable,
-      "pubkey": pubkey,
+      "isSigner": isSigner.build(),
+      "isWritable": isWritable.build(),
+      "pubkey": pubkey.build(),
     });
   }
 
   @override
   Builder clone() {
-    return AccountMetaValueBuilder(
-      isSigner: isSigner,
-      isWritable: isWritable,
-      pubkey: pubkey,
-    );
+    return AccountMetaValueBuilder(builder: builder.clone());
   }
 }

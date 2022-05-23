@@ -4,6 +4,7 @@
 
 import 'package:equatable/equatable.dart';
 import 'package:solana_playground_language/lib.dart';
+import 'package:solana_playground_language/src/core/command/submit_simple_transaction.dart';
 import 'package:solana_playground_language/src/core/command/unknown_command.dart';
 import 'package:solana_playground_language/src/extensions/type_extension.dart';
 
@@ -32,6 +33,8 @@ abstract class Command extends Equatable with ObjectType {
       return SendTransactionCommand.fromJson(json);
     } else if (type == (WaitTransactionConfirmationCommand).toString()) {
       return WaitTransactionConfirmationCommand.fromJson(json);
+    } else if (type == (SubmitSimpleTransaction).toString()) {
+      return SubmitSimpleTransaction.fromJson(json);
     }
 
     return UnknownCommand(rawData: json);

@@ -22,12 +22,12 @@ class ListMetaValueBuilderCubit extends Cubit<ListMetaValueBuilderState> {
 
   void moveUp(dynamic object) {
     final index = state.builders.indexOf(object);
-    if (index >= 0) builder.moveTo(object, index + 1);
+    if (index >= 0) builder.moveTo(object, index - 1);
   }
 
   void moveDown(dynamic object) {
     final index = state.builders.indexOf(object);
-    if (index >= 0) builder.moveTo(object, index - 1);
+    if (index >= 0) builder.moveTo(object, index + 1);
   }
 
   void remove(object) {

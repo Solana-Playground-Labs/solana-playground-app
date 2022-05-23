@@ -12,14 +12,14 @@ class ComponentHeader extends StatelessWidget {
   final Widget? icon;
   final String name;
   final Widget? content;
-  final CommandBuilder builder;
+  final Widget? trailing;
 
   const ComponentHeader({
     Key? key,
     this.icon,
     required this.name,
     this.content,
-    required this.builder,
+    this.trailing
   }) : super(key: key);
 
   @override
@@ -43,14 +43,14 @@ class ComponentHeader extends StatelessWidget {
                 ],
                 Text(name, style: theme.textTheme.headline4),
                 const Spacer(),
-                CommandBuilderAction(builder: builder),
+                if (trailing != null) trailing!
               ],
             ),
           ),
           const Divider(height: 1),
           if (content != null)
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
               child: content,
             )
         ],

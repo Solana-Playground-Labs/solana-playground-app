@@ -3,6 +3,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:solana_playground_app/scene/editor_v2/solana_playground/command_builder/submit_simple_transaction/submit_simple_transaction_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import '../../editor_v2.dart';
@@ -24,6 +25,8 @@ final Map<Type, _MappingBuilder> _mapping = {
       GetRecentBlockHashCommandBuilderWidget(builder: builder),
   ImportWalletCommandBuilder: (context, builder) =>
       ImportWalletCommandBuilderWidget(builder: builder),
+  SubmitSimpleTransactionBuilder: (context, builder) =>
+      SubmitSimpleTransactionWidget(builder: builder),
 };
 
 class CommandBuilderWidget extends StatelessWidget {

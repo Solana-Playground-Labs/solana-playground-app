@@ -8,13 +8,13 @@ import 'package:solana_playground_app/common/card.dart';
 class ComponentBody extends StatelessWidget {
   final Widget? icon;
   final String name;
-  final Widget content;
+  final Widget? content;
 
   const ComponentBody({
     Key? key,
     this.icon,
     required this.name,
-    required this.content,
+    this.content,
   }) : super(key: key);
 
   @override
@@ -37,8 +37,7 @@ class ComponentBody extends StatelessWidget {
               ],
             ),
           ),
-          const Divider(height: 1),
-          content
+          if (content != null) ...[const Divider(height: 1), content!]
         ],
       ),
     );

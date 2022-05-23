@@ -13,8 +13,8 @@ class ExpressionBuilder extends Builder {
     required ValueBuilder valueBuilder,
   }) : _valueBuilder = valueBuilder;
 
-  factory ExpressionBuilder.withConstantValue() {
-    return ExpressionBuilder(valueBuilder: ConstantValueBuilder(value: ""));
+  factory ExpressionBuilder.withConstantValue({String value = ""}) {
+    return ExpressionBuilder(valueBuilder: ConstantValueBuilder(value: value));
   }
 
   factory ExpressionBuilder.withVariable() {

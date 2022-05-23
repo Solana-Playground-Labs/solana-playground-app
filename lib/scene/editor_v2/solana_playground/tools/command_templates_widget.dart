@@ -30,18 +30,22 @@ class CommandTemplatesWidget extends StatelessWidget {
           title: "Import wallet",
           commandBuilder: ImportWalletCommandBuilder.empty(),
         ),
+        // TemplateWidget(
+        //   title: "Create transaction",
+        //   commandBuilder: CreateTransactionCommandBuilder.empty(),
+        // ),
+        // TemplateWidget(
+        //   title: "Send transaction",
+        //   commandBuilder: SendTransactionCommandBuilder.empty(),
+        // ),
         TemplateWidget(
-          title: "Create transaction",
-          commandBuilder: CreateTransactionCommandBuilder.empty(),
+          title: "Submit simple transaction",
+          commandBuilder: SubmitSimpleTransactionBuilder.empty(),
         ),
-        TemplateWidget(
-          title: "Send transaction",
-          commandBuilder: SendTransactionCommandBuilder.empty(),
-        ),
-        TemplateWidget(
-          title: "Wait transaction confirmation",
-          commandBuilder: WaitConfirmationCommandBuilder.empty(),
-        ),
+        // TemplateWidget(
+        //   title: "Wait transaction confirmation",
+        //   commandBuilder: WaitConfirmationCommandBuilder.empty(),
+        // ),
         // TemplateWidget(
         //   title: "Get recent block hash",
         //   commandBuilder: GetRecentBlockHashCommandBuilder.empty(),
