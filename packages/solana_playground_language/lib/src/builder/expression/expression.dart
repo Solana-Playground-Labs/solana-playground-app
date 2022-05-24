@@ -4,4 +4,5 @@ export 'constant_value_builder.dart';
 export 'binary_value_builder.dart';
 export 'unknown_value_builder.dart';
 export 'expression_builder.dart';
+export 'conditional_value_builder.dart';
 export 'variable_value_builder.dart';

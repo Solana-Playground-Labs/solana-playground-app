@@ -5,6 +5,8 @@
 import 'dart:typed_data';
 
 import 'package:solana_playground_language/solana_playground_language.dart';
+import 'package:solana_playground_language/src/builder/expression/conditional_value_builder.dart';
+import 'package:solana_playground_language/src/core/expression/conditional_value.dart';
 
 class ExpressionBuilder extends Builder {
   ValueBuilder _valueBuilder;
@@ -25,6 +27,14 @@ class ExpressionBuilder extends Builder {
     return ExpressionBuilder(
       valueBuilder: BinaryValueBuilder(data: []),
     );
+  }
+
+  factory ExpressionBuilder.withJson({dynamic data = const {}}) {
+    return ExpressionBuilder(valueBuilder: JsonValueBuilder(data: data));
+  }
+
+  factory ExpressionBuilder.withConditional() {
+    return ExpressionBuilder(valueBuilder: ConditionalValueBuilder.empty());
   }
 
   ValueBuilder get valueBuilder => _valueBuilder;

@@ -5,6 +5,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:solana_playground_language/lib.dart';
+import 'package:solana_playground_language/src/core/expression/conditional_value.dart';
 import 'package:solana_playground_language/src/core/expression/unknown_value.dart';
 import 'package:solana_playground_language/src/extensions/type_extension.dart';
 
@@ -27,8 +28,9 @@ abstract class Value extends Equatable with ObjectType {
       return JsonValue.fromJson(json);
     } else if (type == (VariableValue).toString()) {
       return VariableValue.fromJson(json);
+    }  else if (type == (ConditionalValue).toString()) {
+      return ConditionalValue.fromJson(json);
     }
-    debugPrintStack(stackTrace: StackTrace.current);
     return UnknownValue(rawData: json);
   }
 

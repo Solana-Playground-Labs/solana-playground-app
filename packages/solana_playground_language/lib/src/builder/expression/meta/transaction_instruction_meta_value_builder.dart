@@ -11,14 +11,18 @@ class TransactionInstructionMetaValueBuilder extends MetaValueBuilder {
 
   ExpressionBuilder get programId => builder.data['programId'];
 
-  ListBuilder<dynamic> get keys => ListBuilder(builder.data['keys']);
+  ExpressionBuilder get keys => builder.data['keys'];
 
   ExpressionBuilder get data => builder.data['data'];
 
+  ExpressionBuilder get condition => builder.data['condition'];
+
   TransactionInstructionMetaValueBuilder({required this.builder}) {
     builder.data['programId'] ??= ExpressionBuilder.withConstantValue();
-    builder.data['keys'] ??= [];
+    builder.data['keys'] ??= ExpressionBuilder.withJson(data: []);
     builder.data['data'] ??= ExpressionBuilder.withBinaryValue();
+    builder.data['condition'] ??=
+        ExpressionBuilder.withConstantValue(value: "true");
   }
 
   @override
@@ -26,7 +30,7 @@ class TransactionInstructionMetaValueBuilder extends MetaValueBuilder {
     return JsonValue(
       data: {
         "programId": programId.build(),
-        "keys": keys.map((e) => e.build()).toList(),
+        "keys": keys.build(),
         "binaryValueBuilder": data.build(),
       },
     );

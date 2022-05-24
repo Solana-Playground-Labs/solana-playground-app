@@ -13,7 +13,7 @@ class BoolMetaValueCubit extends Cubit<BoolMetaValueState> {
 
   BoolMetaValueCubit(this.meta)
       : super(BoolMetaValueState(value: meta.builder.data)) {
-    meta.addListener(listener);
+    meta.builder.addListener(listener);
   }
 
   void listener() {
@@ -28,7 +28,7 @@ class BoolMetaValueCubit extends Cubit<BoolMetaValueState> {
 
   @override
   Future<void> close() async {
-    meta.removeListener(listener);
+    meta.builder.removeListener(listener);
     return super.close();
   }
 }

@@ -24,36 +24,31 @@ class ByteValueBuilderWidget
   @override
   Widget content(BuildContext context, ByteValueBuilderState state) {
     final theme = Theme.of(context);
-    return SPCard(
-      level: 3,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text("Value:  ", style: theme.textTheme.bodyText1),
-          Flexible(
-              child: ExpressionBuilderWidget(builder: builder.expression)),
-          Text("  with byte length:  ", style: theme.textTheme.bodyText1),
-          Flexible(
-            child: IntrinsicWidth(
-              child: SPLabel(
-                style: SPLabelStyle.purple,
-                child: TextField(
-                  controller:
-                      context.read<ByteValueBuilderCubit>().lengthInput,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                  ],
-                  textAlign: TextAlign.center,
-                  decoration: SPTextField.compactInputDecoration.copyWith(
-                    hintText: "Length",
-                  ),
-                ),
-              ),
+    return Row(
+      children: [
+        IntrinsicWidth(
+          child: SPLabel(
+            style: SPLabelStyle.purple,
+            child: TextField(
+              controller: context.read<ByteValueBuilderCubit>().lengthInput,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText1
+                  ?.copyWith(color: Colors.black),
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+              ],
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              decoration: SPTextField.compactInputDecoration
+                  .copyWith(hintText: "Length", suffixText: "Byte(s)"),
             ),
-          )
-        ],
-      ),
+          ),
+        ),
+        const SizedBox(width: 8),
+        Flexible(child: ExpressionBuilderWidget(builder: builder.expression)),
+      ],
     );
   }
 

@@ -29,10 +29,11 @@ class SubmitSimpleTransactionWidget extends CubitWidget<
       body: [
         ExpressionBuilderWidget(
           builder: builder.instructions,
-          metaValueInfo: const MetaValueInfo(
-            title: "Instructions",
-            isMultiple: true,
-            metaType: TransactionInstructionMetaValueBuilder,
+          metaValueView: const MetaValueListView(
+            addText: "Add instruction",
+            child: MetaValueElementView(
+              metaType: TransactionInstructionMetaValueBuilder,
+            ),
           ),
         ),
       ],

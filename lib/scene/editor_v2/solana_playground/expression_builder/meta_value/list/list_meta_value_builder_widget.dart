@@ -4,8 +4,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
+import 'package:solana_playground_app/theme/icons.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
 
@@ -18,6 +20,7 @@ class ListMetaValueBuilderWidget
       widgetBuilder;
   final VoidCallback onAdd;
   final String? title;
+  final String addText;
   final bool isInline;
 
   ListMetaValueBuilderWidget({
@@ -26,6 +29,7 @@ class ListMetaValueBuilderWidget
     required this.builder,
     required this.widgetBuilder,
     required this.onAdd,
+    this.addText = "Insert",
     this.title,
   }) : super(key: Key(builder.id));
 
@@ -34,49 +38,39 @@ class ListMetaValueBuilderWidget
     final theme = Theme.of(context);
 
     if (isInline) {
-      return ComponentHeader(
+      return ComponentBody(
+        icon: SvgPicture.asset(SPIcons.list),
         name: title ?? "List",
-        content: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            if (state.builders.isNotEmpty)
-              ...state.builders
-                  .asMap()
-                  .entries
-                  .map((e) => [
-                        widgetBuilder(context, e.value, e.key),
-                        const Divider(height: 12, endIndent: 0)
-                      ])
-                  .reduce((value, element) => [...value, ...element])
-                  .toList(),
-            Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(8),
-                onTap: onAdd,
-                child: SizedBox(
-                  height: 36,
-                  child: Row(
-                    children: [
-                      const SizedBox(width: 6),
-                      const Icon(Icons.add_circle_rounded, color: Colors.green),
-                      const SizedBox(width: 8),
-                      Text(
-                        "Add",
-                        style: theme.textTheme.button?.copyWith(color: Colors.grey),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            )
-          ],
+        content: Padding(
+          padding: const EdgeInsets.only(left: 8, top: 8, bottom: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              if (state.builders.isNotEmpty)
+                ...state.builders
+                    .asMap()
+                    .entries
+                    .map((e) => [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8),
+                            child: widgetBuilder(context, e.value, e.key),
+                          ),
+                          const Divider(height: 12, endIndent: 0)
+                        ])
+                    .reduce((value, element) => [...value, ...element])
+                    .toList(),
+              Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: InsertRow(onPressed: onAdd, title: addText),
+              )
+            ],
+          ),
         ),
       );
     }
 
     return Component(
-      header: ComponentHeader(name: title ?? "List"),
+      header: title != null ? ComponentHeader(name: title!) : null,
       body: [
         ...state.builders
             .asMap()
@@ -84,7 +78,7 @@ class ListMetaValueBuilderWidget
             .map((e) => widgetBuilder(context, e.value, e.key))
             .toList(),
         ComponentAction(
-          content: const Text("Add transaction"),
+          content: Text(addText),
           onPressed: onAdd,
         )
       ],

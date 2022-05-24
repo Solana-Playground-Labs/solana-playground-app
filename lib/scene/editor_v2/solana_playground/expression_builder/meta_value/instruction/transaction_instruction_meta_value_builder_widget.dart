@@ -5,11 +5,10 @@
 import 'package:flutter/material.dart';
 import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
-import 'package:solana_playground_app/scene/editor_v2/solana_playground/expression_builder/meta_value/list/list_element_action.dart';
+import 'package:solana_playground_app/scene/editor_v2/solana_playground/common/inline_builder.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import '../../../../editor_v2.dart';
-import 'transaction_instruction_meta_value_builder_cubit.dart';
 
 class TransactionInstructionMetaValueBuilderWidget extends CubitWidget<
     TransactionInstructionMetaValueBuilderCubit,
@@ -28,30 +27,85 @@ class TransactionInstructionMetaValueBuilderWidget extends CubitWidget<
     BuildContext context,
     TransactionInstructionMetaValueBuilderState state,
   ) {
-    final theme = Theme.of(context);
-
     return Component(
       header: ComponentHeader(
         name: index == null ? "Transaction" : "Transaction #$index",
-        trailing: ListElementAction(builder: builder.builder.data),
-        content: Row(
+        trailing: MetaListExtraActions(
+          builder: builder.builder.data,
+          actions: (_) {
+            return [
+              ListAction(
+                child: (builder.condition.valueBuilder
+                            is ConstantValueBuilder &&
+                        (builder.condition.valueBuilder as ConstantValueBuilder)
+                                .value ==
+                            "true")
+                    ? const Text("Show condition")
+                    : const Text("Hide condition"),
+                onTap: () {
+                  if (builder.condition.valueBuilder is ConstantValueBuilder &&
+                      (builder.condition.valueBuilder as ConstantValueBuilder)
+                              .value ==
+                          "true") {
+                    builder.condition.valueBuilder =
+                        ConditionalValueBuilder.empty();
+                  } else {
+                    builder.condition.valueBuilder =
+                        ConstantValueBuilder(value: "true");
+                  }
+                },
+              ),
+            ];
+          },
+        ),
+        content: Column(
           children: [
-            const Text("Program ID: "),
-            ExpressionBuilderWidget(builder: builder.programId)
+            Row(
+              children: [
+                const Text("Program ID: "),
+                Flexible(
+                  child: ExpressionBuilderWidget(builder: builder.programId),
+                )
+              ],
+            ),
+            const SizedBox(height: 8),
+            InlineBuilder<ExpressionBuilder, ValueBuilder>(
+              builder: builder.condition,
+              data: (builder) => builder.valueBuilder,
+              widgetBuilder: (context, state) {
+                if (state is ConstantValueBuilder && state.value == "true") {
+                  return Container();
+                }
+                return Row(
+                  children: [
+                    const Text("Condition: "),
+                    Flexible(
+                      child: ExpressionBuilderWidget(
+                        builder: builder.condition,
+                        changeable: false,
+                      ),
+                    )
+                  ],
+                );
+              },
+            ),
           ],
         ),
       ),
       body: [
         ExpressionBuilderWidget(
-          metaValueInfo: const MetaValueInfo(
+          metaValueView: const MetaValueListView(
             title: "Keys",
-            isMultiple: true,
             isInline: true,
-            metaType: AccountMetaValueBuilder,
+            child: MetaValueElementView(
+              metaType: AccountMetaValueBuilder,
+            ),
           ),
-          builder: ExpressionBuilder(
-            valueBuilder: JsonValueBuilder(data: builder.keys),
-          ),
+          builder: builder.keys,
+        ),
+        ExpressionBuilderWidget(
+          isInline: false,
+          builder: builder.data,
         )
       ],
     );

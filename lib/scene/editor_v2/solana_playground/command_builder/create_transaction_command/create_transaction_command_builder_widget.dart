@@ -80,9 +80,10 @@ class CreateTransactionCommandBuilderWidget extends CubitWidget<
               Flexible(
                 child: ExpressionBuilderWidget(
                   builder: builder.signers,
-                  metaValueInfo: const MetaValueInfo(
-                    isMultiple: true,
-                    metaType: SignerMetaValueBuilder,
+                  metaValueView: const MetaValueListView(
+                      child: MetaValueElementView(
+                        metaType: SignerMetaValueBuilder,
+                      )
                   ),
                 ),
               )
@@ -98,9 +99,10 @@ class CreateTransactionCommandBuilderWidget extends CubitWidget<
               Flexible(
                 child: ExpressionBuilderWidget(
                   builder: builder.instructions,
-                  metaValueInfo: const MetaValueInfo(
-                    isMultiple: true,
-                    metaType: TransactionInstructionMetaValueBuilder,
+                  metaValueView: const MetaValueListView(
+                      child: MetaValueElementView(
+                        metaType: TransactionInstructionMetaValueBuilder,
+                      )
                   ),
                 ),
               )

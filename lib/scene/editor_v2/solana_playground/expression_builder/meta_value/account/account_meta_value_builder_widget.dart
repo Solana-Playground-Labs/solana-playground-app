@@ -5,7 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
-import 'package:solana_playground_app/scene/editor_v2/solana_playground/expression_builder/meta_value/list/list_element_action.dart';
+import 'package:solana_playground_app/scene/editor_v2/solana_playground/expression_builder/meta_value/list/meta_list_extra_actions.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import '../../../../editor_v2.dart';
@@ -36,19 +36,25 @@ class AccountMetaValueBuilderWidget extends CubitWidget<
             ),
           ),
           const SizedBox(width: 8),
-          ExpressionBuilderWidget(
-            builder: builder.isWritable,
-            metaValueInfo: const MetaValueInfo(
-              isMultiple: false,
-              metaType: BoolMetaValueBuilder,
+          Tooltip(
+            message: "Is writable",
+            child: ExpressionBuilderWidget(
+              builder: builder.isWritable,
+              metaValueView: const MetaValueElementView(
+                title: "W",
+                metaType: BoolMetaValueBuilder,
+              ),
             ),
           ),
           const SizedBox(width: 8),
-          ExpressionBuilderWidget(
-            builder: builder.isSigner,
-            metaValueInfo: const MetaValueInfo(
-              isMultiple: false,
-              metaType: BoolMetaValueBuilder,
+          Tooltip(
+            message: "Is signer",
+            child: ExpressionBuilderWidget(
+              builder: builder.isSigner,
+              metaValueView: const MetaValueElementView(
+                title: "S",
+                metaType: BoolMetaValueBuilder,
+              ),
             ),
           ),
           const SizedBox(width: 8),

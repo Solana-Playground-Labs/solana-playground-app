@@ -26,29 +26,33 @@ final Map<Type, _MappingBuilder> _mapping = {
       HexValueBuilderWidget(builder: builder),
   StringByteValueBuilder: (context, builder, focus) =>
       StringByteValueBuilderWidget(builder: builder),
+  ConditionalValueBuilder: (context, builder, focus) =>
+      ConditionalValueBuilderWidget(builder: builder),
 };
 
 class ExpressionBuilderWidget
     extends CubitWidget<ExpressionBuilderCubit, ExpressionBuilderState> {
   final ExpressionBuilder builder;
-  final MetaValueInfo? metaValueInfo;
+  final MetaValueView? metaValueView;
   final String? label;
-  final bool focusable;
+  final bool changeable;
+  final bool isInline;
 
   ExpressionBuilderWidget({
     Key? key,
     this.label,
     required this.builder,
-    this.metaValueInfo,
-    this.focusable = true,
+    this.metaValueView,
+    this.changeable = true,
+    this.isInline = true,
   }) : super(key: Key(builder.id));
 
   @override
   Widget content(BuildContext context, ExpressionBuilderState state) {
-    if (metaValueInfo != null) {
+    if (metaValueView != null) {
       return MetaValueBuilderWidget(
         builder: builder.valueBuilder as JsonValueBuilder,
-        info: metaValueInfo!,
+        view: metaValueView!,
       );
     } else {
       final Widget child = _mapping[state.valueBuilder.runtimeType]?.call(
@@ -63,14 +67,16 @@ class ExpressionBuilderWidget
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SPLabel(
-            style: SPLabelStyle.purple,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-              child: Text(builder.valueBuilder.name),
+          if (isInline && changeable) ...[
+            SPLabel(
+              style: SPLabelStyle.purple,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+                child: Text(builder.valueBuilder.name),
+              ),
             ),
-          ),
-          const SizedBox(width: 4),
+            const SizedBox(width: 4),
+          ],
           Flexible(child: child),
         ],
       );

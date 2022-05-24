@@ -12,6 +12,8 @@ class BinaryValueBuilder extends ValueBuilder {
   BinaryValueBuilder({required List<ExpressionBuilder> data})
       : _data = ListBuilder(data);
 
+  String get name => "Binary";
+
   ListBuilder<ExpressionBuilder> get data => _data;
 
   void update(void Function(List<ExpressionBuilder>) callback) {
@@ -47,6 +49,8 @@ class ByteValueBuilder extends ValueBuilder {
     );
   }
 
+  String get name => "Byte";
+
   ExpressionBuilder get expression => _expression;
 
   set expression(ExpressionBuilder value) {
@@ -79,6 +83,8 @@ class HexValueBuilder extends ValueBuilder {
     required ExpressionBuilder expression,
   })  : _expression = expression;
 
+  String get name => "Hex";
+
   ExpressionBuilder get expression => _expression;
 
   set expression(ExpressionBuilder value) {
@@ -106,6 +112,8 @@ class StringByteValueBuilder extends ValueBuilder {
     required int base,
   })  : _expression = expression,
         _base = base;
+
+  String get name => "String";
 
   ExpressionBuilder get expression => _expression;
 

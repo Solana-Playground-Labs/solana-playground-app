@@ -19,13 +19,10 @@ class BinaryValueBuilderWidget
 
   @override
   Widget content(BuildContext context, BinaryValueBuilderState state) {
-    return SPCard(
-      level: 2,
-      child: ListValueBuilderWidget(
-        onCreate: () =>
-            ExpressionBuilder(valueBuilder: ByteValueBuilder.empty()),
-        builder: builder.data,
-      ),
+    return ListValueBuilderWidget(
+      onCreate: () =>
+          ExpressionBuilder(valueBuilder: ByteValueBuilder.empty()),
+      builder: builder.data,
     );
   }
 

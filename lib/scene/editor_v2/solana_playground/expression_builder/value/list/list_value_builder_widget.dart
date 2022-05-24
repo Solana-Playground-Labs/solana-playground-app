@@ -43,17 +43,19 @@ class ListValueBuilderWidget
           ...state.expressions.map((expressionBuilder) {
             return _content(expressionBuilder);
           }).toList(),
-          SPIconButton(
-            onPressed: () {
-              final expressionBuilder = onCreate?.call();
-              if (expressionBuilder != null) {
-                builder.add(expressionBuilder);
-              } else {
-                builder.add(ExpressionBuilder.withConstantValue());
-              }
-            },
-            icon: const Icon(Icons.add),
-            tooltip: "Add",
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 8),
+            child: InsertRow(
+              onPressed: () {
+                final expressionBuilder = onCreate?.call();
+                if (expressionBuilder != null) {
+                  builder.add(expressionBuilder);
+                } else {
+                  builder.add(ExpressionBuilder.withConstantValue());
+                }
+              },
+              title: "Insert",
+            ),
           ),
         ],
       ),
@@ -84,7 +86,7 @@ class ListValueBuilderWidget
                       child: IntrinsicWidth(
                         child: ExpressionBuilderWidget(
                           builder: expressionBuilder,
-                          focusable: false,
+                          changeable: false,
                         ),
                       ),
                     )

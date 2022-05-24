@@ -12,7 +12,7 @@ class JsonValueBuilder extends ValueBuilder {
   dynamic get data => _data;
 
   set data(dynamic value) {
-    _data = data;
+    _data = value;
     notifyListeners();
   }
 

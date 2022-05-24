@@ -5,3 +5,4 @@ export 'abstract_expression.dart';
 export 'unknown_value.dart';
 export 'value.dart';
 export 'binary_value.dart';
+export 'conditional_value.dart';

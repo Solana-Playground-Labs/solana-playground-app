@@ -3,7 +3,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:solana_playground_app/scene/editor_v2/solana_playground/expression_builder/meta_value/bool/bool_meta_value_widget.dart';
 import 'package:solana_playground_language/lib.dart';
 
 import '../../../editor_v2.dart';
@@ -15,10 +14,14 @@ abstract class MetaValueView {
 class MetaValueListView extends MetaValueView {
   final bool isInline;
   final String? title;
+  final String addText;
+  final MetaValueView child;
 
   const MetaValueListView({
-    required this.isInline,
+    this.isInline = false,
     this.title,
+    this.addText = "Insert",
+    required this.child,
   });
 }
 
@@ -26,51 +29,34 @@ class MetaValueElementView extends MetaValueView {
   final String? title;
   final Type metaType;
 
-  MetaValueElementView({this.title, required this.metaType});
-}
-
-class MetaValueInfo {
-  final bool isInline;
-  final bool isMultiple;
-
-  final Type metaType;
-
-  final String? title;
-
-  const MetaValueInfo({
-    this.isInline = false,
-    required this.isMultiple,
-    required this.metaType,
-    this.title,
-  });
+  const MetaValueElementView({this.title, required this.metaType});
 }
 
 class MetaValueBuilderWidget extends StatelessWidget {
   final int? index;
   final JsonValueBuilder builder;
-  final MetaValueInfo info;
+  final MetaValueView view;
 
   const MetaValueBuilderWidget({
     Key? key,
     required this.builder,
-    required this.info,
+    required this.view,
     this.index,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    if (info.isMultiple) {
+    final view = this.view;
+    if (view is MetaValueListView) {
       return ListMetaValueBuilderWidget(
-        title: info.title,
-        isInline: info.isInline,
+        title: view.title,
+        addText: view.addText,
+        isInline: view.isInline,
         builder: ListMetaValueBuilder(builder: builder),
         widgetBuilder: (context, data, index) => MetaValueBuilderWidget(
           index: index + 1,
           builder: JsonValueBuilder(data: data),
-          info: MetaValueInfo(
-            isMultiple: false,
-            metaType: info.metaType,
-          ),
+          view: view.child,
         ),
         onAdd: () {
           builder.update((data) {
@@ -80,30 +66,37 @@ class MetaValueBuilderWidget extends StatelessWidget {
       );
     }
 
-    switch (info.metaType) {
-      case AccountMetaValueBuilder:
-        return AccountMetaValueBuilderWidget(
-          builder: AccountMetaValueBuilder(builder: builder),
-        );
-      case SignaturePubkeyParsMetaValueBuilder:
-        return SignaturePubkeyPairMetaValueBuilderWidget(
-          builder: SignaturePubkeyParsMetaValueBuilder.fromJsonValue(builder),
-        );
-      case TransactionInstructionMetaValueBuilder:
-        return TransactionInstructionMetaValueBuilderWidget(
-          index: index,
-          builder: TransactionInstructionMetaValueBuilder(builder: builder),
-        );
-      case SignerMetaValueBuilder:
-        return SignerMetaValueBuilderWidget(
-          builder: SignerMetaValueBuilder(builder: builder),
-        );
-      case BoolMetaValueBuilder:
-        return BoolMetaValueWidget(
-          builder: BoolMetaValueBuilder(builder: builder),
-        );
-      default:
-        return const Text("Unknown meta data");
+    if (view is MetaValueElementView) {
+      switch (view.metaType) {
+        case AccountMetaValueBuilder:
+          return AccountMetaValueBuilderWidget(
+            builder: AccountMetaValueBuilder(builder: builder),
+          );
+        case SignaturePubkeyParsMetaValueBuilder:
+          return SignaturePubkeyPairMetaValueBuilderWidget(
+            builder: SignaturePubkeyParsMetaValueBuilder.fromJsonValue(builder),
+          );
+        case TransactionInstructionMetaValueBuilder:
+          return TransactionInstructionMetaValueBuilderWidget(
+            index: index,
+            builder: TransactionInstructionMetaValueBuilder(builder: builder),
+          );
+        case SignerMetaValueBuilder:
+          return SignerMetaValueBuilderWidget(
+            builder: SignerMetaValueBuilder(builder: builder),
+          );
+        case BoolMetaValueBuilder:
+          return BoolMetaValueWidget(
+            title: view.title,
+            builder: BoolMetaValueBuilder(
+              builder: builder,
+            ),
+          );
+        default:
+          return const Text("Unknown meta data");
+      }
     }
+
+    return const Text("Unknown meta data");
   }
 }

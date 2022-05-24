@@ -14,13 +14,9 @@ class ComponentHeader extends StatelessWidget {
   final Widget? content;
   final Widget? trailing;
 
-  const ComponentHeader({
-    Key? key,
-    this.icon,
-    required this.name,
-    this.content,
-    this.trailing
-  }) : super(key: key);
+  const ComponentHeader(
+      {Key? key, this.icon, required this.name, this.content, this.trailing})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +46,7 @@ class ComponentHeader extends StatelessWidget {
           const Divider(height: 1),
           if (content != null)
             Padding(
-              padding: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: content,
             )
         ],

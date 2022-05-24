@@ -5,12 +5,12 @@
 import 'package:flutter/material.dart';
 
 class Component extends StatelessWidget {
-  final Widget header;
+  final Widget? header;
   final List<Widget> body;
 
   const Component({
     Key? key,
-    required this.header,
+    this.header,
     this.body = const [],
   }) : super(key: key);
 
@@ -19,16 +19,22 @@ class Component extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        header,
+        if (header != null) header!,
         if (body.isNotEmpty)
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
+            padding: EdgeInsets.symmetric(horizontal: header != null ? 40 : 0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: body
+                  .asMap()
+                  .entries
                   .map(
-                    (e) => [const ComponentConnectionWidget(), e],
+                    (e) => [
+                      if (!(e.key == 0 && header == null))
+                        const ComponentConnectionWidget(),
+                      e.value
+                    ],
                   )
                   .reduce((v, e) => [...v, ...e])
                   .toList(),

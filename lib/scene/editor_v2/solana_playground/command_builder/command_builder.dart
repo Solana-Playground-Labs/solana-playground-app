@@ -12,3 +12,4 @@ export 'block_command_builder_widget.dart';
 export 'create_transaction_command/create_transaction_command.dart';
 export 'get_recent_block_hash/get_recent_block_hash.dart';
 export 'send_transaction/send_transaction.dart';
+export 'submit_simple_transaction/submit_simple_transaction.dart';

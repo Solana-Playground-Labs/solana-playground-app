@@ -17,19 +17,28 @@ class BoolMetaValueWidget
   final String? title;
 
   BoolMetaValueWidget({Key? key, required this.builder, this.title})
-      : super(key: Key(builder.id));
+      : super(key: Key(builder.builder.id));
 
   @override
   Widget content(BuildContext context, BoolMetaValueState state) {
     return Container(
+      clipBehavior: Clip.hardEdge,
       constraints: const BoxConstraints(minWidth: 26, minHeight: 26),
       decoration: BoxDecoration(
-        color: Colors.purple,
+        color: state.value ? Colors.purple : Colors.grey,
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Center(
-          child:
-              Text(title ?? "T", style: const TextStyle(color: Colors.white))),
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          onTap: () {
+            context.read<BoolMetaValueCubit>().toggle();
+          },
+          child: Center(
+              child:
+                  Text(title ?? "T", style: const TextStyle(color: Colors.white))),
+        ),
+      ),
     );
   }
 
