@@ -3,8 +3,10 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
+import 'package:solana_playground_app/theme/icons.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import '../list/list_value_builder_widget.dart';
@@ -20,6 +22,8 @@ class BinaryValueBuilderWidget
   @override
   Widget content(BuildContext context, BinaryValueBuilderState state) {
     return ListValueBuilderWidget(
+      title: "Data",
+      icon: SvgPicture.asset(SPIcons.binary),
       onCreate: () =>
           ExpressionBuilder(valueBuilder: ByteValueBuilder.empty()),
       builder: builder.data,

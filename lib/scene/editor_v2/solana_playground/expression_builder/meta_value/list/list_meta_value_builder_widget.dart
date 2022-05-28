@@ -35,8 +35,6 @@ class ListMetaValueBuilderWidget
 
   @override
   Widget content(BuildContext context, ListMetaValueBuilderState state) {
-    final theme = Theme.of(context);
-
     if (isInline) {
       return ComponentBody(
         icon: SvgPicture.asset(SPIcons.list),

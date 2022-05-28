@@ -36,6 +36,13 @@ class SubmitSimpleTransactionWidget extends CubitWidget<
             ),
           ),
         ),
+        ExpressionBuilderWidget(
+          builder: builder.signers,
+          metaValueView: const MetaValueListView(
+            addText: "Insert signer",
+            isInline: true,
+          ),
+        ),
       ],
     );
   }

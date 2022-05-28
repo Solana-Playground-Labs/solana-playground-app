@@ -18,6 +18,7 @@ import '../../expression_builder_widget.dart';
 class ListValueBuilderWidget
     extends CubitWidget<ListValueBuilderCubit, ListValueBuilderState> {
   final String? title;
+  final Widget? icon;
   final ExpressionBuilder Function()? onCreate;
   final ListBuilder<ExpressionBuilder> builder;
 
@@ -26,6 +27,7 @@ class ListValueBuilderWidget
     this.title,
     required this.builder,
     this.onCreate,
+    this.icon,
   }) : super(key: Key(builder.id));
 
   @override
@@ -35,7 +37,7 @@ class ListValueBuilderWidget
   @override
   Widget content(BuildContext context, ListValueBuilderState state) {
     return ComponentBody(
-      icon: SvgPicture.asset(SPIcons.list),
+      icon: icon ?? SvgPicture.asset(SPIcons.list),
       name: title ?? "List",
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -44,7 +46,7 @@ class ListValueBuilderWidget
             return _content(expressionBuilder);
           }).toList(),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             child: InsertRow(
               onPressed: () {
                 final expressionBuilder = onCreate?.call();
@@ -86,7 +88,6 @@ class ListValueBuilderWidget
                       child: IntrinsicWidth(
                         child: ExpressionBuilderWidget(
                           builder: expressionBuilder,
-                          changeable: false,
                         ),
                       ),
                     )

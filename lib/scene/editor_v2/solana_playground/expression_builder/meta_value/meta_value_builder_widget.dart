@@ -15,13 +15,13 @@ class MetaValueListView extends MetaValueView {
   final bool isInline;
   final String? title;
   final String addText;
-  final MetaValueView child;
+  final MetaValueView? child;
 
   const MetaValueListView({
     this.isInline = false,
     this.title,
     this.addText = "Insert",
-    required this.child,
+    this.child,
   });
 }
 
@@ -34,69 +34,77 @@ class MetaValueElementView extends MetaValueView {
 
 class MetaValueBuilderWidget extends StatelessWidget {
   final int? index;
-  final JsonValueBuilder builder;
-  final MetaValueView view;
+  final ExpressionBuilder builder;
+  final MetaValueView? view;
 
   const MetaValueBuilderWidget({
     Key? key,
     required this.builder,
-    required this.view,
+    this.view,
     this.index,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final view = this.view;
-    if (view is MetaValueListView) {
-      return ListMetaValueBuilderWidget(
-        title: view.title,
-        addText: view.addText,
-        isInline: view.isInline,
-        builder: ListMetaValueBuilder(builder: builder),
-        widgetBuilder: (context, data, index) => MetaValueBuilderWidget(
-          index: index + 1,
-          builder: JsonValueBuilder(data: data),
-          view: view.child,
-        ),
-        onAdd: () {
-          builder.update((data) {
-            builder.data.add({});
-          });
-        },
-      );
-    }
+    final valueBuilder = builder.valueBuilder;
 
-    if (view is MetaValueElementView) {
-      switch (view.metaType) {
-        case AccountMetaValueBuilder:
-          return AccountMetaValueBuilderWidget(
-            builder: AccountMetaValueBuilder(builder: builder),
-          );
-        case SignaturePubkeyParsMetaValueBuilder:
-          return SignaturePubkeyPairMetaValueBuilderWidget(
-            builder: SignaturePubkeyParsMetaValueBuilder.fromJsonValue(builder),
-          );
-        case TransactionInstructionMetaValueBuilder:
-          return TransactionInstructionMetaValueBuilderWidget(
-            index: index,
-            builder: TransactionInstructionMetaValueBuilder(builder: builder),
-          );
-        case SignerMetaValueBuilder:
-          return SignerMetaValueBuilderWidget(
-            builder: SignerMetaValueBuilder(builder: builder),
-          );
-        case BoolMetaValueBuilder:
-          return BoolMetaValueWidget(
-            title: view.title,
-            builder: BoolMetaValueBuilder(
-              builder: builder,
-            ),
-          );
-        default:
-          return const Text("Unknown meta data");
+    if (valueBuilder is JsonValueBuilder) {
+      if (view is MetaValueListView) {
+        return ListMetaValueBuilderWidget(
+          title: view.title,
+          addText: view.addText,
+          isInline: view.isInline,
+          builder: ListMetaValueBuilder(builder: valueBuilder),
+          widgetBuilder: (context, data, index) => MetaValueBuilderWidget(
+            index: index + 1,
+            builder: data,
+            view: view.child,
+          ),
+          onAdd: () {
+            valueBuilder.update((data) {
+              if (view.child == null) {
+                valueBuilder.data.add(ExpressionBuilder.withVariable());
+              } else {
+                valueBuilder.data.add(ExpressionBuilder.withJson(data: {}));
+              }
+            });
+          },
+        );
+      }
+
+      if (view is MetaValueElementView) {
+        switch (view.metaType) {
+          case AccountMetaValueBuilder:
+            return AccountMetaValueBuilderWidget(
+              builder: AccountMetaValueBuilder(builder: valueBuilder),
+            );
+          case TransactionInstructionMetaValueBuilder:
+            return TransactionInstructionMetaValueBuilderWidget(
+              index: index,
+              builder:
+                  TransactionInstructionMetaValueBuilder(builder: valueBuilder),
+            );
+          case SignerMetaValueBuilder:
+            return SignerMetaValueBuilderWidget(
+              builder: SignerMetaValueBuilder(builder: valueBuilder),
+            );
+          case BoolMetaValueBuilder:
+            return BoolMetaValueWidget(
+              title: view.title,
+              builder: BoolMetaValueBuilder(
+                builder: valueBuilder,
+              ),
+            );
+          default:
+            return const Text("Unknown meta data");
+        }
       }
     }
 
-    return const Text("Unknown meta data");
+    return ListElementInlineAction(
+      builder: builder,
+      content: ExpressionBuilderWidget(builder: builder),
+    );
   }
 }

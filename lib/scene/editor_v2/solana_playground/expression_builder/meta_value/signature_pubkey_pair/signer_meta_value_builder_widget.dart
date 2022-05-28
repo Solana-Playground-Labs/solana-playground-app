@@ -3,8 +3,10 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
+import 'package:solana_playground_app/theme/icons.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import '../../../../editor_v2.dart';
@@ -20,8 +22,11 @@ class SignerMetaValueBuilderWidget extends CubitWidget<
   @override
   Widget content(BuildContext context, SignerMetaValueBuilderState state) {
     final theme = Theme.of(context);
-    return SPCard(
-      child: Column(
+    return ComponentHeader(
+      icon: SvgPicture.asset(SPIcons.signature),
+      trailing: MetaListExtraActions(builder: builder.builder.data),
+      name: "Signer",
+      content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(

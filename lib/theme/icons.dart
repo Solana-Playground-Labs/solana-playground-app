@@ -10,4 +10,8 @@ class SPIcons {
   static String get list => "assets/icon/list.svg";
 
   static String get submitTransaction => "assets/icon/submit-transaction.svg";
+
+  static String get signature => "assets/icon/signature.svg";
+
+  static String get binary=> "assets/icon/binary.svg";
 }

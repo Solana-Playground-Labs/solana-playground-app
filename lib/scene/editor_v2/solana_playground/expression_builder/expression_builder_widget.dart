@@ -51,7 +51,7 @@ class ExpressionBuilderWidget
   Widget content(BuildContext context, ExpressionBuilderState state) {
     if (metaValueView != null) {
       return MetaValueBuilderWidget(
-        builder: builder.valueBuilder as JsonValueBuilder,
+        builder: builder,
         view: metaValueView!,
       );
     } else {

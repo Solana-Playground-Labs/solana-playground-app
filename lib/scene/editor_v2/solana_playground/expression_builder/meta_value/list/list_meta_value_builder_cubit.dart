@@ -21,17 +21,37 @@ class ListMetaValueBuilderCubit extends Cubit<ListMetaValueBuilderState> {
   }
 
   void moveUp(dynamic object) {
-    final index = state.builders.indexOf(object);
-    if (index >= 0) builder.moveTo(object, index - 1);
+    if (object is JsonValueBuilder) {
+      final index = builder.data.indexWhere((element) =>
+          element is ExpressionBuilder && element.valueBuilder == object);
+      final expression = builder.data[index];
+      if (index >= 0) builder.moveTo(expression, index - 1);
+    } else {
+      final index = state.builders.indexOf(object);
+      if (index >= 0) builder.moveTo(object, index - 1);
+    }
   }
 
   void moveDown(dynamic object) {
-    final index = state.builders.indexOf(object);
-    if (index >= 0) builder.moveTo(object, index + 1);
+    if (object is JsonValueBuilder) {
+      final index = builder.data.indexWhere((element) =>
+          element is ExpressionBuilder && element.valueBuilder == object);
+      final expression = builder.data[index];
+      if (index >= 0) builder.moveTo(expression, index + 1);
+    } else {
+      final index = state.builders.indexOf(object);
+      if (index >= 0) builder.moveTo(object, index + 1);
+    }
   }
 
   void remove(object) {
-    builder.remove(object);
+    if (object is JsonValueBuilder) {
+      final expression = builder.data.firstWhere((element) =>
+          element is ExpressionBuilder && element.valueBuilder == object);
+      builder.remove(expression);
+    } else {
+      builder.remove(object);
+    }
   }
 
   @override
@@ -39,5 +59,4 @@ class ListMetaValueBuilderCubit extends Cubit<ListMetaValueBuilderState> {
     builder.removeListener(listener);
     return super.close();
   }
-
 }

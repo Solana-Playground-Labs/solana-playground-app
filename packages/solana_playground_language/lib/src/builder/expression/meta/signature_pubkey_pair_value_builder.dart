@@ -4,6 +4,7 @@
 
 import 'package:solana_playground_language/solana_playground_language.dart';
 
+@Deprecated("Will be removed")
 class SignaturePubkeyParsMetaValueBuilder extends MetaValueBuilder {
   ExpressionBuilder publicKey;
   ExpressionBuilder signature;

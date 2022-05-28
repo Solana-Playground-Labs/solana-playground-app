@@ -29,7 +29,7 @@ class ExpressionBuilder extends Builder {
     );
   }
 
-  factory ExpressionBuilder.withJson({dynamic data = const {}}) {
+  factory ExpressionBuilder.withJson({required dynamic data}) {
     return ExpressionBuilder(valueBuilder: JsonValueBuilder(data: data));
   }
 

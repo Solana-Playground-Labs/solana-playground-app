@@ -31,7 +31,7 @@ class TransactionInstructionMetaValueBuilderWidget extends CubitWidget<
       header: ComponentHeader(
         name: index == null ? "Transaction" : "Transaction #$index",
         trailing: MetaListExtraActions(
-          builder: builder.builder.data,
+          builder: builder.builder,
           actions: (_) {
             return [
               ListAction(
@@ -106,7 +106,7 @@ class TransactionInstructionMetaValueBuilderWidget extends CubitWidget<
         ExpressionBuilderWidget(
           isInline: false,
           builder: builder.data,
-        )
+        ),
       ],
     );
   }

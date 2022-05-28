@@ -3,7 +3,6 @@
  */
 
 import 'package:solana_playground_language/lib.dart';
-import 'package:solana_playground_language/src/core/command/submit_simple_transaction.dart';
 
 class SubmitSimpleTransactionBuilder extends CommandBuilder {
   ExpressionBuilder instructions;

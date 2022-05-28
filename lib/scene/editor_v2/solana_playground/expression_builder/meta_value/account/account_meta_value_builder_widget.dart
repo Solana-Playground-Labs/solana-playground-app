@@ -20,6 +20,10 @@ class AccountMetaValueBuilderWidget extends CubitWidget<
       : super(key: Key(builder.id));
 
   @override
+  AccountMetaValueBuilderCubit cubit(BuildContext context) =>
+      AccountMetaValueBuilderCubit(builder);
+
+  @override
   Widget content(BuildContext context, AccountMetaValueBuilderState state) {
     final theme = Theme.of(context);
 
@@ -62,8 +66,4 @@ class AccountMetaValueBuilderWidget extends CubitWidget<
       ),
     );
   }
-
-  @override
-  AccountMetaValueBuilderCubit cubit(BuildContext context) =>
-      AccountMetaValueBuilderCubit(builder);
 }
