@@ -8,16 +8,16 @@ import 'package:solana_playground_language/src/core/command/abstract_command.dar
 import 'package:solana_playground_language/src/core/expression/abstract_expression.dart';
 
 class PrintCommand extends Command {
-  final List<Expression> expressions;
+  final Expression expression;
 
-  const PrintCommand({required this.expressions});
+  const PrintCommand({required this.expression});
 
   @override
-  List<Object> get props => [expressions];
+  List<Object> get props => [expression];
 
   factory PrintCommand.fromJson(Map<String, dynamic> json) {
     return PrintCommand(
-      expressions: json['expressions'].map((data) => Expression.fromJson(data)),
+      expression: json['expressions'].map((data) => Expression.fromJson(data)),
     );
   }
 
@@ -25,14 +25,12 @@ class PrintCommand extends Command {
   Map<String, dynamic> toJson() {
     return {
       'type': classType,
-      'expression': expressions.map((e) => e.toJson()),
+      'expression': expression.toJson(),
     };
   }
 
   @override
   PrintCommandBuilder asBuilder() {
-    return PrintCommandBuilder(
-      expressions: ListBuilder(expressions.map((e) => e.asBuilder()).toList()),
-    );
+    return PrintCommandBuilder(expression: expression.asBuilder());
   }
 }

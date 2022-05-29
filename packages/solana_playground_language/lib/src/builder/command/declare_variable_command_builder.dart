@@ -2,8 +2,7 @@
  *  Solana Playground  Copyright (C) 2022  Tran Giang Long
  */
 
-import 'package:solana_playground_language/src/builder/core_builder.dart';
-import 'package:solana_playground_language/src/core/command/declare_variable_command.dart';
+import 'package:solana_playground_language/solana_playground_language.dart';
 
 class DeclareVariableCommandBuilder extends CommandBuilder {
   String _variable;

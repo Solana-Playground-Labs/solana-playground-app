@@ -19,14 +19,15 @@ class ListValueBuilderWidget
     extends CubitWidget<ListValueBuilderCubit, ListValueBuilderState> {
   final String? title;
   final Widget? icon;
-  final ExpressionBuilder Function()? onCreate;
-  final ListBuilder<ExpressionBuilder> builder;
+
+  final ExpressionMetaData metaData;
+  final ListValueBuilder builder;
 
   ListValueBuilderWidget({
     Key? key,
     this.title,
     required this.builder,
-    this.onCreate,
+    this.metaData = const ExpressionMetaDataNode(),
     this.icon,
   }) : super(key: Key(builder.id));
 
@@ -49,12 +50,7 @@ class ListValueBuilderWidget
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             child: InsertRow(
               onPressed: () {
-                final expressionBuilder = onCreate?.call();
-                if (expressionBuilder != null) {
-                  builder.add(expressionBuilder);
-                } else {
-                  builder.add(ExpressionBuilder.withConstantValue());
-                }
+                builder.add(ExpressionBuilder.withConstantValue());
               },
               title: "Insert",
             ),

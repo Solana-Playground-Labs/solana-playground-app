@@ -55,8 +55,6 @@ class SPRuntime {
       await executePrintCommand(this, command);
     } else if (command is GetRecentBlockHashCommand) {
       await executeGetRecentBlockHashCommand(this, command);
-    } else if (command is CreateTransactionCommand) {
-      await executeCreateTransactionCommand(this, command);
     } else if (command is ImportWalletCommand) {
       await executeImportWalletCommand(this, command);
     } else if (command is SendTransactionCommand) {
@@ -76,8 +74,6 @@ class SPRuntime {
       return calculateVariableValue(this, value);
     } else if (value is BinaryValue) {
       return calculateBinaryValue(this, value);
-    } else if (value is JsonValue) {
-      return calculateJsonValue(this, value);
     } else if (value is ByteValue) {
       return calculateByteValue(this, value);
     } else if (value is HexValue) {

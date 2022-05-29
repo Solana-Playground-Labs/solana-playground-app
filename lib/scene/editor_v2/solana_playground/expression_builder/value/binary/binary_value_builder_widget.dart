@@ -3,34 +3,17 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:solana_playground_app/common/card.dart';
-import 'package:solana_playground_app/library/cubit_widget.dart';
-import 'package:solana_playground_app/theme/icons.dart';
+import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
-import '../list/list_value_builder_widget.dart';
-import 'binary_value_builder_cubit.dart';
-
-class BinaryValueBuilderWidget
-    extends CubitWidget<BinaryValueBuilderCubit, BinaryValueBuilderState> {
+class BinaryValueBuilderWidget extends StatelessWidget {
   final BinaryValueBuilder builder;
 
   BinaryValueBuilderWidget({Key? key, required this.builder})
       : super(key: Key(builder.id));
 
   @override
-  Widget content(BuildContext context, BinaryValueBuilderState state) {
-    return ListValueBuilderWidget(
-      title: "Data",
-      icon: SvgPicture.asset(SPIcons.binary),
-      onCreate: () =>
-          ExpressionBuilder(valueBuilder: ByteValueBuilder.empty()),
-      builder: builder.data,
-    );
+  Widget build(BuildContext context) {
+    return ExpressionBuilderWidget(builder: builder.data);
   }
-
-  @override
-  BinaryValueBuilderCubit cubit(BuildContext context) =>
-      BinaryValueBuilderCubit(builder);
 }

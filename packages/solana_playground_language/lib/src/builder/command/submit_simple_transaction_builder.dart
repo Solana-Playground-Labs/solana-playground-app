@@ -15,8 +15,10 @@ class SubmitSimpleTransactionBuilder extends CommandBuilder {
 
   factory SubmitSimpleTransactionBuilder.empty() {
     return SubmitSimpleTransactionBuilder(
-      instructions: ExpressionBuilder(valueBuilder: JsonValueBuilder(data: [])),
-      signers: ExpressionBuilder(valueBuilder: JsonValueBuilder(data: [])),
+      instructions:
+          ExpressionBuilder(valueBuilder: ListValueBuilder(expressions: [])),
+      signers:
+          ExpressionBuilder(valueBuilder: ListValueBuilder(expressions: [])),
     );
   }
 

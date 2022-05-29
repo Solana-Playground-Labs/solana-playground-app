@@ -29,19 +29,9 @@ class SubmitSimpleTransactionWidget extends CubitWidget<
       body: [
         ExpressionBuilderWidget(
           builder: builder.instructions,
-          metaValueView: const MetaValueListView(
-            addText: "Add instruction",
-            child: MetaValueElementView(
-              metaType: TransactionInstructionMetaValueBuilder,
-            ),
-          ),
         ),
         ExpressionBuilderWidget(
           builder: builder.signers,
-          metaValueView: const MetaValueListView(
-            addText: "Insert signer",
-            isInline: true,
-          ),
         ),
       ],
     );

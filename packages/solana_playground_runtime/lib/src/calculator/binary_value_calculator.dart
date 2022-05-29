@@ -17,14 +17,14 @@ Future<dynamic> calculateBinaryValue(
   BinaryValue binaryValue,
 ) async {
   final List<Uint8List> results = [];
-  for (final expression in binaryValue.data) {
-    final r = await runtime.calculate(expression);
-    if (r is! Uint8List) {
-      throw Exception("Expected 'Uint8List', but receive '${r.runtimeType}'");
-    }
-
-    results.add(r);
-  }
+  // for (final expression in binaryValue.data) {
+  //   final r = await runtime.calculate(expression);
+  //   if (r is! Uint8List) {
+  //     throw Exception("Expected 'Uint8List', but receive '${r.runtimeType}'");
+  //   }
+  //
+  //   results.add(r);
+  // }
 
   final data = results.expand((element) => element).toList();
   return Uint8List.fromList(data);

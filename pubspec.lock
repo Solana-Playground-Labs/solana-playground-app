@@ -84,7 +84,7 @@ packages:
       name: build
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.1"
+    version: "2.3.0"
   build_config:
     dependency: transitive
     description:
@@ -630,6 +630,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  solana_playground_language_generator:
+    dependency: transitive
+    description:
+      path: "packages/solana_playground_language/packages/solana_playground_language_generator"
+      relative: true
+    source: path
+    version: "1.0.0"
   solana_playground_runtime:
     dependency: "direct main"
     description:
@@ -820,5 +827,5 @@ packages:
     source: hosted
     version: "3.1.0"
 sdks:
-  dart: ">=2.17.0 <2.18.0"
+  dart: ">=2.17.1 <2.18.0"
   flutter: ">=2.10.0"

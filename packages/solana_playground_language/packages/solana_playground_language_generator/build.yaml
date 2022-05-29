@@ -1,0 +1,7 @@
+builders:
+  value_builder:
+    import: "package:solana_playground_language_generator/builder.dart"
+    builder_factories: [ "valueBuilder" ]
+    build_extensions: { ".dart": [ ".builder.dart" ] }
+    auto_apply: dependents
+    build_to: source

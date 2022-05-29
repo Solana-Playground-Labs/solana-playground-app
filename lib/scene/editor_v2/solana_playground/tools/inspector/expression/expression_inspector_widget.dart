@@ -74,10 +74,16 @@ class ExpressionInspectorWidget
                       builder.valueBuilder = VariableValueBuilder(variable: "");
                       break;
                     case BinaryValueBuilder:
-                      builder.valueBuilder = BinaryValueBuilder(data: []);
+                      builder.valueBuilder = BinaryValueBuilder(
+                        data: ExpressionBuilder(
+                          valueBuilder: ListValueBuilder(expressions: []),
+                        ),
+                      );
                       break;
                     case ByteValueBuilder:
-                      builder.valueBuilder = ByteValueBuilder.empty();
+                      builder.valueBuilder = ByteValueBuilder(
+                          expression: ExpressionBuilder.withConstantValue(),
+                          length: 1);
                       break;
                     case HexValueBuilder:
                       builder.valueBuilder = HexValueBuilder(

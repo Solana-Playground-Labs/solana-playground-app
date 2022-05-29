@@ -17,8 +17,6 @@ abstract class Command extends Equatable with ObjectType {
       return BlockCommand.fromJson(type);
     } else if (type == (CommentCommand).toString()) {
       return CommentCommand.fromJson(json);
-    } else if (type == (CreateTransactionCommand).toString()) {
-      return CreateTransactionCommand.fromJson(json);
     } else if (type == (DeclareVariableCommand).toString()) {
       return DeclareVariableCommand.fromJson(json);
     } else if (type == (GetRecentBlockHashCommand).toString()) {

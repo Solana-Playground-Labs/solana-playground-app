@@ -2,14 +2,12 @@
  *  Solana Playground  Copyright (C) 2022  Tran Giang Long
  */
 
-import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:solana_playground_language/lib.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:collection';
 
 export 'command/command_builder.dart';
-export 'expression/expression_builder.dart';
 
 const _uuid = Uuid();
 
@@ -30,6 +28,7 @@ abstract class Builder extends Unique with ChangeNotifier {
   Builder clone();
 }
 
+@Deprecated("Will be removed")
 class ListBuilder<T> extends ListBase<T> with ChangeNotifier {
   final String id;
 

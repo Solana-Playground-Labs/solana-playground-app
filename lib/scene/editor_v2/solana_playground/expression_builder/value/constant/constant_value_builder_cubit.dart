@@ -19,8 +19,7 @@ class ConstantValueBuilderCubit extends Cubit<ConstantValueBuilderState> {
 
     inputController.text = builder.value.toString();
     inputController.addListener(() {
-      final value = inputController.text;
-      builder.value = value;
+      builder.value = inputController.text;
     });
   }
 

@@ -9,7 +9,7 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 part 'list_value_builder_state.dart';
 
 class ListValueBuilderCubit extends Cubit<ListValueBuilderState> {
-  final ListBuilder<ExpressionBuilder> builder;
+  final ListValueBuilder builder;
 
   ListValueBuilderCubit(this.builder)
       : super(ListValueBuilderState(expressions: List.of(builder))) {

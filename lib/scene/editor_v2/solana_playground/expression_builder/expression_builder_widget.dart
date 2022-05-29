@@ -28,59 +28,68 @@ final Map<Type, _MappingBuilder> _mapping = {
       StringByteValueBuilderWidget(builder: builder),
   ConditionalValueBuilder: (context, builder, focus) =>
       ConditionalValueBuilderWidget(builder: builder),
+  ListValueBuilder: (context, builder, focus) =>
+      ListValueBuilderWidget(builder: builder),
 };
 
 class ExpressionBuilderWidget
     extends CubitWidget<ExpressionBuilderCubit, ExpressionBuilderState> {
   final ExpressionBuilder builder;
-  final MetaValueView? metaValueView;
-  final String? label;
-  final bool changeable;
-  final bool isInline;
+  final ExpressionMetaData metaData;
+
+  final bool changeable = true;
+  final bool isInline = true;
 
   ExpressionBuilderWidget({
     Key? key,
-    this.label,
     required this.builder,
-    this.metaValueView,
-    this.changeable = true,
-    this.isInline = true,
+    this.metaData = const ExpressionMetaDataNode(),
   }) : super(key: Key(builder.id));
 
   @override
   Widget content(BuildContext context, ExpressionBuilderState state) {
-    if (metaValueView != null) {
-      return MetaValueBuilderWidget(
-        builder: builder,
-        view: metaValueView!,
-      );
-    } else {
-      final Widget child = _mapping[state.valueBuilder.runtimeType]?.call(
-              context,
-              state.valueBuilder,
-              context.read<ExpressionBuilderCubit>().focusNode) ??
-          const SPLabel(
-            style: SPLabelStyle.orange,
-            child: Text("Unknown"),
-          );
-
-      return Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (isInline && changeable) ...[
-            SPLabel(
-              style: SPLabelStyle.purple,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-                child: Text(builder.valueBuilder.name),
-              ),
-            ),
-            const SizedBox(width: 4),
-          ],
-          Flexible(child: child),
-        ],
-      );
+    if (metaData is ExpressionMetaDataList) {
+      return buildList(context, state);
     }
+    return buildValue(context, state);
+  }
+
+  Widget buildList(BuildContext context, ExpressionBuilderState state) {
+    return ListValueBuilderWidget(
+      builder: builder.valueBuilder as ListValueBuilder,
+    );
+  }
+
+  Widget buildValue(BuildContext context, ExpressionBuilderState state) {
+    final Widget child = _mapping[state.valueBuilder.runtimeType]?.call(
+            context,
+            state.valueBuilder,
+            context.read<ExpressionBuilderCubit>().focusNode) ??
+        const SPLabel(
+          style: SPLabelStyle.orange,
+          child: Text("Unknown"),
+        );
+
+    final metaData = this.metaData as ExpressionMetaDataNode;
+
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (metaData.inline &&
+            changeable &&
+            builder.valueBuilder is! ListValueBuilder) ...[
+          SPLabel(
+            style: SPLabelStyle.purple,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+              child: Text(builder.valueBuilder.name),
+            ),
+          ),
+          const SizedBox(width: 4),
+        ],
+        Flexible(child: child),
+      ],
+    );
   }
 
   @override

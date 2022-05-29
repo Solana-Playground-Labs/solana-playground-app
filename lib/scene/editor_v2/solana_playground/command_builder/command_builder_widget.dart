@@ -15,8 +15,6 @@ final Map<Type, _MappingBuilder> _mapping = {
       PrintCommandBuilderWidget(builder: builder),
   DeclareVariableCommandBuilder: (context, builder) =>
       DeclareVariableCommandBuilderWidget(builder: builder),
-  CreateTransactionCommandBuilder: (context, builder) =>
-      CreateTransactionCommandBuilderWidget(builder: builder),
   SendTransactionCommandBuilder: (context, builder) =>
       SendTransactionCommandBuilderWidget(builder: builder),
   WaitConfirmationCommandBuilder: (context, builder) =>

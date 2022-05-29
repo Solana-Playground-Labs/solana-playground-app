@@ -4,7 +4,6 @@
 
 import 'package:solana_playground_language/lib.dart';
 
-@Deprecated("Will be removed")
 class SendTransactionCommand extends Command {
   final Expression expression;
   final String variable;
