@@ -8,7 +8,14 @@ class ValueBuilderGenerator extends GeneratorForAnnotation<ValueBuildable> {
   @override
   dynamic generateForAnnotatedElement(
       Element element, ConstantReader annotation, BuildStep buildStep) {
-    final valueModelVisitor = ValueModelVisitor(className: element.name!);
+    final displayName = !annotation.read('displayName').isNull
+        ? annotation.read('displayName').stringValue
+        : element.name!.replaceAll("Value", "");
+
+    final valueModelVisitor = ValueModelVisitor(
+      className: element.name!,
+      displayName: displayName,
+    );
     element.visitChildren(valueModelVisitor);
 
     return _template(model: valueModelVisitor);
@@ -25,7 +32,7 @@ String _template({
     ${model.propertiesBuilder.asBuilder()}
     
     @override
-    String get name => "${model.className}";
+    String get name => "${model.displayName}";
   
     $classNameBuilder({${model.propertiesBuilder.asConstructorArgs()},}) ${model.propertiesBuilder.asConstructorInitArgs()};
   

@@ -18,7 +18,7 @@ class StringByteValueBuilder extends ValueBuilder {
   }
 
   @override
-  String get name => "StringByteValue";
+  String get name => "StringByte";
 
   StringByteValueBuilder({
     required this.expression,

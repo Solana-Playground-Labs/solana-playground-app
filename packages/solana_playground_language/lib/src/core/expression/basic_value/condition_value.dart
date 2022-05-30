@@ -5,7 +5,7 @@
 import 'package:solana_playground_language/solana_playground_language.dart';
 import 'package:solana_playground_language_generator/annotations.dart';
 
-part 'conditional_value.builder.dart';
+part 'condition_value.builder.dart';
 
 enum ComparisonOperator {
   equal,
@@ -17,7 +17,7 @@ enum ComparisonOperator {
 }
 
 @ValueBuildable()
-class ConditionalValue extends Value {
+class ConditionValue extends Value {
   @ValuePropertyBuildable()
   final Expression left;
 
@@ -27,7 +27,7 @@ class ConditionalValue extends Value {
   @ValuePropertyBuildable()
   final ComparisonOperator comparisonOperator;
 
-  const ConditionalValue({
+  const ConditionValue({
     required this.left,
     required this.right,
     required this.comparisonOperator,
@@ -36,12 +36,12 @@ class ConditionalValue extends Value {
   @override
   List<Object?> get props => [left, right, comparisonOperator];
 
-  factory ConditionalValue.fromJson(Map<String, dynamic> json) =>
-      _$ConditionalValueFromJson(json);
+  factory ConditionValue.fromJson(Map<String, dynamic> json) =>
+      _$ConditionValueFromJson(json);
 
   @override
-  ValueBuilder asBuilder() => _$ConditionalValueToBuilder(this);
+  ValueBuilder asBuilder() => _$ConditionValueToBuilder(this);
 
   @override
-  Map<String, dynamic> toJson() => _$ConditionalValueToJson(this);
+  Map<String, dynamic> toJson() => _$ConditionValueToJson(this);
 }

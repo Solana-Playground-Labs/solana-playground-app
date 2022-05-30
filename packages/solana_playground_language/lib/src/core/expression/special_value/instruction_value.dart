@@ -18,18 +18,14 @@ class InstructionValue extends Value {
   @ValuePropertyBuildable()
   final Expression data;
 
-  @ValuePropertyBuildable()
-  final Expression condition;
-
   const InstructionValue({
     required this.programId,
     required this.keys,
     required this.data,
-    required this.condition,
   });
 
   @override
-  List<Object> get props => [programId, keys, data, condition];
+  List<Object> get props => [programId, keys, data];
 
   @override
   ValueBuilder asBuilder() {

@@ -14,4 +14,8 @@ class SPIcons {
   static String get signature => "assets/icon/signature.svg";
 
   static String get binary=> "assets/icon/binary.svg";
+
+  static String get trueIcon=> "assets/icon/true.svg";
+
+  static String get falseIcon=> "assets/icon/false.svg";
 }

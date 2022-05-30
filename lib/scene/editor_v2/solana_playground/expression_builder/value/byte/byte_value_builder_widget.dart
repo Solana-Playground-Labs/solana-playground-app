@@ -28,7 +28,7 @@ class ByteValueBuilderWidget
       children: [
         IntrinsicWidth(
           child: SPLabel(
-            style: SPLabelStyle.purple,
+            style: SPLabelStyle.keppel,
             child: TextField(
               controller: context.read<ByteValueBuilderCubit>().lengthInput,
               style: Theme.of(context)

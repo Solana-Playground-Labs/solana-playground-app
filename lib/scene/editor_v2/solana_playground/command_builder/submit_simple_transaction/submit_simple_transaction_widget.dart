@@ -23,15 +23,23 @@ class SubmitSimpleTransactionWidget extends CubitWidget<
     return Component(
       header: ComponentHeader(
         icon: SvgPicture.asset(SPIcons.submitTransaction),
-        name: "Submit transaction",
+        name: "Make transaction",
         trailing: CommandBuilderAction(builder: builder),
       ),
       body: [
         ExpressionBuilderWidget(
           builder: builder.instructions,
-        ),
-        ExpressionBuilderWidget(
-          builder: builder.signers,
+          metaData: ExpressionMetaDataList(
+              onInsert: () {
+                return ExpressionBuilder(
+                    valueBuilder: InstructionValueBuilder(
+                      programId: ExpressionBuilder.withConstantValue(),
+                      keys: ExpressionBuilder.withList(),
+                      data: ExpressionBuilder.withBinaryValue(),
+                    ),
+                  );
+              },
+              child: const ExpressionMetaDataNode()),
         ),
       ],
     );

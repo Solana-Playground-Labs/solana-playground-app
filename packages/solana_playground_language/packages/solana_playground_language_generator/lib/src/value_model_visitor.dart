@@ -5,11 +5,13 @@ import 'package:source_gen/source_gen.dart';
 
 class ValueModelVisitor extends SimpleElementVisitor {
   final String className;
+  final String displayName;
 
   List<FieldElement> propertiesBuilder = [];
 
   ValueModelVisitor({
     required this.className,
+    required this.displayName,
   });
 
   @override

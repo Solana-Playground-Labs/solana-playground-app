@@ -14,6 +14,19 @@ class BinaryValueBuilderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ExpressionBuilderWidget(builder: builder.data);
+    return ExpressionBuilderWidget(
+      builder: builder.data,
+      metaData: ExpressionMetaDataList(
+          title: "Data",
+          singleBox: true,
+          onInsert: () {
+            return ExpressionBuilder(
+              valueBuilder: ByteValueBuilder(
+                expression: ExpressionBuilder.withConstantValue(),
+                length: 1,
+              ),
+            );
+          }),
+    );
   }
 }

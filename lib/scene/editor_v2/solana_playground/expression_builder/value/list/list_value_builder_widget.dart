@@ -20,14 +20,14 @@ class ListValueBuilderWidget
   final String? title;
   final Widget? icon;
 
-  final ExpressionMetaData metaData;
+  final ExpressionMetaDataList? metaData;
   final ListValueBuilder builder;
 
   ListValueBuilderWidget({
     Key? key,
     this.title,
     required this.builder,
-    this.metaData = const ExpressionMetaDataNode(),
+    this.metaData,
     this.icon,
   }) : super(key: Key(builder.id));
 
@@ -37,20 +37,54 @@ class ListValueBuilderWidget
 
   @override
   Widget content(BuildContext context, ListValueBuilderState state) {
+    if (metaData?.singleBox ?? true) {
+      return _InlineListBuilderWidget(
+        builder: builder,
+        state: state,
+        metaData: metaData,
+      );
+    }
+
+    return _FullListBuilderWidget(
+      builder: builder,
+      state: state,
+      metaData: metaData,
+    );
+  }
+}
+
+class _InlineListBuilderWidget extends StatelessWidget {
+  final ExpressionMetaDataList? metaData;
+  final ListValueBuilder builder;
+  final ListValueBuilderState state;
+
+  const _InlineListBuilderWidget({
+    Key? key,
+    this.metaData,
+    required this.builder,
+    required this.state,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return ComponentBody(
-      icon: icon ?? SvgPicture.asset(SPIcons.list),
-      name: title ?? "List",
+      icon: SvgPicture.asset(SPIcons.list),
+      name: metaData?.title ?? "List",
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          ...state.expressions.map((expressionBuilder) {
-            return _content(expressionBuilder);
+          ...state.expressions.asMap().entries.map((entry) {
+            return _content(entry.key, entry.value);
           }).toList(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             child: InsertRow(
               onPressed: () {
-                builder.add(ExpressionBuilder.withConstantValue());
+                if (metaData?.onInsert != null) {
+                  builder.add(metaData!.onInsert!());
+                } else {
+                  builder.add(ExpressionBuilder.withConstantValue());
+                }
               },
               title: "Insert",
             ),
@@ -60,7 +94,7 @@ class ListValueBuilderWidget
     );
   }
 
-  Widget _content(ExpressionBuilder expressionBuilder) {
+  Widget _content(int index, ExpressionBuilder expressionBuilder) {
     return Column(
       children: [
         Padding(
@@ -77,17 +111,13 @@ class ListValueBuilderWidget
               ),
               const SizedBox(width: 8),
               Expanded(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Flexible(
-                      child: IntrinsicWidth(
-                        child: ExpressionBuilderWidget(
-                          builder: expressionBuilder,
-                        ),
+                child: ExpressionBuilderWidget(
+                  metaData: metaData?.child ??
+                      ExpressionMetaDataNode(
+                        index: index,
+                        inline: true,
                       ),
-                    )
-                  ],
+                  builder: expressionBuilder,
                 ),
               ),
               SPIconButton(
@@ -115,11 +145,56 @@ class ListValueBuilderWidget
                   Icons.arrow_circle_down_outlined,
                   color: Colors.blue,
                 ),
-              ),
+              )
             ],
           ),
         ),
         const Divider(height: 1, indent: 16),
+      ],
+    );
+  }
+}
+
+class _FullListBuilderWidget extends StatelessWidget {
+  final ExpressionMetaDataList? metaData;
+  final ListValueBuilder builder;
+  final ListValueBuilderState state;
+
+  const _FullListBuilderWidget({
+    Key? key,
+    this.metaData,
+    required this.builder,
+    required this.state,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Component(
+      header: metaData?.title != null
+          ? ComponentHeader(name: metaData!.title!)
+          : null,
+      body: [
+        ...state.expressions
+            .asMap()
+            .entries
+            .map((e) => ExpressionBuilderWidget(
+                  builder: e.value,
+                  metaData: ExpressionMetaDataNode(
+                    index: e.key,
+                    inline: false,
+                  ),
+                ))
+            .toList(),
+        ComponentAction(
+          content: const Text("Insert"),
+          onPressed: () {
+            if (metaData?.onInsert != null) {
+              builder.add(metaData!.onInsert!());
+            } else {
+              builder.add(ExpressionBuilder.withConstantValue());
+            }
+          },
+        )
       ],
     );
   }

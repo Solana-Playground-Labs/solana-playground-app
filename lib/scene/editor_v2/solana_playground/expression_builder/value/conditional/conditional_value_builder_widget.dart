@@ -12,11 +12,11 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 import '../../../../editor_v2.dart';
 import 'conditional_value_builder_cubit.dart';
 
-class ConditionalValueBuilderWidget extends CubitWidget<
+class ConditionValueBuilderWidget extends CubitWidget<
     ConditionalValueBuilderCubit, ConditionalValueBuilderState> {
-  final ConditionalValueBuilder builder;
+  final ConditionValueBuilder builder;
 
-  ConditionalValueBuilderWidget({Key? key, required this.builder})
+  ConditionValueBuilderWidget({Key? key, required this.builder})
       : super(key: Key(builder.id));
 
   @override

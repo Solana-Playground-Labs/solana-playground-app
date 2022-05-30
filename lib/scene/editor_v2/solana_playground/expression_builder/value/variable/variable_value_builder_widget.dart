@@ -15,9 +15,8 @@ import 'variable_value_builder_cubit.dart';
 class VariableValueBuilderWidget
     extends CubitWidget<VariableValueBuilderCubit, VariableValueBuilderState> {
   final VariableValueBuilder builder;
-  final FocusNode? focusNode;
 
-  VariableValueBuilderWidget({Key? key, required this.builder, this.focusNode})
+  VariableValueBuilderWidget({Key? key, required this.builder})
       : super(key: Key(builder.id));
 
   @override

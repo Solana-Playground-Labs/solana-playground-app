@@ -10,7 +10,7 @@ class BinaryValueBuilder extends ValueBuilder {
   final ExpressionBuilder data;
 
   @override
-  String get name => "BinaryValue";
+  String get name => "Binary";
 
   BinaryValueBuilder({
     required this.data,

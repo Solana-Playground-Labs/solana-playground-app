@@ -11,12 +11,20 @@ class ExpressionBuilder extends Builder {
     required ValueBuilder valueBuilder,
   }) : _valueBuilder = valueBuilder;
 
-  factory ExpressionBuilder.withConstantValue() {
-    return ExpressionBuilder(valueBuilder: ConstantValueBuilder(value: ""));
+  factory ExpressionBuilder.withConstantValue({String? value}) {
+    return ExpressionBuilder(
+      valueBuilder: ConstantValueBuilder(
+        value: value ?? "",
+      ),
+    );
   }
 
   factory ExpressionBuilder.withVariable() {
     return ExpressionBuilder(valueBuilder: VariableValueBuilder(variable: ""));
+  }
+
+  factory ExpressionBuilder.withNull() {
+    return ExpressionBuilder(valueBuilder: NullValueBuilder());
   }
 
   factory ExpressionBuilder.withBinaryValue() {
@@ -29,6 +37,20 @@ class ExpressionBuilder extends Builder {
 
   factory ExpressionBuilder.withList() {
     return ExpressionBuilder(valueBuilder: ListValueBuilder(expressions: []));
+  }
+
+  factory ExpressionBuilder.withBool() {
+    return ExpressionBuilder(valueBuilder: BoolValueBuilder(value: false));
+  }
+
+  factory ExpressionBuilder.withCondition() {
+    return ExpressionBuilder(
+      valueBuilder: ConditionValueBuilder(
+        left: ExpressionBuilder.withVariable(),
+        right: ExpressionBuilder.withConstantValue(),
+        comparisonOperator: ComparisonOperator.equal,
+      ),
+    );
   }
 
   ValueBuilder get valueBuilder => _valueBuilder;

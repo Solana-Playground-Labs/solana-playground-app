@@ -6,30 +6,43 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/common/label.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
+import 'package:solana_playground_app/scene/editor_v2/solana_playground/expression_builder/value/account/account_value_builder_widget.dart';
+import 'package:solana_playground_app/scene/editor_v2/solana_playground/expression_builder/value/bool/bool_value_builder_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import '../../editor_v2.dart';
 
 typedef _MappingBuilder = Widget Function(
-    BuildContext context, dynamic, FocusNode focusNode);
+    BuildContext context, dynamic, ExpressionMetaDataNode metaDataNode);
 
 final Map<Type, _MappingBuilder> _mapping = {
-  ConstantValueBuilder: (context, builder, focus) =>
-      ConstantValueBuilderWidget(builder: builder, focusNode: focus),
-  VariableValueBuilder: (context, builder, focus) =>
-      VariableValueBuilderWidget(builder: builder, focusNode: focus),
-  BinaryValueBuilder: (context, builder, focus) =>
+  ConstantValueBuilder: (context, builder, metaDataNode) =>
+      ConstantValueBuilderWidget(builder: builder),
+  VariableValueBuilder: (context, builder, metaDataNode) =>
+      VariableValueBuilderWidget(builder: builder),
+  BinaryValueBuilder: (context, builder, metaDataNode) =>
       BinaryValueBuilderWidget(builder: builder),
-  ByteValueBuilder: (context, builder, focus) =>
+  ByteValueBuilder: (context, builder, metaDataNode) =>
       ByteValueBuilderWidget(builder: builder),
-  HexValueBuilder: (context, builder, focus) =>
+  HexValueBuilder: (context, builder, metaDataNode) =>
       HexValueBuilderWidget(builder: builder),
-  StringByteValueBuilder: (context, builder, focus) =>
+  StringByteValueBuilder: (context, builder, metaDataNode) =>
       StringByteValueBuilderWidget(builder: builder),
-  ConditionalValueBuilder: (context, builder, focus) =>
-      ConditionalValueBuilderWidget(builder: builder),
-  ListValueBuilder: (context, builder, focus) =>
+  ConditionValueBuilder: (context, builder, metaDataNode) =>
+      ConditionValueBuilderWidget(builder: builder),
+  ListValueBuilder: (context, builder, metaDataNode) =>
       ListValueBuilderWidget(builder: builder),
+  AccountValueBuilder: (context, builder, metaDataNode) =>
+      AccountValueBuilderWidget(builder: builder),
+  BoolValueBuilder: (context, builder, metaDataNode) =>
+      BoolValueBuilderWidget(builder: builder, metaDataNode: metaDataNode),
+  InstructionValueBuilder: (context, builder, metaDataNode) =>
+      InstructionValueBuilderWidget(builder: builder, metaData: metaDataNode),
+  ConditionalWrapperValueBuilder: (context, builder, metaDataNode) =>
+      ConditionalWrapperValueBuilderWidget(
+          builder: builder, metaData: metaDataNode),
+  NullValueBuilder: (context, builder, metaDataNode) =>
+      const NullValueBuilderWidget(),
 };
 
 class ExpressionBuilderWidget
@@ -38,7 +51,6 @@ class ExpressionBuilderWidget
   final ExpressionMetaData metaData;
 
   final bool changeable = true;
-  final bool isInline = true;
 
   ExpressionBuilderWidget({
     Key? key,
@@ -56,27 +68,23 @@ class ExpressionBuilderWidget
 
   Widget buildList(BuildContext context, ExpressionBuilderState state) {
     return ListValueBuilderWidget(
+      metaData: metaData as ExpressionMetaDataList,
       builder: builder.valueBuilder as ListValueBuilder,
     );
   }
 
   Widget buildValue(BuildContext context, ExpressionBuilderState state) {
-    final Widget child = _mapping[state.valueBuilder.runtimeType]?.call(
-            context,
-            state.valueBuilder,
-            context.read<ExpressionBuilderCubit>().focusNode) ??
-        const SPLabel(
-          style: SPLabelStyle.orange,
-          child: Text("Unknown"),
-        );
-
     final metaData = this.metaData as ExpressionMetaDataNode;
+
+    final Widget child = _mapping[state.valueBuilder.runtimeType]
+            ?.call(context, state.valueBuilder, metaData) ??
+        const SPLabel(style: SPLabelStyle.orange, child: Text("Unknown"));
 
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         if (metaData.inline &&
-            changeable &&
+            metaData.changeable &&
             builder.valueBuilder is! ListValueBuilder) ...[
           SPLabel(
             style: SPLabelStyle.purple,

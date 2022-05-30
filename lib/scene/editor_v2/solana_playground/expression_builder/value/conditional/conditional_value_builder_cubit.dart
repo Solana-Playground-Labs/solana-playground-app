@@ -9,7 +9,7 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 part 'conditional_value_builder_state.dart';
 
 class ConditionalValueBuilderCubit extends Cubit<ConditionalValueBuilderState> {
-  final ConditionalValueBuilder builder;
+  final ConditionValueBuilder builder;
 
   ConditionalValueBuilderCubit(this.builder)
       : super(ConditionalValueBuilderState(

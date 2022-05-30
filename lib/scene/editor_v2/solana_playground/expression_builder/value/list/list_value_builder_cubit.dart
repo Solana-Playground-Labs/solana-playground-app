@@ -20,6 +20,40 @@ class ListValueBuilderCubit extends Cubit<ListValueBuilderState> {
     emit(state.copyWith(expressions: List.of(builder)));
   }
 
+  void moveUp(dynamic object) {
+    if (object is ValueBuilder) {
+      final index = builder.expressions
+          .indexWhere((element) => element.valueBuilder == object);
+      final expression = builder.expressions[index];
+      if (index >= 0) builder.moveTo(expression, index - 1);
+    } else {
+      final index = state.expressions.indexOf(object);
+      if (index >= 0) builder.moveTo(object, index - 1);
+    }
+  }
+
+  void moveDown(dynamic object) {
+    if (object is ValueBuilder) {
+      final index = builder.expressions
+          .indexWhere((element) => element.valueBuilder == object);
+      final expression = builder.expressions[index];
+      if (index >= 0) builder.moveTo(expression, index + 1);
+    } else {
+      final index = state.expressions.indexOf(object);
+      if (index >= 0) builder.moveTo(object, index + 1);
+    }
+  }
+
+  void remove(object) {
+    if (object is ValueBuilder) {
+      final expression = builder.expressions
+          .firstWhere((element) => element.valueBuilder == object);
+      builder.remove(expression);
+    } else {
+      builder.remove(object);
+    }
+  }
+
   @override
   Future<void> close() async {
     builder.removeListener(listener);

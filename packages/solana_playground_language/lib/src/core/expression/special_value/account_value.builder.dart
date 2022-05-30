@@ -12,7 +12,7 @@ class AccountValueBuilder extends ValueBuilder {
   final ExpressionBuilder pubkey;
 
   @override
-  String get name => "AccountValue";
+  String get name => "Account";
 
   AccountValueBuilder({
     required this.isSigner,

@@ -7,7 +7,7 @@ import 'package:solana_playground_language_generator/annotations.dart';
 
 part 'constant_value.builder.dart';
 
-@ValueBuildable()
+@ValueBuildable(displayName: "Const")
 class ConstantValue extends Value {
   @ValuePropertyBuildable()
   final String value;
@@ -19,20 +19,12 @@ class ConstantValue extends Value {
   @override
   List<Object> get props => [value];
 
-  factory ConstantValue.fromJson(Map<String, dynamic> json) {
-    return ConstantValue(value: json['value']);
-  }
+  factory ConstantValue.fromJson(Map<String, dynamic> json) =>
+      _$ConstantValueFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() {
-    return {
-      'type': classType,
-      'value': value,
-    };
-  }
+  Map<String, dynamic> toJson() => _$ConstantValueToJson(this);
 
   @override
-  ValueBuilder asBuilder() {
-    return ConstantValueBuilder(value: value);
-  }
+  ValueBuilder asBuilder() => _$ConstantValueToBuilder(this);
 }

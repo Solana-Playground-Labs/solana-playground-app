@@ -1,7 +1,9 @@
 library solana_playground_language_generator;
 
 class ValueBuildable {
-  const ValueBuildable();
+  final String? displayName;
+
+  const ValueBuildable({this.displayName});
 }
 
 class ValuePropertyBuildable {

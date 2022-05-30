@@ -2,23 +2,39 @@
  *  Solana Playground  Copyright (C) 2022  Tran Giang Long
  */
 
+import 'package:flutter/widgets.dart';
+import 'package:solana_playground_language/lib.dart';
+
 abstract class ExpressionMetaData {
   const ExpressionMetaData();
 }
 
 class ExpressionMetaDataNode extends ExpressionMetaData {
+  final int? index;
+  final String? title;
   final bool inline;
+  final bool changeable;
   final Type? type;
 
-  const ExpressionMetaDataNode({this.inline = true, this.type});
+  const ExpressionMetaDataNode({
+    this.index,
+    this.title,
+    this.inline = true,
+    this.type,
+    this.changeable = true,
+  });
 }
 
 class ExpressionMetaDataList extends ExpressionMetaData {
-  final bool inline;
-  final ExpressionMetaData child;
+  final String? title;
+  final bool singleBox;
+  final ExpressionMetaData? child;
+  final ExpressionBuilder Function()? onInsert;
 
   const ExpressionMetaDataList({
-    required this.inline,
-    required this.child,
+    this.title,
+    this.singleBox = false,
+    this.onInsert,
+    this.child,
   });
 }

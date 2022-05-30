@@ -14,9 +14,8 @@ import 'constant_value_builder_cubit.dart';
 class ConstantValueBuilderWidget
     extends CubitWidget<ConstantValueBuilderCubit, ConstantValueBuilderState> {
   final ConstantValueBuilder builder;
-  final FocusNode? focusNode;
 
-  ConstantValueBuilderWidget({Key? key, required this.builder, this.focusNode})
+  ConstantValueBuilderWidget({Key? key, required this.builder})
       : super(key: Key(builder.id));
 
   @override

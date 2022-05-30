@@ -25,8 +25,8 @@ abstract class Value extends Equatable with ObjectType {
       return ConstantValue.fromJson(json);
     } else if (type == (VariableValue).toString()) {
       return VariableValue.fromJson(json);
-    } else if (type == (ConditionalValue).toString()) {
-      return ConditionalValue.fromJson(json);
+    } else if (type == (ConditionValue).toString()) {
+      return ConditionValue.fromJson(json);
     } else if (type == (ListValue).toString()) {
       return ListValue.fromJson(json);
     } else if (type == (AccountValue).toString()) {

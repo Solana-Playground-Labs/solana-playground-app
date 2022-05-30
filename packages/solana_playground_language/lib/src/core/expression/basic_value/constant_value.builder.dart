@@ -17,7 +17,7 @@ class ConstantValueBuilder extends ValueBuilder {
   }
 
   @override
-  String get name => "ConstantValue";
+  String get name => "Const";
 
   ConstantValueBuilder({
     required String value,

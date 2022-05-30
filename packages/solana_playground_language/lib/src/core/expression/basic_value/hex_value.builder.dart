@@ -10,7 +10,7 @@ class HexValueBuilder extends ValueBuilder {
   final ExpressionBuilder expression;
 
   @override
-  String get name => "HexValue";
+  String get name => "Hex";
 
   HexValueBuilder({
     required this.expression,
