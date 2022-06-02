@@ -3,7 +3,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/common/label.dart';
 import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 

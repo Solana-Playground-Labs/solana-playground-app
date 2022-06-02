@@ -3,6 +3,7 @@
  */
 
 import 'package:flutter/widgets.dart';
+import 'package:solana_playground_app/scene/editor_v2/solana_playground/tools/inspector/type_inspector.dart';
 import 'package:solana_playground_language/lib.dart';
 
 abstract class ExpressionMetaData {
@@ -15,6 +16,7 @@ class ExpressionMetaDataNode extends ExpressionMetaData {
   final bool inline;
   final bool changeable;
   final Type? type;
+  final List<Type> allowTypes;
 
   const ExpressionMetaDataNode({
     this.index,
@@ -22,6 +24,7 @@ class ExpressionMetaDataNode extends ExpressionMetaData {
     this.inline = true,
     this.type,
     this.changeable = true,
+    this.allowTypes = TypeInspectorHelper.defaultTypeList,
   });
 }
 

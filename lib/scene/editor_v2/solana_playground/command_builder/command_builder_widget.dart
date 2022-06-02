@@ -23,7 +23,7 @@ final Map<Type, _MappingBuilder> _mapping = {
       GetRecentBlockHashCommandBuilderWidget(builder: builder),
   ImportWalletCommandBuilder: (context, builder) =>
       ImportWalletCommandBuilderWidget(builder: builder),
-  SubmitSimpleTransactionBuilder: (context, builder) =>
+  MakeSimpleTransactionBuilder: (context, builder) =>
       SubmitSimpleTransactionWidget(builder: builder),
 };
 

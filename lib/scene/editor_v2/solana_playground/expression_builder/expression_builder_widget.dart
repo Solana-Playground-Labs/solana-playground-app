@@ -2,10 +2,12 @@
  *  Solana Playground  Copyright (C) 2022  Tran Giang Long
  */
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/common/label.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
+import 'package:solana_playground_app/route/app_router.dart';
 import 'package:solana_playground_app/scene/editor_v2/solana_playground/expression_builder/value/account/account_value_builder_widget.dart';
 import 'package:solana_playground_app/scene/editor_v2/solana_playground/expression_builder/value/bool/bool_value_builder_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
@@ -42,7 +44,7 @@ final Map<Type, _MappingBuilder> _mapping = {
       ConditionalWrapperValueBuilderWidget(
           builder: builder, metaData: metaDataNode),
   NullValueBuilder: (context, builder, metaDataNode) =>
-      const NullValueBuilderWidget(),
+      NullValueBuilderWidget(metaData: metaDataNode),
 };
 
 class ExpressionBuilderWidget
@@ -83,14 +85,26 @@ class ExpressionBuilderWidget
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        if (metaData.inline &&
-            metaData.changeable &&
-            builder.valueBuilder is! ListValueBuilder) ...[
+        if (metaData.inline && metaData.changeable) ...[
           SPLabel(
             style: SPLabelStyle.purple,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
-              child: Text(builder.valueBuilder.name),
+            child: Tooltip(
+              message: "Type",
+              child: InkWell(
+                onTap: () {
+                  context.router.push(
+                    ExpressionInspectorRoute(
+                      builder: builder,
+                      metaData: metaData,
+                    ),
+                  );
+                },
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+                  child: Text(builder.valueBuilder.name),
+                ),
+              ),
             ),
           ),
           const SizedBox(width: 4),

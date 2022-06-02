@@ -11,6 +11,9 @@ class ListValueBuilder extends ValueBuilder with ListMixin<ExpressionBuilder> {
     required List<ExpressionBuilder> expressions,
   }) : _expressions = expressions;
 
+  @override
+  String get name => "List";
+
   List<ExpressionBuilder> get expressions => _expressions;
 
   set expressions(List<ExpressionBuilder> value) {

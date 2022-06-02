@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
+import 'package:solana_playground_app/scene/editor_v2/solana_playground/tools/inspector/type_inspector.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import '../../../../editor_v2.dart';
@@ -42,7 +43,12 @@ class InstructionValueBuilderWidget extends CubitWidget<
               children: [
                 const Text("Program ID: "),
                 Flexible(
-                  child: ExpressionBuilderWidget(builder: builder.programId),
+                  child: ExpressionBuilderWidget(
+                    builder: builder.programId,
+                    metaData: const ExpressionMetaDataNode(
+                      allowTypes: TypeInspectorHelper.basicTypeList,
+                    ),
+                  ),
                 )
               ],
             ),

@@ -20,25 +20,39 @@ class BoolValueBuilderWidget
 
   @override
   Widget content(BuildContext context, BoolValueBuilderState state) {
-    return Container(
-      clipBehavior: Clip.hardEdge,
-      constraints: const BoxConstraints(minWidth: 26, minHeight: 26),
-      decoration: BoxDecoration(
-        color: state.value ? Colors.purple : Colors.grey,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Material(
-        type: MaterialType.transparency,
-        child: InkWell(
-          onTap: () {
-            context.read<BoolValueBuilderCubit>().toggle();
-          },
-          child: Center(
-              child: Text(metaDataNode?.title ?? "T",
-                  style: const TextStyle(color: Colors.white))),
+    return Row(
+      children: [
+        Tooltip(
+          message: "Toggle",
+          child: Container(
+            clipBehavior: Clip.hardEdge,
+            constraints: const BoxConstraints(minWidth: 26, minHeight: 26),
+            decoration: BoxDecoration(
+              color: state.value ? Colors.purple : Colors.grey,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Material(
+              type: MaterialType.transparency,
+              child: InkWell(
+                onTap: () {
+                  context.read<BoolValueBuilderCubit>().toggle();
+                },
+                child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6),
+                      child: Text(metaDataNode?.title ?? valueStr(state.value),
+                          style: const TextStyle(color: Colors.white)),
+                    )),
+              ),
+            ),
+          ),
         ),
-      ),
+      ],
     );
+  }
+
+  String valueStr(bool value) {
+    return value ? "True" : "False";
   }
 
   @override

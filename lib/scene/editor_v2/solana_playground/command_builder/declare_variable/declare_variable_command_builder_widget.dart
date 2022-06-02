@@ -51,7 +51,12 @@ class DeclareVariableCommandBuilderWidget extends CubitWidget<
             mainAxisSize: MainAxisSize.min,
             children: [
               const Text("Value: "),
-              ExpressionBuilderWidget(builder: builder.expressionBuilder),
+              Flexible(
+                child: ExpressionBuilderWidget(
+                  builder: builder.expressionBuilder,
+                  metaData: const ExpressionMetaDataNode(inline: true),
+                ),
+              ),
             ],
           )
         ],

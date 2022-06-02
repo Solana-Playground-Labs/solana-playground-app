@@ -1,8 +1,13 @@
+/*
+ *  Solana Playground  Copyright (C) 2022  Tran Giang Long
+ */
+
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:solana_playground_language_generator/annotations.dart';
-import 'package:solana_playground_language_generator/src/value_model_visitor.dart';
 import 'package:source_gen/source_gen.dart';
+
+import 'value_model_visitor.dart';
 
 class ValueBuilderGenerator extends GeneratorForAnnotation<ValueBuildable> {
   @override

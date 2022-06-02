@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
+import 'package:solana_playground_app/scene/editor_v2/solana_playground/tools/inspector/type_inspector.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 class BinaryValueBuilderWidget extends StatelessWidget {
@@ -19,6 +20,10 @@ class BinaryValueBuilderWidget extends StatelessWidget {
       metaData: ExpressionMetaDataList(
           title: "Data",
           singleBox: true,
+          child: ExpressionMetaDataNode(
+            allowTypes:
+                [VariableValueBuilder] + TypeInspectorHelper.binaryTypeList,
+          ),
           onInsert: () {
             return ExpressionBuilder(
               valueBuilder: ByteValueBuilder(

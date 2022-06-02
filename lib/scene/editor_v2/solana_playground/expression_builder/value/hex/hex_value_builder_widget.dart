@@ -23,16 +23,7 @@ class HexValueBuilderWidget
   @override
   Widget content(BuildContext context, HexValueBuilderState state) {
     final theme = Theme.of(context);
-    return SPCard(
-      level: 3,
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text("Hex:  ", style: theme.textTheme.bodyText1),
-          Flexible(child: ExpressionBuilderWidget(builder: builder.expression)),
-        ],
-      ),
-    );
+    return ExpressionBuilderWidget(builder: builder.expression);
   }
 
   @override

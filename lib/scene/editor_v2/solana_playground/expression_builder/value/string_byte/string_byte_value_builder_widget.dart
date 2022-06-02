@@ -25,39 +25,36 @@ class StringByteValueBuilderWidget extends CubitWidget<
   @override
   Widget content(BuildContext context, StringByteValueBuilderState state) {
     final theme = Theme.of(context);
-    return SPCard(
-      level: 3,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text("String:  ", style: theme.textTheme.bodyText1),
-          const SizedBox(height: 8),
-          Flexible(child: ExpressionBuilderWidget(builder: builder.expression)),
-          const SizedBox(height: 8),
-          Text("with base:  ", style: theme.textTheme.bodyText1),
-          const SizedBox(height: 8),
-          Flexible(
-            child: IntrinsicWidth(
-              child: SPLabel(
-                style: SPLabelStyle.purple,
-                child: TextField(
-                  controller:
-                      context.read<StringByteValueBuilderCubit>().baseInput,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                  ],
-                  textAlign: TextAlign.center,
-                  decoration: SPTextField.compactInputDecoration.copyWith(
-                    hintText: "Length",
-                  ),
-                ),
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Flexible(
+          child: IntrinsicWidth(
+            child: SPLabel(
+              style: SPLabelStyle.keppel,
+              child: TextField(
+                controller:
+                    context.read<StringByteValueBuilderCubit>().baseInput,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1
+                    ?.copyWith(color: Colors.black),
+                keyboardType: TextInputType.number,
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'\d')),
+                ],
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                decoration: SPTextField.compactInputDecoration
+                    .copyWith(hintText: "Length", suffixText: "Base"),
               ),
             ),
-          )
-        ],
-      ),
+          ),
+        ),
+        const SizedBox(width: 4),
+        Flexible(child: ExpressionBuilderWidget(builder: builder.expression)),
+      ],
     );
   }
 

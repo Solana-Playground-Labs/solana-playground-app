@@ -13,3 +13,11 @@ class ValuePropertyBuildable {
 class ValueJsonBuildable {
   const ValueJsonBuildable();
 }
+
+class CommandBuildable {
+  const CommandBuildable();
+}
+
+class CommandPropertyBuildable {
+  const CommandPropertyBuildable();
+}

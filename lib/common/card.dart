@@ -32,6 +32,7 @@ class SPCard extends StatelessWidget {
         color:
             _levelMapping[level]?.call(context) ?? _levelMapping[1]!(context),
         borderRadius: const BorderRadius.all(Radius.circular(12)),
+        border: Border.all(color: Colors.black.withOpacity(0.05)),
         boxShadow: [
           BoxShadow(
             color: Theme.of(context).shadowColor.withOpacity(0.08),

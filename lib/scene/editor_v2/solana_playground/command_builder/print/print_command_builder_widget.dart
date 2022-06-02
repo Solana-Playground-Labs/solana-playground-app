@@ -24,7 +24,10 @@ class PrintCommandBuilderWidget extends StatelessWidget {
         name: "Log",
       ),
       body: [
-        ExpressionBuilderWidget(builder: builder.expression),
+        ExpressionBuilderWidget(
+          builder: builder.expression,
+          metaData: const ExpressionMetaDataNode(changeable: false),
+        ),
       ],
     );
   }

@@ -22,6 +22,16 @@ class PlaygroundTheme {
       colorScheme: const ColorScheme.light().copyWith(
         background: const Color(0xFFEDEDED),
       ),
+    ).copyWith(
+      appBarTheme: AppBarTheme(
+          color: Colors.white,
+          foregroundColor: Colors.blue,
+          shadowColor: Colors.black.withOpacity(0.1),
+          titleTextStyle: const TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+          )),
     );
   }
 }
