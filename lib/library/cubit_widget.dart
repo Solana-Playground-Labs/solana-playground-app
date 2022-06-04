@@ -21,7 +21,7 @@ abstract class CubitWidget<T extends Cubit<S>, S> extends StatelessWidget {
       );
     }
 
-    return BlocProvider(
+    return BlocProvider<T>(
       create: (context) => _cubit,
       child: Builder(
         builder: (context) =>

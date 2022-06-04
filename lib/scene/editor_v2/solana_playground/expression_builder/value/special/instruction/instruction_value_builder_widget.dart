@@ -3,13 +3,9 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
-import 'package:solana_playground_app/scene/editor_v2/solana_playground/tools/inspector/type_inspector.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
-
-import '../../../../editor_v2.dart';
-import 'instruction_value_builder_cubit.dart';
+import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 
 class InstructionValueBuilderWidget extends CubitWidget<
     InstructionValueBuilderCubit, InstructionValueBuilderState> {

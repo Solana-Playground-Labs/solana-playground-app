@@ -9,22 +9,22 @@ import 'package:solana_playground_app/common/textfield.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
-import 'constant_value_builder_cubit.dart';
+import 'computable_value_builder_cubit.dart';
 
-class ConstantValueBuilderWidget
-    extends CubitWidget<ConstantValueBuilderCubit, ConstantValueBuilderState> {
-  final ConstantValueBuilder builder;
+class ComputableValueBuilderWidget
+    extends CubitWidget<ComputableValueBuilderCubit, ComputableValueBuilderState> {
+  final ComputableValueBuilder builder;
 
-  ConstantValueBuilderWidget({Key? key, required this.builder})
+  ComputableValueBuilderWidget({Key? key, required this.builder})
       : super(key: Key(builder.id));
 
   @override
-  Widget content(BuildContext context, ConstantValueBuilderState state) {
+  Widget content(BuildContext context, ComputableValueBuilderState state) {
     return IntrinsicWidth(
       child: SPLabel(
         style: SPLabelStyle.green,
         child: TextField(
-          controller: context.read<ConstantValueBuilderCubit>().inputController,
+          controller: context.read<ComputableValueBuilderCubit>().inputController,
           maxLines: 1,
           textAlign: TextAlign.center,
           style: Theme.of(context)
@@ -39,6 +39,6 @@ class ConstantValueBuilderWidget
   }
 
   @override
-  ConstantValueBuilderCubit cubit(BuildContext context) =>
-      ConstantValueBuilderCubit(builder);
+  ComputableValueBuilderCubit cubit(BuildContext context) =>
+      ComputableValueBuilderCubit(builder);
 }

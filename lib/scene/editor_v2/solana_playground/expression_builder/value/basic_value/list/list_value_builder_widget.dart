@@ -3,17 +3,13 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:solana_playground_app/common/icon_button.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
-import 'package:solana_playground_app/scene/editor_v2/solana_playground/expression_builder/value/list/list_value_builder_cubit.dart';
 import 'package:solana_playground_app/theme/icons.dart';
 import 'package:solana_playground_language/lib.dart';
+import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 
-import '../../../../cubit/cubit.dart';
-import '../../../../editor_v2.dart';
-import '../../expression_builder_widget.dart';
 
 class ListValueBuilderWidget
     extends CubitWidget<ListValueBuilderCubit, ListValueBuilderState> {

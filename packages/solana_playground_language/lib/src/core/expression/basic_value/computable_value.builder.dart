@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'expression_value.dart';
+part of 'computable_value.dart';
 
 // **************************************************************************
 // ValueBuilderGenerator
 // **************************************************************************
 
-class ExpressionValueBuilder extends ValueBuilder {
+class ComputableValueBuilder extends ValueBuilder {
   String _value;
 
   String get value => _value;
@@ -17,40 +17,40 @@ class ExpressionValueBuilder extends ValueBuilder {
   }
 
   @override
-  String get name => "Expression";
+  String get name => "Computable";
 
-  ExpressionValueBuilder({
+  ComputableValueBuilder({
     required String value,
   }) : _value = value;
 
   @override
-  ExpressionValue build() {
-    return ExpressionValue(
+  ComputableValue build() {
+    return ComputableValue(
       value: value,
     );
   }
 
   @override
-  ExpressionValueBuilder clone() {
-    return ExpressionValueBuilder(
+  ComputableValueBuilder clone() {
+    return ComputableValueBuilder(
       value: value,
     );
   }
 }
 
-ExpressionValue _$ExpressionValueFromJson(Map<String, dynamic> json) {
-  return ExpressionValue(
+ComputableValue _$ComputableValueFromJson(Map<String, dynamic> json) {
+  return ComputableValue(
     value: json['value'],
   );
 }
 
-Map<String, dynamic> _$ExpressionValueToJson(ExpressionValue value) {
+Map<String, dynamic> _$ComputableValueToJson(ComputableValue value) {
   return {
     'type': value.runtimeType.toString(),
     'value': value.value,
   };
 }
 
-ExpressionValueBuilder _$ExpressionValueToBuilder(ExpressionValue value) {
-  return ExpressionValueBuilder(value: value.value);
+ComputableValueBuilder _$ComputableValueToBuilder(ComputableValue value) {
+  return ComputableValueBuilder(value: value.value);
 }

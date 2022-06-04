@@ -21,8 +21,8 @@ abstract class Value extends Equatable with ObjectType {
       return HexValue.fromJson(json);
     } else if (type == (StringByteValue).toString()) {
       return StringByteValue.fromJson(json);
-    } else if (type == (ExpressionValue).toString()) {
-      return ExpressionValue.fromJson(json);
+    } else if (type == (ComputableValue).toString()) {
+      return ComputableValue.fromJson(json);
     } else if (type == (VariableValue).toString()) {
       return VariableValue.fromJson(json);
     } else if (type == (ConditionValue).toString()) {

@@ -9,7 +9,10 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 
 class TypeInspectorHelper {
   static const defaultTypeList = [
-    ConstantValueBuilder,
+    StringValueBuilder,
+    IntValueBuilder,
+    DoubleValueBuilder,
+    ComputableValueBuilder,
     VariableValueBuilder,
     BoolValueBuilder,
     BinaryValueBuilder,
@@ -24,7 +27,10 @@ class TypeInspectorHelper {
   ];
 
   static const basicTypeList = [
-    ConstantValueBuilder,
+    StringValueBuilder,
+    IntValueBuilder,
+    DoubleValueBuilder,
+    ComputableValueBuilder,
     VariableValueBuilder,
   ];
 
@@ -37,6 +43,12 @@ class TypeInspectorHelper {
 
 ValueBuilder _init(Type type) {
   switch (type) {
+    case StringValueBuilder:
+      return StringValueBuilder(value: "");
+    case IntValueBuilder:
+      return IntValueBuilder(value: 0);
+    case DoubleValueBuilder:
+      return DoubleValueBuilder(value: 0.0);
     case VariableValueBuilder:
       return VariableValueBuilder(variable: "");
     case BoolValueBuilder:
@@ -78,7 +90,7 @@ ValueBuilder _init(Type type) {
     case ListValueBuilder:
       return ListValueBuilder(expressions: []);
     default:
-      return ConstantValueBuilder(value: "");
+      return ComputableValueBuilder(value: "");
   }
 }
 

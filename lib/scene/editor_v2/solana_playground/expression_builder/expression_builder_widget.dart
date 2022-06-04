@@ -4,12 +4,9 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/common/label.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_app/route/app_router.dart';
-import 'package:solana_playground_app/scene/editor_v2/solana_playground/expression_builder/value/account/account_value_builder_widget.dart';
-import 'package:solana_playground_app/scene/editor_v2/solana_playground/expression_builder/value/bool/bool_value_builder_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import '../../editor_v2.dart';
@@ -18,8 +15,8 @@ typedef _MappingBuilder = Widget Function(
     BuildContext context, dynamic, ExpressionMetaDataNode metaDataNode);
 
 final Map<Type, _MappingBuilder> _mapping = {
-  ConstantValueBuilder: (context, builder, metaDataNode) =>
-      ConstantValueBuilderWidget(builder: builder),
+  ComputableValueBuilder: (context, builder, metaDataNode) =>
+      ComputableValueBuilderWidget(builder: builder),
   VariableValueBuilder: (context, builder, metaDataNode) =>
       VariableValueBuilderWidget(builder: builder),
   BinaryValueBuilder: (context, builder, metaDataNode) =>
@@ -45,6 +42,12 @@ final Map<Type, _MappingBuilder> _mapping = {
           builder: builder, metaData: metaDataNode),
   NullValueBuilder: (context, builder, metaDataNode) =>
       NullValueBuilderWidget(metaData: metaDataNode),
+  StringValueBuilder:  (context, builder, metaDataNode) =>
+      StringValueBuilderWidget(builder: builder),
+  IntValueBuilder:  (context, builder, metaDataNode) =>
+      IntValueBuilderWidget(builder: builder),
+  DoubleValueBuilder:  (context, builder, metaDataNode) =>
+      DoubleValueBuilderWidget(builder: builder),
 };
 
 class ExpressionBuilderWidget

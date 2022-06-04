@@ -7,14 +7,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
-part 'constant_value_builder_state.dart';
+part 'computable_value_builder_state.dart';
 
-class ConstantValueBuilderCubit extends Cubit<ConstantValueBuilderState> {
-  final ConstantValueBuilder builder;
+class ComputableValueBuilderCubit extends Cubit<ComputableValueBuilderState> {
+  final ComputableValueBuilder builder;
   final TextEditingController inputController = TextEditingController();
 
-  ConstantValueBuilderCubit(this.builder)
-      : super(ConstantValueBuilderState(value: builder.value.toString())) {
+  ComputableValueBuilderCubit(this.builder)
+      : super(ComputableValueBuilderState(value: builder.value.toString())) {
     builder.addListener(listener);
 
     inputController.text = builder.value.toString();

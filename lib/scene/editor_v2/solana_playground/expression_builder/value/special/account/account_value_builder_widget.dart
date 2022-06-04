@@ -4,11 +4,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
-import 'package:solana_playground_app/scene/editor_v2/solana_playground/tools/inspector/type_inspector.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
-
-import '../../../../editor_v2.dart';
-import 'account_value_builder_cubit.dart';
+import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 
 class AccountValueBuilderWidget
     extends CubitWidget<AccountValueBuilderCubit, AccountValueBuilderState> {

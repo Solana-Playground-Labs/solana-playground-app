@@ -1,9 +1,9 @@
 export 'variable_value.dart';
-export 'expression_value.dart';
 export 'string_value.dart';
 export 'json_value.dart';
 export 'conditional_wrapper_value.dart';
 export 'null_value.dart';
+export 'computable_value.dart';
 export 'int_value.dart';
 export 'string_byte_value.dart';
 export 'bool_value.dart';

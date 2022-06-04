@@ -3,14 +3,11 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/common/label.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
-
-import '../../../../editor_v2.dart';
-import 'conditional_value_builder_cubit.dart';
+import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 
 class ConditionValueBuilderWidget extends CubitWidget<
     ConditionalValueBuilderCubit, ConditionalValueBuilderState> {

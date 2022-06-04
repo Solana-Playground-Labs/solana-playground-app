@@ -3,17 +3,13 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/common/label.dart';
 import 'package:solana_playground_app/common/textfield.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
-
-import '../../../../editor_v2.dart';
-import 'string_byte_value_builder_cubit.dart';
+import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 
 class StringByteValueBuilderWidget extends CubitWidget<
     StringByteValueBuilderCubit, StringByteValueBuilderState> {
@@ -24,7 +20,6 @@ class StringByteValueBuilderWidget extends CubitWidget<
 
   @override
   Widget content(BuildContext context, StringByteValueBuilderState state) {
-    final theme = Theme.of(context);
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
