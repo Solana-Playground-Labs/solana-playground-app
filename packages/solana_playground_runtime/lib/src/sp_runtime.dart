@@ -68,7 +68,7 @@ class SPRuntime {
 
   Future<dynamic> calculate(Expression expression) async {
     final value = expression.value;
-    if (value is ConstantValue) {
+    if (value is ExpressionValue) {
       return calculateConstantValue(this, value);
     } else if (value is VariableValue) {
       return calculateVariableValue(this, value);

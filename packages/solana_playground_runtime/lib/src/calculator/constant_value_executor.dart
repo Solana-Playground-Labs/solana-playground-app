@@ -9,7 +9,7 @@ import 'parser.dart';
 
 Future<dynamic> calculateConstantValue(
   SPRuntime runtime,
-  ConstantValue constantValue,
+  ExpressionValue constantValue,
 ) async {
   return valueParse(constantValue.value);
 }

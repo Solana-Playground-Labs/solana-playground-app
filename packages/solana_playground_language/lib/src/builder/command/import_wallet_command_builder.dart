@@ -48,7 +48,7 @@ class ImportWalletCommandBuilder extends CommandBuilder {
 
   factory ImportWalletCommandBuilder.empty() {
     return ImportWalletCommandBuilder(
-      walletName: ExpressionBuilder.withConstantValue(),
+      walletName: ExpressionBuilder.withStringValue(),
       variable: "",
     );
   }

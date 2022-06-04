@@ -17,7 +17,7 @@ class DeclareVariableCommandBuilder extends CommandBuilder {
   factory DeclareVariableCommandBuilder.empty() {
     return DeclareVariableCommandBuilder(
       variable: "",
-      expressionBuilder: ExpressionBuilder.withConstantValue(),
+      expressionBuilder: ExpressionBuilder.withStringValue(),
     );
   }
 

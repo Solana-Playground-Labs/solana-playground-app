@@ -11,9 +11,9 @@ class ExpressionBuilder extends Builder {
     required ValueBuilder valueBuilder,
   }) : _valueBuilder = valueBuilder;
 
-  factory ExpressionBuilder.withConstantValue({String? value}) {
+  factory ExpressionBuilder.withStringValue({String? value}) {
     return ExpressionBuilder(
-      valueBuilder: ConstantValueBuilder(
+      valueBuilder: StringValueBuilder(
         value: value ?? "",
       ),
     );
@@ -47,7 +47,7 @@ class ExpressionBuilder extends Builder {
     return ExpressionBuilder(
       valueBuilder: ConditionValueBuilder(
         left: ExpressionBuilder.withVariable(),
-        right: ExpressionBuilder.withConstantValue(),
+        right: ExpressionBuilder.withStringValue(),
         comparisonOperator: ComparisonOperator.equal,
       ),
     );

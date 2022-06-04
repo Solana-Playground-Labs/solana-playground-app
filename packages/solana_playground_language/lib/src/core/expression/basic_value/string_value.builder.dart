@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'constant_value.dart';
+part of 'string_value.dart';
 
 // **************************************************************************
 // ValueBuilderGenerator
 // **************************************************************************
 
-class ConstantValueBuilder extends ValueBuilder {
+class StringValueBuilder extends ValueBuilder {
   String _value;
 
   String get value => _value;
@@ -17,40 +17,40 @@ class ConstantValueBuilder extends ValueBuilder {
   }
 
   @override
-  String get name => "Const";
+  String get name => "String";
 
-  ConstantValueBuilder({
+  StringValueBuilder({
     required String value,
   }) : _value = value;
 
   @override
-  ConstantValue build() {
-    return ConstantValue(
+  StringValue build() {
+    return StringValue(
       value: value,
     );
   }
 
   @override
-  ConstantValueBuilder clone() {
-    return ConstantValueBuilder(
+  StringValueBuilder clone() {
+    return StringValueBuilder(
       value: value,
     );
   }
 }
 
-ConstantValue _$ConstantValueFromJson(Map<String, dynamic> json) {
-  return ConstantValue(
+StringValue _$StringValueFromJson(Map<String, dynamic> json) {
+  return StringValue(
     value: json['value'],
   );
 }
 
-Map<String, dynamic> _$ConstantValueToJson(ConstantValue value) {
+Map<String, dynamic> _$StringValueToJson(StringValue value) {
   return {
     'type': value.runtimeType.toString(),
     'value': value.value,
   };
 }
 
-ConstantValueBuilder _$ConstantValueToBuilder(ConstantValue value) {
-  return ConstantValueBuilder(value: value.value);
+StringValueBuilder _$StringValueToBuilder(StringValue value) {
+  return StringValueBuilder(value: value.value);
 }

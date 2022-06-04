@@ -5,7 +5,7 @@
 import 'package:solana_playground_language/lib.dart';
 import 'package:solana_playground_language_generator/annotations.dart';
 
-part 'constant_value.builder.dart';
+part 'expression_value.builder.dart';
 
 @ValueBuildable(displayName: "Expression")
 class ExpressionValue extends Value {
@@ -20,11 +20,11 @@ class ExpressionValue extends Value {
   List<Object> get props => [value];
 
   factory ExpressionValue.fromJson(Map<String, dynamic> json) =>
-      _$ConstantValueFromJson(json);
+      _$ExpressionValueFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => _$ConstantValueToJson(this);
+  Map<String, dynamic> toJson() => _$ExpressionValueToJson(this);
 
   @override
-  ValueBuilder asBuilder() => _$ConstantValueToBuilder(this);
+  ValueBuilder asBuilder() => _$ExpressionValueToBuilder(this);
 }
