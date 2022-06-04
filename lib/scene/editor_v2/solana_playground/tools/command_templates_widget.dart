@@ -27,8 +27,19 @@ class CommandTemplatesWidget extends StatelessWidget {
           commandBuilder: PrintCommandBuilder.empty(),
         ),
         TemplateWidget(
-          title: "Import wallet",
-          commandBuilder: ImportWalletCommandBuilder.empty(),
+          title: "Make keypair",
+          commandBuilder: MakeKeyPairCommandBuilder(
+            variable: "",
+            publicKey: ExpressionBuilder.withStringValue(),
+            privateKey: ExpressionBuilder.withStringValue(),
+          ),
+        ),
+        TemplateWidget(
+          title: "Import keypair from storage",
+          commandBuilder: ImportKeypairFromStorageCommandBuilder(
+            variable: "",
+            walletName: ExpressionBuilder.withStringValue(),
+          ),
         ),
         // TemplateWidget(
         //   title: "Create transaction",

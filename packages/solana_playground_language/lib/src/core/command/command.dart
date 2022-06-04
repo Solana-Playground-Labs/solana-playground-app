@@ -7,6 +7,7 @@ export 'request_recent_blockhash_command.dart';
 export 'wait_transaction_confirmation_command.dart';
 export 'print_command.dart';
 export 'unknown_command.dart';
-export 'import_wallet_command.dart';
+export 'make_keypair_command.dart';
 export 'block_command.dart';
 export 'declare_variable_command.dart';
+export 'import_keypair_from_storage.dart';

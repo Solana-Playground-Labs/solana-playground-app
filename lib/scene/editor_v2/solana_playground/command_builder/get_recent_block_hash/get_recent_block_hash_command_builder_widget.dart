@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_app/scene/editor/common/common.dart';
+import 'package:solana_playground_app/scene/editor_v2/solana_playground/command_builder/command_builder_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import 'get_recent_block_hash_command_builder_cubit.dart';
@@ -15,9 +16,11 @@ import 'get_recent_block_hash_command_builder_cubit.dart';
 class GetRecentBlockHashCommandBuilderWidget extends CubitWidget<
     GetRecentBlockHashCommandBuilderCubit,
     GetRecentBlockHashCommandBuilderState> {
+  final CommandBuilderMetaInfo? metaInfo;
   final GetRecentBlockHashCommandBuilder builder;
 
-  GetRecentBlockHashCommandBuilderWidget({Key? key, required this.builder})
+  GetRecentBlockHashCommandBuilderWidget(
+      {Key? key, required this.builder, this.metaInfo})
       : super(key: Key(builder.id));
 
   @override

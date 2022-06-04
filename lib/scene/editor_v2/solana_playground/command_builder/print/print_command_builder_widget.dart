@@ -12,9 +12,13 @@ import '../../../editor_v2.dart';
 
 class PrintCommandBuilderWidget extends StatelessWidget {
   final PrintCommandBuilder builder;
+  final CommandBuilderMetaInfo? metaInfo;
 
-  PrintCommandBuilderWidget({Key? key, required this.builder})
-      : super(key: Key(builder.id));
+  PrintCommandBuilderWidget({
+    Key? key,
+    required this.builder,
+    this.metaInfo,
+  }) : super(key: Key(builder.id));
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,7 @@ class PrintCommandBuilderWidget extends StatelessWidget {
       header: ComponentHeader(
         trailing: CommandBuilderAction(builder: builder),
         icon: SvgPicture.asset(SPIcons.info),
-        name: "Log",
+        name: commandHeaderFormatter("Log", metaInfo),
       ),
       body: [
         ExpressionBuilderWidget(

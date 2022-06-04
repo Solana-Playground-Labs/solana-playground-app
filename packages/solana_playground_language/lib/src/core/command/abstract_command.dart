@@ -21,8 +21,8 @@ abstract class Command extends Equatable with ObjectType {
       return DeclareVariableCommand.fromJson(json);
     } else if (type == (GetRecentBlockHashCommand).toString()) {
       return GetRecentBlockHashCommand.fromJson(json);
-    } else if (type == (ImportWalletCommand).toString()) {
-      return ImportWalletCommand.fromJson(json);
+    } else if (type == (ImportKeypairFromStorageCommand).toString()) {
+      return ImportKeypairFromStorageCommand.fromJson(json);
     } else if (type == (PrintCommand).toString()) {
       return PrintCommand.fromJson(json);
     } else if (type == (RequestRecentBlockhash).toString()) {
@@ -33,6 +33,8 @@ abstract class Command extends Equatable with ObjectType {
       return WaitTransactionConfirmationCommand.fromJson(json);
     } else if (type == (MakeSimpleTransaction).toString()) {
       return MakeSimpleTransaction.fromJson(json);
+    } else if (type == (MakeKeyPairCommand).toString()) {
+      return MakeKeyPairCommand.fromJson(json);
     }
 
     return UnknownCommand(rawData: json);

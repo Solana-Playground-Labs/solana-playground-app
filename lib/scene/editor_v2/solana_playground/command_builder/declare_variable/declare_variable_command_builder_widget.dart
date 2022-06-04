@@ -15,9 +15,13 @@ import '../../../editor_v2.dart';
 class DeclareVariableCommandBuilderWidget extends CubitWidget<
     DeclareVariableCommandBuilderCubit, DeclareVariableCommandBuilderState> {
   final DeclareVariableCommandBuilder builder;
+  final CommandBuilderMetaInfo? metaInfo;
 
-  DeclareVariableCommandBuilderWidget({Key? key, required this.builder})
-      : super(key: Key(builder.id));
+  DeclareVariableCommandBuilderWidget({
+    Key? key,
+    required this.builder,
+    this.metaInfo,
+  }) : super(key: Key(builder.id));
 
   @override
   Widget content(
@@ -27,7 +31,7 @@ class DeclareVariableCommandBuilderWidget extends CubitWidget<
     return ComponentHeader(
       icon: SvgPicture.asset(SPIcons.variable),
       trailing: CommandBuilderAction(builder: builder),
-      name: "Declare variable",
+      name: commandHeaderFormatter("Declare variable", metaInfo),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,

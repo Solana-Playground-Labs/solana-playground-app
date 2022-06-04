@@ -14,10 +14,14 @@ import 'send_transaction_command_builder_cubit.dart';
 
 class SendTransactionCommandBuilderWidget extends CubitWidget<
     SendTransactionCommandBuilderCubit, SendTransactionCommandBuilderState> {
+  final CommandBuilderMetaInfo? metaInfo;
   final SendTransactionCommandBuilder builder;
 
-  SendTransactionCommandBuilderWidget({Key? key, required this.builder})
-      : super(key: Key(builder.id));
+  SendTransactionCommandBuilderWidget({
+    Key? key,
+    required this.builder,
+    this.metaInfo,
+  }) : super(key: Key(builder.id));
 
   @override
   Widget content(

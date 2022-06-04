@@ -55,7 +55,7 @@ class SPRuntime {
       await executePrintCommand(this, command);
     } else if (command is GetRecentBlockHashCommand) {
       await executeGetRecentBlockHashCommand(this, command);
-    } else if (command is ImportWalletCommand) {
+    } else if (command is ImportKeypairFromStorageCommand) {
       await executeImportWalletCommand(this, command);
     } else if (command is SendTransactionCommand) {
       await executeSendTransactionCommand(this, command);

@@ -18,4 +18,6 @@ class SPIcons {
   static String get trueIcon=> "assets/icon/true.svg";
 
   static String get falseIcon=> "assets/icon/false.svg";
+
+  static String get keypair => "assets/icon/keypair.svg";
 }

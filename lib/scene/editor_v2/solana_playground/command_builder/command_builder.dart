@@ -7,6 +7,7 @@ export 'command_feedback.dart';
 export 'print/print.dart';
 export 'command_builder_action.dart';
 export 'unknown/unknown.dart';
+export 'make_keypair/make_keypair.dart';
 export 'command_builder_widget.dart';
 export 'block_command_builder_widget.dart';
 export 'get_recent_block_hash/get_recent_block_hash.dart';

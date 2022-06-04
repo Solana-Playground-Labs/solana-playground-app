@@ -9,11 +9,13 @@ import 'package:solana_playground_language/lib.dart';
 import '../../../editor_v2.dart';
 
 class WaitTransactionCommandBuilderWidget extends StatelessWidget {
+  final CommandBuilderMetaInfo? metaInfo;
   final WaitConfirmationCommandBuilder builder;
 
   const WaitTransactionCommandBuilderWidget({
     Key? key,
     required this.builder,
+    this.metaInfo
   }) : super(key: key);
 
   @override

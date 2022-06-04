@@ -3,14 +3,17 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 class UnknownCommandWidget extends StatelessWidget {
   final CommandBuilder builder;
+  final CommandBuilderMetaInfo? metaInfo;
 
   const UnknownCommandWidget({
     Key? key,
     required this.builder,
+    this.metaInfo,
   }) : super(key: key);
 
   @override

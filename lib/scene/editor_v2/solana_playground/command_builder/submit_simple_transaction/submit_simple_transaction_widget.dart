@@ -16,8 +16,9 @@ import 'submit_simple_transaction_cubit.dart';
 class SubmitSimpleTransactionWidget extends CubitWidget<
     SubmitSimpleTransactionCubit, SubmitSimpleTransactionState> {
   final MakeSimpleTransactionBuilder builder;
+  final CommandBuilderMetaInfo? metaInfo;
 
-  SubmitSimpleTransactionWidget({Key? key, required this.builder})
+  SubmitSimpleTransactionWidget({Key? key, required this.builder, this.metaInfo})
       : super(key: Key(builder.id));
 
   @override
@@ -25,7 +26,7 @@ class SubmitSimpleTransactionWidget extends CubitWidget<
     return Component(
       header: ComponentHeader(
         icon: SvgPicture.asset(SPIcons.submitTransaction),
-        name: "Make transaction",
+        name: commandHeaderFormatter("Make transaction", metaInfo),
         trailing: CommandBuilderAction(builder: builder),
         content: Row(
           mainAxisSize: MainAxisSize.min,

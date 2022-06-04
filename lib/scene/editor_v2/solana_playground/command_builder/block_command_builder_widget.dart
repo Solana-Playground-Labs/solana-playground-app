@@ -31,7 +31,10 @@ class BlockCommandBuilderWidget
               constraints: const BoxConstraints(maxWidth: 800),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
-                child: CommandBuilderWidget(builder: builder),
+                child: CommandBuilderWidget(
+                  builder: builder,
+                  metaInfo: CommandBuilderMetaInfo(index: index),
+                ),
               ),
             ),
           ),
