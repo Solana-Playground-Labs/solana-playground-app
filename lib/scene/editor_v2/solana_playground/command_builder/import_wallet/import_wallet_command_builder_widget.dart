@@ -22,21 +22,35 @@ class ImportWalletCommandBuilderWidget extends CubitWidget<
   @override
   Widget content(BuildContext context, ImportWalletCommandBuilderState state) {
     final theme = Theme.of(context);
-    return SPCard(
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
+    return ComponentHeader(
+      name: "Import wallet",
+      content: Column(
         children: [
-          Text("Import wallet  ", style: theme.textTheme.bodyText1),
-          Flexible(child: ExpressionBuilderWidget(builder: builder.walletName)),
-          Text("  as  ", style: theme.textTheme.bodyText1),
-          Flexible(
-            flex: 1,
-            child: IntrinsicWidth(
-              child: VariableInputWidget(
-                controller:
-                    context.read<ImportWalletCommandBuilderCubit>().variableInput,
+          Row(
+            children: [
+              Text("Variable: ", style: theme.textTheme.bodyText1),
+              IntrinsicWidth(
+                child: VariableInputWidget(
+                  controller: context
+                      .read<ImportWalletCommandBuilderCubit>()
+                      .variableInput,
+                ),
+              )
+            ],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              Text("Name: ", style: theme.textTheme.bodyText1),
+              Flexible(
+                child: ExpressionBuilderWidget(
+                  builder: builder.walletName,
+                  metaData: const ExpressionMetaDataNode(
+                    allowTypes: TypeInspectorHelper.basicTypeList,
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
         ],
       ),

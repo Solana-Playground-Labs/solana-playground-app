@@ -83,7 +83,7 @@ class _InlineListBuilderWidget extends StatelessWidget {
                 if (metaData?.onInsert != null) {
                   builder.add(metaData!.onInsert!());
                 } else {
-                  builder.add(ExpressionBuilder.withConstantValue());
+                  builder.add(ExpressionBuilder.withStringValue());
                 }
               },
               title: "Insert",
@@ -191,7 +191,7 @@ class _FullListBuilderWidget extends StatelessWidget {
             if (metaData?.onInsert != null) {
               builder.add(metaData!.onInsert!());
             } else {
-              builder.add(ExpressionBuilder.withConstantValue());
+              builder.add(ExpressionBuilder.withStringValue());
             }
           },
         )

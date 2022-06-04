@@ -10,7 +10,7 @@ import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 
 class ListValueActions extends StatelessWidget {
   final dynamic builder;
-  final List<ListAction?> Function(BuildContext context)? actions;
+  final List<ExtraAction?> Function(BuildContext context)? actions;
 
   const ListValueActions({
     Key? key,
@@ -39,43 +39,16 @@ class ListValueActions extends StatelessWidget {
           tooltip: "Move down",
         ),
         const SizedBox(width: 4),
-        PopupMenuButton<ListAction>(
-          splashRadius: 16,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: const Icon(Icons.more_vert_rounded, color: Colors.grey),
-          itemBuilder: (context) {
-            return [
-              if (actions != null)
-                ...actions!(context).whereType<ListAction>().map((e) {
-                  return PopupMenuItem<ListAction>(
-                    onTap: e.onTap,
-                    child: e.child,
-                  );
-                }).toList(),
-              PopupMenuItem<ListAction>(
-                onTap: () =>
-                    context.read<ListValueBuilderCubit>().remove(builder),
+        ExtraActionWidget(
+          actions: (context) => [
+            ...?actions?.call(context),
+            ExtraAction(
                 child: const Text("Remove"),
-              ),
-            ];
-          },
+                onTap: () =>
+                    {context.read<ListValueBuilderCubit>().remove(builder)}),
+          ],
         ),
       ],
     );
   }
-}
-
-class ListAction extends Equatable {
-  final Widget child;
-  final VoidCallback onTap;
-
-  const ListAction({
-    required this.child,
-    required this.onTap,
-  });
-
-  @override
-  List<Object> get props => [child, onTap];
 }

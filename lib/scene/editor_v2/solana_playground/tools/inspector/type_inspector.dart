@@ -45,14 +45,14 @@ ValueBuilder _init(Type type) {
       return BinaryValueBuilder(data: ExpressionBuilder.withList());
     case ByteValueBuilder:
       return ByteValueBuilder(
-        expression: ExpressionBuilder.withConstantValue(),
+        expression: ExpressionBuilder.withStringValue(),
         length: 1,
       );
     case HexValueBuilder:
-      return HexValueBuilder(expression: ExpressionBuilder.withConstantValue());
+      return HexValueBuilder(expression: ExpressionBuilder.withStringValue());
     case StringByteValueBuilder:
       return StringByteValueBuilder(
-        expression: ExpressionBuilder.withConstantValue(),
+        expression: ExpressionBuilder.withStringValue(),
         base: 58,
       );
     case NullValueBuilder:
@@ -61,17 +61,17 @@ ValueBuilder _init(Type type) {
       return AccountValueBuilder(
         isSigner: ExpressionBuilder.withBool(),
         isWritable: ExpressionBuilder.withBool(),
-        pubkey: ExpressionBuilder.withConstantValue(),
+        pubkey: ExpressionBuilder.withStringValue(),
       );
     case ConditionValueBuilder:
       return ConditionValueBuilder(
         comparisonOperator: ComparisonOperator.equal,
         left: ExpressionBuilder.withVariable(),
-        right: ExpressionBuilder.withConstantValue(),
+        right: ExpressionBuilder.withStringValue(),
       );
     case InstructionValueBuilder:
       return InstructionValueBuilder(
-        programId: ExpressionBuilder.withConstantValue(),
+        programId: ExpressionBuilder.withStringValue(),
         keys: ExpressionBuilder.withList(),
         data: ExpressionBuilder.withList(),
       );

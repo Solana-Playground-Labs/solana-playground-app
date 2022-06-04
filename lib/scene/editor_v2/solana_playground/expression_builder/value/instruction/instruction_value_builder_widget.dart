@@ -65,7 +65,7 @@ class InstructionValueBuilderWidget extends CubitWidget<
               valueBuilder: AccountValueBuilder(
                 isSigner: ExpressionBuilder.withBool(),
                 isWritable: ExpressionBuilder.withBool(),
-                pubkey: ExpressionBuilder.withConstantValue(),
+                pubkey: ExpressionBuilder.withStringValue(),
               ),
             ),
             child: const ExpressionMetaDataNode(inline: false),

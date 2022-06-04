@@ -43,12 +43,13 @@ class ComponentHeader extends StatelessWidget {
               ],
             ),
           ),
-          const Divider(height: 1),
-          if (content != null)
+          if (content != null) ...[
+            const Divider(height: 1),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: content,
             )
+          ]
         ],
       ),
     );

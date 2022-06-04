@@ -48,7 +48,7 @@ class SubmitSimpleTransactionWidget extends CubitWidget<
               onInsert: () {
                 return ExpressionBuilder(
                   valueBuilder: InstructionValueBuilder(
-                    programId: ExpressionBuilder.withConstantValue(),
+                    programId: ExpressionBuilder.withStringValue(),
                     keys: ExpressionBuilder.withList(),
                     data: ExpressionBuilder.withBinaryValue(),
                   ),

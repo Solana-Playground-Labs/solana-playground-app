@@ -49,20 +49,20 @@ class ConditionalWrapperAction {
     }
   }
 
-  static ListAction? asListAction(
+  static ExtraAction? asListAction(
       BuildContext context, ValueBuilder valueBuilder) {
     if (!ConditionalWrapperAction.isWrapable(context, valueBuilder)) {
       return null;
     }
 
-    return ListAction(
+    return ExtraAction(
         child: const Text("Wrap in condition"),
         onTap: () {
           ConditionalWrapperAction.wrap(context, valueBuilder);
         });
   }
 
-  static ListAction? asUnwrapListAction(
+  static ExtraAction? asUnwrapListAction(
       BuildContext context,
       ConditionalWrapperValueBuilder valueBuilder,
       bool flow,
@@ -71,7 +71,7 @@ class ConditionalWrapperAction {
       return null;
     }
 
-    return ListAction(
+    return ExtraAction(
         child: flow
             ? const Text("Unwrap true flow")
             : const Text("Unwrap false flow"),
