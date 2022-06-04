@@ -11,18 +11,18 @@ import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 import 'package:solana_playground_app/theme/icons.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
-import 'submit_simple_transaction_cubit.dart';
+import 'make_simple_transaction_cubit.dart';
 
-class SubmitSimpleTransactionWidget extends CubitWidget<
-    SubmitSimpleTransactionCubit, SubmitSimpleTransactionState> {
+class MakeSimpleTransactionWidget extends CubitWidget<
+    MakeSimpleTransactionCubit, MakeSimpleTransactionState> {
   final MakeSimpleTransactionBuilder builder;
   final CommandBuilderMetaInfo? metaInfo;
 
-  SubmitSimpleTransactionWidget({Key? key, required this.builder, this.metaInfo})
+  MakeSimpleTransactionWidget({Key? key, required this.builder, this.metaInfo})
       : super(key: Key(builder.id));
 
   @override
-  Widget content(BuildContext context, SubmitSimpleTransactionState state) {
+  Widget content(BuildContext context, MakeSimpleTransactionState state) {
     return Component(
       header: ComponentHeader(
         icon: SvgPicture.asset(SPIcons.submitTransaction),
@@ -35,7 +35,7 @@ class SubmitSimpleTransactionWidget extends CubitWidget<
             Flexible(
               child: IntrinsicWidth(
                 child: VariableInputWidget(
-                  controller: context.read<SubmitSimpleTransactionCubit>().variable,
+                  controller: context.read<MakeSimpleTransactionCubit>().variable,
                 ),
               ),
             ),
@@ -62,6 +62,6 @@ class SubmitSimpleTransactionWidget extends CubitWidget<
   }
 
   @override
-  SubmitSimpleTransactionCubit cubit(BuildContext context) =>
-      SubmitSimpleTransactionCubit(builder);
+  MakeSimpleTransactionCubit cubit(BuildContext context) =>
+      MakeSimpleTransactionCubit(builder);
 }

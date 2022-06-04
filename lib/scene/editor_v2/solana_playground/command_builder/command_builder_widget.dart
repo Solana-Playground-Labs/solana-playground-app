@@ -3,8 +3,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:solana_playground_app/scene/editor_v2/solana_playground/command_builder/make_keypair/make_keypair_command_builder_widget.dart';
-import 'package:solana_playground_app/scene/editor_v2/solana_playground/command_builder/submit_simple_transaction/submit_simple_transaction_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import '../../editor_v2.dart';
@@ -35,7 +33,7 @@ final Map<Type, _MappingBuilder> _mapping = {
   ImportKeypairFromStorageCommandBuilder: (context, builder, meta) =>
       ImportWalletCommandBuilderWidget(builder: builder, metaInfo: meta),
   MakeSimpleTransactionBuilder: (context, builder, meta) =>
-      SubmitSimpleTransactionWidget(builder: builder, metaInfo: meta),
+      MakeSimpleTransactionWidget(builder: builder, metaInfo: meta),
   MakeKeyPairCommandBuilder: (context, builder, meta) =>
       MakeKeypairCommandBuilderWidget(builder: builder, metaInfo: meta),
 };
