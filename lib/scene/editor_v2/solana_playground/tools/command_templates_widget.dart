@@ -3,100 +3,183 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/scene/editor_v2/cubit/code_editor_cubit.dart';
+import 'package:solana_playground_app/theme/icons.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../command_builder/command_feedback.dart';
+
+final List<Widget> _basisTemplates = [
+  TemplateWidget(
+    icon: SvgPicture.asset(SPIcons.variable),
+    title: "Declare variables",
+    commandBuilder: DeclareVariableCommandBuilder.empty(),
+  ),
+  TemplateWidget(
+    icon: SvgPicture.asset(SPIcons.comment),
+    title: "Comment",
+    commandBuilder: CommentCommandBuilder(content: ""),
+  ),
+  TemplateWidget(
+    icon: SvgPicture.asset(SPIcons.info),
+    title: "Log",
+    commandBuilder: PrintCommandBuilder.empty(),
+  ),
+];
+
+final List<Widget> _keyManagerTemplates = [
+  TemplateWidget(
+    icon: SvgPicture.asset(SPIcons.keypair),
+    title: "Make keypair",
+    commandBuilder: MakeKeyPairCommandBuilder(
+      variable: "",
+      publicKey: ExpressionBuilder.withStringValue(),
+      privateKey: ExpressionBuilder.withStringValue(),
+    ),
+  ),
+  TemplateWidget(
+    icon: SvgPicture.asset(SPIcons.keypair),
+    title: "Import keypair from storage",
+    commandBuilder: ImportKeypairFromStorageCommandBuilder(
+      variable: "",
+      walletName: ExpressionBuilder.withStringValue(),
+    ),
+  ),
+];
+
+final List<Widget> _blockchainTemplates = [
+  TemplateWidget(
+    icon: SvgPicture.asset(SPIcons.submitTransaction),
+    title: "Make transaction",
+    commandBuilder: MakeSimpleTransactionBuilder(
+      variable: "",
+      feePayer: ExpressionBuilder.withVariable(),
+      recentBlockHash: ExpressionBuilder.withVariable(),
+      signers: ExpressionBuilder.withList(),
+      instructions: ExpressionBuilder.withList(),
+    ),
+  ),
+  TemplateWidget(
+    icon: SvgPicture.asset(SPIcons.waiting),
+    title: "Wait transaction confirmation",
+    commandBuilder: WaitTransactionConfirmationCommandBuilder(
+      transaction: ExpressionBuilder.withVariable(),
+    ),
+  ),
+  TemplateWidget(
+    icon: SvgPicture.asset(SPIcons.blockHash),
+    title: "Get recent block hash",
+    commandBuilder: GetRecentBlockHashCommandBuilder.empty(),
+  ),
+  TemplateWidget(
+    icon: SvgPicture.asset(SPIcons.submit),
+    title: "Send transaction",
+    commandBuilder: SendTransactionCommandBuilder(
+      variable: "",
+      transaction: ExpressionBuilder.withVariable(),
+    ),
+  ),
+];
 
 class CommandTemplatesWidget extends StatelessWidget {
   const CommandTemplatesWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          TemplateWidget(
-            title: "Comment",
-            commandBuilder: CommentCommandBuilder(content: ""),
-          ),
-          TemplateWidget(
-            title: "Declare variables",
-            commandBuilder: DeclareVariableCommandBuilder.empty(),
-          ),
-          TemplateWidget(
-            title: "Log",
-            commandBuilder: PrintCommandBuilder.empty(),
-          ),
-          TemplateWidget(
-            title: "Make keypair",
-            commandBuilder: MakeKeyPairCommandBuilder(
-              variable: "",
-              publicKey: ExpressionBuilder.withStringValue(),
-              privateKey: ExpressionBuilder.withStringValue(),
-            ),
-          ),
-          TemplateWidget(
-            title: "Import keypair from storage",
-            commandBuilder: ImportKeypairFromStorageCommandBuilder(
-              variable: "",
-              walletName: ExpressionBuilder.withStringValue(),
-            ),
-          ),
-          TemplateWidget(
-            title: "Send transaction",
-            commandBuilder: SendTransactionCommandBuilder(
-              variable: "",
-              transaction: ExpressionBuilder.withVariable(),
-            ),
-          ),
-          TemplateWidget(
-            title: "Make transaction",
-            commandBuilder: MakeSimpleTransactionBuilder(
-              variable: "",
-              feePayer: ExpressionBuilder.withVariable(),
-              recentBlockHash: ExpressionBuilder.withVariable(),
-              signers: ExpressionBuilder.withList(),
-              instructions: ExpressionBuilder.withList(),
-            ),
-          ),
-          TemplateWidget(
-            title: "Wait transaction confirmation",
-            commandBuilder: WaitTransactionConfirmationCommandBuilder(
-              transaction: ExpressionBuilder.withVariable(),
-            ),
-          ),
-          TemplateWidget(
-            title: "Get recent block hash",
-            commandBuilder: GetRecentBlockHashCommandBuilder.empty(),
-          ),
-        ],
-      ),
+    final theme = Theme.of(context);
+
+    return CustomScrollView(
+      slivers: [
+        TemplateGroup(
+          title: "Basis",
+          description: "Basis commands",
+          templates: _basisTemplates,
+        ),
+        TemplateGroup(
+          title: "Key manager",
+          description: "The section for working with keys",
+          templates: _keyManagerTemplates,
+        ),
+        TemplateGroup(
+          title: "Transaction",
+          description:
+              "The section for creating transaction and submiting them.",
+          templates: _blockchainTemplates,
+        )
+      ],
     );
   }
 }
 
+class TemplateGroup extends StatelessWidget {
+  final String title;
+  final String description;
+  final List<Widget> templates;
+
+  const TemplateGroup({
+    Key? key,
+    required this.title,
+    required this.description,
+    required this.templates,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return MultiSliver(children: [
+      SliverToBoxAdapter(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(title, style: theme.textTheme.headline6),
+              Text(description, style: theme.textTheme.caption),
+            ],
+          ),
+        ),
+      ),
+      SliverList(
+        delegate: SliverChildBuilderDelegate(
+          (context, index) => templates[index],
+          childCount: templates.length,
+        ),
+      ),
+      const SliverPadding(padding: EdgeInsets.symmetric(vertical: 8)),
+    ]);
+  }
+}
+
 class TemplateWidget<T extends CommandBuilder> extends StatelessWidget {
+  final Widget? icon;
   final String title;
   final T commandBuilder;
 
-  const TemplateWidget(
-      {Key? key, required this.title, required this.commandBuilder})
-      : super(key: key);
+  const TemplateWidget({
+    Key? key,
+    required this.title,
+    this.icon,
+    required this.commandBuilder,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Draggable<T>(
+      affinity: Axis.horizontal,
       data: commandBuilder,
-      feedback: CommandFeedback(builder: commandBuilder),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SPCard(
-          child: InkWell(
+      feedback: CommandFeedback(
+        icon: icon,
+        title: title,
+        builder: commandBuilder,
+      ),
+      child: Column(
+        children: [
+          InkWell(
             onTap: () {
               context
                   .read<CodeEditorCubit>()
@@ -107,11 +190,20 @@ class TemplateWidget<T extends CommandBuilder> extends StatelessWidget {
                   .add(commandBuilder.clone());
             },
             child: Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: Text(title),
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                children: [
+                  if (icon != null) ...[
+                    icon!,
+                    const SizedBox(width: 8),
+                  ],
+                  Text(title),
+                ],
+              ),
             ),
           ),
-        ),
+          const Divider(height: 1, indent: 16),
+        ],
       ),
     );
   }

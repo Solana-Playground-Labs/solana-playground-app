@@ -25,6 +25,7 @@ dependencies:
   dotted_border: ^2.0.0+2
   url_launcher: ^6.1.2
   flutter_markdown: ^0.6.10+2
+  sliver_tools: ^0.2.6
   # localstore: ^1.2.3
 
   solana_playground_language:
