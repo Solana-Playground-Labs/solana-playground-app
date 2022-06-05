@@ -12,15 +12,21 @@ import 'block_command_builder_cubit.dart';
 
 class CommandBuilderAction extends StatelessWidget {
   final CommandBuilder builder;
-  final List<ExtraAction?> Function(BuildContext context)? actions;
+  final List<Widget> actions;
+  final List<ExtraAction?> Function(BuildContext context)? extraActions;
 
-  CommandBuilderAction({Key? key, required this.builder, this.actions})
-      : super(key: Key(builder.id));
+  CommandBuilderAction({
+    Key? key,
+    required this.builder,
+    this.actions = const [],
+    this.extraActions,
+  }) : super(key: Key(builder.id));
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
+        ...actions,
         SPIconButton(
           onPressed: () {
             context.read<BlockCommandBuilderCubit>().moveUp(builder);
@@ -40,11 +46,11 @@ class CommandBuilderAction extends StatelessWidget {
         const SizedBox(width: 4),
         ExtraActionWidget(
           actions: (context) => [
-            ...?actions?.call(context),
+            ...?extraActions?.call(context),
             ExtraAction(
                 child: const Text("Remove"),
                 onTap: () =>
-                {context.read<BlockCommandBuilderCubit>().remove(builder)}),
+                    {context.read<BlockCommandBuilderCubit>().remove(builder)}),
           ],
         ),
       ],

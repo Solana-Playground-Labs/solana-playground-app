@@ -15,11 +15,11 @@ class IntValueBuilderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleTextFieldValueBuilderWidget<IntValueBuilder>(
+    return TextFieldBuilderWidget<IntValueBuilder>(
       inputFormatters: [
         FilteringTextInputFormatter.allow(RegExp(r'\d')),
       ],
-      adapter: SingleTextFieldValueBuilderAdapter<IntValueBuilder>(
+      adapter: TextFieldBuilderAdapter<IntValueBuilder>(
         builder: builder,
         getTextBuilder: (builder) => builder.value.toString(),
         setTextBuilder: (builder, value) =>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>comment</title>
+    <g id="comment" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill="#4BA673" x="0" y="0" width="24" height="24" rx="8"></rect>
+        <g id="comment-circle-chat-message" transform="translate(6.000000, 6.000000)" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2">
+            <path d="M6,12 C9.31368,12 12,9.31368 12,6 C12,2.68629 9.31368,0 6,0 C2.68629,0 0,2.68629 0,6 C0,7.5978 0.624564,9.04974 1.642872,10.125 L0.436086,11.5023 C0.266166,11.69622 0.403884,12 0.661728,12 L6,12 Z" id="Path"></path>
+            <line x1="3" y1="4.2" x2="9" y2="4.2" id="Path"></line>
+            <line x1="3" y1="6.6" x2="5.4" y2="6.6" id="Path"></line>
+        </g>
+    </g>
+</svg>

@@ -2,7 +2,7 @@
  *  Solana Playground  Copyright (C) 2022  Tran Giang Long
  */
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Builder;
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/common/label.dart';
@@ -11,9 +11,9 @@ import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
-class SingleTextFieldValueBuilderCubit<T extends ValueBuilder>
+class SingleTextFieldValueBuilderCubit<T extends Builder>
     extends Cubit<String> {
-  final SingleTextFieldValueBuilderAdapter<T> adapter;
+  final TextFieldBuilderAdapter<T> adapter;
   final textController = TextEditingController();
 
   SingleTextFieldValueBuilderCubit({required this.adapter})
@@ -41,24 +41,28 @@ class SingleTextFieldValueBuilderCubit<T extends ValueBuilder>
   }
 }
 
-class SingleTextFieldValueBuilderWidget<T extends ValueBuilder>
+class TextFieldBuilderWidget<T extends Builder>
     extends CubitWidget<SingleTextFieldValueBuilderCubit<T>, String> {
   final ExpressionMetaDataNode? metaData;
-  final SingleTextFieldValueBuilderAdapter<T> adapter;
+  final TextFieldBuilderAdapter<T> adapter;
   final List<TextInputFormatter>? inputFormatters;
+  final String hintText;
+  final SPLabelStyle style;
 
-  const SingleTextFieldValueBuilderWidget({
+  const TextFieldBuilderWidget({
     Key? key,
     required this.adapter,
     this.metaData,
     this.inputFormatters,
+    this.style = SPLabelStyle.green,
+    this.hintText = "Constant",
   }) : super(key: key);
 
   @override
   Widget content(BuildContext context, String state) {
     return IntrinsicWidth(
       child: SPLabel(
-        style: SPLabelStyle.green,
+        style: style,
         child: TextField(
           controller: context
               .read<SingleTextFieldValueBuilderCubit<T>>()
@@ -69,8 +73,9 @@ class SingleTextFieldValueBuilderWidget<T extends ValueBuilder>
               .textTheme
               .bodyText1
               ?.copyWith(color: Colors.black),
-          decoration:
-              SPTextField.compactInputDecoration.copyWith(hintText: "Constant"),
+          decoration: SPTextField.compactInputDecoration.copyWith(
+            hintText: hintText,
+          ),
           inputFormatters: inputFormatters ?? [],
         ),
       ),
@@ -82,12 +87,12 @@ class SingleTextFieldValueBuilderWidget<T extends ValueBuilder>
       SingleTextFieldValueBuilderCubit<T>(adapter: adapter);
 }
 
-class SingleTextFieldValueBuilderAdapter<T extends ValueBuilder> {
+class TextFieldBuilderAdapter<T extends Builder> {
   final T builder;
   final String Function(T builder) _getTextBuilder;
   final void Function(T builder, String text) _setTextBuilder;
 
-  const SingleTextFieldValueBuilderAdapter(
+  const TextFieldBuilderAdapter(
       {required this.builder,
       required String Function(T builder) getTextBuilder,
       required void Function(T builder, String text) setTextBuilder})

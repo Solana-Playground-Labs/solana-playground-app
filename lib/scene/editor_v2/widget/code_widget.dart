@@ -14,21 +14,26 @@ class CodeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Container(
-      color: theme.backgroundColor,
-      child: BlocBuilder<CodeEditorCubit, CodeEditorState>(
-        buildWhen: (p, n) => p.currentScript != n.currentScript,
-        builder: (context, state) {
-          if (state.currentScript?.blockCommandBuilder == null) {
-            return const Center(child: Text("Empty"));
-          }
-          return CustomScrollView(
-            slivers: [
-              BlockCommandBuilderWidget(
-                  builder: state.currentScript!.blockCommandBuilder),
-            ],
-          );
-        },
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Container(
+        color: theme.backgroundColor,
+        child: BlocBuilder<CodeEditorCubit, CodeEditorState>(
+          buildWhen: (p, n) => p.currentScript != n.currentScript,
+          builder: (context, state) {
+            if (state.currentScript?.blockCommandBuilder == null) {
+              return const Center(child: Text("Empty"));
+            }
+            return CustomScrollView(
+              slivers: [
+                BlockCommandBuilderWidget(
+                    builder: state.currentScript!.blockCommandBuilder),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

@@ -12,7 +12,7 @@ Future<void> executeSendTransactionCommand(
   SPRuntime runtime,
   SendTransactionCommand command,
 ) async {
-  final data = await runtime.calculate(command.expression);
+  final data = await runtime.calculate(command.transaction);
 
   final recentBlockhash = data["recentBlockhash"];
   final signers = data['signers'];

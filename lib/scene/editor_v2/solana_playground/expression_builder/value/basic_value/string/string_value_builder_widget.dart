@@ -14,8 +14,8 @@ class StringValueBuilderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleTextFieldValueBuilderWidget<StringValueBuilder>(
-      adapter: SingleTextFieldValueBuilderAdapter<StringValueBuilder>(
+    return TextFieldBuilderWidget<StringValueBuilder>(
+      adapter: TextFieldBuilderAdapter<StringValueBuilder>(
         builder: builder,
         getTextBuilder: (builder) => builder.value,
         setTextBuilder: (builder, value) => builder.value = value,

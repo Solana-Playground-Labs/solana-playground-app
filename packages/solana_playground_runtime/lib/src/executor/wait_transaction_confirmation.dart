@@ -10,7 +10,7 @@ Future<void> executeWaitTransactionConfirmation(
   SPRuntime runtime,
   WaitTransactionConfirmationCommand command,
 ) async {
-  final value = await runtime.calculate(command.expression);
+  final value = await runtime.calculate(command.transaction);
   await runtime.solanaClient.waitForSignatureStatus(
     value,
     status: Commitment.finalized,

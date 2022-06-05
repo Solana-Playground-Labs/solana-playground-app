@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
-import 'package:solana_playground_app/scene/editor/common/variable_input_widget.dart';
+
 import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 import 'package:solana_playground_app/scene/editor_v2/solana_playground/command_builder/command_builder_action.dart';
 import 'package:solana_playground_app/scene/editor_v2/solana_playground/common/component_header.dart';

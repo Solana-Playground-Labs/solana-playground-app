@@ -4,35 +4,29 @@
 
 import 'package:solana_playground_language/lib.dart';
 
-@Deprecated("Will be removed")
+part 'wait_transaction_confirmation_command.builder.dart';
+
+@CommandBuildable()
 class WaitTransactionConfirmationCommand extends Command {
-  final Expression expression;
+  @CommandPropertyBuildable()
+  final Expression transaction;
 
   const WaitTransactionConfirmationCommand({
-    required this.expression,
+    required this.transaction,
   });
 
   @override
-  List<Object?> get props => [expression];
+  List<Object?> get props => [transaction];
 
   factory WaitTransactionConfirmationCommand.fromJson(
-      Map<String, dynamic> json) {
-    return WaitTransactionConfirmationCommand(
-        expression: Expression.fromJson(json['expression']));
-  }
+          Map<String, dynamic> json) =>
+      _$WaitTransactionConfirmationCommandFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() {
-    return {
-      'type': classType,
-      'expression': expression.toJson(),
-    };
-  }
+  Map<String, dynamic> toJson() =>
+      _$WaitTransactionConfirmationCommandToJson(this);
 
   @override
-  WaitConfirmationCommandBuilder asBuilder() {
-    return WaitConfirmationCommandBuilder(
-      expressionBuilder: expression.asBuilder(),
-    );
-  }
+  WaitTransactionConfirmationCommandBuilder asBuilder() =>
+      _$WaitTransactionConfirmationCommandToBuilder(this);
 }

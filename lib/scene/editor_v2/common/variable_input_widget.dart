@@ -28,7 +28,7 @@ class VariableInputWidget extends StatelessWidget {
             ?.copyWith(color: Colors.black),
         decoration: SPTextField.compactInputDecoration.copyWith(
           constraints: const BoxConstraints(),
-          hintText: "Variable",
+          hintText: "Name",
         ),
       ),
     );

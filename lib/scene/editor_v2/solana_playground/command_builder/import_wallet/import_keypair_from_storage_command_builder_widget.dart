@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
-import 'package:solana_playground_app/scene/editor/common/common.dart';
+
 import 'package:solana_playground_app/theme/icons.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 

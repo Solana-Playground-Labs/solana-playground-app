@@ -24,6 +24,7 @@ dependencies:
   flutter_secure_storage: ^5.0.2
   dotted_border: ^2.0.0+2
   url_launcher: ^6.1.2
+  flutter_markdown: ^0.6.10+2
   # localstore: ^1.2.3
 
   solana_playground_language:

@@ -7,7 +7,6 @@ part of 'import_keypair_from_storage.dart';
 // **************************************************************************
 
 class ImportKeypairFromStorageCommandBuilder extends CommandBuilder {
-  final ExpressionBuilder walletName;
   String _variable;
 
   String get variable => _variable;
@@ -17,24 +16,26 @@ class ImportKeypairFromStorageCommandBuilder extends CommandBuilder {
     notifyListeners();
   }
 
+  final ExpressionBuilder walletName;
+
   ImportKeypairFromStorageCommandBuilder({
-    required this.walletName,
     required String variable,
+    required this.walletName,
   }) : _variable = variable;
 
   @override
   ImportKeypairFromStorageCommand build() {
     return ImportKeypairFromStorageCommand(
-      walletName: walletName.build(),
       variable: variable,
+      walletName: walletName.build(),
     );
   }
 
   @override
   ImportKeypairFromStorageCommandBuilder clone() {
     return ImportKeypairFromStorageCommandBuilder(
-      walletName: walletName.clone(),
       variable: variable,
+      walletName: walletName.clone(),
     );
   }
 }
@@ -42,8 +43,8 @@ class ImportKeypairFromStorageCommandBuilder extends CommandBuilder {
 ImportKeypairFromStorageCommand _$ImportKeypairFromStorageCommandFromJson(
     Map<String, dynamic> json) {
   return ImportKeypairFromStorageCommand(
-    walletName: Expression.fromJson(json['walletName']),
     variable: json['variable'],
+    walletName: Expression.fromJson(json['walletName']),
   );
 }
 
@@ -51,8 +52,8 @@ Map<String, dynamic> _$ImportKeypairFromStorageCommandToJson(
     ImportKeypairFromStorageCommand value) {
   return {
     'type': value.runtimeType.toString(),
-    'walletName': value.walletName.toJson(),
     'variable': value.variable,
+    'walletName': value.walletName.toJson(),
   };
 }
 
@@ -60,5 +61,5 @@ ImportKeypairFromStorageCommandBuilder
     _$ImportKeypairFromStorageCommandToBuilder(
         ImportKeypairFromStorageCommand value) {
   return ImportKeypairFromStorageCommandBuilder(
-      walletName: value.walletName.asBuilder(), variable: value.variable);
+      variable: value.variable, walletName: value.walletName.asBuilder());
 }

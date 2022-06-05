@@ -3,6 +3,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:solana_playground_app/scene/editor_v2/solana_playground/command_builder/comment/comment_command_builder_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import '../../editor_v2.dart';
@@ -26,7 +27,7 @@ final Map<Type, _MappingBuilder> _mapping = {
       DeclareVariableCommandBuilderWidget(builder: builder, metaInfo: meta),
   SendTransactionCommandBuilder: (context, builder, meta) =>
       SendTransactionCommandBuilderWidget(builder: builder, metaInfo: meta),
-  WaitConfirmationCommandBuilder: (context, builder, meta) =>
+  WaitTransactionConfirmationCommandBuilder: (context, builder, meta) =>
       WaitTransactionCommandBuilderWidget(builder: builder, metaInfo: meta),
   GetRecentBlockHashCommandBuilder: (context, builder, meta) =>
       GetRecentBlockHashCommandBuilderWidget(builder: builder, metaInfo: meta),
@@ -36,6 +37,8 @@ final Map<Type, _MappingBuilder> _mapping = {
       MakeSimpleTransactionWidget(builder: builder, metaInfo: meta),
   MakeKeyPairCommandBuilder: (context, builder, meta) =>
       MakeKeypairCommandBuilderWidget(builder: builder, metaInfo: meta),
+  CommentCommandBuilder: (context, builder, meta) =>
+      CommentCommandBuilderWidget(builder: builder, metaInfo: meta),
 };
 
 class CommandBuilderWidget extends StatelessWidget {

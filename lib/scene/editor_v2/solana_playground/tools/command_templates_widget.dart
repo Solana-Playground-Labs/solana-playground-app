@@ -15,57 +15,67 @@ class CommandTemplatesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        TemplateWidget(
-          title: "Declare variables",
-          commandBuilder: DeclareVariableCommandBuilder.empty(),
-        ),
-        TemplateWidget(
-          title: "Log",
-          commandBuilder: PrintCommandBuilder.empty(),
-        ),
-        TemplateWidget(
-          title: "Make keypair",
-          commandBuilder: MakeKeyPairCommandBuilder(
-            variable: "",
-            publicKey: ExpressionBuilder.withStringValue(),
-            privateKey: ExpressionBuilder.withStringValue(),
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TemplateWidget(
+            title: "Comment",
+            commandBuilder: CommentCommandBuilder(content: ""),
           ),
-        ),
-        TemplateWidget(
-          title: "Import keypair from storage",
-          commandBuilder: ImportKeypairFromStorageCommandBuilder(
-            variable: "",
-            walletName: ExpressionBuilder.withStringValue(),
+          TemplateWidget(
+            title: "Declare variables",
+            commandBuilder: DeclareVariableCommandBuilder.empty(),
           ),
-        ),
-        // TemplateWidget(
-        //   title: "Create transaction",
-        //   commandBuilder: CreateTransactionCommandBuilder.empty(),
-        // ),
-        // TemplateWidget(
-        //   title: "Send transaction",
-        //   commandBuilder: SendTransactionCommandBuilder.empty(),
-        // ),
-        TemplateWidget(
-          title: "Submit simple transaction",
-          commandBuilder: MakeSimpleTransactionBuilder(
-            signers: ExpressionBuilder.withList(),
-            instructions: ExpressionBuilder.withList(),
-            variable: "",
+          TemplateWidget(
+            title: "Log",
+            commandBuilder: PrintCommandBuilder.empty(),
           ),
-        ),
-        // TemplateWidget(
-        //   title: "Wait transaction confirmation",
-        //   commandBuilder: WaitConfirmationCommandBuilder.empty(),
-        // ),
-        // TemplateWidget(
-        //   title: "Get recent block hash",
-        //   commandBuilder: GetRecentBlockHashCommandBuilder.empty(),
-        // ),
-      ],
+          TemplateWidget(
+            title: "Make keypair",
+            commandBuilder: MakeKeyPairCommandBuilder(
+              variable: "",
+              publicKey: ExpressionBuilder.withStringValue(),
+              privateKey: ExpressionBuilder.withStringValue(),
+            ),
+          ),
+          TemplateWidget(
+            title: "Import keypair from storage",
+            commandBuilder: ImportKeypairFromStorageCommandBuilder(
+              variable: "",
+              walletName: ExpressionBuilder.withStringValue(),
+            ),
+          ),
+          TemplateWidget(
+            title: "Send transaction",
+            commandBuilder: SendTransactionCommandBuilder(
+              variable: "",
+              transaction: ExpressionBuilder.withVariable(),
+            ),
+          ),
+          TemplateWidget(
+            title: "Make transaction",
+            commandBuilder: MakeSimpleTransactionBuilder(
+              variable: "",
+              feePayer: ExpressionBuilder.withVariable(),
+              recentBlockHash: ExpressionBuilder.withVariable(),
+              signers: ExpressionBuilder.withList(),
+              instructions: ExpressionBuilder.withList(),
+            ),
+          ),
+          TemplateWidget(
+            title: "Wait transaction confirmation",
+            commandBuilder: WaitTransactionConfirmationCommandBuilder(
+              transaction: ExpressionBuilder.withVariable(),
+            ),
+          ),
+          TemplateWidget(
+            title: "Get recent block hash",
+            commandBuilder: GetRecentBlockHashCommandBuilder.empty(),
+          ),
+        ],
+      ),
     );
   }
 }

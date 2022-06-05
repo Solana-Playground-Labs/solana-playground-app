@@ -3,7 +3,9 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
+import 'package:solana_playground_app/theme/icons.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 
@@ -20,6 +22,7 @@ class InstructionValueBuilderWidget extends CubitWidget<
   Widget content(BuildContext context, InstructionValueBuilderState state) {
     return Component(
       header: ComponentHeader(
+        icon: SvgPicture.asset(SPIcons.program),
         name: metaData?.index == null
             ? "Transaction"
             : "Transaction #${metaData!.index! + 1}",

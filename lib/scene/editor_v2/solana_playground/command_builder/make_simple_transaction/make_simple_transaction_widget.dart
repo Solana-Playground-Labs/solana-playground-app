@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
-import 'package:solana_playground_app/scene/editor/common/common.dart';
+
 import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 import 'package:solana_playground_app/theme/icons.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
@@ -28,16 +28,52 @@ class MakeSimpleTransactionWidget extends CubitWidget<
         icon: SvgPicture.asset(SPIcons.submitTransaction),
         name: commandHeaderFormatter("Make transaction", metaInfo),
         trailing: CommandBuilderAction(builder: builder),
-        content: Row(
-          mainAxisSize: MainAxisSize.min,
+        content: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Text("Variable: "),
-            Flexible(
-              child: IntrinsicWidth(
-                child: VariableInputWidget(
-                  controller: context.read<MakeSimpleTransactionCubit>().variable,
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text("Variable: "),
+                Flexible(
+                  child: IntrinsicWidth(
+                    child: VariableInputWidget(
+                      controller:
+                          context.read<MakeSimpleTransactionCubit>().variable,
+                    ),
+                  ),
                 ),
-              ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text("Recent block hash: "),
+                IntrinsicWidth(
+                  child: ExpressionBuilderWidget(
+                    builder: builder.recentBlockHash,
+                    metaData: const ExpressionMetaDataNode(
+                      allowTypes: TypeInspectorHelper.basicTypeList,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text("Fee payer: "),
+                IntrinsicWidth(
+                  child: ExpressionBuilderWidget(
+                    builder: builder.feePayer,
+                    metaData: const ExpressionMetaDataNode(
+                      allowTypes: TypeInspectorHelper.basicTypeList,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

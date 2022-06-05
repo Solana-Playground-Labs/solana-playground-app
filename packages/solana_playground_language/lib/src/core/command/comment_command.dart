@@ -6,7 +6,11 @@ import 'package:solana_playground_language/lib.dart';
 import 'package:solana_playground_language/src/builder/command/command_builder.dart';
 import 'package:solana_playground_language/src/core/command/abstract_command.dart';
 
+part 'comment_command.builder.dart';
+
+@CommandBuildable()
 class CommentCommand extends Command {
+  @CommandPropertyBuildable()
   final String content;
 
   const CommentCommand({required this.content});
@@ -14,18 +18,12 @@ class CommentCommand extends Command {
   @override
   List<Object?> get props => [content];
 
-  factory CommentCommand.fromJson(Map<String, dynamic> json) {
-    return CommentCommand(content: json['content']);
-  }
+  factory CommentCommand.fromJson(Map<String, dynamic> json) =>
+      _$CommentCommandFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() => {
-        "type": classType,
-        "content": content,
-      };
+  Map<String, dynamic> toJson() => _$CommentCommandToJson(this);
 
   @override
-  CommendCommandBuilder asBuilder() {
-    return CommendCommandBuilder(content: content);
-  }
+  CommentCommandBuilder asBuilder() => _$CommentCommandToBuilder(this);
 }

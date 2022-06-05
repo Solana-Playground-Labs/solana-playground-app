@@ -4,38 +4,30 @@
 
 import 'package:solana_playground_language/lib.dart';
 
+part 'send_transaction_command.builder.dart';
+
+@CommandBuildable()
 class SendTransactionCommand extends Command {
-  final Expression expression;
+  @CommandPropertyBuildable()
+  final Expression transaction;
+
+  @CommandPropertyBuildable()
   final String variable;
 
   const SendTransactionCommand({
-    required this.expression,
+    required this.transaction,
     required this.variable,
   });
 
   @override
-  List<Object> get props => [expression, variable];
+  List<Object> get props => [transaction, variable];
 
-  factory SendTransactionCommand.fromJson(Map<String, dynamic> json) {
-    return SendTransactionCommand(
-        variable: json['variable'],
-        expression: Expression.fromJson(json['expression']));
-  }
+  factory SendTransactionCommand.fromJson(Map<String, dynamic> json) =>
+      _$SendTransactionCommandFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() {
-    return {
-      'type': classType,
-      'variable': variable,
-      'expression': expression.toJson(),
-    };
-  }
+  Map<String, dynamic> toJson() => _$SendTransactionCommandToJson(this);
 
   @override
-  CommandBuilder asBuilder() {
-    return SendTransactionCommandBuilder(
-      expressionBuilder: expression.asBuilder(),
-      variable: variable,
-    );
-  }
+  CommandBuilder asBuilder() => _$SendTransactionCommandToBuilder(this);
 }

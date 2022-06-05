@@ -12,6 +12,12 @@ class MakeSimpleTransaction extends Command {
   final String variable;
 
   @CommandPropertyBuildable()
+  final Expression recentBlockHash;
+
+  @CommandPropertyBuildable()
+  final Expression feePayer;
+
+  @CommandPropertyBuildable()
   final Expression instructions;
 
   @CommandPropertyBuildable()
@@ -19,6 +25,8 @@ class MakeSimpleTransaction extends Command {
 
   const MakeSimpleTransaction({
     required this.variable,
+    required this.recentBlockHash,
+    required this.feePayer,
     required this.instructions,
     required this.signers,
   });
@@ -34,5 +42,11 @@ class MakeSimpleTransaction extends Command {
       _$MakeSimpleTransactionToBuilder(this);
 
   @override
-  List<Object?> get props => [variable, instructions, signers];
+  List<Object?> get props => [
+        variable,
+        feePayer,
+        instructions,
+        signers,
+        recentBlockHash,
+      ];
 }
