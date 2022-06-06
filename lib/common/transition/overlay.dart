@@ -8,13 +8,21 @@ import 'package:flutter/material.dart';
 Route<T> popover<T>(BuildContext context, Widget child, CustomPage page) {
   return RawDialogRoute(
     pageBuilder: (context, animation, secondAnimation) {
-      return Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 500, maxHeight: 600),
-          child: Container(
-            clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
-            child: child,
+      final viewInsets = MediaQuery.of(context).viewInsets;
+
+      return Padding(
+        padding: viewInsets,
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(32.0),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 500, maxHeight: 600),
+              child: Container(
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
+                child: child,
+              ),
+            ),
           ),
         ),
       );

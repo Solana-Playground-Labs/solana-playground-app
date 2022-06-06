@@ -36,36 +36,36 @@ class _CommandBuilderDraggableState extends State<CommandBuilderDraggable> {
   Widget build(BuildContext context) {
     return SPStack(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              if (dropUp != null)
-                Padding(
-                  padding: const EdgeInsets.only(
-                      bottom: 8.0, left: _leftDropWidgetSpace),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (dropUp != null)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Opacity(
+                  opacity: 0.7,
                   child: CommandBuilderWidget(builder: dropUp!),
                 ),
-              Draggable<CommandBuilder>(
-                key: Key(widget.builder.id),
-                data: widget.builder,
-                feedback: CommandFeedback(builder: widget.builder),
-                onDragCompleted: () {},
-                child: widget.child,
-                childWhenDragging: Opacity(
-                  opacity: 0.2,
-                  child: widget.child,
-                ),
               ),
-              if (dropDown != null)
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 8.0, left: _leftDropWidgetSpace),
+            Draggable<CommandBuilder>(
+              key: Key(widget.builder.id),
+              data: widget.builder,
+              feedback: CommandFeedback(builder: widget.builder),
+              childWhenDragging: Opacity(
+                opacity: 0.2,
+                child: widget.child,
+              ),
+              child: widget.child,
+            ),
+            if (dropDown != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Opacity(
+                  opacity: 0.7,
                   child: CommandBuilderWidget(builder: dropDown!),
                 ),
-            ],
-          ),
+              ),
+          ],
         ),
         Positioned.fill(
           child: Column(

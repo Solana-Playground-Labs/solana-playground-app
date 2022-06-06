@@ -27,6 +27,7 @@ class PackageRepository {
   void createPackage(String name) {
     final package = Package(
       name: name,
+      icon: SPIcon.empty(),
       packageType: PackageType.application,
       scripts: [Script.main()],
     );

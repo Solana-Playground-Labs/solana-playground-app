@@ -13,7 +13,11 @@ class PackageNameCubit extends Cubit<PackageNameState> {
   final PackageBuilder builder;
   final TextEditingController textEditorController = TextEditingController();
 
-  PackageNameCubit(this.builder) : super(PackageNameState(name: builder.name)) {
+  PackageNameCubit(this.builder)
+      : super(PackageNameState(
+          name: builder.name,
+          icon: builder.icon,
+        )) {
     builder.addListener(listener);
 
     textEditorController.text = builder.name;
@@ -27,6 +31,12 @@ class PackageNameCubit extends Cubit<PackageNameState> {
     if (builder.name != textEditorController.text) {
       textEditorController.text = builder.name;
     }
+
+    emit(state.copyWith(icon: builder.icon));
+  }
+
+  void updateIcon(SPIcon icon) {
+    builder.icon = icon;
   }
 
   @override
@@ -35,4 +45,5 @@ class PackageNameCubit extends Cubit<PackageNameState> {
     builder.removeListener(listener);
     return super.close();
   }
+
 }

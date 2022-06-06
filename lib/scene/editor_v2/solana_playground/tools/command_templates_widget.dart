@@ -5,8 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sliver_tools/sliver_tools.dart';
-import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/scene/editor_v2/cubit/code_editor_cubit.dart';
+import 'package:solana_playground_app/scene/editor_v2/cubit/drag_cubit.dart';
 import 'package:solana_playground_app/theme/icons.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -177,6 +177,12 @@ class TemplateWidget<T extends CommandBuilder> extends StatelessWidget {
         title: title,
         builder: commandBuilder,
       ),
+      onDragStarted: () {
+        context.read<DragCubit>().active();
+      },
+      onDragEnd: (_) {
+        context.read<DragCubit>().deactive();
+      },
       child: Column(
         children: [
           InkWell(

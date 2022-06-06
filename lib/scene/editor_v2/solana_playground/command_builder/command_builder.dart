@@ -3,6 +3,7 @@ export 'declare_variable/declare_variable.dart';
 export 'block_command_builder_cubit.dart';
 export 'command_builder_draggable.dart';
 export 'import_wallet/import_wallet.dart';
+export 'comment/comment.dart';
 export 'command_feedback.dart';
 export 'print/print.dart';
 export 'command_builder_action.dart';

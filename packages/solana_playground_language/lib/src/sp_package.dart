@@ -4,6 +4,7 @@
 
 import 'package:equatable/equatable.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
+import 'package:solana_playground_language/src/sp_icon.dart';
 
 import 'builder/core_builder.dart';
 
@@ -11,21 +12,24 @@ enum PackageType { application, library }
 
 class Package extends Equatable {
   final String name;
+  final SPIcon icon;
   final PackageType packageType;
   final List<Script> scripts;
 
   const Package({
     required this.name,
+    required this.icon,
     required this.packageType,
     required this.scripts,
   });
 
   @override
-  List<Object> get props => [packageType, scripts];
+  List<Object> get props => [name, icon, packageType, scripts];
 
   factory Package.fromJson(Map<String, dynamic> json) {
     return Package(
       name: json['name'],
+      icon: SPIcon.fromJson(json['icon']),
       packageType: json['packageType'] == 0
           ? PackageType.application
           : PackageType.library,
@@ -38,6 +42,7 @@ class Package extends Equatable {
   Map<String, dynamic> toJson() {
     return {
       'name': name,
+      'icon': icon.toJson(),
       'type': runtimeType.toString(),
       'packageType': packageType.index,
       'scripts': scripts.map((e) => e.toJson()).toList(),
@@ -47,6 +52,7 @@ class Package extends Equatable {
   PackageBuilder asBuilder() {
     return PackageBuilder(
       name: name,
+      icon: icon,
       packageType: packageType,
       scriptBuilders: scripts.map((e) => e.asBuilder()).toList(),
     );
@@ -55,15 +61,18 @@ class Package extends Equatable {
 
 class PackageBuilder extends Builder {
   String _name;
+  SPIcon _icon;
 
   PackageType _packageType;
   List<ScriptBuilder> _scriptBuilders;
 
   PackageBuilder({
     required String name,
+    required SPIcon icon,
     required PackageType packageType,
     required List<ScriptBuilder> scriptBuilders,
   })  : _name = name,
+        _icon = icon,
         _packageType = packageType,
         _scriptBuilders = scriptBuilders;
 
@@ -71,9 +80,18 @@ class PackageBuilder extends Builder {
   PackageBuilder clone() {
     return PackageBuilder(
       name: name,
+      icon: _icon,
       packageType: packageType,
       scriptBuilders: scriptBuilders,
     );
+  }
+
+
+  SPIcon get icon => _icon;
+
+  set icon(SPIcon value) {
+    _icon = value;
+    notifyListeners();
   }
 
   String get name => _name;
@@ -100,6 +118,7 @@ class PackageBuilder extends Builder {
   Package build() {
     return Package(
         name: name,
+        icon: icon,
         packageType: _packageType,
         scripts: _scriptBuilders.map((e) => e.build()).toList());
   }

@@ -23,7 +23,6 @@ class BlockCommandBuilderCubit extends Cubit<BlockCommandBuilderState> {
     emit(state.copyWith(commands: List.of(builder.commands)));
   }
 
-
   @override
   Future close() async {
     builder.removeListener(listener);
@@ -36,6 +35,18 @@ class BlockCommandBuilderCubit extends Cubit<BlockCommandBuilderState> {
 
   remove(CommandBuilder commandBuilder) {
     builder.commands.remove(commandBuilder);
+  }
+
+  insertAt(int index, CommandBuilder newBuilder) {
+    index = min(index ~/ 2, state.commands.length);
+    if (builder.commands.contains(newBuilder)) {
+      // Move
+      builder.commands.remove(newBuilder);
+      builder.commands.insert(index, newBuilder);
+    } else {
+      // Insert
+      builder.commands.insert(index, newBuilder.clone());
+    }
   }
 
   insertBefore(CommandBuilder oldBuilder, CommandBuilder newBuilder) {

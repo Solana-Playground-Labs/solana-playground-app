@@ -26,6 +26,7 @@ dependencies:
   url_launcher: ^6.1.2
   flutter_markdown: ^0.6.10+2
   sliver_tools: ^0.2.6
+  flutter_colorpicker: ^1.0.3
   # localstore: ^1.2.3
 
   solana_playground_language:

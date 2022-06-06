@@ -3,6 +3,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class PlaygroundTheme {
   static light() {
@@ -23,15 +24,18 @@ class PlaygroundTheme {
         background: const Color(0xFFEDEDED),
       ),
     ).copyWith(
+      brightness: Brightness.light,
       appBarTheme: AppBarTheme(
-          color: Colors.white,
-          foregroundColor: Colors.blue,
-          shadowColor: Colors.black.withOpacity(0.1),
-          titleTextStyle: const TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-          )),
+        systemOverlayStyle: SystemUiOverlayStyle.light,
+        color: Colors.white,
+        foregroundColor: Colors.blue,
+        shadowColor: Colors.black.withOpacity(0.1),
+        titleTextStyle: const TextStyle(
+          color: Colors.black,
+          fontSize: 18,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
     );
   }
 }

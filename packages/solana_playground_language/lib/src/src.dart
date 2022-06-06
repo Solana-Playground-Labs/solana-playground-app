@@ -1,4 +1,5 @@
 export 'sp_package.dart';
+export 'sp_icon.dart';
 export 'core/core.dart';
 export 'extensions/extensions.dart';
 export 'builder/builder.dart';
