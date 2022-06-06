@@ -22,12 +22,12 @@ export 'app_router.gr.dart';
 @MaterialAutoRouter(
   replaceInRouteName: 'View,Route',
   routes: <AutoRoute>[
-    AutoRoute(page: HomeView),
+    AutoRoute(page: HomeView, initial: true),
     AutoRoute(page: CreateWalletView),
     AutoRoute(page: ImportWalletView),
     AutoRoute(page: WalletDetailView),
     AutoRoute(page: AirdropView),
-    AutoRoute(page: EditorView, initial: true),
+    AutoRoute(page: EditorView),
     CustomRoute(page: ExpressionInspectorView, customRouteBuilder: popover),
     CustomRoute<SPIcon>(page: IconEditorView, customRouteBuilder: popover),
     CustomRoute<Color>(page: ColorPickerView, customRouteBuilder: popover),

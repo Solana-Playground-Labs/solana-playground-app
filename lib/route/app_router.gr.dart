@@ -106,12 +106,12 @@ class AppRouter extends _i11.RootStackRouter {
 
   @override
   List<_i11.RouteConfig> get routes => [
-        _i11.RouteConfig(HomeRoute.name, path: '/home-view'),
+        _i11.RouteConfig(HomeRoute.name, path: '/'),
         _i11.RouteConfig(CreateWalletRoute.name, path: '/create-wallet-view'),
         _i11.RouteConfig(ImportWalletRoute.name, path: '/import-wallet-view'),
         _i11.RouteConfig(WalletDetailRoute.name, path: '/wallet-detail-view'),
         _i11.RouteConfig(AirdropRoute.name, path: '/airdrop-view'),
-        _i11.RouteConfig(EditorRoute.name, path: '/'),
+        _i11.RouteConfig(EditorRoute.name, path: '/editor-view'),
         _i11.RouteConfig(ExpressionInspectorRoute.name,
             path: '/expression-inspector-view'),
         _i11.RouteConfig(IconEditorRoute.name, path: '/icon-editor-view'),
@@ -123,7 +123,7 @@ class AppRouter extends _i11.RootStackRouter {
 /// generated route for
 /// [_i1.HomeView]
 class HomeRoute extends _i11.PageRouteInfo<void> {
-  const HomeRoute() : super(HomeRoute.name, path: '/home-view');
+  const HomeRoute() : super(HomeRoute.name, path: '/');
 
   static const String name = 'HomeRoute';
 }
@@ -198,7 +198,8 @@ class AirdropRouteArgs {
 /// [_i6.EditorView]
 class EditorRoute extends _i11.PageRouteInfo<EditorRouteArgs> {
   EditorRoute({_i12.Key? key})
-      : super(EditorRoute.name, path: '/', args: EditorRouteArgs(key: key));
+      : super(EditorRoute.name,
+            path: '/editor-view', args: EditorRouteArgs(key: key));
 
   static const String name = 'EditorRoute';
 }

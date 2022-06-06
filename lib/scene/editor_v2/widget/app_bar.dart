@@ -31,14 +31,21 @@ class EditorAppBar extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Container(width: 20),
+                    IconButton(
+                      onPressed: () {
+                        context.router.pop();
+                      },
+                      icon: const Icon(Icons.arrow_back_ios_outlined),
+                    ),
+                    Container(width: 8),
                     const SPPackageIconWidget(),
                     Container(width: 8),
                     ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 400),
                       child: TextField(
-                        controller:
-                            context.read<PackageNameCubit>().textEditorController,
+                        controller: context
+                            .read<PackageNameCubit>()
+                            .textEditorController,
                         style: theme.textTheme.headline1,
                         decoration:
                             const InputDecoration.collapsed(hintText: "Name"),

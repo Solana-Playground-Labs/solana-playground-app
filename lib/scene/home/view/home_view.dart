@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/route/app_router.gr.dart';
 import 'package:solana_playground_app/scene/home/cubit/packages_cubit.dart';
@@ -12,6 +13,7 @@ import 'package:solana_playground_app/scene/home/widget/packages_section.dart';
 import 'package:solana_playground_app/scene/home/widget/solana_card.dart';
 import 'package:solana_playground_app/scene/home/widget/solana_cookbook_card.dart';
 import 'package:solana_playground_app/scene/home/widget/wallets_section.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -23,15 +25,12 @@ class HomeView extends StatelessWidget {
       create: (context) => PackagesCubit(context.read()),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.black,
-          title: const Text('SOLANA', style: TextStyle(color: Colors.white)),
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
+          title: const Text('SOLANA'),
           centerTitle: false,
           actions: [
             Center(
-              child: Text(
-                "Devnet",
-                style: theme.textTheme.bodyText1?.copyWith(color: Colors.grey),
-              ),
+              child: Text("Devnet", style: theme.textTheme.bodyText1),
             ),
             const SizedBox(width: 8),
           ],
@@ -41,6 +40,7 @@ class HomeView extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 8),
               const HomeHeaderWidget(header: Text("Home")),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -54,7 +54,31 @@ class HomeView extends StatelessWidget {
                       children: [
                         SolanaCard(),
                         const SizedBox(width: 16),
-                        const SolanaCookBookCard(),
+                        HomeCard(
+                          title: 'Solana documentation',
+                          description:
+                              'A manual for joining the Solana ecosystem. By builders for builders.',
+                          color: Colors.blue.shade300,
+                          onTap: () {
+                            launchUrl(
+                              Uri.parse("https://docs.solana.com"),
+                              mode: LaunchMode.externalApplication,
+                            );
+                          },
+                        ),
+                        const SizedBox(width: 16),
+                        HomeCard(
+                          title: 'Solana cookbook',
+                          description:
+                              'Developer resource that provides the essential concepts and recipes for building applications on Solana.',
+                          color: Colors.deepOrange.shade300,
+                          onTap: () {
+                            launchUrl(
+                              Uri.parse("https://solanacookbook.com"),
+                              mode: LaunchMode.externalApplication,
+                            );
+                          },
+                        ),
                       ],
                     ),
                   ),
