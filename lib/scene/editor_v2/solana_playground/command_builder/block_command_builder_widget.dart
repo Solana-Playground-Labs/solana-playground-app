@@ -12,7 +12,6 @@ import 'package:solana_playground_app/scene/editor_v2/cubit/drag_cubit.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import 'command_builder_widget.dart';
-import 'command_builder_draggable.dart';
 import 'block_command_builder_cubit.dart';
 
 class BlockCommandBuilderWidget
@@ -107,6 +106,8 @@ class CommandDragTargetWidget extends StatelessWidget {
     return SizedBox(
       height: 54,
       child: DottedBorder(
+        borderType: BorderType.RRect,
+        radius: const Radius.circular(8),
         color: Colors.grey,
         child: Center(
           child: Text(text, style: theme.textTheme.caption),

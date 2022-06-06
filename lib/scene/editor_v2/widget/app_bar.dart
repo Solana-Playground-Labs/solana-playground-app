@@ -2,9 +2,11 @@
  *  Solana Playground  Copyright (C) 2022  Tran Giang Long
  */
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:solana_playground_app/route/app_router.dart';
 import 'package:solana_playground_app/scene/editor_v2/cubit/package_cubit.dart';
 
 import 'short_name_widget.dart';
@@ -43,6 +45,14 @@ class EditorAppBar extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
+                    IconButton(
+                      onPressed: () {
+                        context.router.push(const KeypairsListRoute());
+                      },
+                      icon: const Icon(Icons.account_balance_wallet_outlined),
+                      tooltip: "Keypair storage",
+                      color: Colors.blue,
+                    ),
                     IconButton(
                       onPressed: () {},
                       icon: const Icon(Icons.ios_share),
