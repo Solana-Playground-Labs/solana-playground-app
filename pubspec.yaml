@@ -27,6 +27,10 @@ dependencies:
   flutter_markdown: ^0.6.10+2
   sliver_tools: ^0.2.6
   flutter_colorpicker: ^1.0.3
+  json_annotation: ^4.5.0
+  solana: ^0.25.0
+  share_plus: ^4.0.7
+  path_provider: ^2.0.11
   # localstore: ^1.2.3
 
   solana_playground_language:
@@ -40,6 +44,7 @@ dev_dependencies:
     sdk: flutter
 
   auto_route_generator: ^4.0.0
+  json_serializable: ^6.2.0
   build_runner: ^2.1.10
 
   flutter_lints: ^2.0.1

@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  solana: ^0.23.0+1
+  solana: ^0.25.0
   base_x: ^2.0.0
   solana_playground_language:
     path: ../solana_playground_language

@@ -5,12 +5,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:solana_playground_app/repository/wallet_repository.dart';
+import 'package:solana_playground_app/repository/keypair_repository.dart';
 
 part 'create_wallet_state.dart';
 
 class CreateWalletCubit extends Cubit<CreateWalletState> {
-  final WalletRepository repository;
+  final KeypairRepository repository;
   final nameInput = TextEditingController();
   final accountInput = TextEditingController(text: "0");
   final changeInput = TextEditingController(text: "0");

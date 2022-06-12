@@ -10,6 +10,7 @@ import 'package:solana_playground_app/scene/editor_v2/view/color_picker_view.dar
 import 'package:solana_playground_app/scene/editor_v2/view/editor_view.dart';
 import 'package:solana_playground_app/scene/editor_v2/view/icon_editor_view.dart';
 import 'package:solana_playground_app/scene/editor_v2/view/keypairs_list_view.dart';
+import 'package:solana_playground_app/scene/home/view/create_package_view.dart';
 import 'package:solana_playground_app/scene/home/view/home_view.dart';
 import 'package:solana_playground_app/scene/wallet/view/airdrop_view.dart';
 import 'package:solana_playground_app/scene/wallet/view/create_wallet_view.dart';
@@ -23,11 +24,12 @@ export 'app_router.gr.dart';
   replaceInRouteName: 'View,Route',
   routes: <AutoRoute>[
     AutoRoute(page: HomeView, initial: true),
-    AutoRoute(page: CreateWalletView),
+    AutoRoute(page: CreateKeyPairView),
     AutoRoute(page: ImportWalletView),
     AutoRoute(page: WalletDetailView),
     AutoRoute(page: AirdropView),
     AutoRoute(page: EditorView),
+    CustomRoute(page: CreatePackageView, customRouteBuilder: popover),
     CustomRoute(page: ExpressionInspectorView, customRouteBuilder: popover),
     CustomRoute<SPIcon>(page: IconEditorView, customRouteBuilder: popover),
     CustomRoute<Color>(page: ColorPickerView, customRouteBuilder: popover),

@@ -7,16 +7,16 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:solana/dto.dart';
 import 'package:solana/solana.dart' hide Wallet;
-import 'package:solana_playground_app/repository/wallet_repository.dart';
+import 'package:solana_playground_app/model/keypair.dart';
 
 part 'airdrop_state.dart';
 
 class AirdropCubit extends Cubit<AirdropState> {
   final amountInput = TextEditingController();
   final SolanaClient client;
-  final Wallet wallet;
+  final Keypair keypair;
 
-  AirdropCubit(this.client, this.wallet) : super(const AirdropState());
+  AirdropCubit(this.client, this.keypair) : super(const AirdropState());
 
   Future<void> submit() async {
     if (state.isFetching) return;
@@ -24,10 +24,10 @@ class AirdropCubit extends Cubit<AirdropState> {
     try {
       emit(state.copyWith(isFetching: true));
 
-      final pubkey = await wallet.address;
       final String signature = await client.rpcClient
-          .requestAirdrop(pubkey, int.parse(amountInput.text));
-      await client.waitForSignatureStatus(signature, status: Commitment.finalized);
+          .requestAirdrop(keypair.publicKeyBase58, int.parse(amountInput.text));
+      await client.waitForSignatureStatus(signature,
+          status: Commitment.finalized);
     } finally {
       emit(state.copyWith(isFetching: false));
     }

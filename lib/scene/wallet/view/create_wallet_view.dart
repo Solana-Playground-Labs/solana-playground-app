@@ -9,8 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/scene/wallet/cubit/create_wallet_cubit.dart';
 
-class CreateWalletView extends StatelessWidget {
-  const CreateWalletView({Key? key}) : super(key: key);
+class CreateKeyPairView extends StatelessWidget {
+  const CreateKeyPairView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

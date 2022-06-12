@@ -39,20 +39,21 @@ class SPLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTextStyle(
       style:
-      Theme
-          .of(context)
-          .textTheme
-          .bodyText1!
-          .copyWith(color: Colors.black),
+          Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.black),
       child: Container(
         clipBehavior: Clip.hardEdge,
+        constraints: const BoxConstraints(
+          minHeight: 30,
+        ),
         decoration: BoxDecoration(
           color: _styleToColor(style),
           borderRadius: const BorderRadius.all(Radius.circular(8)),
         ),
-        child: Material(
-          type: MaterialType.transparency,
-          child: child,
+        child: Center(
+          child: Material(
+            type: MaterialType.transparency,
+            child: child,
+          ),
         ),
       ),
     );

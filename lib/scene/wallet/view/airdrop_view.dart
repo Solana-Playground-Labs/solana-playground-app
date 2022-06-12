@@ -7,19 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/common/card.dart';
-import 'package:solana_playground_app/repository/wallet_repository.dart';
+import 'package:solana_playground_app/model/keypair.dart';
 import 'package:solana_playground_app/scene/home/cubit/airdrop_cubit.dart';
 import 'package:solana_playground_app/scene/home/widget/key_widget.dart';
 
 class AirdropView extends StatelessWidget {
-  final Wallet wallet;
+  final Keypair keypair;
 
-  const AirdropView({Key? key, required this.wallet}) : super(key: key);
+  const AirdropView({Key? key, required this.keypair}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AirdropCubit>(
-      create: (context) => AirdropCubit(context.read(), wallet),
+      create: (context) => AirdropCubit(context.read(), keypair),
       child: Builder(builder: (context) {
         return content(context);
       }),
@@ -40,15 +40,7 @@ class AirdropView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const SizedBox(height: 16),
-              FutureBuilder<String>(
-                future: wallet.address,
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) return Container();
-                  return SPCard(
-                    child: KeyWidget(text: snapshot.data ?? ""),
-                  );
-                },
-              ),
+              KeyWidget(text: keypair.publicKeyBase58),
               const SizedBox(height: 16),
               TextField(
                 controller: context.read<AirdropCubit>().amountInput,

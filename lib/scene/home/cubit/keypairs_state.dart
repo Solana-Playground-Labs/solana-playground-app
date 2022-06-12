@@ -2,27 +2,27 @@
  *  Solana Playground  Copyright (C) 2022  Tran Giang Long
  */
 
-part of 'wallets_cubit.dart';
+part of 'keypairs_cubit.dart';
 
 class WalletsState extends Equatable {
   final bool isFetching;
-  final List<Wallet> wallets;
+  final List<Keypair> keypairs;
 
   const WalletsState({
     required this.isFetching,
-    required this.wallets,
+    required this.keypairs,
   });
 
   @override
-  List<Object> get props => [isFetching, wallets];
+  List<Object> get props => [isFetching, keypairs];
 
   WalletsState copyWith({
     bool? isFetching,
-    List<Wallet>? wallets,
+    List<Keypair>? keypairs,
   }) {
     return WalletsState(
       isFetching: isFetching ?? this.isFetching,
-      wallets: wallets ?? this.wallets,
+      keypairs: keypairs ?? this.keypairs,
     );
   }
 }

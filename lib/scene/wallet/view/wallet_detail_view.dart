@@ -8,21 +8,21 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana/solana.dart' hide Wallet;
 import 'package:solana_playground_app/common/card.dart';
-import 'package:solana_playground_app/repository/wallet_repository.dart';
+import 'package:solana_playground_app/model/keypair.dart';
 import 'package:solana_playground_app/route/app_router.gr.dart';
-import 'package:solana_playground_app/scene/home/cubit/wallet_detail_cubit.dart';
+import 'package:solana_playground_app/scene/wallet/cubit/wallet_detail_cubit.dart';
 import 'package:solana_playground_app/scene/home/widget/key_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class WalletDetailView extends StatelessWidget {
-  final Wallet wallet;
+  final Keypair keypair;
 
-  const WalletDetailView({Key? key, required this.wallet}) : super(key: key);
+  const WalletDetailView({Key? key, required this.keypair}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<WalletDetailCubit>(
-      create: (context) => WalletDetailCubit(context.read(), wallet)..fetch(),
+      create: (context) => WalletDetailCubit(context.read(), keypair)..fetch(),
       child: Builder(builder: (context) => content(context)),
     );
   }
@@ -30,7 +30,7 @@ class WalletDetailView extends StatelessWidget {
   Widget content(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(wallet.name),
+        title: Text(keypair.name),
       ),
       body: BlocBuilder<WalletDetailCubit, WalletDetailState>(
         builder: (context, state) {
@@ -49,18 +49,19 @@ class WalletDetailView extends StatelessWidget {
                         child: KeyWidget(text: state.address!),
                       ),
               ),
-              _Cell(
-                title: const Text("Mnemonic"),
-                content: state.address == null
-                    ? const CircularProgressIndicator()
-                    : GestureDetector(
-                        onTap: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: wallet.mnemonic));
-                        },
-                        child: Text(wallet.mnemonic),
-                      ),
-              ),
+              if (keypair.mnemonic != null)
+                _Cell(
+                  title: const Text("Mnemonic"),
+                  content: state.address == null
+                      ? const CircularProgressIndicator()
+                      : GestureDetector(
+                          onTap: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: keypair.mnemonic!.phrase));
+                          },
+                          child: Text(keypair.mnemonic!.phrase),
+                        ),
+                ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -95,7 +96,7 @@ class WalletDetailView extends StatelessWidget {
                   WalletActionWidget(
                     title: "Airdrop",
                     onTap: () =>
-                        context.router.push(AirdropRoute(wallet: wallet)),
+                        context.router.push(AirdropRoute(keypair: keypair)),
                   ),
                   WalletActionWidget(
                       title: "Open in Solana explorer",

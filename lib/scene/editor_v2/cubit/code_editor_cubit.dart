@@ -6,6 +6,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:solana_playground_app/model/package_edit_controller.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import '../model/focus_builder.dart';
@@ -13,11 +14,16 @@ import '../model/focus_builder.dart';
 part 'code_editor_state.dart';
 
 class CodeEditorCubit extends Cubit<CodeEditorState> {
-  final PackageBuilder packageBuilder;
+  final PackageEditController packageEditController;
   final ScrollController scrollController = ScrollController();
 
-  CodeEditorCubit(this.packageBuilder) : super(const CodeEditorState()) {
-    emit(state.copyWith(currentScript: packageBuilder.scriptBuilders.first));
+  CodeEditorCubit(this.packageEditController) : super(const CodeEditorState()) {
+    emit(
+      state.copyWith(
+        currentScript:
+            packageEditController.currentBuilder.scriptBuilders.first,
+      ),
+    );
   }
 
   void unfocus() {
