@@ -11,19 +11,21 @@ class HomeCard extends StatelessWidget {
   final String description;
   final VoidCallback? onTap;
   final Color color;
+  final Widget? child;
 
   const HomeCard({
     Key? key,
     required this.title,
     required this.description,
     required this.color,
+    this.child,
     this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 400,
+      width: 300,
       child: SPCard(
         color: color,
         child: Material(
@@ -45,16 +47,21 @@ class HomeCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                Flexible(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 12),
-                    child: Text(
-                      description,
-                      maxLines: 3,
-                      style: const TextStyle(color: Colors.black, fontSize: 16),
-                    ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 12),
+                  child: Text(
+                    description,
+                    maxLines: 3,
+                    style: const TextStyle(color: Colors.black, fontSize: 16),
                   ),
                 ),
+                const Spacer(),
+                if (child != null) child!,
+                if (onTap != null)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: const [Icon(Icons.forward, color: Colors.black)],
+                  ),
               ],
             ),
           ),

@@ -41,7 +41,7 @@ class HomeView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 8),
-              const HomeHeaderWidget(header: Text("Home")),
+              const HomeHeaderWidget(header: Text("🏠 Home")),
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Padding(
@@ -52,8 +52,29 @@ class HomeView extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        // SolanaCard(),
-                        // const SizedBox(width: 16),
+                        HomeCard(
+                          title: 'ℹ️ Info',
+                          description: 'Welcome to Solana Playground',
+                          color: Colors.white,
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  TextButton(
+                                    child: const Text("Discord"),
+                                    onPressed: () {
+                                      launchUrl(
+                                        Uri.parse("https://discord.gg/9q8UT5QwwA"),
+                                        mode: LaunchMode.externalApplication,
+                                      );
+                                    },
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 16),
                         HomeCard(
                           title: '📕 Solana documentation',
                           description:
@@ -75,6 +96,19 @@ class HomeView extends StatelessWidget {
                           onTap: () {
                             launchUrl(
                               Uri.parse("https://solanacookbook.com"),
+                              mode: LaunchMode.externalApplication,
+                            );
+                          },
+                        ),
+                        const SizedBox(width: 16),
+                        HomeCard(
+                          title: '👥 Open source application',
+                          description: 'Help us to improve this amazing app for community 🚀',
+                          color: Colors.green.shade200,
+                          onTap: () {
+                            launchUrl(
+                              Uri.parse(
+                                  "https://github.com/Solana-Playground-Labs/solana-playground-app"),
                               mode: LaunchMode.externalApplication,
                             );
                           },
