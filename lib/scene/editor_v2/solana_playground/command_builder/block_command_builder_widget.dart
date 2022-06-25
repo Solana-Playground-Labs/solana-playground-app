@@ -18,12 +18,10 @@ class BlockCommandBuilderWidget
     extends CubitWidget<BlockCommandBuilderCubit, BlockCommandBuilderState> {
   final BlockCommandBuilder builder;
 
-  BlockCommandBuilderWidget({Key? key, required this.builder})
-      : super(key: Key(builder.id));
+  BlockCommandBuilderWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
 
   @override
-  Widget content(
-      BuildContext context, BlockCommandBuilderState blockCommandState) {
+  Widget content(BuildContext context, BlockCommandBuilderState blockCommandState) {
     return BlocBuilder<DragCubit, DragState>(
       builder: (context, dragState) => SliverList(
         delegate: SliverChildBuilderDelegate(
@@ -78,16 +76,13 @@ class BlockCommandBuilderWidget
 class CommandDragTargetWidget extends StatelessWidget {
   final int index;
 
-  const CommandDragTargetWidget({Key? key, required this.index})
-      : super(key: key);
+  const CommandDragTargetWidget({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return DragTarget<CommandBuilder>(
       onAcceptWithDetails: (drag) {
-        context
-            .read<BlockCommandBuilderCubit>()
-            .insertAt(index, drag.data);
+        context.read<BlockCommandBuilderCubit>().insertAt(index, drag.data);
       },
       builder: (context, candidateData, rejectedData) {
         var text = "Place holder";

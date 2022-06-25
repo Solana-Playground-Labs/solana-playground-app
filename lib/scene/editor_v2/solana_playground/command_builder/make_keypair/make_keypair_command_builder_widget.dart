@@ -17,8 +17,8 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 
 import 'make_keypair_command_builder_cubit.dart';
 
-class MakeKeypairCommandBuilderWidget extends CubitWidget<
-    MakeKeypairCommandBuilderCubit, MakeKeypairCommandBuilderState> {
+class MakeKeypairCommandBuilderWidget
+    extends CubitWidget<MakeKeypairCommandBuilderCubit, MakeKeypairCommandBuilderState> {
   final CommandBuilderMetaInfo? metaInfo;
   final MakeKeyPairCommandBuilder builder;
 
@@ -42,9 +42,7 @@ class MakeKeypairCommandBuilderWidget extends CubitWidget<
               Text("Variable: ", style: theme.textTheme.bodyText1),
               IntrinsicWidth(
                 child: VariableInputWidget(
-                  controller: context
-                      .read<MakeKeypairCommandBuilderCubit>()
-                      .variableInput,
+                  controller: context.read<MakeKeypairCommandBuilderCubit>().variableInput,
                 ),
               )
             ],

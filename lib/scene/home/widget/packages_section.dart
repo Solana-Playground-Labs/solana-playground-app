@@ -127,9 +127,7 @@ class PackageCell extends StatelessWidget {
                       PopupMenuItem(
                         child: const Text("Delete"),
                         onTap: () {
-                          context
-                              .read<PackageRepository>()
-                              .remove(package.name);
+                          context.read<PackageRepository>().remove(package.name);
                         },
                       )
                     ],

@@ -9,8 +9,7 @@ class ComponentAction extends StatelessWidget {
   final Widget content;
   final VoidCallback? onPressed;
 
-  const ComponentAction(
-      {Key? key, required this.content, required this.onPressed})
+  const ComponentAction({Key? key, required this.content, required this.onPressed})
       : super(key: key);
 
   @override

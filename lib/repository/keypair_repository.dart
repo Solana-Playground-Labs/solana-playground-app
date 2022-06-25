@@ -27,8 +27,7 @@ class KeypairRepository {
     _stream.add(_data);
 
     if (_data.isEmpty) {
-      importMnemonic(
-          "way brick valid put rule curve rookie second perfect drama enrich demise",
+      importMnemonic("way brick valid put rule curve rookie second perfect drama enrich demise",
           "demo_wallet_1");
 
       importMnemonic(
@@ -47,8 +46,7 @@ class KeypairRepository {
     }
   }
 
-  Future<void> generateWithMnemomic(String name,
-      {int account = 0, int change = 0}) async {
+  Future<void> generateWithMnemomic(String name, {int account = 0, int change = 0}) async {
     final mnemonic = bip39.generateMnemonic();
     final keyPair = await Ed25519HDKeyPair.fromMnemonic(
       mnemonic,

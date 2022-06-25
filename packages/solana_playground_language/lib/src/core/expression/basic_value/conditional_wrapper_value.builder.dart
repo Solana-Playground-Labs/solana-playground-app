@@ -39,8 +39,7 @@ class ConditionalWrapperValueBuilder extends ValueBuilder {
   }
 }
 
-ConditionalWrapperValue _$ConditionalWrapperValueFromJson(
-    Map<String, dynamic> json) {
+ConditionalWrapperValue _$ConditionalWrapperValueFromJson(Map<String, dynamic> json) {
   return ConditionalWrapperValue(
     condition: Expression.fromJson(json['condition']),
     trueFlow: Expression.fromJson(json['trueFlow']),
@@ -48,8 +47,7 @@ ConditionalWrapperValue _$ConditionalWrapperValueFromJson(
   );
 }
 
-Map<String, dynamic> _$ConditionalWrapperValueToJson(
-    ConditionalWrapperValue value) {
+Map<String, dynamic> _$ConditionalWrapperValueToJson(ConditionalWrapperValue value) {
   return {
     'type': value.runtimeType.toString(),
     'condition': value.condition.toJson(),
@@ -58,8 +56,7 @@ Map<String, dynamic> _$ConditionalWrapperValueToJson(
   };
 }
 
-ConditionalWrapperValueBuilder _$ConditionalWrapperValueToBuilder(
-    ConditionalWrapperValue value) {
+ConditionalWrapperValueBuilder _$ConditionalWrapperValueToBuilder(ConditionalWrapperValue value) {
   return ConditionalWrapperValueBuilder(
       condition: value.condition.asBuilder(),
       trueFlow: value.trueFlow.asBuilder(),

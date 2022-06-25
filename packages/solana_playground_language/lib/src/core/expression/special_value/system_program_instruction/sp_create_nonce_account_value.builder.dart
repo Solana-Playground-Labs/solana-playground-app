@@ -43,8 +43,7 @@ class SpCreateNonceAccountValueBuilder extends ValueBuilder {
   }
 }
 
-SpCreateNonceAccountValue _$SpCreateNonceAccountValueFromJson(
-    Map<String, dynamic> json) {
+SpCreateNonceAccountValue _$SpCreateNonceAccountValueFromJson(Map<String, dynamic> json) {
   return SpCreateNonceAccountValue(
     fromPubkey: Expression.fromJson(json['fromPubkey']),
     noncePubkey: Expression.fromJson(json['noncePubkey']),
@@ -53,8 +52,7 @@ SpCreateNonceAccountValue _$SpCreateNonceAccountValueFromJson(
   );
 }
 
-Map<String, dynamic> _$SpCreateNonceAccountValueToJson(
-    SpCreateNonceAccountValue value) {
+Map<String, dynamic> _$SpCreateNonceAccountValueToJson(SpCreateNonceAccountValue value) {
   return {
     'type': value.runtimeType.toString(),
     'fromPubkey': value.fromPubkey.toJson(),

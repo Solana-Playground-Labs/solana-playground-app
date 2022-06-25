@@ -13,8 +13,7 @@ class StringByteValueBuilderCubit extends Cubit<StringByteValueBuilderState> {
   final StringByteValueBuilder builder;
   final baseInput = TextEditingController();
 
-  StringByteValueBuilderCubit(this.builder)
-      : super(const StringByteValueBuilderState()) {
+  StringByteValueBuilderCubit(this.builder) : super(const StringByteValueBuilderState()) {
     builder.addListener(listener);
 
     baseInput.text = builder.base.toString();
@@ -30,7 +29,6 @@ class StringByteValueBuilderCubit extends Cubit<StringByteValueBuilderState> {
     }
   }
 
-
   @override
   Future<void> close() async {
     baseInput.dispose();
@@ -38,4 +36,3 @@ class StringByteValueBuilderCubit extends Cubit<StringByteValueBuilderState> {
     return super.close();
   }
 }
-

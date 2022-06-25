@@ -9,8 +9,7 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 
 part 'send_transaction_command_builder_state.dart';
 
-class SendTransactionCommandBuilderCubit
-    extends Cubit<SendTransactionCommandBuilderState> {
+class SendTransactionCommandBuilderCubit extends Cubit<SendTransactionCommandBuilderState> {
   final SendTransactionCommandBuilder builder;
   final variableInput = TextEditingController();
 
@@ -37,4 +36,3 @@ class SendTransactionCommandBuilderCubit
     return super.close();
   }
 }
-

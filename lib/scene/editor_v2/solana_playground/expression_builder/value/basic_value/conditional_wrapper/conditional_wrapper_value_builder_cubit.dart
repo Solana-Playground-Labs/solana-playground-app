@@ -8,12 +8,10 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 
 part 'conditional_wrapper_value_builder_state.dart';
 
-class ConditionalWrapperValueBuilderCubit
-    extends Cubit<ConditionalWrapperValueBuilderState> {
+class ConditionalWrapperValueBuilderCubit extends Cubit<ConditionalWrapperValueBuilderState> {
   final ConditionalWrapperValueBuilder builder;
 
-  ConditionalWrapperValueBuilderCubit(this.builder)
-      : super(ConditionalWrapperValueBuilderState()) {
+  ConditionalWrapperValueBuilderCubit(this.builder) : super(ConditionalWrapperValueBuilderState()) {
     builder.addListener(listener);
   }
 
@@ -25,4 +23,3 @@ class ConditionalWrapperValueBuilderCubit
     return super.close();
   }
 }
-

@@ -15,13 +15,11 @@ class CommandBuilderDraggable extends StatefulWidget {
   final CommandBuilder builder;
   final Widget child;
 
-  CommandBuilderDraggable(
-      {Key? key, required this.builder, required this.child})
+  CommandBuilderDraggable({Key? key, required this.builder, required this.child})
       : super(key: Key(builder.id));
 
   @override
-  State<CommandBuilderDraggable> createState() =>
-      _CommandBuilderDraggableState();
+  State<CommandBuilderDraggable> createState() => _CommandBuilderDraggableState();
 }
 
 class _CommandBuilderDraggableState extends State<CommandBuilderDraggable> {
@@ -92,9 +90,7 @@ class _CommandBuilderDraggableState extends State<CommandBuilderDraggable> {
         setState(() => dropUp = null);
       },
       onAcceptWithDetails: (drag) {
-        context
-            .read<BlockCommandBuilderCubit>()
-            .insertBefore(widget.builder, drag.data);
+        context.read<BlockCommandBuilderCubit>().insertBefore(widget.builder, drag.data);
         setState(() => dropUp = null);
       },
       builder: (context, candidateData, rejectedData) {
@@ -115,9 +111,7 @@ class _CommandBuilderDraggableState extends State<CommandBuilderDraggable> {
         setState(() => dropDown = null);
       },
       onAcceptWithDetails: (drag) {
-        context
-            .read<BlockCommandBuilderCubit>()
-            .insertAfter(widget.builder, drag.data);
+        context.read<BlockCommandBuilderCubit>().insertAfter(widget.builder, drag.data);
         setState(() => dropDown = null);
       },
       builder: (context, candidateData, rejectedData) {

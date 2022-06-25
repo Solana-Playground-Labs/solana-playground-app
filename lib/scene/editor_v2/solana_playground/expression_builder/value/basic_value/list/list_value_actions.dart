@@ -44,8 +44,7 @@ class ListValueActions extends StatelessWidget {
             ...?actions?.call(context),
             ExtraAction(
                 child: const Text("Remove"),
-                onTap: () =>
-                    {context.read<ListValueBuilderCubit>().remove(builder)}),
+                onTap: () => {context.read<ListValueBuilderCubit>().remove(builder)}),
           ],
         ),
       ],

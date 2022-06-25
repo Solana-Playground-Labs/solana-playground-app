@@ -22,10 +22,7 @@ class VariableInputWidget extends StatelessWidget {
         controller: controller,
         maxLines: 1,
         textAlign: TextAlign.center,
-        style: Theme.of(context)
-            .textTheme
-            .bodyText1
-            ?.copyWith(color: Colors.black),
+        style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.black),
         decoration: SPTextField.compactInputDecoration.copyWith(
           constraints: const BoxConstraints(),
           hintText: "Name",

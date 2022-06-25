@@ -23,4 +23,3 @@ class AccountValueBuilderCubit extends Cubit<AccountValueBuilderState> {
     return super.close();
   }
 }
-

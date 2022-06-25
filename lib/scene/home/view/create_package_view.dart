@@ -21,7 +21,6 @@ class _CreatePackageViewState extends State<CreatePackageView> {
   final packageNameController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-
   @override
   void initState() {
     packageNameController.text = widget.template?.package.name ?? "";
@@ -41,22 +40,20 @@ class _CreatePackageViewState extends State<CreatePackageView> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: widget.template == null ? const Text("Create package") : const Text("Create package from template"),
+          title: widget.template == null
+              ? const Text("Create package")
+              : const Text("Create package from template"),
           actions: [
             IconButton(
               onPressed: () {
                 if (_formKey.currentState?.validate() ?? false) {
                   if (widget.template == null) {
-                    context
-                        .read<PackageRepository>()
-                        .createPackage(packageNameController.text);
+                    context.read<PackageRepository>().createPackage(packageNameController.text);
                   } else {
                     final packageBuilder = widget.template!.package.asBuilder();
                     packageBuilder.name = packageNameController.text;
 
-                    context
-                        .read<PackageRepository>()
-                        .addPackage(packageBuilder.build());
+                    context.read<PackageRepository>().addPackage(packageBuilder.build());
                   }
                   context.router.pop();
                 }
@@ -87,18 +84,12 @@ class _CreatePackageViewState extends State<CreatePackageView> {
               const Text("Configuration:"),
               const SizedBox(height: 8),
               Row(
-                children: const [
-                  Checkbox(value: true, onChanged: null),
-                  Text("Application")
-                ],
+                children: const [Checkbox(value: true, onChanged: null), Text("Application")],
               ),
               Row(
-                children: const [
-                  Checkbox(value: false, onChanged: null),
-                  Text("Package")
-                ],
+                children: const [Checkbox(value: false, onChanged: null), Text("Package")],
               ),
-              if (widget.template != null) ... [
+              if (widget.template != null) ...[
                 const SizedBox(height: 8),
                 Text("Template: ${widget.template!.package.name}"),
               ],

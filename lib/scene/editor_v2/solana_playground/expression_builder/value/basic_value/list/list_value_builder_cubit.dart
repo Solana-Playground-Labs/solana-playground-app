@@ -22,8 +22,7 @@ class ListValueBuilderCubit extends Cubit<ListValueBuilderState> {
 
   void moveUp(dynamic object) {
     if (object is ValueBuilder) {
-      final index = builder.expressions
-          .indexWhere((element) => element.valueBuilder == object);
+      final index = builder.expressions.indexWhere((element) => element.valueBuilder == object);
       final expression = builder.expressions[index];
       if (index >= 0) builder.moveTo(expression, index - 1);
     } else {
@@ -34,8 +33,7 @@ class ListValueBuilderCubit extends Cubit<ListValueBuilderState> {
 
   void moveDown(dynamic object) {
     if (object is ValueBuilder) {
-      final index = builder.expressions
-          .indexWhere((element) => element.valueBuilder == object);
+      final index = builder.expressions.indexWhere((element) => element.valueBuilder == object);
       final expression = builder.expressions[index];
       if (index >= 0) builder.moveTo(expression, index + 1);
     } else {
@@ -46,8 +44,8 @@ class ListValueBuilderCubit extends Cubit<ListValueBuilderState> {
 
   void remove(object) {
     if (object is ValueBuilder) {
-      final expression = builder.expressions
-          .firstWhere((element) => element.valueBuilder == object);
+      final expression =
+          builder.expressions.firstWhere((element) => element.valueBuilder == object);
       builder.remove(expression);
     } else {
       builder.remove(object);

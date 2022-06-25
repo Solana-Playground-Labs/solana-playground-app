@@ -55,8 +55,7 @@ class SpCreateAccountWithSeedValueBuilder extends ValueBuilder {
   }
 }
 
-SpCreateAccountWithSeedValue _$SpCreateAccountWithSeedValueFromJson(
-    Map<String, dynamic> json) {
+SpCreateAccountWithSeedValue _$SpCreateAccountWithSeedValueFromJson(Map<String, dynamic> json) {
   return SpCreateAccountWithSeedValue(
     fromPubkey: Expression.fromJson(json['fromPubkey']),
     newAccountPubkey: Expression.fromJson(json['newAccountPubkey']),
@@ -68,8 +67,7 @@ SpCreateAccountWithSeedValue _$SpCreateAccountWithSeedValueFromJson(
   );
 }
 
-Map<String, dynamic> _$SpCreateAccountWithSeedValueToJson(
-    SpCreateAccountWithSeedValue value) {
+Map<String, dynamic> _$SpCreateAccountWithSeedValueToJson(SpCreateAccountWithSeedValue value) {
   return {
     'type': value.runtimeType.toString(),
     'fromPubkey': value.fromPubkey.toJson(),

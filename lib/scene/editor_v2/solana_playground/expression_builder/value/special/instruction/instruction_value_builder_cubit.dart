@@ -11,8 +11,7 @@ part 'instruction_value_builder_state.dart';
 class InstructionValueBuilderCubit extends Cubit<InstructionValueBuilderState> {
   final InstructionValueBuilder builder;
 
-  InstructionValueBuilderCubit(this.builder)
-      : super(InstructionValueBuilderState()) {
+  InstructionValueBuilderCubit(this.builder) : super(InstructionValueBuilderState()) {
     builder.addListener(listener);
   }
 
@@ -24,4 +23,3 @@ class InstructionValueBuilderCubit extends Cubit<InstructionValueBuilderState> {
     return super.close();
   }
 }
-

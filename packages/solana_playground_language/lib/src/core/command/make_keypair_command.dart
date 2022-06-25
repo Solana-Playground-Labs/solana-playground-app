@@ -30,10 +30,8 @@ class MakeKeyPairCommand extends Command {
       _$MakeKeyPairCommandFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() =>
-      _$MakeKeyPairCommandToJson(this);
+  Map<String, dynamic> toJson() => _$MakeKeyPairCommandToJson(this);
 
   @override
-  MakeKeyPairCommandBuilder asBuilder() =>
-      _$MakeKeyPairCommandToBuilder(this);
+  MakeKeyPairCommandBuilder asBuilder() => _$MakeKeyPairCommandToBuilder(this);
 }

@@ -29,8 +29,7 @@ class App extends StatelessWidget {
         Provider<KeypairRepository>(
           create: (context) => KeypairRepository()..initialize(),
         ),
-        Provider<PackageRepository>(
-            create: (context) => PackageRepository()..initialize(context)),
+        Provider<PackageRepository>(create: (context) => PackageRepository()..initialize(context)),
         Provider<PackageTemplatesCubit>(
             create: (context) => PackageTemplatesCubit()..initialize(context)),
       ],

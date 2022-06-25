@@ -14,8 +14,7 @@ class ComponentHeader extends StatelessWidget {
   final Widget? content;
   final Widget? trailing;
 
-  const ComponentHeader(
-      {Key? key, this.icon, required this.name, this.content, this.trailing})
+  const ComponentHeader({Key? key, this.icon, required this.name, this.content, this.trailing})
       : super(key: key);
 
   @override

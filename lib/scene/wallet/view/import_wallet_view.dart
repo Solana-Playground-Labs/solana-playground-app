@@ -30,13 +30,11 @@ class ImportWalletView extends StatelessWidget {
                   children: [
                     TextField(
                       controller: context.read<ImportWalletCubit>().nameInput,
-                      decoration:
-                          const InputDecoration(hintText: "Wallet name"),
+                      decoration: const InputDecoration(hintText: "Wallet name"),
                     ),
                     const SizedBox(height: 16),
                     TextField(
-                      controller:
-                          context.read<ImportWalletCubit>().mnemonicInput,
+                      controller: context.read<ImportWalletCubit>().mnemonicInput,
                       decoration: const InputDecoration(hintText: "Mnemonic"),
                     ),
                     const SizedBox(height: 16),
@@ -45,28 +43,22 @@ class ImportWalletView extends StatelessWidget {
                       children: [
                         Expanded(
                           child: TextField(
-                            controller:
-                                context.read<ImportWalletCubit>().accountInput,
+                            controller: context.read<ImportWalletCubit>().accountInput,
                             keyboardType: TextInputType.number,
                             inputFormatters: [
-                              FilteringTextInputFormatter.allow(
-                                  RegExp(r'[0-9]')),
+                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                             ],
-                            decoration:
-                                const InputDecoration(hintText: "Account"),
+                            decoration: const InputDecoration(hintText: "Account"),
                           ),
                         ),
                         Expanded(
                           child: TextField(
-                            controller:
-                                context.read<ImportWalletCubit>().accountInput,
+                            controller: context.read<ImportWalletCubit>().accountInput,
                             keyboardType: TextInputType.number,
                             inputFormatters: [
-                              FilteringTextInputFormatter.allow(
-                                  RegExp(r'[0-9]')),
+                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                             ],
-                            decoration:
-                                const InputDecoration(hintText: "Change"),
+                            decoration: const InputDecoration(hintText: "Change"),
                           ),
                         )
                       ],
@@ -81,8 +73,7 @@ class ImportWalletView extends StatelessWidget {
                         context.read<ImportWalletCubit>().save().then((value) {
                           context.router.pop();
                         }).onError((error, stackTrace) {
-                          final snackBar =
-                              SnackBar(content: Text(error.toString()));
+                          final snackBar = SnackBar(content: Text(error.toString()));
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         });
                       },

@@ -20,4 +20,3 @@ class AirdropState extends Equatable {
     );
   }
 }
-

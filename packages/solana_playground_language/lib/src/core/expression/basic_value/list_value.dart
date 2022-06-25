@@ -12,14 +12,14 @@ class ListValue extends Value {
 
   factory ListValue.fromJson(Map<String, dynamic> json) {
     return ListValue(
-        expressions: List.castFrom(
-          json['expressions']
-              .map(
-                (e) => Expression.fromJson(e),
-              )
-              .toList(),
-        ),
-      );
+      expressions: List.castFrom(
+        json['expressions']
+            .map(
+              (e) => Expression.fromJson(e),
+            )
+            .toList(),
+      ),
+    );
   }
 
   @override

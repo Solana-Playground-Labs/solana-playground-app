@@ -4,8 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:solana_playground_language/solana_playground_language.dart'
-    as spl;
+import 'package:solana_playground_language/solana_playground_language.dart' as spl;
 
 typedef InlineBuilderData<B extends spl.Builder, S> = S Function(B builder);
 

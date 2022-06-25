@@ -18,8 +18,7 @@ class IntValue extends Value {
   @override
   List<Object> get props => [value];
 
-  factory IntValue.fromJson(Map<String, dynamic> json) =>
-      _$IntValueFromJson(json);
+  factory IntValue.fromJson(Map<String, dynamic> json) => _$IntValueFromJson(json);
 
   @override
   ValueBuilder asBuilder() => _$IntValueToBuilder(this);

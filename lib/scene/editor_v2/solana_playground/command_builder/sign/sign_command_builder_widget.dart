@@ -38,8 +38,7 @@ class SignCommandBuilderWidget extends StatelessWidget {
                   adapter: TextFieldBuilderAdapter<SignCommandBuilder>(
                     builder: builder,
                     getTextBuilder: (builder) => builder.variable,
-                    setTextBuilder: (builder, value) =>
-                        builder.variable = value,
+                    setTextBuilder: (builder, value) => builder.variable = value,
                   ),
                 ),
               ],

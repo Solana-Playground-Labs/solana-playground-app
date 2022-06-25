@@ -49,8 +49,7 @@ class CommandBuilderAction extends StatelessWidget {
             ...?extraActions?.call(context),
             ExtraAction(
                 child: const Text("Remove"),
-                onTap: () =>
-                    {context.read<BlockCommandBuilderCubit>().remove(builder)}),
+                onTap: () => {context.read<BlockCommandBuilderCubit>().remove(builder)}),
           ],
         ),
       ],

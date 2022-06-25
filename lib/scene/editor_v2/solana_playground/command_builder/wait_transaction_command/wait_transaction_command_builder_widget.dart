@@ -14,8 +14,7 @@ class WaitTransactionCommandBuilderWidget extends StatelessWidget {
   final CommandBuilderMetaInfo? metaInfo;
   final WaitTransactionConfirmationCommandBuilder builder;
 
-  const WaitTransactionCommandBuilderWidget(
-      {Key? key, required this.builder, this.metaInfo})
+  const WaitTransactionCommandBuilderWidget({Key? key, required this.builder, this.metaInfo})
       : super(key: key);
 
   @override

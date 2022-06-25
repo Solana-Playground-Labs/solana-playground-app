@@ -11,12 +11,11 @@ import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 
-class StringByteValueBuilderWidget extends CubitWidget<
-    StringByteValueBuilderCubit, StringByteValueBuilderState> {
+class StringByteValueBuilderWidget
+    extends CubitWidget<StringByteValueBuilderCubit, StringByteValueBuilderState> {
   final StringByteValueBuilder builder;
 
-  StringByteValueBuilderWidget({Key? key, required this.builder})
-      : super(key: Key(builder.id));
+  StringByteValueBuilderWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
 
   @override
   Widget content(BuildContext context, StringByteValueBuilderState state) {
@@ -29,12 +28,8 @@ class StringByteValueBuilderWidget extends CubitWidget<
             child: SPLabel(
               style: SPLabelStyle.keppel,
               child: TextField(
-                controller:
-                    context.read<StringByteValueBuilderCubit>().baseInput,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1
-                    ?.copyWith(color: Colors.black),
+                controller: context.read<StringByteValueBuilderCubit>().baseInput,
+                style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.black),
                 keyboardType: TextInputType.number,
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(RegExp(r'\d')),
@@ -54,6 +49,5 @@ class StringByteValueBuilderWidget extends CubitWidget<
   }
 
   @override
-  StringByteValueBuilderCubit cubit(BuildContext context) =>
-      StringByteValueBuilderCubit(builder);
+  StringByteValueBuilderCubit cubit(BuildContext context) => StringByteValueBuilderCubit(builder);
 }

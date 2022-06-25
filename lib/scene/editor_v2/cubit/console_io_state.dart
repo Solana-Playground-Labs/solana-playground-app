@@ -23,10 +23,7 @@ class ConsoleIOState extends Equatable {
   const ConsoleIOState({this.histories = const []});
 
   ConsoleIOState append(String data) {
-    return copyWith(histories: [
-      ...histories,
-      Output(timestamp: DateTime.now(), data: data)
-    ]);
+    return copyWith(histories: [...histories, Output(timestamp: DateTime.now(), data: data)]);
   }
 
   @override

@@ -15,8 +15,7 @@ class PackagesCubit extends Cubit<PackagesState> {
   final PackageRepository repository;
   StreamSubscription? streamSubscription;
 
-  PackagesCubit(this.repository)
-      : super(PackagesState(packages: repository.packages)) {
+  PackagesCubit(this.repository) : super(PackagesState(packages: repository.packages)) {
     streamSubscription = repository.onChange.listen((event) {
       emit(state.copyWith(packages: List.of(event)));
     });

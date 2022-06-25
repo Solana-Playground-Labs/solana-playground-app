@@ -40,10 +40,7 @@ class EditorAppBar extends StatelessWidget {
                     IconButton(
                       onPressed: () async {
                         try {
-                          await context
-                              .read<CodeEditorCubit>()
-                              .packageEditController
-                              .save();
+                          await context.read<CodeEditorCubit>().packageEditController.save();
                           context.router.pop();
                         } catch (e) {
                           // TODO: Replace snackbar
@@ -60,12 +57,9 @@ class EditorAppBar extends StatelessWidget {
                     ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 400),
                       child: TextField(
-                        controller: context
-                            .read<PackageNameCubit>()
-                            .textEditorController,
+                        controller: context.read<PackageNameCubit>().textEditorController,
                         style: theme.textTheme.headline1,
-                        decoration:
-                            const InputDecoration.collapsed(hintText: "Name"),
+                        decoration: const InputDecoration.collapsed(hintText: "Name"),
                       ),
                     ),
                     const Spacer(),
@@ -74,10 +68,7 @@ class EditorAppBar extends StatelessWidget {
                     IconButton(
                       tooltip: "Save",
                       onPressed: () {
-                        context
-                            .read<CodeEditorCubit>()
-                            .packageEditController
-                            .save();
+                        context.read<CodeEditorCubit>().packageEditController.save();
                       },
                       icon: const Icon(
                         Icons.save,
@@ -136,11 +127,8 @@ class PackageShareButton extends StatelessWidget {
     return IconButton(
       onPressed: () async {
         final box = context.findRenderObject() as RenderBox?;
-        final package = context
-            .read<CodeEditorCubit>()
-            .packageEditController
-            .currentBuilder
-            .build();
+        final package =
+            context.read<CodeEditorCubit>().packageEditController.currentBuilder.build();
 
         final jsonData = const JsonEncoder().convert(package.toJson());
 

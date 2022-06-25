@@ -14,9 +14,7 @@ class CommandModelVisitor extends SimpleElementVisitor {
 
   @override
   visitFieldElement(FieldElement element) {
-    if (TypeChecker.fromRuntime(CommandPropertyBuildable)
-        .annotationsOf(element)
-        .isNotEmpty) {
+    if (TypeChecker.fromRuntime(CommandPropertyBuildable).annotationsOf(element).isNotEmpty) {
       propertiesBuilder.add(element);
     }
   }

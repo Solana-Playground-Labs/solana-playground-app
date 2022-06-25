@@ -15,8 +15,7 @@ class HexValue extends Value {
   @override
   List<Object> get props => [expression];
 
-  factory HexValue.fromJson(Map<String, dynamic> json) =>
-      _$HexValueFromJson(json);
+  factory HexValue.fromJson(Map<String, dynamic> json) => _$HexValueFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$HexValueToJson(this);

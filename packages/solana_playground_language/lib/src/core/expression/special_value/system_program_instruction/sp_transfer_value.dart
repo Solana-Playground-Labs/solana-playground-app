@@ -26,7 +26,6 @@ class SpTransferValue extends Value {
   @override
   List<Object> get props => [fromPubkey, toPubkey, lamports];
 
-
   factory SpTransferValue.fromJson(Map<String, dynamic> json) {
     return _$SpTransferValueFromJson(json);
   }

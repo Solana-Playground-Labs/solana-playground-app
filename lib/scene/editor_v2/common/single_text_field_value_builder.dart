@@ -11,13 +11,11 @@ import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
-class SingleTextFieldValueBuilderCubit<T extends Builder>
-    extends Cubit<String> {
+class SingleTextFieldValueBuilderCubit<T extends Builder> extends Cubit<String> {
   final TextFieldBuilderAdapter<T> adapter;
   final textController = TextEditingController();
 
-  SingleTextFieldValueBuilderCubit({required this.adapter})
-      : super(adapter.getText()) {
+  SingleTextFieldValueBuilderCubit({required this.adapter}) : super(adapter.getText()) {
     adapter.builder.addListener(listener);
 
     textController.text = adapter.getText();
@@ -64,15 +62,10 @@ class TextFieldBuilderWidget<T extends Builder>
       child: SPLabel(
         style: style,
         child: TextField(
-          controller: context
-              .read<SingleTextFieldValueBuilderCubit<T>>()
-              .textController,
+          controller: context.read<SingleTextFieldValueBuilderCubit<T>>().textController,
           maxLines: 1,
           textAlign: TextAlign.center,
-          style: Theme.of(context)
-              .textTheme
-              .bodyText1
-              ?.copyWith(color: Colors.black),
+          style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.black),
           decoration: SPTextField.compactInputDecoration.copyWith(
             hintText: hintText,
           ),

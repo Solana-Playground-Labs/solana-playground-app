@@ -20,8 +20,7 @@ class CodeEditorCubit extends Cubit<CodeEditorState> {
   CodeEditorCubit(this.packageEditController) : super(const CodeEditorState()) {
     emit(
       state.copyWith(
-        currentScript:
-            packageEditController.currentBuilder.scriptBuilders.first,
+        currentScript: packageEditController.currentBuilder.scriptBuilders.first,
       ),
     );
   }

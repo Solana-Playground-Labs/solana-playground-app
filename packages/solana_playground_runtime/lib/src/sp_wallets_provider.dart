@@ -14,9 +14,7 @@ class Keypair {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is Keypair &&
-          runtimeType == other.runtimeType &&
-          publicKey == other.publicKey;
+      other is Keypair && runtimeType == other.runtimeType && publicKey == other.publicKey;
 
   @override
   int get hashCode => publicKey.hashCode;

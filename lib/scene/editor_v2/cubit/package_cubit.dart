@@ -45,5 +45,4 @@ class PackageNameCubit extends Cubit<PackageNameState> {
     builder.removeListener(listener);
     return super.close();
   }
-
 }

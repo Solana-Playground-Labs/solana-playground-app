@@ -10,15 +10,15 @@ class SolanaRepository {
   SolanaRepository(this.endpoint) : dio = Dio(BaseOptions(baseUrl: endpoint));
 
   Future<int> getTransactionCount() async {
-    var response = await dio.post('',
-        data: {"jsonrpc": "2.0", "id": 3, "method": "getTransactionCount"});
+    var response =
+        await dio.post('', data: {"jsonrpc": "2.0", "id": 3, "method": "getTransactionCount"});
 
     return response.data['result'];
   }
 
   Future<int> getValidatorNodesCount() async {
-    var response = await dio.post('',
-        data: {"jsonrpc": "2.0", "id": 2, "method": "getVoteAccounts"});
+    var response =
+        await dio.post('', data: {"jsonrpc": "2.0", "id": 2, "method": "getVoteAccounts"});
 
     return response.data['result']['current'].length;
   }

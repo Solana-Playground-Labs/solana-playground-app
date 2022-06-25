@@ -13,8 +13,8 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 
 import 'make_simple_transaction_cubit.dart';
 
-class MakeSimpleTransactionWidget extends CubitWidget<
-    MakeSimpleTransactionCubit, MakeSimpleTransactionState> {
+class MakeSimpleTransactionWidget
+    extends CubitWidget<MakeSimpleTransactionCubit, MakeSimpleTransactionState> {
   final MakeSimpleTransactionBuilder builder;
   final CommandBuilderMetaInfo? metaInfo;
 
@@ -38,8 +38,7 @@ class MakeSimpleTransactionWidget extends CubitWidget<
                 Flexible(
                   child: IntrinsicWidth(
                     child: VariableInputWidget(
-                      controller:
-                          context.read<MakeSimpleTransactionCubit>().variable,
+                      controller: context.read<MakeSimpleTransactionCubit>().variable,
                     ),
                   ),
                 ),
@@ -98,6 +97,5 @@ class MakeSimpleTransactionWidget extends CubitWidget<
   }
 
   @override
-  MakeSimpleTransactionCubit cubit(BuildContext context) =>
-      MakeSimpleTransactionCubit(builder);
+  MakeSimpleTransactionCubit cubit(BuildContext context) => MakeSimpleTransactionCubit(builder);
 }

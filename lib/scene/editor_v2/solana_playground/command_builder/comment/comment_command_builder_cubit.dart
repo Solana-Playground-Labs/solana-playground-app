@@ -13,8 +13,7 @@ class CommentCommandBuilderCubit extends Cubit<CommentCommandBuilderState> {
   final CommentCommandBuilder builder;
   final commentInputController = TextEditingController();
 
-  CommentCommandBuilderCubit(this.builder)
-      : super(const CommentCommandBuilderState()) {
+  CommentCommandBuilderCubit(this.builder) : super(const CommentCommandBuilderState()) {
     builder.addListener(listener);
 
     commentInputController.text = builder.content;
@@ -40,7 +39,6 @@ class CommentCommandBuilderCubit extends Cubit<CommentCommandBuilderState> {
       commentInputController.text = commentInputController.text;
     }
   }
-
 
   @override
   void onChange(Change<CommentCommandBuilderState> change) {

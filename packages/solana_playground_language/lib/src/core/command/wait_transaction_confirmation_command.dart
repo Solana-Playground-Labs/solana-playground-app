@@ -18,13 +18,11 @@ class WaitTransactionConfirmationCommand extends Command {
   @override
   List<Object?> get props => [transaction];
 
-  factory WaitTransactionConfirmationCommand.fromJson(
-          Map<String, dynamic> json) =>
+  factory WaitTransactionConfirmationCommand.fromJson(Map<String, dynamic> json) =>
       _$WaitTransactionConfirmationCommandFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() =>
-      _$WaitTransactionConfirmationCommandToJson(this);
+  Map<String, dynamic> toJson() => _$WaitTransactionConfirmationCommandToJson(this);
 
   @override
   WaitTransactionConfirmationCommandBuilder asBuilder() =>

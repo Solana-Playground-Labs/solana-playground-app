@@ -36,8 +36,7 @@ class ConditionValue extends Value {
   @override
   List<Object?> get props => [left, right, comparisonOperator];
 
-  factory ConditionValue.fromJson(Map<String, dynamic> json) =>
-      _$ConditionValueFromJson(json);
+  factory ConditionValue.fromJson(Map<String, dynamic> json) => _$ConditionValueFromJson(json);
 
   @override
   ValueBuilder asBuilder() => _$ConditionValueToBuilder(this);

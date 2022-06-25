@@ -26,8 +26,7 @@ class Mnemonic extends Equatable {
         account,
       ];
 
-  factory Mnemonic.fromJson(Map<String, dynamic> json) =>
-      _$MnemonicFromJson(json);
+  factory Mnemonic.fromJson(Map<String, dynamic> json) => _$MnemonicFromJson(json);
 
   Map<String, dynamic> toJson() => _$MnemonicToJson(this);
 }

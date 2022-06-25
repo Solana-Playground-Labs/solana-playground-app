@@ -10,13 +10,9 @@ class SPIconButton extends StatelessWidget {
   final Color? color;
   final String? tooltip;
 
-  const SPIconButton({
-    Key? key,
-    required this.icon,
-    required this.onPressed,
-    this.color,
-    this.tooltip
-  }) : super(key: key);
+  const SPIconButton(
+      {Key? key, required this.icon, required this.onPressed, this.color, this.tooltip})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

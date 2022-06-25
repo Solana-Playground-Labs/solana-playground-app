@@ -49,20 +49,17 @@ class WalletsSection extends StatelessWidget {
                             TextButton(
                                 onPressed: () async {
                                   await context.popRoute();
-                                  context.router
-                                      .push(CreateKeyPairRoute());
+                                  context.router.push(CreateKeyPairRoute());
                                 },
                                 child: const Text("Create")),
                             TextButton(
                                 onPressed: () async {
                                   await context.popRoute();
-                                  context.router
-                                      .push(const ImportWalletRoute());
+                                  context.router.push(const ImportWalletRoute());
                                 },
                                 child: const Text("Import")),
                             TextButton(
-                                onPressed: () => context.popRoute(),
-                                child: const Text("Cancel")),
+                                onPressed: () => context.popRoute(), child: const Text("Cancel")),
                           ],
                         );
                       },

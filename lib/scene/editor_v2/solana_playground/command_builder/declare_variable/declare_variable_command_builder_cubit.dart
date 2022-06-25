@@ -9,8 +9,7 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 
 part 'declare_variable_command_builder_state.dart';
 
-class DeclareVariableCommandBuilderCubit
-    extends Cubit<DeclareVariableCommandBuilderState> {
+class DeclareVariableCommandBuilderCubit extends Cubit<DeclareVariableCommandBuilderState> {
   final DeclareVariableCommandBuilder builder;
   final variableInputController = TextEditingController();
 

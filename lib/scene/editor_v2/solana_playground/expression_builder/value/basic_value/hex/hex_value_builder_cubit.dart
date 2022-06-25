@@ -23,4 +23,3 @@ class HexValueBuilderCubit extends Cubit<HexValueBuilderState> {
     return super.close();
   }
 }
-

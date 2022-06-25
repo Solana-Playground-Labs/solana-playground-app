@@ -15,8 +15,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'comment_command_builder_cubit.dart';
 
-class CommentCommandBuilderWidget extends CubitWidget<
-    CommentCommandBuilderCubit, CommentCommandBuilderState> {
+class CommentCommandBuilderWidget
+    extends CubitWidget<CommentCommandBuilderCubit, CommentCommandBuilderState> {
   final CommentCommandBuilder builder;
   final CommandBuilderMetaInfo? metaInfo;
 
@@ -53,9 +53,7 @@ class CommentCommandBuilderWidget extends CubitWidget<
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
-                  controller: context
-                      .read<CommentCommandBuilderCubit>()
-                      .commentInputController,
+                  controller: context.read<CommentCommandBuilderCubit>().commentInputController,
                   style: Theme.of(context).textTheme.bodyText1,
                   decoration: const InputDecoration.collapsed(
                     hintText: "Tap to edit",
@@ -80,6 +78,5 @@ class CommentCommandBuilderWidget extends CubitWidget<
   }
 
   @override
-  CommentCommandBuilderCubit cubit(BuildContext context) =>
-      CommentCommandBuilderCubit(builder);
+  CommentCommandBuilderCubit cubit(BuildContext context) => CommentCommandBuilderCubit(builder);
 }

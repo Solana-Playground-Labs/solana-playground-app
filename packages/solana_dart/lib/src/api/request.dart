@@ -10,7 +10,8 @@ class Request extends Equatable {
   final String method;
   final List? params;
 
-  const Request({required this.id, required this.jsonrpc, required this.method, required this.params});
+  const Request(
+      {required this.id, required this.jsonrpc, required this.method, required this.params});
 
   factory Request.v2({int id = 1, required String method, List? params}) {
     return Request(id: id, jsonrpc: "2.0", method: method, params: params);

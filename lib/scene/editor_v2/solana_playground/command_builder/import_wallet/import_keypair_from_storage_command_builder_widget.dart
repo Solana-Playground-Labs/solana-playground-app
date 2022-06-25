@@ -14,8 +14,8 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 import '../../../editor_v2.dart';
 import 'import_keypair_from_storage_command_builder_cubit.dart';
 
-class ImportWalletCommandBuilderWidget extends CubitWidget<
-    ImportWalletCommandBuilderCubit, ImportWalletCommandBuilderState> {
+class ImportWalletCommandBuilderWidget
+    extends CubitWidget<ImportWalletCommandBuilderCubit, ImportWalletCommandBuilderState> {
   final CommandBuilderMetaInfo? metaInfo;
   final ImportKeypairFromStorageCommandBuilder builder;
 
@@ -36,9 +36,7 @@ class ImportWalletCommandBuilderWidget extends CubitWidget<
               Text("Variable: ", style: theme.textTheme.bodyText1),
               IntrinsicWidth(
                 child: VariableInputWidget(
-                  controller: context
-                      .read<ImportWalletCommandBuilderCubit>()
-                      .variableInput,
+                  controller: context.read<ImportWalletCommandBuilderCubit>().variableInput,
                 ),
               )
             ],

@@ -24,8 +24,8 @@ class SPPackageIconWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               onTap: () async {
                 final cubit = context.read<PackageNameCubit>();
-                final result = await context.router
-                    .push<SPIcon>(IconEditorRoute(initIcon: state.icon));
+                final result =
+                    await context.router.push<SPIcon>(IconEditorRoute(initIcon: state.icon));
                 if (result != null) cubit.updateIcon(result);
               },
               child: SPIconWidget(icon: state.icon),

@@ -68,8 +68,7 @@ class AirdropView extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    BlocBuilder<AirdropCubit, AirdropState>(
-                        builder: (context, state) {
+                    BlocBuilder<AirdropCubit, AirdropState>(builder: (context, state) {
                       return state.isFetching
                           ? Container(
                               margin: const EdgeInsets.only(right: 8),

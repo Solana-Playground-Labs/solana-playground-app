@@ -29,7 +29,6 @@ class SpCreateAccountWithSeedValue extends Value {
   @ValuePropertyBuildable()
   final Expression owner;
 
-
   const SpCreateAccountWithSeedValue({
     required this.fromPubkey,
     required this.newAccountPubkey,
@@ -41,8 +40,15 @@ class SpCreateAccountWithSeedValue extends Value {
   });
 
   @override
-  List<Object> get props =>
-      [fromPubkey, newAccountPubkey, basePubkey, seed, lamports, space, owner,];
+  List<Object> get props => [
+        fromPubkey,
+        newAccountPubkey,
+        basePubkey,
+        seed,
+        lamports,
+        space,
+        owner,
+      ];
 
   factory SpCreateAccountWithSeedValue.fromJson(Map<String, dynamic> json) {
     return _$SpCreateAccountWithSeedValueFromJson(json);

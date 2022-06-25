@@ -9,12 +9,10 @@ import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 
 import 'hex_value_builder_cubit.dart';
 
-class HexValueBuilderWidget
-    extends CubitWidget<HexValueBuilderCubit, HexValueBuilderState> {
+class HexValueBuilderWidget extends CubitWidget<HexValueBuilderCubit, HexValueBuilderState> {
   final HexValueBuilder builder;
 
-  HexValueBuilderWidget({Key? key, required this.builder})
-      : super(key: Key(builder.id));
+  HexValueBuilderWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
 
   @override
   Widget content(BuildContext context, HexValueBuilderState state) {
@@ -27,6 +25,5 @@ class HexValueBuilderWidget
   }
 
   @override
-  HexValueBuilderCubit cubit(BuildContext context) =>
-      HexValueBuilderCubit(builder);
+  HexValueBuilderCubit cubit(BuildContext context) => HexValueBuilderCubit(builder);
 }

@@ -33,8 +33,7 @@ class SPRuntime {
       throw Exception("The package should be application type");
     }
 
-    final mainScript =
-        package.scripts.firstWhereOrNull((e) => e.name == 'main');
+    final mainScript = package.scripts.firstWhereOrNull((e) => e.name == 'main');
     if (mainScript == null) {
       throw Exception("Can not find main script");
     }

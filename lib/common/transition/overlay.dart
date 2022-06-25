@@ -31,7 +31,6 @@ Route<T> popover<T>(BuildContext context, Widget child, CustomPage page) {
   );
 }
 
-
 Route<T> popoverWide<T>(BuildContext context, Widget child, CustomPage page) {
   return RawDialogRoute(
     pageBuilder: (context, animation, secondAnimation) {

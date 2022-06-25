@@ -30,9 +30,7 @@ class Package extends Equatable {
     return Package(
       name: json['name'],
       icon: SPIcon.fromJson(json['icon']),
-      packageType: json['packageType'] == 0
-          ? PackageType.application
-          : PackageType.library,
+      packageType: json['packageType'] == 0 ? PackageType.application : PackageType.library,
       scripts: List.castFrom(
         json['scripts'].map((e) => Script.fromJson(e)).toList(),
       ),
@@ -85,7 +83,6 @@ class PackageBuilder extends Builder {
       scriptBuilders: scriptBuilders,
     );
   }
-
 
   SPIcon get icon => _icon;
 

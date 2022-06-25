@@ -10,8 +10,7 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 
 import 'bool_value_builder_cubit.dart';
 
-class BoolValueBuilderWidget
-    extends CubitWidget<BoolValueBuilderCubit, BoolValueBuilderState> {
+class BoolValueBuilderWidget extends CubitWidget<BoolValueBuilderCubit, BoolValueBuilderState> {
   final BoolValueBuilder builder;
   final ExpressionMetaDataNode? metaDataNode;
 
@@ -39,10 +38,10 @@ class BoolValueBuilderWidget
                 },
                 child: Center(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 6),
-                      child: Text(metaDataNode?.title ?? valueStr(state.value),
-                          style: const TextStyle(color: Colors.white)),
-                    )),
+                  padding: const EdgeInsets.symmetric(horizontal: 6),
+                  child: Text(metaDataNode?.title ?? valueStr(state.value),
+                      style: const TextStyle(color: Colors.white)),
+                )),
               ),
             ),
           ),
@@ -56,6 +55,5 @@ class BoolValueBuilderWidget
   }
 
   @override
-  BoolValueBuilderCubit cubit(BuildContext context) =>
-      BoolValueBuilderCubit(builder);
+  BoolValueBuilderCubit cubit(BuildContext context) => BoolValueBuilderCubit(builder);
 }

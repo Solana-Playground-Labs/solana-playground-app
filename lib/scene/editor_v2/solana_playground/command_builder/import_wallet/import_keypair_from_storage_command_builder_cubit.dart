@@ -9,13 +9,11 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 
 part 'import_keypair_from_storage_command_builder_state.dart';
 
-class ImportWalletCommandBuilderCubit
-    extends Cubit<ImportWalletCommandBuilderState> {
+class ImportWalletCommandBuilderCubit extends Cubit<ImportWalletCommandBuilderState> {
   final ImportKeypairFromStorageCommandBuilder builder;
   final variableInput = TextEditingController();
 
-  ImportWalletCommandBuilderCubit(this.builder)
-      : super(const ImportWalletCommandBuilderState()) {
+  ImportWalletCommandBuilderCubit(this.builder) : super(const ImportWalletCommandBuilderState()) {
     builder.addListener(listener);
 
     variableInput.text = builder.variable;

@@ -78,10 +78,7 @@ Map<String, dynamic> _$MakeKeyPairCommandToJson(MakeKeyPairCommand value) {
   };
 }
 
-MakeKeyPairCommandBuilder _$MakeKeyPairCommandToBuilder(
-    MakeKeyPairCommand value) {
+MakeKeyPairCommandBuilder _$MakeKeyPairCommandToBuilder(MakeKeyPairCommand value) {
   return MakeKeyPairCommandBuilder(
-      variable: value.variable,
-      publicKey: value.publicKey,
-      privateKey: value.privateKey);
+      variable: value.variable, publicKey: value.publicKey, privateKey: value.privateKey);
 }

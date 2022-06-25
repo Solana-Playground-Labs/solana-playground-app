@@ -39,10 +39,11 @@ class RuntimeView extends CubitWidget<RuntimeCubit, RuntimeState> {
                     onPressed: () => context.router.pop(),
                     icon: const Icon(Icons.close),
                   )
-                : const Center(child: Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: CircularProgressIndicator(),
-                )),
+                : const Center(
+                    child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: CircularProgressIndicator(),
+                  )),
           ],
         ),
         body: const ConsoleIOWidget(),

@@ -58,6 +58,5 @@ Map<String, dynamic> _$StringByteValueToJson(StringByteValue value) {
 }
 
 StringByteValueBuilder _$StringByteValueToBuilder(StringByteValue value) {
-  return StringByteValueBuilder(
-      expression: value.expression.asBuilder(), base: value.base);
+  return StringByteValueBuilder(expression: value.expression.asBuilder(), base: value.base);
 }

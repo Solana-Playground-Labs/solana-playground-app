@@ -11,8 +11,8 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 
 import 'conditional_wrapper_value_builder_cubit.dart';
 
-class ConditionalWrapperValueBuilderWidget extends CubitWidget<
-    ConditionalWrapperValueBuilderCubit, ConditionalWrapperValueBuilderState> {
+class ConditionalWrapperValueBuilderWidget
+    extends CubitWidget<ConditionalWrapperValueBuilderCubit, ConditionalWrapperValueBuilderState> {
   final ExpressionMetaDataNode? metaData;
   final ConditionalWrapperValueBuilder builder;
 

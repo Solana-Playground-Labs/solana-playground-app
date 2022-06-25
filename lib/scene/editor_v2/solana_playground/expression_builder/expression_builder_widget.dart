@@ -21,16 +21,13 @@ final Map<Type, _MappingBuilder> _mapping = {
       VariableValueBuilderWidget(builder: builder),
   BinaryValueBuilder: (context, builder, metaDataNode) =>
       BinaryValueBuilderWidget(builder: builder),
-  ByteValueBuilder: (context, builder, metaDataNode) =>
-      ByteValueBuilderWidget(builder: builder),
-  HexValueBuilder: (context, builder, metaDataNode) =>
-      HexValueBuilderWidget(builder: builder),
+  ByteValueBuilder: (context, builder, metaDataNode) => ByteValueBuilderWidget(builder: builder),
+  HexValueBuilder: (context, builder, metaDataNode) => HexValueBuilderWidget(builder: builder),
   StringByteValueBuilder: (context, builder, metaDataNode) =>
       StringByteValueBuilderWidget(builder: builder),
   ConditionValueBuilder: (context, builder, metaDataNode) =>
       ConditionValueBuilderWidget(builder: builder),
-  ListValueBuilder: (context, builder, metaDataNode) =>
-      ListValueBuilderWidget(builder: builder),
+  ListValueBuilder: (context, builder, metaDataNode) => ListValueBuilderWidget(builder: builder),
   AccountValueBuilder: (context, builder, metaDataNode) =>
       AccountValueBuilderWidget(builder: builder),
   BoolValueBuilder: (context, builder, metaDataNode) =>
@@ -38,20 +35,17 @@ final Map<Type, _MappingBuilder> _mapping = {
   InstructionValueBuilder: (context, builder, metaDataNode) =>
       InstructionValueBuilderWidget(builder: builder, metaData: metaDataNode),
   ConditionalWrapperValueBuilder: (context, builder, metaDataNode) =>
-      ConditionalWrapperValueBuilderWidget(
-          builder: builder, metaData: metaDataNode),
+      ConditionalWrapperValueBuilderWidget(builder: builder, metaData: metaDataNode),
   NullValueBuilder: (context, builder, metaDataNode) =>
       NullValueBuilderWidget(metaData: metaDataNode),
-  StringValueBuilder:  (context, builder, metaDataNode) =>
+  StringValueBuilder: (context, builder, metaDataNode) =>
       StringValueBuilderWidget(builder: builder),
-  IntValueBuilder:  (context, builder, metaDataNode) =>
-      IntValueBuilderWidget(builder: builder),
-  DoubleValueBuilder:  (context, builder, metaDataNode) =>
+  IntValueBuilder: (context, builder, metaDataNode) => IntValueBuilderWidget(builder: builder),
+  DoubleValueBuilder: (context, builder, metaDataNode) =>
       DoubleValueBuilderWidget(builder: builder),
 };
 
-class ExpressionBuilderWidget
-    extends CubitWidget<ExpressionBuilderCubit, ExpressionBuilderState> {
+class ExpressionBuilderWidget extends CubitWidget<ExpressionBuilderCubit, ExpressionBuilderState> {
   final ExpressionBuilder builder;
   final ExpressionMetaData metaData;
 
@@ -81,9 +75,9 @@ class ExpressionBuilderWidget
   Widget buildValue(BuildContext context, ExpressionBuilderState state) {
     final metaData = this.metaData as ExpressionMetaDataNode;
 
-    final Widget child = _mapping[state.valueBuilder.runtimeType]
-            ?.call(context, state.valueBuilder, metaData) ??
-        const SPLabel(style: SPLabelStyle.orange, child: Text("Unknown"));
+    final Widget child =
+        _mapping[state.valueBuilder.runtimeType]?.call(context, state.valueBuilder, metaData) ??
+            const SPLabel(style: SPLabelStyle.orange, child: Text("Unknown"));
 
     return Row(
       mainAxisSize: MainAxisSize.min,
@@ -103,8 +97,7 @@ class ExpressionBuilderWidget
                   );
                 },
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+                  padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
                   child: Text(builder.valueBuilder.name),
                 ),
               ),
@@ -118,6 +111,5 @@ class ExpressionBuilderWidget
   }
 
   @override
-  ExpressionBuilderCubit cubit(BuildContext context) =>
-      ExpressionBuilderCubit(builder);
+  ExpressionBuilderCubit cubit(BuildContext context) => ExpressionBuilderCubit(builder);
 }

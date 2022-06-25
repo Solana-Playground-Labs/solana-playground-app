@@ -9,8 +9,7 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 
 part 'get_recent_block_hash_command_builder_state.dart';
 
-class GetRecentBlockHashCommandBuilderCubit
-    extends Cubit<GetRecentBlockHashCommandBuilderState> {
+class GetRecentBlockHashCommandBuilderCubit extends Cubit<GetRecentBlockHashCommandBuilderState> {
   final GetRecentBlockHashCommandBuilder builder;
   final variableInput = TextEditingController();
 

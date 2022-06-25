@@ -10,8 +10,7 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 class BinaryValueBuilderWidget extends StatelessWidget {
   final BinaryValueBuilder builder;
 
-  BinaryValueBuilderWidget({Key? key, required this.builder})
-      : super(key: Key(builder.id));
+  BinaryValueBuilderWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +20,7 @@ class BinaryValueBuilderWidget extends StatelessWidget {
           title: "Data",
           singleBox: true,
           child: ExpressionMetaDataNode(
-            allowTypes:
-                [VariableValueBuilder] + TypeInspectorHelper.binaryTypeList,
+            allowTypes: [VariableValueBuilder] + TypeInspectorHelper.binaryTypeList,
           ),
           onInsert: () {
             return ExpressionBuilder(

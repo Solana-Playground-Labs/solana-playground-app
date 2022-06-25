@@ -16,8 +16,7 @@ class PrintCommand extends Command {
   @override
   List<Object> get props => [expression];
 
-  factory PrintCommand.fromJson(Map<String, dynamic> json) =>
-      _$PrintCommandFromJson(json);
+  factory PrintCommand.fromJson(Map<String, dynamic> json) => _$PrintCommandFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$PrintCommandToJson(this);

@@ -145,9 +145,7 @@ class ExpressionInspectorView extends StatelessWidget {
   final ExpressionMetaData? metaData;
   final ExpressionBuilder builder;
 
-  const ExpressionInspectorView(
-      {Key? key, required this.builder, this.metaData})
-      : super(key: key);
+  const ExpressionInspectorView({Key? key, required this.builder, this.metaData}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

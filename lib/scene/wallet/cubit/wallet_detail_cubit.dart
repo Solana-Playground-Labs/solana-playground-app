@@ -15,8 +15,7 @@ class WalletDetailCubit extends Cubit<WalletDetailState> {
   final SolanaNetworkCubit solanaNetworkCubit;
   final Keypair keypair;
 
-  WalletDetailCubit(this.solanaNetworkCubit, this.keypair)
-      : super(const WalletDetailState());
+  WalletDetailCubit(this.solanaNetworkCubit, this.keypair) : super(const WalletDetailState());
 
   Future<void> fetch() async {
     if (state.isFetching) return;

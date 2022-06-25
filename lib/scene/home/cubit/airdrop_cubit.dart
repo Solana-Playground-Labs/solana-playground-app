@@ -28,8 +28,7 @@ class AirdropCubit extends Cubit<AirdropState> {
       final client = network.asClient();
       final String signature = await client.rpcClient
           .requestAirdrop(keypair.publicKeyBase58, int.parse(amountInput.text));
-      await client.waitForSignatureStatus(signature,
-          status: Commitment.finalized);
+      await client.waitForSignatureStatus(signature, status: Commitment.finalized);
     } finally {
       emit(state.copyWith(isFetching: false));
     }

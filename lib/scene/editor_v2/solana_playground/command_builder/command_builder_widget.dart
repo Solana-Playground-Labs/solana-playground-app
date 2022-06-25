@@ -44,8 +44,7 @@ final Map<Type, _MappingBuilder> _mapping = {
   SignCommandBuilder: (context, builder, meta) =>
       SignCommandBuilderWidget(builder: builder, metaInfo: meta),
   CreateSplAssociatedTokenAccountCommandBuilder: (context, builder, meta) =>
-      CreateSPLAssociatedTokenAccountBuilderWidget(
-          builder: builder, metaInfo: meta)
+      CreateSPLAssociatedTokenAccountBuilderWidget(builder: builder, metaInfo: meta)
 };
 
 class CommandBuilderWidget extends StatelessWidget {

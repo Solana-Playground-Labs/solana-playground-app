@@ -57,8 +57,7 @@ class ScriptBuilder extends Builder {
   String _name;
   BlockCommandBuilder _blockCommandBuilder;
 
-  ScriptBuilder(
-      {required String name, required BlockCommandBuilder blockCommandBuilder})
+  ScriptBuilder({required String name, required BlockCommandBuilder blockCommandBuilder})
       : _name = name,
         _blockCommandBuilder = blockCommandBuilder;
 

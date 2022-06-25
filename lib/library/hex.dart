@@ -15,7 +15,6 @@ class Hex {
     // if (data.length % 2 != 0) {
     //   data = data + "0";
     // }
-    return Uint8List.fromList(
-        data.every(2).map((e) => int.parse(e, radix: 16)).toList());
+    return Uint8List.fromList(data.every(2).map((e) => int.parse(e, radix: 16)).toList());
   }
 }

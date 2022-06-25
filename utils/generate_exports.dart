@@ -25,7 +25,8 @@ String generate(Directory currentDir, {List<String> ignorePatterns = const []}) 
 
   for (final file in currentDir.listSync()) {
     if (file is Directory) {
-      output += "export '${basename(file.path)}/${generate(file, ignorePatterns: ignorePatterns)}';\n";
+      output +=
+          "export '${basename(file.path)}/${generate(file, ignorePatterns: ignorePatterns)}';\n";
     } else if (file is File) {
       if (basename(file.path) == "${basename(currentDir.path)}.dart") continue;
       if (isIgnoring(basename(file.path), ignorePatterns)) continue;
@@ -46,7 +47,6 @@ bool isIgnoring(String path, List<String> ignorePatterns) {
   }
   return false;
 }
-
 
 /*
 MIT License

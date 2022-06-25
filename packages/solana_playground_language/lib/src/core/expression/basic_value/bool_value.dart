@@ -18,8 +18,7 @@ class BoolValue extends Value {
   @override
   List<Object> get props => [value];
 
-  factory BoolValue.fromJson(Map<String, dynamic> json) =>
-      _$BoolValueFromJson(json);
+  factory BoolValue.fromJson(Map<String, dynamic> json) => _$BoolValueFromJson(json);
 
   @override
   ValueBuilder asBuilder() => _$BoolValueToBuilder(this);

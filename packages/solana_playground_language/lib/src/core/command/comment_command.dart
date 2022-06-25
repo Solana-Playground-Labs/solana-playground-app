@@ -18,8 +18,7 @@ class CommentCommand extends Command {
   @override
   List<Object?> get props => [content];
 
-  factory CommentCommand.fromJson(Map<String, dynamic> json) =>
-      _$CommentCommandFromJson(json);
+  factory CommentCommand.fromJson(Map<String, dynamic> json) => _$CommentCommandFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$CommentCommandToJson(this);

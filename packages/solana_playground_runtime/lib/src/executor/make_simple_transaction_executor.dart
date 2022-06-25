@@ -22,8 +22,7 @@ Future<void> executeMakeSimpleTransaction(
     feePayer = Ed25519HDPublicKey(feePayer);
   }
 
-  final message =
-      Message(instructions: instructions.whereType<Instruction>().toList());
+  final message = Message(instructions: instructions.whereType<Instruction>().toList());
   final compiledMessage = message.compile(
     recentBlockhash: recentBlockhash,
     feePayer: feePayer,

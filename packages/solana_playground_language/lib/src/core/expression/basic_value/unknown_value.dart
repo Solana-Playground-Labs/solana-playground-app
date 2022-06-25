@@ -28,5 +28,4 @@ class UnknownValue extends Value {
   ValueBuilder asBuilder() {
     return UnknownValueBuilder(rawData: rawData);
   }
-
 }

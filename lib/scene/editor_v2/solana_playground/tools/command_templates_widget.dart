@@ -126,8 +126,7 @@ class CommandTemplatesWidget extends StatelessWidget {
         ),
         TemplateGroup(
           title: "Transaction",
-          description:
-              "The section for creating transaction and submiting them.",
+          description: "The section for creating transaction and submiting them.",
           templates: _blockchainTemplates,
         )
       ],

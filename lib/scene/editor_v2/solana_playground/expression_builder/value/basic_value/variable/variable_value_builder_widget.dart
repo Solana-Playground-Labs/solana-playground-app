@@ -16,8 +16,7 @@ class VariableValueBuilderWidget
     extends CubitWidget<VariableValueBuilderCubit, VariableValueBuilderState> {
   final VariableValueBuilder builder;
 
-  VariableValueBuilderWidget({Key? key, required this.builder})
-      : super(key: Key(builder.id));
+  VariableValueBuilderWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
 
   @override
   Widget content(BuildContext context, VariableValueBuilderState state) {
@@ -28,18 +27,13 @@ class VariableValueBuilderWidget
           controller: context.read<VariableValueBuilderCubit>().inputController,
           maxLines: 1,
           textAlign: TextAlign.center,
-          style: Theme.of(context)
-              .textTheme
-              .bodyText1
-              ?.copyWith(color: Colors.black),
-          decoration:
-              SPTextField.compactInputDecoration.copyWith(hintText: "Variable"),
+          style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.black),
+          decoration: SPTextField.compactInputDecoration.copyWith(hintText: "Variable"),
         ),
       ),
     );
   }
 
   @override
-  VariableValueBuilderCubit cubit(BuildContext context) =>
-      VariableValueBuilderCubit(builder);
+  VariableValueBuilderCubit cubit(BuildContext context) => VariableValueBuilderCubit(builder);
 }

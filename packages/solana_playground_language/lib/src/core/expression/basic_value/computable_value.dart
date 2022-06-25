@@ -19,8 +19,7 @@ class ComputableValue extends Value {
   @override
   List<Object> get props => [value];
 
-  factory ComputableValue.fromJson(Map<String, dynamic> json) =>
-      _$ComputableValueFromJson(json);
+  factory ComputableValue.fromJson(Map<String, dynamic> json) => _$ComputableValueFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$ComputableValueToJson(this);

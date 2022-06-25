@@ -16,9 +16,7 @@ class ValueModelVisitor extends SimpleElementVisitor {
 
   @override
   visitFieldElement(FieldElement element) {
-    if (TypeChecker.fromRuntime(ValuePropertyBuildable)
-        .annotationsOf(element)
-        .isNotEmpty) {
+    if (TypeChecker.fromRuntime(ValuePropertyBuildable).annotationsOf(element).isNotEmpty) {
       propertiesBuilder.add(element);
     }
   }

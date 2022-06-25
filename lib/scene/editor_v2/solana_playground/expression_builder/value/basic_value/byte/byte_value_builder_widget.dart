@@ -11,13 +11,10 @@ import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 
-
-class ByteValueBuilderWidget
-    extends CubitWidget<ByteValueBuilderCubit, ByteValueBuilderState> {
+class ByteValueBuilderWidget extends CubitWidget<ByteValueBuilderCubit, ByteValueBuilderState> {
   final ByteValueBuilder builder;
 
-  ByteValueBuilderWidget({Key? key, required this.builder})
-      : super(key: Key(builder.id));
+  ByteValueBuilderWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
 
   @override
   Widget content(BuildContext context, ByteValueBuilderState state) {
@@ -28,10 +25,7 @@ class ByteValueBuilderWidget
             style: SPLabelStyle.keppel,
             child: TextField(
               controller: context.read<ByteValueBuilderCubit>().lengthInput,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1
-                  ?.copyWith(color: Colors.black),
+              style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.black),
               keyboardType: TextInputType.number,
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'\d')),
@@ -50,6 +44,5 @@ class ByteValueBuilderWidget
   }
 
   @override
-  ByteValueBuilderCubit cubit(BuildContext context) =>
-      ByteValueBuilderCubit(builder);
+  ByteValueBuilderCubit cubit(BuildContext context) => ByteValueBuilderCubit(builder);
 }

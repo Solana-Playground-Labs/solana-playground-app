@@ -13,9 +13,7 @@ class MakeSimpleTransactionCubit extends Cubit<MakeSimpleTransactionState> {
   final variable = TextEditingController();
   final MakeSimpleTransactionBuilder builder;
 
-  MakeSimpleTransactionCubit(this.builder)
-      : super(const MakeSimpleTransactionState()) {
-
+  MakeSimpleTransactionCubit(this.builder) : super(const MakeSimpleTransactionState()) {
     variable.text = builder.variable;
     variable.addListener(() {
       builder.variable = variable.text;
@@ -37,4 +35,3 @@ class MakeSimpleTransactionCubit extends Cubit<MakeSimpleTransactionState> {
     return super.close();
   }
 }
-

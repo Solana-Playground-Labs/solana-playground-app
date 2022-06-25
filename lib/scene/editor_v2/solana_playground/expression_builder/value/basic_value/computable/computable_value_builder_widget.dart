@@ -15,8 +15,7 @@ class ComputableValueBuilderWidget
     extends CubitWidget<ComputableValueBuilderCubit, ComputableValueBuilderState> {
   final ComputableValueBuilder builder;
 
-  ComputableValueBuilderWidget({Key? key, required this.builder})
-      : super(key: Key(builder.id));
+  ComputableValueBuilderWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
 
   @override
   Widget content(BuildContext context, ComputableValueBuilderState state) {
@@ -27,18 +26,13 @@ class ComputableValueBuilderWidget
           controller: context.read<ComputableValueBuilderCubit>().inputController,
           maxLines: 1,
           textAlign: TextAlign.center,
-          style: Theme.of(context)
-              .textTheme
-              .bodyText1
-              ?.copyWith(color: Colors.black),
-          decoration:
-              SPTextField.compactInputDecoration.copyWith(hintText: "Constant"),
+          style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.black),
+          decoration: SPTextField.compactInputDecoration.copyWith(hintText: "Constant"),
         ),
       ),
     );
   }
 
   @override
-  ComputableValueBuilderCubit cubit(BuildContext context) =>
-      ComputableValueBuilderCubit(builder);
+  ComputableValueBuilderCubit cubit(BuildContext context) => ComputableValueBuilderCubit(builder);
 }

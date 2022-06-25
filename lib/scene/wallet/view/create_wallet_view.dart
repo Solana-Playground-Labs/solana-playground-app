@@ -57,20 +57,17 @@ class CreateKeyPairView extends StatelessWidget {
                     children: [
                       Expanded(
                         child: TextField(
-                          controller:
-                              context.read<CreateWalletCubit>().accountInput,
+                          controller: context.read<CreateWalletCubit>().accountInput,
                           keyboardType: TextInputType.number,
                           inputFormatters: [
                             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
                           ],
-                          decoration:
-                              const InputDecoration(hintText: "Account"),
+                          decoration: const InputDecoration(hintText: "Account"),
                         ),
                       ),
                       Expanded(
                         child: TextField(
-                          controller:
-                              context.read<CreateWalletCubit>().accountInput,
+                          controller: context.read<CreateWalletCubit>().accountInput,
                           keyboardType: TextInputType.number,
                           inputFormatters: [
                             FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -86,8 +83,7 @@ class CreateKeyPairView extends StatelessWidget {
                       context.read<CreateWalletCubit>().save().then((value) {
                         context.router.pop();
                       }).onError((error, stackTrace) {
-                        final snackBar =
-                            SnackBar(content: Text(error.toString()));
+                        final snackBar = SnackBar(content: Text(error.toString()));
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       });
                     },

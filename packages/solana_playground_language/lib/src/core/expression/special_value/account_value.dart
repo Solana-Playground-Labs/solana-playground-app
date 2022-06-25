@@ -24,7 +24,6 @@ class AccountValue extends Value {
     required this.pubkey,
   });
 
-
   @override
   List<Object?> get props => [isSigner, isWritable, pubkey];
 

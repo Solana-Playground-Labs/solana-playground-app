@@ -11,8 +11,7 @@ class AccountValueBuilderWidget
     extends CubitWidget<AccountValueBuilderCubit, AccountValueBuilderState> {
   final AccountValueBuilder builder;
 
-  AccountValueBuilderWidget({Key? key, required this.builder})
-      : super(key: Key(builder.id));
+  AccountValueBuilderWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
 
   @override
   Widget content(BuildContext context, AccountValueBuilderState state) {
@@ -58,6 +57,5 @@ class AccountValueBuilderWidget
   }
 
   @override
-  AccountValueBuilderCubit cubit(BuildContext context) =>
-      AccountValueBuilderCubit(builder);
+  AccountValueBuilderCubit cubit(BuildContext context) => AccountValueBuilderCubit(builder);
 }

@@ -52,8 +52,7 @@ class MakeSimpleTransactionBuilder extends CommandBuilder {
   }
 }
 
-MakeSimpleTransaction _$MakeSimpleTransactionFromJson(
-    Map<String, dynamic> json) {
+MakeSimpleTransaction _$MakeSimpleTransactionFromJson(Map<String, dynamic> json) {
   return MakeSimpleTransaction(
     variable: json['variable'],
     recentBlockHash: Expression.fromJson(json['recentBlockHash']),
@@ -63,8 +62,7 @@ MakeSimpleTransaction _$MakeSimpleTransactionFromJson(
   );
 }
 
-Map<String, dynamic> _$MakeSimpleTransactionToJson(
-    MakeSimpleTransaction value) {
+Map<String, dynamic> _$MakeSimpleTransactionToJson(MakeSimpleTransaction value) {
   return {
     'type': value.runtimeType.toString(),
     'variable': value.variable,
@@ -75,8 +73,7 @@ Map<String, dynamic> _$MakeSimpleTransactionToJson(
   };
 }
 
-MakeSimpleTransactionBuilder _$MakeSimpleTransactionToBuilder(
-    MakeSimpleTransaction value) {
+MakeSimpleTransactionBuilder _$MakeSimpleTransactionToBuilder(MakeSimpleTransaction value) {
   return MakeSimpleTransactionBuilder(
       variable: value.variable,
       recentBlockHash: value.recentBlockHash.asBuilder(),

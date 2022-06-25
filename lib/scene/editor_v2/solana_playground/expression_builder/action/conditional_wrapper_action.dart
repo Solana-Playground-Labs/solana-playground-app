@@ -10,8 +10,7 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 class ConditionalWrapperAction {
   static bool isWrapable(BuildContext context, ValueBuilder valueBuilder) {
     try {
-      final conditionalCubit =
-          context.read<ConditionalWrapperValueBuilderCubit>();
+      final conditionalCubit = context.read<ConditionalWrapperValueBuilderCubit>();
 
       return !(conditionalCubit.builder.trueFlow.valueBuilder == valueBuilder ||
           conditionalCubit.builder.falseFlow.valueBuilder == valueBuilder);
@@ -41,16 +40,13 @@ class ConditionalWrapperAction {
     if (cubit.builder.valueBuilder != conditionalWrapperValueBuilder) return;
 
     if (flow) {
-      cubit.builder.valueBuilder =
-          conditionalWrapperValueBuilder.trueFlow.valueBuilder;
+      cubit.builder.valueBuilder = conditionalWrapperValueBuilder.trueFlow.valueBuilder;
     } else {
-      cubit.builder.valueBuilder =
-          conditionalWrapperValueBuilder.falseFlow.valueBuilder;
+      cubit.builder.valueBuilder = conditionalWrapperValueBuilder.falseFlow.valueBuilder;
     }
   }
 
-  static ExtraAction? asListAction(
-      BuildContext context, ValueBuilder valueBuilder) {
+  static ExtraAction? asListAction(BuildContext context, ValueBuilder valueBuilder) {
     if (!ConditionalWrapperAction.isWrapable(context, valueBuilder)) {
       return null;
     }
@@ -63,18 +59,16 @@ class ConditionalWrapperAction {
   }
 
   static ExtraAction? asUnwrapListAction(
-      BuildContext context,
-      ConditionalWrapperValueBuilder valueBuilder,
-      bool flow,
-      ) {
+    BuildContext context,
+    ConditionalWrapperValueBuilder valueBuilder,
+    bool flow,
+  ) {
     if (!ConditionalWrapperAction.isWrapable(context, valueBuilder)) {
       return null;
     }
 
     return ExtraAction(
-        child: flow
-            ? const Text("Unwrap true flow")
-            : const Text("Unwrap false flow"),
+        child: flow ? const Text("Unwrap true flow") : const Text("Unwrap false flow"),
         onTap: () {
           ConditionalWrapperAction.unwrap(context, valueBuilder, flow);
         });

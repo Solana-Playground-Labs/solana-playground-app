@@ -17,8 +17,7 @@ class VariableValue extends Value {
   @override
   List<Object> get props => [variable];
 
-  factory VariableValue.fromJson(Map<String, dynamic> json) =>
-      _$VariableValueFromJson(json);
+  factory VariableValue.fromJson(Map<String, dynamic> json) => _$VariableValueFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$VariableValueToJson(this);

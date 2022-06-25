@@ -12,8 +12,8 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 
 import '../../../editor_v2.dart';
 
-class DeclareVariableCommandBuilderWidget extends CubitWidget<
-    DeclareVariableCommandBuilderCubit, DeclareVariableCommandBuilderState> {
+class DeclareVariableCommandBuilderWidget
+    extends CubitWidget<DeclareVariableCommandBuilderCubit, DeclareVariableCommandBuilderState> {
   final DeclareVariableCommandBuilder builder;
   final CommandBuilderMetaInfo? metaInfo;
 
@@ -42,9 +42,8 @@ class DeclareVariableCommandBuilderWidget extends CubitWidget<
               Flexible(
                 child: IntrinsicWidth(
                   child: VariableInputWidget(
-                    controller: context
-                        .read<DeclareVariableCommandBuilderCubit>()
-                        .variableInputController,
+                    controller:
+                        context.read<DeclareVariableCommandBuilderCubit>().variableInputController,
                   ),
                 ),
               ),

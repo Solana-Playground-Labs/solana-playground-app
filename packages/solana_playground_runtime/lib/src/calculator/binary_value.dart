@@ -64,8 +64,7 @@ Future<dynamic> calculateHexValue(
   if (value.length % 2 != 0) {
     value = value + "0";
   }
-  return Uint8List.fromList(
-      value.every(2).map((e) => int.parse(e, radix: 16)).toList());
+  return Uint8List.fromList(value.every(2).map((e) => int.parse(e, radix: 16)).toList());
 }
 
 Future<dynamic> calculateStringByteValue(
@@ -79,15 +78,12 @@ Future<dynamic> calculateStringByteValue(
 
   switch (binaryValue.base) {
     case 58:
-      final base58 = BaseXCodec(
-          '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz');
+      final base58 = BaseXCodec('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz');
       return base58.decode(value);
     case 64:
-      final base64 = BaseXCodec(
-          'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/');
+      final base64 = BaseXCodec('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/');
       return base64.decode(value);
     default:
-      throw Exception(
-          'Invalid base value (${binaryValue.base}). Available base value: 58 and 64');
+      throw Exception('Invalid base value (${binaryValue.base}). Available base value: 58 and 64');
   }
 }

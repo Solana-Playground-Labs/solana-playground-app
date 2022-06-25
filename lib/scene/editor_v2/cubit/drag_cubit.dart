@@ -14,4 +14,3 @@ class DragCubit extends Cubit<DragState> {
 
   deactive() => emit(state.copyWith(isActive: false));
 }
-

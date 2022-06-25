@@ -31,8 +31,7 @@ class Component extends StatelessWidget {
                   .entries
                   .map(
                     (e) => [
-                      if (!(e.key == 0 && header == null))
-                        const ComponentConnectionWidget(),
+                      if (!(e.key == 0 && header == null)) const ComponentConnectionWidget(),
                       e.value
                     ],
                   )

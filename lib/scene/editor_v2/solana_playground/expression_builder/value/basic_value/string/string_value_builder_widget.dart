@@ -9,8 +9,7 @@ import 'package:solana_playground_language/lib.dart';
 class StringValueBuilderWidget extends StatelessWidget {
   final StringValueBuilder builder;
 
-  const StringValueBuilderWidget({Key? key, required this.builder})
-      : super(key: key);
+  const StringValueBuilderWidget({Key? key, required this.builder}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

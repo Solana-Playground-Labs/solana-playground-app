@@ -28,8 +28,7 @@ class CodeWidget extends StatelessWidget {
             }
             return CustomScrollView(
               slivers: [
-                BlockCommandBuilderWidget(
-                    builder: state.currentScript!.blockCommandBuilder),
+                BlockCommandBuilderWidget(builder: state.currentScript!.blockCommandBuilder),
                 const SliverToBoxAdapter(child: SizedBox(height: 500)),
               ],
             );

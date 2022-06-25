@@ -9,13 +9,12 @@ import 'package:solana_playground_app/theme/icons.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 
-class InstructionValueBuilderWidget extends CubitWidget<
-    InstructionValueBuilderCubit, InstructionValueBuilderState> {
+class InstructionValueBuilderWidget
+    extends CubitWidget<InstructionValueBuilderCubit, InstructionValueBuilderState> {
   final ExpressionMetaDataNode? metaData;
   final InstructionValueBuilder builder;
 
-  InstructionValueBuilderWidget(
-      {Key? key, required this.builder, this.metaData})
+  InstructionValueBuilderWidget({Key? key, required this.builder, this.metaData})
       : super(key: Key(builder.id));
 
   @override
@@ -23,9 +22,7 @@ class InstructionValueBuilderWidget extends CubitWidget<
     return Component(
       header: ComponentHeader(
         icon: SvgPicture.asset(SPIconAssets.program),
-        name: metaData?.index == null
-            ? "Transaction"
-            : "Transaction #${metaData!.index! + 1}",
+        name: metaData?.index == null ? "Transaction" : "Transaction #${metaData!.index! + 1}",
         trailing: metaData?.index != null
             ? ListValueActions(
                 builder: builder,
@@ -79,6 +76,5 @@ class InstructionValueBuilderWidget extends CubitWidget<
   }
 
   @override
-  InstructionValueBuilderCubit cubit(BuildContext context) =>
-      InstructionValueBuilderCubit(builder);
+  InstructionValueBuilderCubit cubit(BuildContext context) => InstructionValueBuilderCubit(builder);
 }

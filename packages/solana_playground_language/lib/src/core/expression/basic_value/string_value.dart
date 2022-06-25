@@ -18,8 +18,7 @@ class StringValue extends Value {
   @override
   List<Object> get props => [value];
 
-  factory StringValue.fromJson(Map<String, dynamic> json) =>
-      _$StringValueFromJson(json);
+  factory StringValue.fromJson(Map<String, dynamic> json) => _$StringValueFromJson(json);
 
   @override
   ValueBuilder asBuilder() => _$StringValueToBuilder(this);

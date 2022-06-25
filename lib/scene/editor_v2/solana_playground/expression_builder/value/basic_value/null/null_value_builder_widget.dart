@@ -24,6 +24,5 @@ class NullValueBuilderWidget extends StatelessWidget {
     }
 
     return const ComponentHeader(name: "Null");
-
   }
 }

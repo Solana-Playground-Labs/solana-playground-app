@@ -9,13 +9,11 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 
 part 'make_keypair_command_builder_state.dart';
 
-class MakeKeypairCommandBuilderCubit
-    extends Cubit<MakeKeypairCommandBuilderState> {
+class MakeKeypairCommandBuilderCubit extends Cubit<MakeKeypairCommandBuilderState> {
   final MakeKeyPairCommandBuilder builder;
   final variableInput = TextEditingController();
 
-  MakeKeypairCommandBuilderCubit(this.builder)
-      : super(const MakeKeypairCommandBuilderState()) {
+  MakeKeypairCommandBuilderCubit(this.builder) : super(const MakeKeypairCommandBuilderState()) {
     builder.addListener(listener);
 
     variableInput.text = builder.variable;
@@ -37,4 +35,3 @@ class MakeKeypairCommandBuilderCubit
     return super.close();
   }
 }
-

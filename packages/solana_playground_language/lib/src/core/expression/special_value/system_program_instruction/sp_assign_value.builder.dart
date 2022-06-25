@@ -52,6 +52,5 @@ Map<String, dynamic> _$SpAssignValueToJson(SpAssignValue value) {
 
 SpAssignValueBuilder _$SpAssignValueToBuilder(SpAssignValue value) {
   return SpAssignValueBuilder(
-      accountPubkey: value.accountPubkey.asBuilder(),
-      owner: value.owner.asBuilder());
+      accountPubkey: value.accountPubkey.asBuilder(), owner: value.owner.asBuilder());
 }

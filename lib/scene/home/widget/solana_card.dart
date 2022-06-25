@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:solana_playground_app/repository/solana_repository.dart';
 
 class SolanaCard extends StatelessWidget {
-  final SolanaRepository repository =
-      SolanaRepository('https://api.mainnet-beta.solana.com');
+  final SolanaRepository repository = SolanaRepository('https://api.mainnet-beta.solana.com');
 
   SolanaCard({Key? key}) : super(key: key);
 
@@ -15,8 +14,7 @@ class SolanaCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Colors.grey.shade800,
-          borderRadius: const BorderRadius.all(Radius.circular(15.0))),
+          color: Colors.grey.shade800, borderRadius: const BorderRadius.all(Radius.circular(15.0))),
       width: 300,
       child: Padding(
         padding: const EdgeInsets.only(top: 8),

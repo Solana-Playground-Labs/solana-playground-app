@@ -57,9 +57,8 @@ Map<String, dynamic> _$ImportKeypairFromStorageCommandToJson(
   };
 }
 
-ImportKeypairFromStorageCommandBuilder
-    _$ImportKeypairFromStorageCommandToBuilder(
-        ImportKeypairFromStorageCommand value) {
+ImportKeypairFromStorageCommandBuilder _$ImportKeypairFromStorageCommandToBuilder(
+    ImportKeypairFromStorageCommand value) {
   return ImportKeypairFromStorageCommandBuilder(
       variable: value.variable, walletName: value.walletName.asBuilder());
 }

@@ -10,9 +10,7 @@ import 'package:solana_playground_app/theme/icons.dart';
 import 'package:solana_playground_language/lib.dart';
 import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 
-
-class ListValueBuilderWidget
-    extends CubitWidget<ListValueBuilderCubit, ListValueBuilderState> {
+class ListValueBuilderWidget extends CubitWidget<ListValueBuilderCubit, ListValueBuilderState> {
   final String? title;
   final Widget? icon;
 
@@ -28,8 +26,7 @@ class ListValueBuilderWidget
   }) : super(key: Key(builder.id));
 
   @override
-  ListValueBuilderCubit cubit(BuildContext context) =>
-      ListValueBuilderCubit(builder);
+  ListValueBuilderCubit cubit(BuildContext context) => ListValueBuilderCubit(builder);
 
   @override
   Widget content(BuildContext context, ListValueBuilderState state) {
@@ -166,9 +163,7 @@ class _FullListBuilderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Component(
-      header: metaData?.title != null
-          ? ComponentHeader(name: metaData!.title!)
-          : null,
+      header: metaData?.title != null ? ComponentHeader(name: metaData!.title!) : null,
       body: [
         ...state.expressions
             .asMap()

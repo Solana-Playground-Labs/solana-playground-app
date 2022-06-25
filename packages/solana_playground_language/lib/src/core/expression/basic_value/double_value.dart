@@ -18,8 +18,7 @@ class DoubleValue extends Value {
   @override
   List<Object> get props => [value];
 
-  factory DoubleValue.fromJson(Map<String, dynamic> json) =>
-      _$DoubleValueFromJson(json);
+  factory DoubleValue.fromJson(Map<String, dynamic> json) => _$DoubleValueFromJson(json);
 
   @override
   ValueBuilder asBuilder() => _$DoubleValueToBuilder(this);

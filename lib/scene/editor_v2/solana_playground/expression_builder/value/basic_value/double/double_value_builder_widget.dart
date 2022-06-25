@@ -16,8 +16,7 @@ class DoubleValueBuilderWidget
     extends CubitWidget<DoubleValueBuilderCubit, DoubleValueBuilderState> {
   final DoubleValueBuilder builder;
 
-  DoubleValueBuilderWidget({Key? key, required this.builder})
-      : super(key: Key(builder.id));
+  DoubleValueBuilderWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
 
   @override
   Widget content(BuildContext context, DoubleValueBuilderState state) {
@@ -32,10 +31,7 @@ class DoubleValueBuilderWidget
           },
           child: TextField(
             controller: context.read<DoubleValueBuilderCubit>().input,
-            style: Theme.of(context)
-                .textTheme
-                .bodyText1
-                ?.copyWith(color: Colors.black),
+            style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.black),
             keyboardType: TextInputType.number,
             inputFormatters: [
               FilteringTextInputFormatter.allow(RegExp(r'[\d.]')),
@@ -51,6 +47,5 @@ class DoubleValueBuilderWidget
   }
 
   @override
-  DoubleValueBuilderCubit cubit(BuildContext context) =>
-      DoubleValueBuilderCubit(builder);
+  DoubleValueBuilderCubit cubit(BuildContext context) => DoubleValueBuilderCubit(builder);
 }

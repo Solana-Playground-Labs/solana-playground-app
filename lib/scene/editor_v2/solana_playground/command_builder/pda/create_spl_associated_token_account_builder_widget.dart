@@ -32,11 +32,9 @@ class CreateSPLAssociatedTokenAccountBuilderWidget extends StatelessWidget {
           Row(
             children: [
               Text("Variable: ", style: theme.textTheme.bodyText1),
-              TextFieldBuilderWidget<
-                  CreateSplAssociatedTokenAccountCommandBuilder>(
+              TextFieldBuilderWidget<CreateSplAssociatedTokenAccountCommandBuilder>(
                 style: SPLabelStyle.orange,
-                adapter: TextFieldBuilderAdapter<
-                    CreateSplAssociatedTokenAccountCommandBuilder>(
+                adapter: TextFieldBuilderAdapter<CreateSplAssociatedTokenAccountCommandBuilder>(
                   builder: builder,
                   getTextBuilder: (builder) => builder.variable,
                   setTextBuilder: (builder, value) => builder.variable = value,

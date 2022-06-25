@@ -18,8 +18,7 @@ class StringByteValue extends Value {
   @override
   List<Object> get props => [expression, base];
 
-  factory StringByteValue.fromJson(Map<String, dynamic> json) =>
-      _$StringByteValueFromJson(json);
+  factory StringByteValue.fromJson(Map<String, dynamic> json) => _$StringByteValueFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$StringByteValueToJson(this);

@@ -38,8 +38,7 @@ class SPLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTextStyle(
-      style:
-          Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.black),
+      style: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.black),
       child: Container(
         clipBehavior: Clip.hardEdge,
         constraints: const BoxConstraints(

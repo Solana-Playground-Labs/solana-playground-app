@@ -9,12 +9,11 @@ import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 
-class ConditionValueBuilderWidget extends CubitWidget<
-    ConditionalValueBuilderCubit, ConditionalValueBuilderState> {
+class ConditionValueBuilderWidget
+    extends CubitWidget<ConditionalValueBuilderCubit, ConditionalValueBuilderState> {
   final ConditionValueBuilder builder;
 
-  ConditionValueBuilderWidget({Key? key, required this.builder})
-      : super(key: Key(builder.id));
+  ConditionValueBuilderWidget({Key? key, required this.builder}) : super(key: Key(builder.id));
 
   @override
   Widget content(BuildContext context, ConditionalValueBuilderState state) {
@@ -60,8 +59,7 @@ class ConditionValueBuilderWidget extends CubitWidget<
   }
 
   @override
-  ConditionalValueBuilderCubit cubit(BuildContext context) =>
-      ConditionalValueBuilderCubit(builder);
+  ConditionalValueBuilderCubit cubit(BuildContext context) => ConditionalValueBuilderCubit(builder);
 }
 
 extension ComparisonOperatorExtensions on ComparisonOperator {

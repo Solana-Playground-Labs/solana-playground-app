@@ -43,8 +43,7 @@ class WalletDetailView extends StatelessWidget {
                     ? const CircularProgressIndicator()
                     : GestureDetector(
                         onTap: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: state.address));
+                          await Clipboard.setData(ClipboardData(text: state.address));
                         },
                         child: KeyWidget(text: state.address!),
                       ),
@@ -56,8 +55,7 @@ class WalletDetailView extends StatelessWidget {
                       ? const CircularProgressIndicator()
                       : GestureDetector(
                           onTap: () async {
-                            await Clipboard.setData(
-                                ClipboardData(text: keypair.mnemonic!.phrase));
+                            await Clipboard.setData(ClipboardData(text: keypair.mnemonic!.phrase));
                           },
                           child: Text(keypair.mnemonic!.phrase),
                         ),
@@ -83,8 +81,7 @@ class WalletDetailView extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("Actions",
-                    style: Theme.of(context).textTheme.headline6),
+                child: Text("Actions", style: Theme.of(context).textTheme.headline6),
               ),
               Row(
                 children: [
@@ -95,8 +92,7 @@ class WalletDetailView extends StatelessWidget {
                       }),
                   WalletActionWidget(
                     title: "Airdrop",
-                    onTap: () =>
-                        context.router.push(AirdropRoute(keypair: keypair)),
+                    onTap: () => context.router.push(AirdropRoute(keypair: keypair)),
                   ),
                   WalletActionWidget(
                       title: "Open in Solana explorer",

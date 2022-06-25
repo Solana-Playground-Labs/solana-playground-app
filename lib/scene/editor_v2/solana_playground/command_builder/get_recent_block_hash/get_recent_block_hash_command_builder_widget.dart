@@ -18,13 +18,11 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 import 'get_recent_block_hash_command_builder_cubit.dart';
 
 class GetRecentBlockHashCommandBuilderWidget extends CubitWidget<
-    GetRecentBlockHashCommandBuilderCubit,
-    GetRecentBlockHashCommandBuilderState> {
+    GetRecentBlockHashCommandBuilderCubit, GetRecentBlockHashCommandBuilderState> {
   final CommandBuilderMetaInfo? metaInfo;
   final GetRecentBlockHashCommandBuilder builder;
 
-  GetRecentBlockHashCommandBuilderWidget(
-      {Key? key, required this.builder, this.metaInfo})
+  GetRecentBlockHashCommandBuilderWidget({Key? key, required this.builder, this.metaInfo})
       : super(key: Key(builder.id));
 
   @override
@@ -44,8 +42,7 @@ class GetRecentBlockHashCommandBuilderWidget extends CubitWidget<
             child: TextFieldBuilderWidget<GetRecentBlockHashCommandBuilder>(
               hintText: "Name",
               style: SPLabelStyle.orange,
-              adapter:
-                  TextFieldBuilderAdapter<GetRecentBlockHashCommandBuilder>(
+              adapter: TextFieldBuilderAdapter<GetRecentBlockHashCommandBuilder>(
                 builder: builder,
                 getTextBuilder: (builder) => builder.variable,
                 setTextBuilder: (builder, value) => builder.variable = value,
@@ -66,9 +63,7 @@ class GetRecentBlockHashCommandBuilderWidget extends CubitWidget<
           ),
           IntrinsicWidth(
             child: VariableInputWidget(
-              controller: context
-                  .read<GetRecentBlockHashCommandBuilderCubit>()
-                  .variableInput,
+              controller: context.read<GetRecentBlockHashCommandBuilderCubit>().variableInput,
             ),
           )
         ],

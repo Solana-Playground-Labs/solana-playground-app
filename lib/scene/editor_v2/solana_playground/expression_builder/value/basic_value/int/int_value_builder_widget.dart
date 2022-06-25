@@ -10,8 +10,7 @@ import 'package:solana_playground_language/lib.dart';
 class IntValueBuilderWidget extends StatelessWidget {
   final IntValueBuilder builder;
 
-  const IntValueBuilderWidget({Key? key, required this.builder})
-      : super(key: key);
+  const IntValueBuilderWidget({Key? key, required this.builder}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +21,7 @@ class IntValueBuilderWidget extends StatelessWidget {
       adapter: TextFieldBuilderAdapter<IntValueBuilder>(
         builder: builder,
         getTextBuilder: (builder) => builder.value.toString(),
-        setTextBuilder: (builder, value) =>
-            builder.value = int.tryParse(value) ?? builder.value,
+        setTextBuilder: (builder, value) => builder.value = int.tryParse(value) ?? builder.value,
       ),
     );
   }

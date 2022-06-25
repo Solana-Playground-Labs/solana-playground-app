@@ -26,8 +26,7 @@ class ImportKeypairFromStorageCommand extends Command {
       _$ImportKeypairFromStorageCommandFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() =>
-      _$ImportKeypairFromStorageCommandToJson(this);
+  Map<String, dynamic> toJson() => _$ImportKeypairFromStorageCommandToJson(this);
 
   @override
   ImportKeypairFromStorageCommandBuilder asBuilder() =>

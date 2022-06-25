@@ -16,8 +16,7 @@ class BinaryValue extends Value {
   @override
   List<Object> get props => [data];
 
-  factory BinaryValue.fromJson(Map<String, dynamic> json) =>
-      _$BinaryValueFromJson(json);
+  factory BinaryValue.fromJson(Map<String, dynamic> json) => _$BinaryValueFromJson(json);
 
   @override
   Map<String, dynamic> toJson() => _$BinaryValueToJson(this);

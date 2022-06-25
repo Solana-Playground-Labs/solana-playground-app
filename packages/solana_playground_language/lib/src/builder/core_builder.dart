@@ -17,8 +17,7 @@ abstract class Unique {
   Unique() : id = _uuid.v4();
 
   @override
-  bool operator ==(Object other) =>
-      identical(this, other) || other is Unique && id == other.id;
+  bool operator ==(Object other) => identical(this, other) || other is Unique && id == other.id;
 
   @override
   int get hashCode => id.hashCode;

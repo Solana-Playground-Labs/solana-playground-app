@@ -18,20 +18,16 @@ class CreateSplAssociatedTokenAccountCommand extends Command {
   final Expression mintAddress;
 
   const CreateSplAssociatedTokenAccountCommand(
-      {required this.baseAddress,
-      required this.variable,
-      required this.mintAddress});
+      {required this.baseAddress, required this.variable, required this.mintAddress});
 
   @override
   List<Object> get props => [baseAddress, mintAddress, variable];
 
-  factory CreateSplAssociatedTokenAccountCommand.fromJson(
-          Map<String, dynamic> json) =>
+  factory CreateSplAssociatedTokenAccountCommand.fromJson(Map<String, dynamic> json) =>
       _$CreateSplAssociatedTokenAccountCommandFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() =>
-      _$CreateSplAssociatedTokenAccountCommandToJson(this);
+  Map<String, dynamic> toJson() => _$CreateSplAssociatedTokenAccountCommandToJson(this);
 
   @override
   CreateSplAssociatedTokenAccountCommandBuilder asBuilder() =>

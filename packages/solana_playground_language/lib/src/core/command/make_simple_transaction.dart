@@ -38,8 +38,7 @@ class MakeSimpleTransaction extends Command {
   Map<String, dynamic> toJson() => _$MakeSimpleTransactionToJson(this);
 
   @override
-  MakeSimpleTransactionBuilder asBuilder() =>
-      _$MakeSimpleTransactionToBuilder(this);
+  MakeSimpleTransactionBuilder asBuilder() => _$MakeSimpleTransactionToBuilder(this);
 
   @override
   List<Object?> get props => [

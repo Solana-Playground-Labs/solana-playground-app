@@ -82,8 +82,7 @@ class BlockCommandBuilderCubit extends Cubit<BlockCommandBuilderState> {
     if (index == -1) return;
 
     debugPrint(builder.commands.map((e) => e.id).toString());
-    builder.commands
-        .moveTo(statementBuilder, min(index + 1, builder.commands.length));
+    builder.commands.moveTo(statementBuilder, min(index + 1, builder.commands.length));
     debugPrint(builder.commands.map((e) => e.id).toString());
   }
 

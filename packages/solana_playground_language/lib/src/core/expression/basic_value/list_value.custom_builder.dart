@@ -69,7 +69,6 @@ class ListValueBuilder extends ValueBuilder with ListMixin<ExpressionBuilder> {
 
   @override
   ValueBuilder clone() {
-    return ListValueBuilder(
-        expressions: _expressions.map((e) => e.clone()).toList());
+    return ListValueBuilder(expressions: _expressions.map((e) => e.clone()).toList());
   }
 }
