@@ -22,7 +22,7 @@ class InstructionValueBuilderWidget extends CubitWidget<
   Widget content(BuildContext context, InstructionValueBuilderState state) {
     return Component(
       header: ComponentHeader(
-        icon: SvgPicture.asset(SPIcons.program),
+        icon: SvgPicture.asset(SPIconAssets.program),
         name: metaData?.index == null
             ? "Transaction"
             : "Transaction #${metaData!.index! + 1}",

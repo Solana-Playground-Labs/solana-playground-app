@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:flutter/cupertino.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 part 'list_value.custom_builder.dart';
@@ -9,13 +10,17 @@ class ListValue extends Value {
 
   const ListValue({required this.expressions});
 
-  factory ListValue.fromJson(Map<String, dynamic> json) => ListValue(
-        expressions: json['expressions']
-            .map(
-              (e) => Expression.fromJson(e),
-            )
-            .toList(),
+  factory ListValue.fromJson(Map<String, dynamic> json) {
+    return ListValue(
+        expressions: List.castFrom(
+          json['expressions']
+              .map(
+                (e) => Expression.fromJson(e),
+              )
+              .toList(),
+        ),
       );
+  }
 
   @override
   ValueBuilder asBuilder() {

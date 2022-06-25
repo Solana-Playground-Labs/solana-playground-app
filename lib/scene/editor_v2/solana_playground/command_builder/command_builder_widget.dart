@@ -4,6 +4,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:solana_playground_app/scene/editor_v2/solana_playground/command_builder/comment/comment_command_builder_widget.dart';
+import 'package:solana_playground_app/scene/editor_v2/solana_playground/command_builder/pda/create_spl_associated_token_account_builder_widget.dart';
+import 'package:solana_playground_app/scene/editor_v2/solana_playground/command_builder/sign/sign_command_builder_widget.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
 import '../../editor_v2.dart';
@@ -39,6 +41,11 @@ final Map<Type, _MappingBuilder> _mapping = {
       MakeKeypairCommandBuilderWidget(builder: builder, metaInfo: meta),
   CommentCommandBuilder: (context, builder, meta) =>
       CommentCommandBuilderWidget(builder: builder, metaInfo: meta),
+  SignCommandBuilder: (context, builder, meta) =>
+      SignCommandBuilderWidget(builder: builder, metaInfo: meta),
+  CreateSplAssociatedTokenAccountCommandBuilder: (context, builder, meta) =>
+      CreateSPLAssociatedTokenAccountBuilderWidget(
+          builder: builder, metaInfo: meta)
 };
 
 class CommandBuilderWidget extends StatelessWidget {

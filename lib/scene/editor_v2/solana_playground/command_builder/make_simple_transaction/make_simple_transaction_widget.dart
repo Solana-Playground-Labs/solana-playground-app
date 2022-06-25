@@ -25,7 +25,7 @@ class MakeSimpleTransactionWidget extends CubitWidget<
   Widget content(BuildContext context, MakeSimpleTransactionState state) {
     return Component(
       header: ComponentHeader(
-        icon: SvgPicture.asset(SPIcons.submitTransaction),
+        icon: SvgPicture.asset(SPIconAssets.submitTransaction),
         name: commandHeaderFormatter("Make transaction", metaInfo),
         trailing: CommandBuilderAction(builder: builder),
         content: Column(

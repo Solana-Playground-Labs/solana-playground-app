@@ -39,6 +39,10 @@ class ExpressionBuilder extends Builder {
     return ExpressionBuilder(valueBuilder: ListValueBuilder(expressions: []));
   }
 
+  factory ExpressionBuilder.withInt() {
+    return ExpressionBuilder(valueBuilder: IntValueBuilder(value: 0));
+  }
+
   factory ExpressionBuilder.withBool() {
     return ExpressionBuilder(valueBuilder: BoolValueBuilder(value: false));
   }

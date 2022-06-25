@@ -3,6 +3,7 @@
  */
 
 import 'package:equatable/equatable.dart';
+import 'package:solana/solana.dart';
 
 class SolanaNetwork extends Equatable {
   final String name;
@@ -29,4 +30,11 @@ class SolanaNetwork extends Equatable {
       socketURL: socketURL ?? this.socketURL,
     );
   }
+}
+
+extension SolanaNetworkHelper on SolanaNetwork {
+  SolanaClient asClient() => SolanaClient(
+        rpcUrl: Uri.parse(rpcURL),
+        websocketUrl: Uri.parse(socketURL),
+      );
 }

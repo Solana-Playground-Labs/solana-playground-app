@@ -34,7 +34,7 @@ class GetRecentBlockHashCommandBuilderWidget extends CubitWidget<
   ) {
     final theme = Theme.of(context);
     return ComponentHeader(
-      icon: SvgPicture.asset(SPIcons.blockHash),
+      icon: SvgPicture.asset(SPIconAssets.blockHash),
       name: commandHeaderFormatter("Fetch current block hash", metaInfo),
       trailing: CommandBuilderAction(builder: builder),
       content: Row(

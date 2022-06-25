@@ -29,7 +29,7 @@ class DeclareVariableCommandBuilderWidget extends CubitWidget<
     DeclareVariableCommandBuilderState state,
   ) {
     return ComponentHeader(
-      icon: SvgPicture.asset(SPIcons.variable),
+      icon: SvgPicture.asset(SPIconAssets.variable),
       trailing: CommandBuilderAction(builder: builder),
       name: commandHeaderFormatter("Declare variable", metaInfo),
       content: Column(

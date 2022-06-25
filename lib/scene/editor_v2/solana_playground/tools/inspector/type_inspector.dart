@@ -4,6 +4,7 @@
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
 
@@ -39,6 +40,52 @@ class TypeInspectorHelper {
     HexValueBuilder,
     StringByteValueBuilder,
   ];
+}
+
+class _Group {
+  final String name;
+  final List<Type> types;
+
+  const _Group({
+    required this.name,
+    required this.types,
+  });
+}
+
+const _typeGroups = [
+  _Group(name: "Memory", types: [VariableValueBuilder]),
+  _Group(name: "Scalar", types: [
+    StringValueBuilder,
+    IntValueBuilder,
+    DoubleValueBuilder,
+    BoolValueBuilder,
+  ]),
+  _Group(name: "Data", types: [
+    BinaryValueBuilder,
+    ByteValueBuilder,
+    HexValueBuilder,
+    StringByteValueBuilder,
+    NullValueBuilder,
+  ]),
+  _Group(
+    name: "Special",
+    types: [
+      ComputableValueBuilder,
+      BoolValueBuilder,
+      ListValueBuilder,
+    ],
+  ),
+  _Group(
+    name: "Instruction",
+    types: [
+      AccountValueBuilder,
+      InstructionValueBuilder,
+    ],
+  )
+];
+
+String _typeName(Type type) {
+  return type.toString().replaceAll("ValueBuilder", "");
 }
 
 ValueBuilder _init(Type type) {
@@ -107,6 +154,7 @@ class ExpressionInspectorView extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text("Type inspector"),
       ),
@@ -119,24 +167,48 @@ class ExpressionInspectorView extends StatelessWidget {
   Widget content(BuildContext context, ExpressionMetaDataNode metaDataNode) {
     final theme = Theme.of(context);
 
-    return ListView.separated(
-      itemCount: metaDataNode.allowTypes.length,
-      separatorBuilder: (context, index) => const Divider(height: 1),
-      itemBuilder: (context, index) {
-        final type = metaDataNode.allowTypes[index];
-        return ListTile(
-          tileColor: theme.colorScheme.surface,
-          title: Text(type.toString()),
-          trailing: builder.valueBuilder.runtimeType == type
-              ? const Icon(Icons.check)
-              : null,
-          onTap: () {
-            if (builder.valueBuilder.runtimeType == type) return;
-            builder.valueBuilder = _init(type);
-            context.router.pop();
-          },
-        );
-      },
+    final groups = _typeGroups.where((group) {
+      for (final allowType in metaDataNode.allowTypes) {
+        if (group.types.contains(allowType)) return true;
+      }
+      return false;
+    }).toList();
+
+    return CustomScrollView(
+      slivers: groups
+          .map(
+            (group) => MultiSliver(
+              children: [
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 6,
+                    ),
+                    child: Text(
+                      group.name,
+                      style: theme.textTheme.headline6,
+                    ),
+                  ),
+                ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      final type = group.types[index];
+                      return _TypeCell(
+                        builder: builder,
+                        type: type,
+                        isSelected: builder.valueBuilder.runtimeType == type,
+                        lastElement: !(index + 1 < group.types.length),
+                      );
+                    },
+                    childCount: group.types.length,
+                  ),
+                )
+              ],
+            ),
+          )
+          .toList(),
     );
   }
 
@@ -147,6 +219,50 @@ class ExpressionInspectorView extends StatelessWidget {
         "🚨 Impossible to inspect 🚨",
         style: Theme.of(context).textTheme.headline4,
       ),
+    );
+  }
+}
+
+class _TypeCell extends StatelessWidget {
+  const _TypeCell({
+    Key? key,
+    required this.builder,
+    required this.type,
+    this.lastElement = false,
+    this.isSelected = false,
+  }) : super(key: key);
+
+  final ExpressionBuilder builder;
+  final Type type;
+  final bool lastElement;
+  final bool isSelected;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        InkWell(
+          onTap: () {
+            if (builder.valueBuilder.runtimeType == type) return;
+            builder.valueBuilder = _init(type);
+            context.router.pop();
+          },
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 16,
+              horizontal: 24,
+            ),
+            child: Row(
+              children: [
+                Text(_typeName(type)),
+                const Spacer(),
+                if (isSelected) const Icon(Icons.check)
+              ],
+            ),
+          ),
+        ),
+        if (!lastElement) const Divider(height: 1, indent: 16),
+      ],
     );
   }
 }

@@ -3,11 +3,12 @@
  */
 
 import 'package:solana_playground_language/lib.dart';
-import 'package:solana_playground_language/src/builder/command/command_builder.dart';
-import 'package:solana_playground_language/src/core/command/abstract_command.dart';
-import 'package:solana_playground_language/src/core/expression/abstract_expression.dart';
 
+part 'print_command.builder.dart';
+
+@CommandBuildable()
 class PrintCommand extends Command {
+  @CommandPropertyBuildable()
   final Expression expression;
 
   const PrintCommand({required this.expression});
@@ -15,22 +16,12 @@ class PrintCommand extends Command {
   @override
   List<Object> get props => [expression];
 
-  factory PrintCommand.fromJson(Map<String, dynamic> json) {
-    return PrintCommand(
-      expression: json['expressions'].map((data) => Expression.fromJson(data)),
-    );
-  }
+  factory PrintCommand.fromJson(Map<String, dynamic> json) =>
+      _$PrintCommandFromJson(json);
 
   @override
-  Map<String, dynamic> toJson() {
-    return {
-      'type': classType,
-      'expression': expression.toJson(),
-    };
-  }
+  Map<String, dynamic> toJson() => _$PrintCommandToJson(this);
 
   @override
-  PrintCommandBuilder asBuilder() {
-    return PrintCommandBuilder(expression: expression.asBuilder());
-  }
+  PrintCommandBuilder asBuilder() => _$PrintCommandToBuilder(this);
 }

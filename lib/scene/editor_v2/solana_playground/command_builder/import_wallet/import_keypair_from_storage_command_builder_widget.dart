@@ -27,7 +27,7 @@ class ImportWalletCommandBuilderWidget extends CubitWidget<
     final theme = Theme.of(context);
     return ComponentHeader(
       name: commandHeaderFormatter("Import keypair from storage", metaInfo),
-      icon: SvgPicture.asset(SPIcons.keypair),
+      icon: SvgPicture.asset(SPIconAssets.keypair),
       trailing: CommandBuilderAction(builder: builder),
       content: Column(
         children: [

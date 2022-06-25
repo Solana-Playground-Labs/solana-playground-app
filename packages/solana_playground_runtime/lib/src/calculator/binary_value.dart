@@ -16,17 +16,11 @@ Future<dynamic> calculateBinaryValue(
   SPRuntime runtime,
   BinaryValue binaryValue,
 ) async {
-  final List<Uint8List> results = [];
-  // for (final expression in binaryValue.data) {
-  //   final r = await runtime.calculate(expression);
-  //   if (r is! Uint8List) {
-  //     throw Exception("Expected 'Uint8List', but receive '${r.runtimeType}'");
-  //   }
-  //
-  //   results.add(r);
-  // }
+  final List<Uint8List> rawData = List.castFrom(
+    await runtime.calculate(binaryValue.data),
+  );
 
-  final data = results.expand((element) => element).toList();
+  final data = rawData.expand((element) => element).toList();
   return Uint8List.fromList(data);
 }
 
@@ -34,9 +28,7 @@ Future<dynamic> calculateByteValue(
   SPRuntime runtime,
   ByteValue binaryValue,
 ) async {
-  final value = await runtime.calculate(binaryValue.expression);
-  if (value is! int) throw Exception("Invalid byte value");
-
+  final int value = await runtime.calculate(binaryValue.expression);
   final data = ByteData(binaryValue.length);
   switch (binaryValue.length) {
     case 1:

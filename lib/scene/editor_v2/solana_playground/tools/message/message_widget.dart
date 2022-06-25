@@ -11,16 +11,6 @@ class MessageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RuntimeCubit, RuntimeState>(
-      buildWhen: (p, n) => p.compilingError != n.compilingError,
-      builder: (context, state) {
-        if (state.compilingError == null) {
-          return const Center(
-            child: Text("No message"),
-          );
-        }
-        return Text(state.compilingError!);
-      },
-    );
+    return Container();
   }
 }

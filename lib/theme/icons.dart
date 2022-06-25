@@ -2,7 +2,7 @@
  *  Solana Playground  Copyright (C) 2022  Tran Giang Long
  */
 
-class SPIcons {
+class SPIconAssets {
   static String get variable => "assets/icon/variable.svg";
 
   static String get info => "assets/icon/info.svg";
@@ -30,4 +30,10 @@ class SPIcons {
   static String get program => "assets/icon/program.svg";
 
   static String get comment => "assets/icon/comment.svg";
+
+  static String get sign => "assets/icon/sign.svg";
+
+  static String get error => "assets/icon/error.svg";
+
+  static String get pda => "assets/icon/pda.svg";
 }

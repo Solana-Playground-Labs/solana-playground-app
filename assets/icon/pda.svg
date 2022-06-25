@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/pda</title>
+    <g id="icon/pda" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill="#4BA673" x="0" y="0" width="24" height="24" rx="8"></rect>
+        <path d="M3.5,19.5 C8.17540417,18.7849765 11.70935,17.1514714 14.1018375,14.5994847 C16.494325,12.047498 17.9603994,8.3476698 18.5000607,3.5" id="Line-6" stroke="#FFFFFF" stroke-linecap="round"></path>
+        <circle id="Oval" fill="#FFFFFF" cx="11.5" cy="10.5" r="1.5"></circle>
+        <circle id="Oval" fill="#FFFFFF" cx="9.5" cy="17.5" r="1.5"></circle>
+        <circle id="Oval" fill="#FFFFFF" cx="17.5" cy="7.5" r="1.5"></circle>
+    </g>
+</svg>

@@ -52,7 +52,7 @@ class ConditionalWrapperValueBuilderWidget extends CubitWidget<
         Component(
           header: ComponentHeader(
             name: "If condition is true",
-            icon: SvgPicture.asset(SPIcons.trueIcon),
+            icon: SvgPicture.asset(SPIconAssets.trueIcon),
           ),
           body: [
             ExpressionBuilderWidget(

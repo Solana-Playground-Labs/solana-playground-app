@@ -39,6 +39,7 @@ class _CreatePackageViewState extends State<CreatePackageView> {
     return Form(
       key: _formKey,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: widget.template == null ? const Text("Create package") : const Text("Create package from template"),
           actions: [

@@ -64,7 +64,7 @@ class _InlineListBuilderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ComponentBody(
-      icon: SvgPicture.asset(SPIcons.list),
+      icon: SvgPicture.asset(SPIconAssets.list),
       name: metaData?.title ?? "List",
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

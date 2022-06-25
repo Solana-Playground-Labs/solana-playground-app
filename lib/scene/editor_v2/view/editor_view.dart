@@ -25,12 +25,6 @@ class EditorView extends StatelessWidget {
         BlocProvider<CodeEditorCubit>(
           create: (_) => CodeEditorCubit(packageEditController),
         ),
-        BlocProvider<RuntimeCubit>(
-          create: (_) => RuntimeCubit(
-            packageEditController.currentBuilder,
-            context.read(),
-          ),
-        ),
         BlocProvider<PackageNameCubit>(
           create: (_) => PackageNameCubit(packageEditController.currentBuilder),
         ),

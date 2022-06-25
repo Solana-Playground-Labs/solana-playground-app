@@ -22,6 +22,7 @@ class PackageTemplatesSection extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: GridView.builder(
             shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 250,
               mainAxisExtent: 100,

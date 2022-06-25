@@ -70,41 +70,47 @@ class EditorAppBar extends StatelessWidget {
                     ),
                     const Spacer(),
                     const NetworkLabel(),
+                    const SizedBox(width: 16),
+                    IconButton(
+                      tooltip: "Save",
+                      onPressed: () {
+                        context
+                            .read<CodeEditorCubit>()
+                            .packageEditController
+                            .save();
+                      },
+                      icon: const Icon(
+                        Icons.save,
+                        color: Colors.blue,
+                      ),
+                    ),
                     const SizedBox(width: 8),
                     IconButton(
                       onPressed: () {
                         context.router.push(const KeypairsListRoute());
                       },
-                      icon: const Icon(Icons.account_balance_wallet_outlined),
+                      icon: const Icon(
+                        Icons.account_balance_wallet_outlined,
+                        color: Colors.blue,
+                      ),
                       tooltip: "Keypair storage",
                       color: Colors.blue,
                     ),
+                    const PackageShareButton(),
                     IconButton(
-                      onPressed: () async {
+                      onPressed: () {
                         final package = context
                             .read<CodeEditorCubit>()
                             .packageEditController
                             .currentBuilder
                             .build();
-
-                        final jsonData =
-                            const JsonEncoder().convert(package.toJson());
-
-                        final file = File(
-                            '${Directory.systemTemp.path}/${package.name}.json');
-                        await file.writeAsString(jsonData);
-
-                        Share.shareFiles(
-                          [file.path],
-                          text: 'Solana Playground - ${package.name}',
+                        context.router.push(
+                          RuntimeRoute(
+                            package: package,
+                            autoRun: true,
+                          ),
                         );
                       },
-                      icon: const Icon(Icons.ios_share),
-                      tooltip: "Share code",
-                      color: Colors.blue,
-                    ),
-                    IconButton(
-                      onPressed: () {},
                       icon: const Icon(Icons.play_arrow_rounded),
                       tooltip: "Run",
                       color: Colors.blue,
@@ -118,6 +124,36 @@ class EditorAppBar extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class PackageShareButton extends StatelessWidget {
+  const PackageShareButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () async {
+        final box = context.findRenderObject() as RenderBox?;
+        final package = context
+            .read<CodeEditorCubit>()
+            .packageEditController
+            .currentBuilder
+            .build();
+
+        final jsonData = const JsonEncoder().convert(package.toJson());
+
+        final file = File('${Directory.systemTemp.path}/${package.name}.json');
+        await file.writeAsString(jsonData);
+
+        Share.shareFiles([file.path],
+            text: 'Solana Playground - ${package.name}',
+            sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+      },
+      icon: const Icon(Icons.ios_share),
+      tooltip: "Share code",
+      color: Colors.blue,
     );
   }
 }

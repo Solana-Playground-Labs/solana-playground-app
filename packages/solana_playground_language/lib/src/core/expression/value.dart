@@ -32,13 +32,15 @@ abstract class Value extends Equatable with ObjectType {
     } else if (type == (AccountValue).toString()) {
       return AccountValue.fromJson(json);
     } else if (type == (InstructionValue).toString()) {
-      return AccountValue.fromJson(json);
+      return InstructionValue.fromJson(json);
     } else if (type == (StringValue).toString()) {
       return StringValue.fromJson(json);
-    }else if (type == (IntValue).toString()) {
+    } else if (type == (IntValue).toString()) {
       return IntValue.fromJson(json);
-    }else if (type == (DoubleValue).toString()) {
+    } else if (type == (DoubleValue).toString()) {
       return DoubleValue.fromJson(json);
+    } else if (type == (BoolValue).toString()) {
+      return BoolValue.fromJson(json);
     }
     return UnknownValue(rawData: json);
   }

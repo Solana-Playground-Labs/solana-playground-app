@@ -15,25 +15,27 @@ import '../command_builder/command_feedback.dart';
 
 final List<Widget> _basisTemplates = [
   TemplateWidget(
-    icon: SvgPicture.asset(SPIcons.variable),
+    icon: SvgPicture.asset(SPIconAssets.variable),
     title: "Declare variables",
     commandBuilder: DeclareVariableCommandBuilder.empty(),
   ),
   TemplateWidget(
-    icon: SvgPicture.asset(SPIcons.comment),
+    icon: SvgPicture.asset(SPIconAssets.comment),
     title: "Comment",
     commandBuilder: CommentCommandBuilder(content: ""),
   ),
   TemplateWidget(
-    icon: SvgPicture.asset(SPIcons.info),
+    icon: SvgPicture.asset(SPIconAssets.info),
     title: "Log",
-    commandBuilder: PrintCommandBuilder.empty(),
+    commandBuilder: PrintCommandBuilder(
+      expression: ExpressionBuilder.withList(),
+    ),
   ),
 ];
 
 final List<Widget> _keyManagerTemplates = [
   TemplateWidget(
-    icon: SvgPicture.asset(SPIcons.keypair),
+    icon: SvgPicture.asset(SPIconAssets.keypair),
     title: "Make keypair",
     commandBuilder: MakeKeyPairCommandBuilder(
       variable: "",
@@ -42,44 +44,62 @@ final List<Widget> _keyManagerTemplates = [
     ),
   ),
   TemplateWidget(
-    icon: SvgPicture.asset(SPIcons.keypair),
+    icon: SvgPicture.asset(SPIconAssets.keypair),
     title: "Import keypair from storage",
     commandBuilder: ImportKeypairFromStorageCommandBuilder(
       variable: "",
       walletName: ExpressionBuilder.withStringValue(),
     ),
   ),
+  TemplateWidget(
+    icon: SvgPicture.asset(SPIconAssets.pda),
+    title: "Create associated spl account",
+    commandBuilder: CreateSplAssociatedTokenAccountCommandBuilder(
+      variable: "",
+      baseAddress: ExpressionBuilder.withStringValue(),
+      mintAddress: ExpressionBuilder.withStringValue(),
+    ),
+  ),
 ];
 
 final List<Widget> _blockchainTemplates = [
   TemplateWidget(
-    icon: SvgPicture.asset(SPIcons.submitTransaction),
+    icon: SvgPicture.asset(SPIconAssets.blockHash),
+    title: "Get recent block hash",
+    commandBuilder: GetRecentBlockHashCommandBuilder.empty(),
+  ),
+  TemplateWidget(
+    icon: SvgPicture.asset(SPIconAssets.submitTransaction),
     title: "Make transaction",
     commandBuilder: MakeSimpleTransactionBuilder(
       variable: "",
-      feePayer: ExpressionBuilder.withVariable(),
+      feePayer: ExpressionBuilder.withStringValue(),
       recentBlockHash: ExpressionBuilder.withVariable(),
       signers: ExpressionBuilder.withList(),
       instructions: ExpressionBuilder.withList(),
     ),
   ),
   TemplateWidget(
-    icon: SvgPicture.asset(SPIcons.waiting),
-    title: "Wait transaction confirmation",
-    commandBuilder: WaitTransactionConfirmationCommandBuilder(
+    icon: SvgPicture.asset(SPIconAssets.sign),
+    title: "Sign transaction",
+    commandBuilder: SignCommandBuilder(
+      variable: "",
+      signers: ExpressionBuilder.withList(),
       transaction: ExpressionBuilder.withVariable(),
     ),
   ),
   TemplateWidget(
-    icon: SvgPicture.asset(SPIcons.blockHash),
-    title: "Get recent block hash",
-    commandBuilder: GetRecentBlockHashCommandBuilder.empty(),
-  ),
-  TemplateWidget(
-    icon: SvgPicture.asset(SPIcons.submit),
+    icon: SvgPicture.asset(SPIconAssets.submit),
     title: "Send transaction",
     commandBuilder: SendTransactionCommandBuilder(
       variable: "",
+      transaction: ExpressionBuilder.withVariable(),
+    ),
+  ),
+  TemplateWidget(
+    icon: SvgPicture.asset(SPIconAssets.waiting),
+    title: "Wait transaction confirmation",
+    commandBuilder: WaitTransactionConfirmationCommandBuilder(
       transaction: ExpressionBuilder.withVariable(),
     ),
   ),

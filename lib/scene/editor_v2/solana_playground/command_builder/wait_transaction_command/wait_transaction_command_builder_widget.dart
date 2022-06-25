@@ -22,7 +22,7 @@ class WaitTransactionCommandBuilderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return ComponentHeader(
-      icon: SvgPicture.asset(SPIcons.waiting),
+      icon: SvgPicture.asset(SPIconAssets.waiting),
       name: commandHeaderFormatter("Wait transaction confirmation ", metaInfo),
       trailing: CommandBuilderAction(builder: builder),
       content: Row(

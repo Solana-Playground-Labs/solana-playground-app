@@ -27,7 +27,7 @@ class BinaryValueBuilderWidget extends StatelessWidget {
           onInsert: () {
             return ExpressionBuilder(
               valueBuilder: ByteValueBuilder(
-                expression: ExpressionBuilder.withStringValue(),
+                expression: ExpressionBuilder.withInt(),
                 length: 1,
               ),
             );

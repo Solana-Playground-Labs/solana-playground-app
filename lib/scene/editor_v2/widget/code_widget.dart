@@ -30,6 +30,7 @@ class CodeWidget extends StatelessWidget {
               slivers: [
                 BlockCommandBuilderWidget(
                     builder: state.currentScript!.blockCommandBuilder),
+                const SliverToBoxAdapter(child: SizedBox(height: 500)),
               ],
             );
           },

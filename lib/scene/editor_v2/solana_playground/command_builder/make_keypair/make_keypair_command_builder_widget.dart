@@ -33,7 +33,7 @@ class MakeKeypairCommandBuilderWidget extends CubitWidget<
     final theme = Theme.of(context);
     return ComponentHeader(
       name: commandHeaderFormatter("Make key pair", metaInfo),
-      icon: SvgPicture.asset(SPIcons.keypair),
+      icon: SvgPicture.asset(SPIconAssets.keypair),
       trailing: CommandBuilderAction(builder: builder),
       content: Column(
         children: [

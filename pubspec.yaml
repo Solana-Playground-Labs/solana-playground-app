@@ -29,8 +29,9 @@ dependencies:
   flutter_colorpicker: ^1.0.3
   json_annotation: ^4.5.0
   solana: ^0.25.0
-  share_plus: ^4.0.7
+  share_plus: ^4.0.8
   path_provider: ^2.0.11
+  async: ^2.8.2
   # localstore: ^1.2.3
 
   solana_playground_language:

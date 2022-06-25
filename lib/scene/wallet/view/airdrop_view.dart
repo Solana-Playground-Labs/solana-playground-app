@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solana_playground_app/common/card.dart';
 import 'package:solana_playground_app/model/keypair.dart';
+import 'package:solana_playground_app/scene/editor_v2/cubit/solana_network_cubit.dart';
 import 'package:solana_playground_app/scene/home/cubit/airdrop_cubit.dart';
 import 'package:solana_playground_app/scene/home/widget/key_widget.dart';
 
@@ -19,7 +20,10 @@ class AirdropView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AirdropCubit>(
-      create: (context) => AirdropCubit(context.read(), keypair),
+      create: (context) => AirdropCubit(
+        context.read<SolanaNetworkCubit>().state.selected,
+        keypair,
+      ),
       child: Builder(builder: (context) {
         return content(context);
       }),

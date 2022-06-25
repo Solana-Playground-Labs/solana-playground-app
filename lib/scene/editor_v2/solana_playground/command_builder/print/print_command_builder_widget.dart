@@ -25,7 +25,7 @@ class PrintCommandBuilderWidget extends StatelessWidget {
     return Component(
       header: ComponentHeader(
         trailing: CommandBuilderAction(builder: builder),
-        icon: SvgPicture.asset(SPIcons.info),
+        icon: SvgPicture.asset(SPIconAssets.info),
         name: commandHeaderFormatter("Log", metaInfo),
       ),
       body: [

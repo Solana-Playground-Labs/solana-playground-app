@@ -29,7 +29,7 @@ class SendTransactionCommandBuilderWidget extends StatelessWidget {
     final theme = Theme.of(context);
 
     return ComponentHeader(
-      icon: SvgPicture.asset(SPIcons.submit),
+      icon: SvgPicture.asset(SPIconAssets.submit),
       name: commandHeaderFormatter("Submit transaction", metaInfo),
       trailing: CommandBuilderAction(builder: builder),
       content: Column(
@@ -61,28 +61,5 @@ class SendTransactionCommandBuilderWidget extends StatelessWidget {
         ],
       ),
     );
-
-    // return SPCard(
-    //   child: Row(
-    //     mainAxisSize: MainAxisSize.min,
-    //     children: [
-    //       Text("Send transaction  ", style: theme.textTheme.bodyText1),
-    //       Flexible(
-    //         flex: 1,
-    //         child: ExpressionBuilderWidget(builder: builder.expressionBuilder),
-    //       ),
-    //       Text("  with id  ", style: theme.textTheme.bodyText1),
-    //       Flexible(
-    //         child: IntrinsicWidth(
-    //           child: VariableInputWidget(
-    //             controller: context
-    //                 .read<SendTransactionCommandBuilderCubit>()
-    //                 .variableInput,
-    //           ),
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 }

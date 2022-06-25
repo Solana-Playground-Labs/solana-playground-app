@@ -5,26 +5,22 @@
 import 'package:solana/solana.dart';
 import 'package:solana_playground_language/lib.dart';
 import 'package:collection/collection.dart';
-import 'package:solana_playground_runtime/src/executor/create_transaction_command.dart';
-import 'package:solana_playground_runtime/src/executor/get_recent_block_hash_command.dart';
-import 'package:solana_playground_runtime/src/executor/import_wallet_command.dart';
-import 'package:solana_playground_runtime/src/executor/send_transaction_command.dart';
-import 'package:solana_playground_runtime/src/sp_wallets_provider.dart';
+import 'package:solana_playground_runtime/src/calculator/bool_value.dart';
+import 'package:solana_playground_runtime/src/calculator/special/instruction_value.dart';
 
 import '../solana_playground_runtime.dart';
-import 'executor/wait_transaction_confirmation.dart';
 
 class SPRuntime {
-  final SolanaClient solanaClient = SolanaClient(
-    rpcUrl: Uri.parse("https://api.devnet.solana.com"),
-    websocketUrl: Uri.parse("ws://api.devnet.solana.com"),
-  );
+  final SolanaClient solanaClient;
 
   final SPMemory _memory = SPMemory();
   final SPConsole console = SPConsole();
-  final SPWalletProvider walletProvider;
+  final SPKeypairProvider keypairProvider;
 
-  SPRuntime({required this.walletProvider});
+  SPRuntime({
+    required this.solanaClient,
+    required this.keypairProvider,
+  });
 
   dynamic _result;
 
@@ -43,7 +39,12 @@ class SPRuntime {
       throw Exception("Can not find main script");
     }
 
-    return execute(mainScript.blockCommand);
+    try {
+      return await execute(mainScript.blockCommand);
+    } catch (e) {
+      console.streamController.add(e);
+      rethrow;
+    }
   }
 
   Future<void> execute(Command command) async {
@@ -56,11 +57,19 @@ class SPRuntime {
     } else if (command is GetRecentBlockHashCommand) {
       await executeGetRecentBlockHashCommand(this, command);
     } else if (command is ImportKeypairFromStorageCommand) {
-      await executeImportWalletCommand(this, command);
+      await executeImportKeypairCommand(this, command);
     } else if (command is SendTransactionCommand) {
       await executeSendTransactionCommand(this, command);
     } else if (command is WaitTransactionConfirmationCommand) {
       await executeWaitTransactionConfirmation(this, command);
+    } else if (command is CommentCommand) {
+      return;
+    } else if (command is SignCommand) {
+      await executeSignCommand(this, command);
+    } else if (command is CreateSplAssociatedTokenAccountCommand) {
+      await executeCreateSplAssociatedTokenAccount(this, command);
+    } else if (command is MakeSimpleTransaction) {
+      await executeMakeSimpleTransaction(this, command);
     } else {
       throw Exception("Unknown command ${command.runtimeType}");
     }
@@ -80,8 +89,24 @@ class SPRuntime {
       return calculateHexValue(this, value);
     } else if (value is StringByteValue) {
       return calculateStringByteValue(this, value);
+    } else if (value is IntValue) {
+      return calculateIntValue(this, value);
+    } else if (value is DoubleValue) {
+      return calculateDoubleValue(this, value);
+    } else if (value is StringValue) {
+      return calculateStringValue(this, value);
+    } else if (value is ConditionalWrapperValue) {
+      return calculateConditionalWrapperValue(this, value);
+    } else if (value is AccountValue) {
+      return calculateAccountValue(this, value);
+    } else if (value is InstructionValue) {
+      return calculateInstructionValue(this, value);
+    } else if (value is BoolValue) {
+      return calculateBoolValue(this, value);
+    } else if (value is ListValue) {
+      return calculateListValue(this, value);
     } else {
-      return null;
+      throw Exception("Unknown value ${value.runtimeType}");
     }
   }
 

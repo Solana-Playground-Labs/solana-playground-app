@@ -35,6 +35,10 @@ abstract class Command extends Equatable with ObjectType {
       return MakeSimpleTransaction.fromJson(json);
     } else if (type == (MakeKeyPairCommand).toString()) {
       return MakeKeyPairCommand.fromJson(json);
+    } else if (type == (CreateSplAssociatedTokenAccountCommand).toString()) {
+      return CreateSplAssociatedTokenAccountCommand.fromJson(json);
+    } else if (type == (SignCommand).toString()) {
+      return SignCommand.fromJson(json);
     }
 
     return UnknownCommand(rawData: json);

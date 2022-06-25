@@ -11,6 +11,7 @@ import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_app/scene/editor_v2/editor_v2.dart';
 import 'package:solana_playground_app/theme/icons.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'comment_command_builder_cubit.dart';
 
@@ -27,7 +28,7 @@ class CommentCommandBuilderWidget extends CubitWidget<
     final theme = Theme.of(context);
 
     return ComponentHeader(
-      icon: SvgPicture.asset(SPIcons.comment),
+      icon: SvgPicture.asset(SPIconAssets.comment),
       name: commandHeaderFormatter("Comment", metaInfo),
       trailing: CommandBuilderAction(
         builder: builder,
@@ -65,6 +66,14 @@ class CommentCommandBuilderWidget extends CubitWidget<
               ),
             )
           : MarkdownBody(
+              selectable: true,
+              onTapLink: (text, href, title) {
+                if (href == null) return;
+                launchUrl(
+                  Uri.parse(href),
+                  mode: LaunchMode.externalApplication,
+                );
+              },
               data: builder.content.isNotEmpty ? builder.content : "Empty",
             ),
     );
