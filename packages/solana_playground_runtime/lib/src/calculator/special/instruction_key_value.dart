@@ -19,7 +19,7 @@ Future<dynamic> calculateAccountValue(
 
   if (pubkey is String) {
     pubkey = Ed25519HDPublicKey.fromBase58(pubkey);
-  } else if (pubkey is Uint8List) {
+  } else if (pubkey is List<int>) {
     pubkey = Ed25519HDPublicKey(pubkey);
   }
 

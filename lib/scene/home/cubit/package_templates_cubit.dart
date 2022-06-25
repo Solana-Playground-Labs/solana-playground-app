@@ -12,7 +12,10 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 
 part 'package_templates_state.dart';
 
-final _assets = ["assets/projects/transfer.json"];
+final _assets = [
+  "assets/projects/transfer.json",
+  "assets/projects/orca_swap_sol_to_usdc_1.json",
+];
 
 class PackageTemplatesCubit extends Cubit<List<PackageTemplate>> {
   PackageTemplatesCubit() : super([]);

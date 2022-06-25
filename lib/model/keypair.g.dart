@@ -8,8 +8,10 @@ part of 'keypair.dart';
 
 Keypair _$KeypairFromJson(Map<String, dynamic> json) => Keypair(
       name: json['name'] as String,
-      publicKey: (json['publicKey'] as List<dynamic>).map((e) => e as int).toList(),
-      privateKey: (json['privateKey'] as List<dynamic>).map((e) => e as int).toList(),
+      publicKey:
+          (json['publicKey'] as List<dynamic>).map((e) => e as int).toList(),
+      privateKey:
+          (json['privateKey'] as List<dynamic>).map((e) => e as int).toList(),
       mnemonic: json['mnemonic'] == null
           ? null
           : Mnemonic.fromJson(json['mnemonic'] as Map<String, dynamic>),

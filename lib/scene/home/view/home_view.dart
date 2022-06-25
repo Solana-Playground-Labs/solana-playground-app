@@ -55,10 +55,10 @@ class HomeView extends StatelessWidget {
                         // SolanaCard(),
                         // const SizedBox(width: 16),
                         HomeCard(
-                          title: 'Solana documentation',
+                          title: '📕 Solana documentation',
                           description:
                               'A manual for joining the Solana ecosystem. By builders for builders.',
-                          color: Colors.blue.shade300,
+                          color: Colors.blue.shade200,
                           onTap: () {
                             launchUrl(
                               Uri.parse("https://docs.solana.com"),
@@ -68,7 +68,7 @@ class HomeView extends StatelessWidget {
                         ),
                         const SizedBox(width: 16),
                         HomeCard(
-                          title: 'Solana cookbook',
+                          title: '📚 Solana cookbook',
                           description:
                               'Developer resource that provides the essential concepts and recipes for building applications on Solana.',
                           color: Colors.deepOrange.shade300,
@@ -84,13 +84,13 @@ class HomeView extends StatelessWidget {
                   ),
                 ),
               ),
-              const HomeHeaderWidget(header: Text("Key pairs")),
+              const HomeHeaderWidget(header: Text("🔑 Key pairs")),
               const SizedBox(height: 140, child: WalletsSection()),
-              const HomeHeaderWidget(header: Text("Projects")),
+              const HomeHeaderWidget(header: Text("🧑‍💻👩‍💻 Projects")),
               const SizedBox(height: 16),
               const PackagesSection(),
               const SizedBox(height: 16),
-              const HomeHeaderWidget(header: Text("Templates")),
+              const HomeHeaderWidget(header: Text("📃 Templates")),
               const SizedBox(height: 16),
               const PackageTemplatesSection(),
               const SizedBox(height: 16),

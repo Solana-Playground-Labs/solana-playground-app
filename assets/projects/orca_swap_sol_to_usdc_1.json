@@ -1,0 +1,1197 @@
+{
+  "name": "Swap SOL -> USDC experiment",
+  "icon": {
+    "shortName": "🔄",
+    "backgroundColor": 4294951175,
+    "foregroundColor": 4294967295
+  },
+  "type": "Package",
+  "packageType": 0,
+  "scripts": [
+    {
+      "type": "Script",
+      "name": "main",
+      "blockCommand": {
+        "type": "BlockCommand",
+        "commands": [
+          {
+            "type": "CommentCommand",
+            "content": "The example of swaping SOL to USDC using ORCA Swap\n\n### Pool\n1. ORCA Swap program id: 3xQ8SWv2GaFXXpHZNqkXsdxq5DZciHBz6ZFoPPfbFd7U\n2. SOL to USDC pool address: 8DT1oKJPHcdJzdSf3cb2WT7L8eRjLUJeDFSe7M2QDtQE\n3. Pool authority address: BVSZP6RsqAtjvuJrXYsYN5U4XY7pLwW4PawfgVPkLbjN\n4. Token A: 4ShvTPQ3jYZzwUpxoQFSCDZxLtxQYNPUfeL3sR9mzLjJ\n5. Token B: 9eKgmUSfTkQLRBvowV9zjY3BbhAQVaGSw1jfon5UwUJM\n6. Fee: HPzaLqtZGhTbs7WcdGMfLswKze28W75nrYytNSw7qdvi\n7. Pool token mint: 4GpUivZ2jvZqQ3vJRsoq5PwnYv6gdV9fJ9BzHT2JcRr7\n\nToken program id: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA\n\n[Link](https://github.com/orca-so/typescript-sdk/blob/e503a7f7a2b6ca4d5052f4b3d927273ee70259cc/src/constants/devnet/pools.ts)\n\n### **Swap instruction**:\n\nKeys: \n0. [] Token-swap\n1. [] swap authority\n2. [] user transfer authority\n3. [writable] token_(A|B) SOURCE Account, amount is transferable by user transfer authority,\n4. [writable] token_(A|B) Base Account to swap INTO.  Must be the SOURCE token.\n5. [writable] token_(A|B) Base Account to swap FROM.  Must be the DESTINATION token.\n6. [writable] token_(A|B) DESTINATION Account assigned to USER as the owner.\n7. [writable] Pool token mint, to generate trading fees\n8. [writable] Fee account, to receive trading fees\n9. [] Token program id\n10. [optional, writable] Host fee account to receive additional trading fees\n\nData:\n1. amount_in: u64 - Minimum amount of DESTINATION token to output, prevents excessive slippage\n2. minimum_amount_out: u64\n\n\nLinks:\n1. [Swap instruction](https://github.com/orca-so/solana-program-library/blob/master/token-swap/program/src/instruction.rs).\n2. [Pools](https://github.com/orca-so/typescript-sdk/blob/main/src/constants/devnet/pools.ts)\n\n"
+          },
+          {
+            "type": "DeclareVariableCommand",
+            "variable": "wallet",
+            "expression": {
+              "type": "Expression",
+              "value": {
+                "type": "StringValue",
+                "value": "8tPXVbrZrxjaaR42Qr9kte4CmwmUxRxj9gkwfyEXZCqH"
+              }
+            }
+          },
+          {
+            "type": "ImportKeypairFromStorageCommand",
+            "variable": "signer",
+            "walletName": {
+              "type": "Expression",
+              "value": {
+                "type": "StringValue",
+                "value": "demo_wallet_1"
+              }
+            }
+          },
+          {
+            "type": "CommentCommand",
+            "content": "Because SOL must be as token for swaping program, we will create a wrapped SOL account using PDA\n\nSOL mint address: So11111111111111111111111111111111111111112"
+          },
+          {
+            "type": "CreateSplAssociatedTokenAccountCommand",
+            "variable": "wrappedSOL",
+            "baseAddress": {
+              "type": "Expression",
+              "value": {
+                "type": "VariableValue",
+                "variable": "wallet"
+              }
+            },
+            "mintAddress": {
+              "type": "Expression",
+              "value": {
+                "type": "StringValue",
+                "value": "So11111111111111111111111111111111111111112"
+              }
+            }
+          },
+          {
+            "type": "CreateSplAssociatedTokenAccountCommand",
+            "variable": "USDT",
+            "baseAddress": {
+              "type": "Expression",
+              "value": {
+                "type": "VariableValue",
+                "variable": "wallet"
+              }
+            },
+            "mintAddress": {
+              "type": "Expression",
+              "value": {
+                "type": "StringValue",
+                "value": "6PE3Mwjzx9h8kCoBp5YPed9TFoG7du8L98yucBP5ps3x"
+              }
+            }
+          },
+          {
+            "type": "PrintCommand",
+            "expression": {
+              "type": "Expression",
+              "value": {
+                "type": "ListValue",
+                "expressions": [
+                  {
+                    "type": "Expression",
+                    "value": {
+                      "type": "StringValue",
+                      "value": "Debug"
+                    }
+                  },
+                  {
+                    "type": "Expression",
+                    "value": {
+                      "type": "StringValue",
+                      "value": "\\n SOL:"
+                    }
+                  },
+                  {
+                    "type": "Expression",
+                    "value": {
+                      "type": "VariableValue",
+                      "variable": "wrappedSOL"
+                    }
+                  },
+                  {
+                    "type": "Expression",
+                    "value": {
+                      "type": "StringValue",
+                      "value": "\\n USDC:"
+                    }
+                  },
+                  {
+                    "type": "Expression",
+                    "value": {
+                      "type": "VariableValue",
+                      "variable": "USDT"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "type": "GetRecentBlockHashCommand",
+            "variable": "hash"
+          },
+          {
+            "type": "MakeSimpleTransaction",
+            "variable": "trx",
+            "recentBlockHash": {
+              "type": "Expression",
+              "value": {
+                "type": "VariableValue",
+                "variable": "hash"
+              }
+            },
+            "feePayer": {
+              "type": "Expression",
+              "value": {
+                "type": "VariableValue",
+                "variable": "wallet"
+              }
+            },
+            "instructions": {
+              "type": "Expression",
+              "value": {
+                "type": "ListValue",
+                "expressions": [
+                  {
+                    "type": "Expression",
+                    "value": {
+                      "type": "InstructionValue",
+                      "programId": {
+                        "type": "Expression",
+                        "value": {
+                          "type": "StringValue",
+                          "value": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+                        }
+                      },
+                      "keys": {
+                        "type": "Expression",
+                        "value": {
+                          "type": "ListValue",
+                          "expressions": [
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "VariableValue",
+                                    "variable": "wallet"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "VariableValue",
+                                    "variable": "wrappedSOL"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "VariableValue",
+                                    "variable": "wallet"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "StringValue",
+                                    "value": "So11111111111111111111111111111111111111112"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "StringValue",
+                                    "value": "11111111111111111111111111111111"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "StringValue",
+                                    "value": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "data": {
+                        "type": "Expression",
+                        "value": {
+                          "type": "BinaryValue",
+                          "data": {
+                            "type": "Expression",
+                            "value": {
+                              "type": "ListValue",
+                              "expressions": [
+                                {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "ByteValue",
+                                    "expression": {
+                                      "type": "Expression",
+                                      "value": {
+                                        "type": "IntValue",
+                                        "value": 0
+                                      }
+                                    },
+                                    "length": 1
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Expression",
+                    "value": {
+                      "type": "InstructionValue",
+                      "programId": {
+                        "type": "Expression",
+                        "value": {
+                          "type": "StringValue",
+                          "value": "11111111111111111111111111111111"
+                        }
+                      },
+                      "keys": {
+                        "type": "Expression",
+                        "value": {
+                          "type": "ListValue",
+                          "expressions": [
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": true
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": true
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "VariableValue",
+                                    "variable": "wallet"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": true
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "VariableValue",
+                                    "variable": "wrappedSOL"
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "data": {
+                        "type": "Expression",
+                        "value": {
+                          "type": "BinaryValue",
+                          "data": {
+                            "type": "Expression",
+                            "value": {
+                              "type": "ListValue",
+                              "expressions": [
+                                {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "ByteValue",
+                                    "expression": {
+                                      "type": "Expression",
+                                      "value": {
+                                        "type": "IntValue",
+                                        "value": 2
+                                      }
+                                    },
+                                    "length": 4
+                                  }
+                                },
+                                {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "ByteValue",
+                                    "expression": {
+                                      "type": "Expression",
+                                      "value": {
+                                        "type": "IntValue",
+                                        "value": 150000
+                                      }
+                                    },
+                                    "length": 8
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Expression",
+                    "value": {
+                      "type": "InstructionValue",
+                      "programId": {
+                        "type": "Expression",
+                        "value": {
+                          "type": "StringValue",
+                          "value": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+                        }
+                      },
+                      "keys": {
+                        "type": "Expression",
+                        "value": {
+                          "type": "ListValue",
+                          "expressions": [
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": true
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "VariableValue",
+                                    "variable": "wrappedSOL"
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "data": {
+                        "type": "Expression",
+                        "value": {
+                          "type": "BinaryValue",
+                          "data": {
+                            "type": "Expression",
+                            "value": {
+                              "type": "ListValue",
+                              "expressions": [
+                                {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "ByteValue",
+                                    "expression": {
+                                      "type": "Expression",
+                                      "value": {
+                                        "type": "IntValue",
+                                        "value": 17
+                                      }
+                                    },
+                                    "length": 1
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Expression",
+                    "value": {
+                      "type": "InstructionValue",
+                      "programId": {
+                        "type": "Expression",
+                        "value": {
+                          "type": "StringValue",
+                          "value": "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL"
+                        }
+                      },
+                      "keys": {
+                        "type": "Expression",
+                        "value": {
+                          "type": "ListValue",
+                          "expressions": [
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": true
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": true
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "VariableValue",
+                                    "variable": "wallet"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": true
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "VariableValue",
+                                    "variable": "USDT"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "VariableValue",
+                                    "variable": "wallet"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "StringValue",
+                                    "value": "6PE3Mwjzx9h8kCoBp5YPed9TFoG7du8L98yucBP5ps3x"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "StringValue",
+                                    "value": "11111111111111111111111111111111"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "StringValue",
+                                    "value": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "data": {
+                        "type": "Expression",
+                        "value": {
+                          "type": "BinaryValue",
+                          "data": {
+                            "type": "Expression",
+                            "value": {
+                              "type": "ListValue",
+                              "expressions": [
+                                {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "ByteValue",
+                                    "expression": {
+                                      "type": "Expression",
+                                      "value": {
+                                        "type": "IntValue",
+                                        "value": 0
+                                      }
+                                    },
+                                    "length": 1
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "Expression",
+                    "value": {
+                      "type": "InstructionValue",
+                      "programId": {
+                        "type": "Expression",
+                        "value": {
+                          "type": "StringValue",
+                          "value": "3xQ8SWv2GaFXXpHZNqkXsdxq5DZciHBz6ZFoPPfbFd7U"
+                        }
+                      },
+                      "keys": {
+                        "type": "Expression",
+                        "value": {
+                          "type": "ListValue",
+                          "expressions": [
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "StringValue",
+                                    "value": "65AsoozQfBedPU3rGCB7CfBbSFhiFGaVQaeoF9mLFM3g"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "StringValue",
+                                    "value": "59Pu3srqBDSgWrSJKuh7xcb5omJeVkMw41eFswDWKPat"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "VariableValue",
+                                    "variable": "wallet"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": true
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "VariableValue",
+                                    "variable": "wrappedSOL"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": true
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "StringValue",
+                                    "value": "BhJsBxGoe39HWtwFTCxRZGhPNVZ5x9Rr2gFzNsaA6ES8"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": true
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "StringValue",
+                                    "value": "Ea2gPV96MQthA5CCS4NincVidxsN8JifWhBoMJVHx8mZ"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": true
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "VariableValue",
+                                    "variable": "USDT"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": true
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "StringValue",
+                                    "value": "2E4Mp6y2gFRteXiANnwzAJEhHwD3NX1wru3XvxJpGBq2"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": true
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "StringValue",
+                                    "value": "HmRP17zbgJUPPeueLjT2b1HVKt16CTixSJX6UpGkkZnp"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "type": "Expression",
+                              "value": {
+                                "type": "AccountValue",
+                                "isSigner": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "isWritable": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "BoolValue",
+                                    "value": false
+                                  }
+                                },
+                                "pubkey": {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "StringValue",
+                                    "value": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      "data": {
+                        "type": "Expression",
+                        "value": {
+                          "type": "BinaryValue",
+                          "data": {
+                            "type": "Expression",
+                            "value": {
+                              "type": "ListValue",
+                              "expressions": [
+                                {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "ByteValue",
+                                    "expression": {
+                                      "type": "Expression",
+                                      "value": {
+                                        "type": "IntValue",
+                                        "value": 1
+                                      }
+                                    },
+                                    "length": 1
+                                  }
+                                },
+                                {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "ByteValue",
+                                    "expression": {
+                                      "type": "Expression",
+                                      "value": {
+                                        "type": "IntValue",
+                                        "value": 1000
+                                      }
+                                    },
+                                    "length": 8
+                                  }
+                                },
+                                {
+                                  "type": "Expression",
+                                  "value": {
+                                    "type": "ByteValue",
+                                    "expression": {
+                                      "type": "Expression",
+                                      "value": {
+                                        "type": "IntValue",
+                                        "value": 1
+                                      }
+                                    },
+                                    "length": 8
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "signers": {
+              "type": "Expression",
+              "value": {
+                "type": "ListValue",
+                "expressions": []
+              }
+            }
+          },
+          {
+            "type": "SignCommand",
+            "variable": "signedTrx",
+            "signers": {
+              "type": "Expression",
+              "value": {
+                "type": "ListValue",
+                "expressions": [
+                  {
+                    "type": "Expression",
+                    "value": {
+                      "type": "VariableValue",
+                      "variable": "signer"
+                    }
+                  }
+                ]
+              }
+            },
+            "transaction": {
+              "type": "Expression",
+              "value": {
+                "type": "VariableValue",
+                "variable": "trx"
+              }
+            }
+          },
+          {
+            "type": "SendTransactionCommand",
+            "transaction": {
+              "type": "Expression",
+              "value": {
+                "type": "VariableValue",
+                "variable": "signedTrx"
+              }
+            },
+            "variable": "id"
+          },
+          {
+            "type": "PrintCommand",
+            "expression": {
+              "type": "Expression",
+              "value": {
+                "type": "ListValue",
+                "expressions": [
+                  {
+                    "type": "Expression",
+                    "value": {
+                      "type": "VariableValue",
+                      "variable": "id"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "type": "WaitTransactionConfirmationCommand",
+            "transaction": {
+              "type": "Expression",
+              "value": {
+                "type": "VariableValue",
+                "variable": "id"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

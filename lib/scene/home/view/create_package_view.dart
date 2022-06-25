@@ -58,7 +58,7 @@ class _CreatePackageViewState extends State<CreatePackageView> {
                   context.router.pop();
                 }
               },
-              icon: const Icon(Icons.add),
+              icon: const Icon(Icons.save_outlined),
             ),
           ],
         ),
