@@ -1,5 +1,5 @@
 {
-  "name": "Transfer example #1",
+  "name": "Simple SOL transfe",
   "icon": {
     "shortName": "⬆️",
     "backgroundColor": 4278238420,
@@ -15,6 +15,10 @@
         "type": "BlockCommand",
         "commands": [
           {
+            "type": "CommentCommand",
+            "content": "# Simple SOL transfer beween account A and B\n\nIn this tutorial we will use System Program to transfer SOL.\n\nSystem Program ID: 11111111111111111111111111111111\n\n[System Program Instructions](https://docs.rs/solana-program/1.10.27/solana_program/system_instruction/enum.SystemInstruction.html)\n\n## Transfer Instruction\n\nKeys:\n1. [WRITE, SIGNER] Funding account\n2. [WRITE] Recipient account\n\nData:\n1. index: u32\n2. lamports: u64\n\n## Preparing:"
+          },
+          {
             "type": "ImportKeypairFromStorageCommand",
             "variable": "account1",
             "walletName": {
@@ -28,6 +32,10 @@
           {
             "type": "GetRecentBlockHashCommand",
             "variable": "hash"
+          },
+          {
+            "type": "CommentCommand",
+            "content": "## Making transaction:"
           },
           {
             "type": "MakeSimpleTransaction",
@@ -180,6 +188,10 @@
             }
           },
           {
+            "type": "CommentCommand",
+            "content": "## Sign transaction with keypair"
+          },
+          {
             "type": "SignCommand",
             "variable": "signedTrx",
             "signers": {
@@ -226,22 +238,15 @@
                   {
                     "type": "Expression",
                     "value": {
+                      "type": "StringValue",
+                      "value": "Transaction: "
+                    }
+                  },
+                  {
+                    "type": "Expression",
+                    "value": {
                       "type": "VariableValue",
                       "variable": "id"
-                    }
-                  },
-                  {
-                    "type": "Expression",
-                    "value": {
-                      "type": "VariableValue",
-                      "variable": "trx"
-                    }
-                  },
-                  {
-                    "type": "Expression",
-                    "value": {
-                      "type": "VariableValue",
-                      "variable": "signedTrx"
                     }
                   }
                 ]

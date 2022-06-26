@@ -28,41 +28,45 @@ class HomeCard extends StatelessWidget {
       width: 300,
       child: SPCard(
         color: color,
+        padding: const EdgeInsets.all(0),
         child: Material(
           type: MaterialType.transparency,
           child: InkWell(
             onTap: onTap,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Text(
-                    title,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Text(
+                      title,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 12),
-                  child: Text(
-                    description,
-                    maxLines: 3,
-                    style: const TextStyle(color: Colors.black, fontSize: 16),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 12),
+                    child: Text(
+                      description,
+                      maxLines: 3,
+                      style: const TextStyle(color: Colors.black, fontSize: 16),
+                    ),
                   ),
-                ),
-                const Spacer(),
-                if (child != null) child!,
-                if (onTap != null)
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [Icon(Icons.forward, color: Colors.black)],
-                  ),
-              ],
+                  const Spacer(),
+                  if (child != null) child!,
+                  if (onTap != null)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: const [Icon(Icons.forward, color: Colors.black)],
+                    ),
+                ],
+              ),
             ),
           ),
         ),

@@ -3,7 +3,7 @@ export 'conditional/conditional.dart';
 export 'variable/variable.dart';
 export 'conditional_wrapper/conditional_wrapper.dart';
 export 'int/int.dart';
-export 'null/null.dart';
+export 'null/_null.dart';
 export 'list/list.dart';
 export 'computable/computable.dart';
 export 'bool/bool.dart';

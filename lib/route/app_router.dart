@@ -13,6 +13,7 @@ import 'package:solana_playground_app/scene/editor_v2/view/keypairs_list_view.da
 import 'package:solana_playground_app/scene/editor_v2/view/runtime_view.dart';
 import 'package:solana_playground_app/scene/home/view/create_package_view.dart';
 import 'package:solana_playground_app/scene/home/view/home_view.dart';
+import 'package:solana_playground_app/scene/home/view/import_package_view.dart';
 import 'package:solana_playground_app/scene/wallet/view/airdrop_view.dart';
 import 'package:solana_playground_app/scene/wallet/view/create_wallet_view.dart';
 import 'package:solana_playground_app/scene/wallet/view/import_wallet_view.dart';
@@ -27,6 +28,7 @@ export 'app_router.gr.dart';
     AutoRoute(page: HomeView, initial: true),
     CustomRoute(page: CreateKeyPairView, customRouteBuilder: popover),
     CustomRoute(page: ImportWalletView, customRouteBuilder: popover),
+    CustomRoute(page: ImportPackageView, customRouteBuilder: popover),
     CustomRoute(page: WalletDetailView, customRouteBuilder: popoverWide),
     CustomRoute(page: AirdropView, customRouteBuilder: popover),
     AutoRoute(page: EditorView),

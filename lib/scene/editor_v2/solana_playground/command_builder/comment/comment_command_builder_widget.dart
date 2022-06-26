@@ -27,53 +27,61 @@ class CommentCommandBuilderWidget
   Widget content(BuildContext context, CommentCommandBuilderState state) {
     final theme = Theme.of(context);
 
-    return ComponentHeader(
-      icon: SvgPicture.asset(SPIconAssets.comment),
-      name: commandHeaderFormatter("Comment", metaInfo),
-      trailing: CommandBuilderAction(
-        builder: builder,
-        actions: [
-          SPIconButton(
-              icon: const Icon(
-                Icons.edit,
-                color: Colors.green,
-                size: 20,
-              ),
-              onPressed: () {
-                context.read<CommentCommandBuilderCubit>().toggleEditorMode();
-              }),
-        ],
-      ),
-      content: state.editorMode
-          ? Container(
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black12),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextField(
-                  controller: context.read<CommentCommandBuilderCubit>().commentInputController,
-                  style: Theme.of(context).textTheme.bodyText1,
-                  decoration: const InputDecoration.collapsed(
-                    hintText: "Tap to edit",
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: state.editorMode
+              ? Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black12),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  minLines: 1,
-                  maxLines: 20,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      controller: context.read<CommentCommandBuilderCubit>().commentInputController,
+                      style: Theme.of(context).textTheme.bodyText1,
+                      decoration: const InputDecoration.collapsed(
+                        hintText: "Tap to edit",
+                      ),
+                      minLines: 1,
+                      maxLines: 20,
+                    ),
+                  ),
+                )
+              : MarkdownBody(
+                  selectable: true,
+                  onTapLink: (text, href, title) {
+                    if (href == null) return;
+                    launchUrl(
+                      Uri.parse(href),
+                      mode: LaunchMode.externalApplication,
+                    );
+                  },
+                  data: builder.content.isNotEmpty ? builder.content : "Empty",
                 ),
-              ),
-            )
-          : MarkdownBody(
-              selectable: true,
-              onTapLink: (text, href, title) {
-                if (href == null) return;
-                launchUrl(
-                  Uri.parse(href),
-                  mode: LaunchMode.externalApplication,
-                );
-              },
-              data: builder.content.isNotEmpty ? builder.content : "Empty",
-            ),
+        ),
+        ComponentHeader(
+          icon: SvgPicture.asset(SPIconAssets.comment),
+          name: commandHeaderFormatter("Comment", metaInfo),
+          trailing: CommandBuilderAction(
+            builder: builder,
+            actions: [
+              SPIconButton(
+                  icon: const Icon(
+                    Icons.edit,
+                    color: Colors.green,
+                    size: 20,
+                  ),
+                  onPressed: () {
+                    context.read<CommentCommandBuilderCubit>().toggleEditorMode();
+                  }),
+            ],
+          ),
+        ),
+      ],
     );
   }
 

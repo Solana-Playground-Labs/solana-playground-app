@@ -14,7 +14,7 @@ import 'package:solana_playground_app/scene/home/widget/package_templates_sectio
 import 'package:solana_playground_app/scene/home/widget/packages_section.dart';
 import 'package:solana_playground_app/scene/home/widget/solana_card.dart';
 import 'package:solana_playground_app/scene/home/widget/solana_cookbook_card.dart';
-import 'package:solana_playground_app/scene/home/widget/wallets_section.dart';
+import 'package:solana_playground_app/scene/home/widget/keypairs_section.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeView extends StatelessWidget {
@@ -119,7 +119,7 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               const HomeHeaderWidget(header: Text("🔑 Key pairs")),
-              const SizedBox(height: 140, child: WalletsSection()),
+              const SizedBox(height: 140, child: KeypairsSection()),
               const HomeHeaderWidget(header: Text("🧑‍💻👩‍💻 Projects")),
               const SizedBox(height: 16),
               const PackagesSection(),

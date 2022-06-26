@@ -14,6 +14,11 @@ class PlaygroundTheme {
           fontWeight: FontWeight.bold,
           color: Colors.black,
         ),
+        headline2: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+        ),
         headline4: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.w500,

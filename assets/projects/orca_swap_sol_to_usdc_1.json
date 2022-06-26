@@ -1,5 +1,5 @@
 {
-  "name": "Swap SOL -> USDC experiment",
+  "name": "Swap SOL -> USDC example",
   "icon": {
     "shortName": "🔄",
     "backgroundColor": 4294951175,
@@ -16,7 +16,7 @@
         "commands": [
           {
             "type": "CommentCommand",
-            "content": "The example of swaping SOL to USDC using ORCA Swap\n\n### Pool\n1. ORCA Swap program id: 3xQ8SWv2GaFXXpHZNqkXsdxq5DZciHBz6ZFoPPfbFd7U\n2. SOL to USDC pool address: 8DT1oKJPHcdJzdSf3cb2WT7L8eRjLUJeDFSe7M2QDtQE\n3. Pool authority address: BVSZP6RsqAtjvuJrXYsYN5U4XY7pLwW4PawfgVPkLbjN\n4. Token A: 4ShvTPQ3jYZzwUpxoQFSCDZxLtxQYNPUfeL3sR9mzLjJ\n5. Token B: 9eKgmUSfTkQLRBvowV9zjY3BbhAQVaGSw1jfon5UwUJM\n6. Fee: HPzaLqtZGhTbs7WcdGMfLswKze28W75nrYytNSw7qdvi\n7. Pool token mint: 4GpUivZ2jvZqQ3vJRsoq5PwnYv6gdV9fJ9BzHT2JcRr7\n\nToken program id: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA\n\n[Link](https://github.com/orca-so/typescript-sdk/blob/e503a7f7a2b6ca4d5052f4b3d927273ee70259cc/src/constants/devnet/pools.ts)\n\n### **Swap instruction**:\n\nKeys: \n0. [] Token-swap\n1. [] swap authority\n2. [] user transfer authority\n3. [writable] token_(A|B) SOURCE Account, amount is transferable by user transfer authority,\n4. [writable] token_(A|B) Base Account to swap INTO.  Must be the SOURCE token.\n5. [writable] token_(A|B) Base Account to swap FROM.  Must be the DESTINATION token.\n6. [writable] token_(A|B) DESTINATION Account assigned to USER as the owner.\n7. [writable] Pool token mint, to generate trading fees\n8. [writable] Fee account, to receive trading fees\n9. [] Token program id\n10. [optional, writable] Host fee account to receive additional trading fees\n\nData:\n1. amount_in: u64 - Minimum amount of DESTINATION token to output, prevents excessive slippage\n2. minimum_amount_out: u64\n\n\nLinks:\n1. [Swap instruction](https://github.com/orca-so/solana-program-library/blob/master/token-swap/program/src/instruction.rs).\n2. [Pools](https://github.com/orca-so/typescript-sdk/blob/main/src/constants/devnet/pools.ts)\n\n"
+            "content": "## The example of swaping SOL to USDC using ORCA Swap\n\n### Pool\n1. ORCA Swap program id: 3xQ8SWv2GaFXXpHZNqkXsdxq5DZciHBz6ZFoPPfbFd7U\n2. SOL to USDC pool address: 8DT1oKJPHcdJzdSf3cb2WT7L8eRjLUJeDFSe7M2QDtQE\n3. Pool authority address: BVSZP6RsqAtjvuJrXYsYN5U4XY7pLwW4PawfgVPkLbjN\n4. Token A: 4ShvTPQ3jYZzwUpxoQFSCDZxLtxQYNPUfeL3sR9mzLjJ\n5. Token B: 9eKgmUSfTkQLRBvowV9zjY3BbhAQVaGSw1jfon5UwUJM\n6. Fee: HPzaLqtZGhTbs7WcdGMfLswKze28W75nrYytNSw7qdvi\n7. Pool token mint: 4GpUivZ2jvZqQ3vJRsoq5PwnYv6gdV9fJ9BzHT2JcRr7\n\nToken program id: TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA\n\n[Link](https://github.com/orca-so/typescript-sdk/blob/e503a7f7a2b6ca4d5052f4b3d927273ee70259cc/src/constants/devnet/pools.ts)\n\n### **Swap instruction**:\n\nKeys: \n0. [] Token-swap\n1. [] swap authority\n2. [] user transfer authority\n3. [writable] token_(A|B) SOURCE Account, amount is transferable by user transfer authority,\n4. [writable] token_(A|B) Base Account to swap INTO.  Must be the SOURCE token.\n5. [writable] token_(A|B) Base Account to swap FROM.  Must be the DESTINATION token.\n6. [writable] token_(A|B) DESTINATION Account assigned to USER as the owner.\n7. [writable] Pool token mint, to generate trading fees\n8. [writable] Fee account, to receive trading fees\n9. [] Token program id\n10. [optional, writable] Host fee account to receive additional trading fees\n\nData:\n1. amount_in: u64 - Minimum amount of DESTINATION token to output, prevents excessive slippage\n2. minimum_amount_out: u64\n\n\nLinks:\n1. [Swap instruction](https://github.com/orca-so/solana-program-library/blob/master/token-swap/program/src/instruction.rs).\n2. [Pools](https://github.com/orca-so/typescript-sdk/blob/main/src/constants/devnet/pools.ts)\n\n"
           },
           {
             "type": "DeclareVariableCommand",
@@ -81,54 +81,12 @@
             }
           },
           {
-            "type": "PrintCommand",
-            "expression": {
-              "type": "Expression",
-              "value": {
-                "type": "ListValue",
-                "expressions": [
-                  {
-                    "type": "Expression",
-                    "value": {
-                      "type": "StringValue",
-                      "value": "Debug"
-                    }
-                  },
-                  {
-                    "type": "Expression",
-                    "value": {
-                      "type": "StringValue",
-                      "value": "\\n SOL:"
-                    }
-                  },
-                  {
-                    "type": "Expression",
-                    "value": {
-                      "type": "VariableValue",
-                      "variable": "wrappedSOL"
-                    }
-                  },
-                  {
-                    "type": "Expression",
-                    "value": {
-                      "type": "StringValue",
-                      "value": "\\n USDC:"
-                    }
-                  },
-                  {
-                    "type": "Expression",
-                    "value": {
-                      "type": "VariableValue",
-                      "variable": "USDT"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          {
             "type": "GetRecentBlockHashCommand",
             "variable": "hash"
+          },
+          {
+            "type": "CommentCommand",
+            "content": "# Make transaction"
           },
           {
             "type": "MakeSimpleTransaction",
@@ -1169,6 +1127,13 @@
               "value": {
                 "type": "ListValue",
                 "expressions": [
+                  {
+                    "type": "Expression",
+                    "value": {
+                      "type": "StringValue",
+                      "value": "Transaction id:"
+                    }
+                  },
                   {
                     "type": "Expression",
                     "value": {

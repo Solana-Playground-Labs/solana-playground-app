@@ -54,11 +54,10 @@ class EditorAppBar extends StatelessWidget {
                     Container(width: 8),
                     const SPPackageIconWidget(),
                     Container(width: 8),
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 400),
+                    IntrinsicWidth(
                       child: TextField(
                         controller: context.read<PackageNameCubit>().textEditorController,
-                        style: theme.textTheme.headline1,
+                        style: theme.textTheme.headline2,
                         decoration: const InputDecoration.collapsed(hintText: "Name"),
                       ),
                     ),
@@ -132,12 +131,19 @@ class PackageShareButton extends StatelessWidget {
 
         final jsonData = const JsonEncoder().convert(package.toJson());
 
-        final file = File('${Directory.systemTemp.path}/${package.name}.json');
-        await file.writeAsString(jsonData);
+        /// Share as json string
+        Share.share(
+          jsonData,
+          sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
+        );
 
-        Share.shareFiles([file.path],
-            text: 'Solana Playground - ${package.name}',
-            sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+        /// Share as json file
+        // final file = File('${Directory.systemTemp.path}/${package.name}.json');
+        // await file.writeAsString(jsonData);
+
+        // Share.shareFiles([file.path],
+        //     text: 'Solana Playground - ${package.name}',
+        //     sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
       },
       icon: const Icon(Icons.ios_share),
       tooltip: "Share code",

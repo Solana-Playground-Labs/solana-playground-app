@@ -97,8 +97,12 @@ class WalletDetailView extends StatelessWidget {
                   WalletActionWidget(
                       title: "Open in Solana explorer",
                       onTap: () {
-                        launch(
-                            "https://explorer.solana.com/address/${state.address ?? ""}?cluster=devnet");
+                        launchUrl(
+                          Uri.parse(
+                            "https://explorer.solana.com/address/${state.address ?? ""}?cluster=devnet",
+                          ),
+                          mode: LaunchMode.externalApplication,
+                        );
                       }),
                 ],
               ),

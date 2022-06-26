@@ -2,6 +2,7 @@
  *  Solana Playground  Copyright (C) 2022  Tran Giang Long
  */
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +30,10 @@ class App extends StatelessWidget {
         Provider<KeypairRepository>(
           create: (context) => KeypairRepository()..initialize(),
         ),
-        Provider<PackageRepository>(create: (context) => PackageRepository()..initialize(context)),
+        Provider<PackageRepository>(create: (context) {
+          if (kIsWeb) return InMemoryPackageRepository()..initialize(context);
+          return FilePackageRepository()..initialize(context);
+        }),
         Provider<PackageTemplatesCubit>(
             create: (context) => PackageTemplatesCubit()..initialize(context)),
       ],

@@ -46,6 +46,7 @@ class PackagesSection extends StatelessWidget {
               maxCrossAxisExtent: 250,
               mainAxisExtent: 100,
               crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
             ),
             itemBuilder: (context, index) {
               if (index == 0) {
@@ -82,7 +83,30 @@ class NewPackageCell extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.router.push(CreatePackageRoute());
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text("Package"),
+              content: const Text("Choose your action"),
+              actions: [
+                TextButton(
+                    onPressed: () async {
+                      await context.popRoute();
+                      context.router.push(CreatePackageRoute());
+                    },
+                    child: const Text("New")),
+                TextButton(
+                    onPressed: () async {
+                      await context.popRoute();
+                      context.router.push(const ImportPackageRoute());
+                    },
+                    child: const Text("Import")),
+                TextButton(onPressed: () => context.popRoute(), child: const Text("Cancel")),
+              ],
+            );
+          },
+        );
       },
       child: DottedBorder(
         strokeWidth: 1,

@@ -16,8 +16,8 @@ import 'package:solana_playground_app/scene/home/cubit/keypairs_cubit.dart';
 
 import 'key_widget.dart';
 
-class WalletsSection extends StatelessWidget {
-  const WalletsSection({Key? key}) : super(key: key);
+class KeypairsSection extends StatelessWidget {
+  const KeypairsSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class WalletsSection extends StatelessWidget {
                             TextButton(
                                 onPressed: () async {
                                   await context.popRoute();
-                                  context.router.push(CreateKeyPairRoute());
+                                  context.router.push(const CreateKeyPairRoute());
                                 },
                                 child: const Text("Create")),
                             TextButton(
