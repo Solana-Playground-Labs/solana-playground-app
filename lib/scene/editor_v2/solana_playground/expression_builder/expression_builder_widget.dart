@@ -43,6 +43,8 @@ final Map<Type, _MappingBuilder> _mapping = {
   IntValueBuilder: (context, builder, metaDataNode) => IntValueBuilderWidget(builder: builder),
   DoubleValueBuilder: (context, builder, metaDataNode) =>
       DoubleValueBuilderWidget(builder: builder),
+  StringUtf8ValueBuilder: (context, builder, metaDataNode) =>
+      StringUtf8ValueBuilderWidget(builder: builder),
 };
 
 class ExpressionBuilderWidget extends CubitWidget<ExpressionBuilderCubit, ExpressionBuilderState> {

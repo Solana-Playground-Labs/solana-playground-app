@@ -32,7 +32,7 @@ class MakeKeypairCommandBuilderWidget
   Widget content(BuildContext context, MakeKeypairCommandBuilderState state) {
     final theme = Theme.of(context);
     return ComponentHeader(
-      name: commandHeaderFormatter("Make key pair", metaInfo),
+      name: commandHeaderFormatter("Make keypair", metaInfo),
       icon: SvgPicture.asset(SPIconAssets.keypair),
       trailing: CommandBuilderAction(builder: builder),
       content: Column(

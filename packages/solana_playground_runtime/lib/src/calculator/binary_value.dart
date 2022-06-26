@@ -71,10 +71,7 @@ Future<dynamic> calculateStringByteValue(
   SPRuntime runtime,
   StringByteValue binaryValue,
 ) async {
-  var value = await runtime.calculate(binaryValue.expression);
-  if (value is! String) {
-    throw Exception("Expected 'String', but receive '${value.runtimeType}'");
-  }
+  final value = await runtime.calculate(binaryValue.expression);
 
   switch (binaryValue.base) {
     case 58:

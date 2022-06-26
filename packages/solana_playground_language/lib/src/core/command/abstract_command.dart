@@ -4,6 +4,7 @@
 
 import 'package:equatable/equatable.dart';
 import 'package:solana_playground_language/lib.dart';
+import 'package:solana_playground_language/src/core/command/generate_keypair_command.dart';
 import 'package:solana_playground_language/src/core/command/make_simple_transaction.dart';
 import 'package:solana_playground_language/src/core/command/unknown_command.dart';
 import 'package:solana_playground_language/src/extensions/type_extension.dart';
@@ -39,6 +40,10 @@ abstract class Command extends Equatable with ObjectType {
       return CreateSplAssociatedTokenAccountCommand.fromJson(json);
     } else if (type == (SignCommand).toString()) {
       return SignCommand.fromJson(json);
+    } else if (type == (GenerateKeypairCommand).toString()) {
+      return GenerateKeypairCommand.fromJson(json);
+    } else if (type == (FindProgramAddressCommand).toString()) {
+      return FindProgramAddressCommand.fromJson(json);
     }
 
     return UnknownCommand(rawData: json);

@@ -41,6 +41,8 @@ abstract class Value extends Equatable with ObjectType {
       return DoubleValue.fromJson(json);
     } else if (type == (BoolValue).toString()) {
       return BoolValue.fromJson(json);
+    } else if (type == (StringUtf8Value).toString()) {
+      return StringUtf8Value.fromJson(json);
     }
     return UnknownValue(rawData: json);
   }

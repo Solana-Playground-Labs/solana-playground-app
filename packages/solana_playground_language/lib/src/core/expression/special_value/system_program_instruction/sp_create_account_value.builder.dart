@@ -68,7 +68,8 @@ Map<String, dynamic> _$SpCreateAccountValueToJson(SpCreateAccountValue value) {
   };
 }
 
-SpCreateAccountValueBuilder _$SpCreateAccountValueToBuilder(SpCreateAccountValue value) {
+SpCreateAccountValueBuilder _$SpCreateAccountValueToBuilder(
+    SpCreateAccountValue value) {
   return SpCreateAccountValueBuilder(
       fromPubkey: value.fromPubkey.asBuilder(),
       newAccountPubkey: value.newAccountPubkey.asBuilder(),

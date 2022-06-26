@@ -7,6 +7,9 @@ import 'package:solana_playground_language/lib.dart';
 import 'package:collection/collection.dart';
 import 'package:solana_playground_runtime/src/calculator/bool_value.dart';
 import 'package:solana_playground_runtime/src/calculator/special/instruction_value.dart';
+import 'package:solana_playground_runtime/src/calculator/string_utf8.dart';
+import 'package:solana_playground_runtime/src/executor/generate_keypair_command.dart';
+import 'package:solana_playground_runtime/src/executor/make_keypair_command.dart';
 
 import '../solana_playground_runtime.dart';
 
@@ -69,6 +72,10 @@ class SPRuntime {
       await executeCreateSplAssociatedTokenAccount(this, command);
     } else if (command is MakeSimpleTransaction) {
       await executeMakeSimpleTransaction(this, command);
+    } else if (command is GenerateKeypairCommand) {
+      await executeGenerateKeypairCommand(this, command);
+    } else if (command is MakeKeyPairCommand) {
+      await executeMakeKeypairCommand(this, command);
     } else {
       throw Exception("Unknown command ${command.runtimeType}");
     }
@@ -104,6 +111,8 @@ class SPRuntime {
       return calculateBoolValue(this, value);
     } else if (value is ListValue) {
       return calculateListValue(this, value);
+    } else if (value is StringUtf8Value) {
+      return calculateStringUtf8(this, value);
     } else {
       throw Exception("Unknown value ${value.runtimeType}");
     }

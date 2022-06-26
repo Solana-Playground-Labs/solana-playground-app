@@ -43,7 +43,9 @@ Map<String, dynamic> _$WaitTransactionConfirmationCommandToJson(
   };
 }
 
-WaitTransactionConfirmationCommandBuilder _$WaitTransactionConfirmationCommandToBuilder(
-    WaitTransactionConfirmationCommand value) {
-  return WaitTransactionConfirmationCommandBuilder(transaction: value.transaction.asBuilder());
+WaitTransactionConfirmationCommandBuilder
+    _$WaitTransactionConfirmationCommandToBuilder(
+        WaitTransactionConfirmationCommand value) {
+  return WaitTransactionConfirmationCommandBuilder(
+      transaction: value.transaction.asBuilder());
 }

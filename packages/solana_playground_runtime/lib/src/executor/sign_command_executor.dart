@@ -48,5 +48,7 @@ Future<void> executeSignCommand(
     signatures: signatures,
   );
 
+  print(signedTx.encode());
+
   runtime.memory.write(command.variable, signedTx);
 }

@@ -44,8 +44,9 @@ class CreateSplAssociatedTokenAccountCommandBuilder extends CommandBuilder {
   }
 }
 
-CreateSplAssociatedTokenAccountCommand _$CreateSplAssociatedTokenAccountCommandFromJson(
-    Map<String, dynamic> json) {
+CreateSplAssociatedTokenAccountCommand
+    _$CreateSplAssociatedTokenAccountCommandFromJson(
+        Map<String, dynamic> json) {
   return CreateSplAssociatedTokenAccountCommand(
     variable: json['variable'],
     baseAddress: Expression.fromJson(json['baseAddress']),
@@ -63,8 +64,9 @@ Map<String, dynamic> _$CreateSplAssociatedTokenAccountCommandToJson(
   };
 }
 
-CreateSplAssociatedTokenAccountCommandBuilder _$CreateSplAssociatedTokenAccountCommandToBuilder(
-    CreateSplAssociatedTokenAccountCommand value) {
+CreateSplAssociatedTokenAccountCommandBuilder
+    _$CreateSplAssociatedTokenAccountCommandToBuilder(
+        CreateSplAssociatedTokenAccountCommand value) {
   return CreateSplAssociatedTokenAccountCommandBuilder(
       variable: value.variable,
       baseAddress: value.baseAddress.asBuilder(),

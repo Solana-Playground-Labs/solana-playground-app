@@ -16,38 +16,21 @@ class MakeKeyPairCommandBuilder extends CommandBuilder {
     notifyListeners();
   }
 
-  ExpressionBuilder _publicKey;
-
-  ExpressionBuilder get publicKey => _publicKey;
-
-  set publicKey(ExpressionBuilder value) {
-    _publicKey = value;
-    notifyListeners();
-  }
-
-  ExpressionBuilder _privateKey;
-
-  ExpressionBuilder get privateKey => _privateKey;
-
-  set privateKey(ExpressionBuilder value) {
-    _privateKey = value;
-    notifyListeners();
-  }
+  final ExpressionBuilder publicKey;
+  final ExpressionBuilder privateKey;
 
   MakeKeyPairCommandBuilder({
     required String variable,
-    required ExpressionBuilder publicKey,
-    required ExpressionBuilder privateKey,
-  })  : _variable = variable,
-        _publicKey = publicKey,
-        _privateKey = privateKey;
+    required this.publicKey,
+    required this.privateKey,
+  }) : _variable = variable;
 
   @override
   MakeKeyPairCommand build() {
     return MakeKeyPairCommand(
       variable: variable,
-      publicKey: publicKey,
-      privateKey: privateKey,
+      publicKey: publicKey.build(),
+      privateKey: privateKey.build(),
     );
   }
 
@@ -55,8 +38,8 @@ class MakeKeyPairCommandBuilder extends CommandBuilder {
   MakeKeyPairCommandBuilder clone() {
     return MakeKeyPairCommandBuilder(
       variable: variable,
-      publicKey: publicKey,
-      privateKey: privateKey,
+      publicKey: publicKey.clone(),
+      privateKey: privateKey.clone(),
     );
   }
 }
@@ -64,8 +47,8 @@ class MakeKeyPairCommandBuilder extends CommandBuilder {
 MakeKeyPairCommand _$MakeKeyPairCommandFromJson(Map<String, dynamic> json) {
   return MakeKeyPairCommand(
     variable: json['variable'],
-    publicKey: json['publicKey'],
-    privateKey: json['privateKey'],
+    publicKey: Expression.fromJson(json['publicKey']),
+    privateKey: Expression.fromJson(json['privateKey']),
   );
 }
 
@@ -73,12 +56,15 @@ Map<String, dynamic> _$MakeKeyPairCommandToJson(MakeKeyPairCommand value) {
   return {
     'type': value.runtimeType.toString(),
     'variable': value.variable,
-    'publicKey': value.publicKey,
-    'privateKey': value.privateKey,
+    'publicKey': value.publicKey.toJson(),
+    'privateKey': value.privateKey.toJson(),
   };
 }
 
-MakeKeyPairCommandBuilder _$MakeKeyPairCommandToBuilder(MakeKeyPairCommand value) {
+MakeKeyPairCommandBuilder _$MakeKeyPairCommandToBuilder(
+    MakeKeyPairCommand value) {
   return MakeKeyPairCommandBuilder(
-      variable: value.variable, publicKey: value.publicKey, privateKey: value.privateKey);
+      variable: value.variable,
+      publicKey: value.publicKey.asBuilder(),
+      privateKey: value.privateKey.asBuilder());
 }

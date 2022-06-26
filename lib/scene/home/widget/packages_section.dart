@@ -56,14 +56,9 @@ class PackagesSection extends StatelessWidget {
               final package = state.packages[index - 1];
               return PackageCell(
                 package: package,
-                onTap: () {
+                onTap: () async {
                   context.router.push(
-                    EditorRoute(
-                      packageEditController: PackageEditController.parse(
-                        package,
-                        packageRepository: context.read(),
-                      ),
-                    ),
+                    EditorRoute(packageBuilder: package.asBuilder()),
                   );
                 },
               );

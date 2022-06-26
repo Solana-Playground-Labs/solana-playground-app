@@ -39,14 +39,16 @@ class SendTransactionCommandBuilder extends CommandBuilder {
   }
 }
 
-SendTransactionCommand _$SendTransactionCommandFromJson(Map<String, dynamic> json) {
+SendTransactionCommand _$SendTransactionCommandFromJson(
+    Map<String, dynamic> json) {
   return SendTransactionCommand(
     transaction: Expression.fromJson(json['transaction']),
     variable: json['variable'],
   );
 }
 
-Map<String, dynamic> _$SendTransactionCommandToJson(SendTransactionCommand value) {
+Map<String, dynamic> _$SendTransactionCommandToJson(
+    SendTransactionCommand value) {
   return {
     'type': value.runtimeType.toString(),
     'transaction': value.transaction.toJson(),
@@ -54,7 +56,8 @@ Map<String, dynamic> _$SendTransactionCommandToJson(SendTransactionCommand value
   };
 }
 
-SendTransactionCommandBuilder _$SendTransactionCommandToBuilder(SendTransactionCommand value) {
+SendTransactionCommandBuilder _$SendTransactionCommandToBuilder(
+    SendTransactionCommand value) {
   return SendTransactionCommandBuilder(
       transaction: value.transaction.asBuilder(), variable: value.variable);
 }

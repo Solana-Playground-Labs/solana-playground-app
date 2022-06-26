@@ -3,6 +3,7 @@ import 'package:solana_playground_language/solana_playground_language.dart';
 part 'string_byte_value.builder.dart';
 
 @ValueBuildable()
+@Deprecated("Will be removed")
 class StringByteValue extends Value {
   @ValuePropertyBuildable()
   final Expression expression;

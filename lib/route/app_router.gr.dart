@@ -17,9 +17,8 @@ import 'package:solana_playground_language/solana_playground_language.dart'
 
 import '../common/transition/overlay.dart' as _i16;
 import '../model/keypair.dart' as _i18;
-import '../model/package_edit_controller.dart' as _i19;
-import '../model/package_template.dart' as _i20;
-import '../scene/editor_v2/editor_v2.dart' as _i21;
+import '../model/package_template.dart' as _i19;
+import '../scene/editor_v2/editor_v2.dart' as _i20;
 import '../scene/editor_v2/solana_playground/tools/inspector/type_inspector.dart'
     as _i10;
 import '../scene/editor_v2/view/color_picker_view.dart' as _i12;
@@ -92,8 +91,7 @@ class AppRouter extends _i14.RootStackRouter {
       return _i14.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i7.EditorView(
-              key: args.key,
-              packageEditController: args.packageEditController));
+              key: args.key, packageBuilder: args.packageBuilder));
     },
     RuntimeRoute.name: (routeData) {
       final args = routeData.argsAs<RuntimeRouteArgs>();
@@ -259,27 +257,24 @@ class AirdropRouteArgs {
 /// generated route for
 /// [_i7.EditorView]
 class EditorRoute extends _i14.PageRouteInfo<EditorRouteArgs> {
-  EditorRoute(
-      {_i15.Key? key,
-      required _i19.PackageEditController packageEditController})
+  EditorRoute({_i15.Key? key, required _i17.PackageBuilder packageBuilder})
       : super(EditorRoute.name,
             path: '/editor-view',
-            args: EditorRouteArgs(
-                key: key, packageEditController: packageEditController));
+            args: EditorRouteArgs(key: key, packageBuilder: packageBuilder));
 
   static const String name = 'EditorRoute';
 }
 
 class EditorRouteArgs {
-  const EditorRouteArgs({this.key, required this.packageEditController});
+  const EditorRouteArgs({this.key, required this.packageBuilder});
 
   final _i15.Key? key;
 
-  final _i19.PackageEditController packageEditController;
+  final _i17.PackageBuilder packageBuilder;
 
   @override
   String toString() {
-    return 'EditorRouteArgs{key: $key, packageEditController: $packageEditController}';
+    return 'EditorRouteArgs{key: $key, packageBuilder: $packageBuilder}';
   }
 }
 
@@ -315,7 +310,7 @@ class RuntimeRouteArgs {
 /// generated route for
 /// [_i9.CreatePackageView]
 class CreatePackageRoute extends _i14.PageRouteInfo<CreatePackageRouteArgs> {
-  CreatePackageRoute({_i15.Key? key, _i20.PackageTemplate? template})
+  CreatePackageRoute({_i15.Key? key, _i19.PackageTemplate? template})
       : super(CreatePackageRoute.name,
             path: '/create-package-view',
             args: CreatePackageRouteArgs(key: key, template: template));
@@ -328,7 +323,7 @@ class CreatePackageRouteArgs {
 
   final _i15.Key? key;
 
-  final _i20.PackageTemplate? template;
+  final _i19.PackageTemplate? template;
 
   @override
   String toString() {
@@ -343,7 +338,7 @@ class ExpressionInspectorRoute
   ExpressionInspectorRoute(
       {_i15.Key? key,
       required _i17.ExpressionBuilder builder,
-      _i21.ExpressionMetaData? metaData})
+      _i20.ExpressionMetaData? metaData})
       : super(ExpressionInspectorRoute.name,
             path: '/expression-inspector-view',
             args: ExpressionInspectorRouteArgs(
@@ -360,7 +355,7 @@ class ExpressionInspectorRouteArgs {
 
   final _i17.ExpressionBuilder builder;
 
-  final _i21.ExpressionMetaData? metaData;
+  final _i20.ExpressionMetaData? metaData;
 
   @override
   String toString() {

@@ -45,6 +45,11 @@ final List<Widget> _keyManagerTemplates = [
   ),
   TemplateWidget(
     icon: SvgPicture.asset(SPIconAssets.keypair),
+    title: "Generate keypair",
+    commandBuilder: GenerateKeypairCommandBuilder(variable: ""),
+  ),
+  TemplateWidget(
+    icon: SvgPicture.asset(SPIconAssets.keypair),
     title: "Import keypair from storage",
     commandBuilder: ImportKeypairFromStorageCommandBuilder(
       variable: "",

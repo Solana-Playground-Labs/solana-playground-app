@@ -14,3 +14,4 @@ export 'byte_value.dart';
 export 'list_value.dart';
 export 'double_value.dart';
 export 'binary_value.dart';
+export 'string_utf8_value.dart';

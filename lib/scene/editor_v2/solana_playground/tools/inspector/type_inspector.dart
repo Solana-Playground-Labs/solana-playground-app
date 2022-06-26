@@ -20,6 +20,7 @@ class TypeInspectorHelper {
     ByteValueBuilder,
     HexValueBuilder,
     StringByteValueBuilder,
+    StringUtf8ValueBuilder,
     NullValueBuilder,
     AccountValueBuilder,
     ConditionValueBuilder,
@@ -39,6 +40,7 @@ class TypeInspectorHelper {
     ByteValueBuilder,
     HexValueBuilder,
     StringByteValueBuilder,
+    StringUtf8ValueBuilder,
   ];
 }
 
@@ -65,6 +67,7 @@ const _typeGroups = [
     ByteValueBuilder,
     HexValueBuilder,
     StringByteValueBuilder,
+    StringUtf8ValueBuilder,
     NullValueBuilder,
   ]),
   _Group(
@@ -114,6 +117,8 @@ ValueBuilder _init(Type type) {
         expression: ExpressionBuilder.withStringValue(),
         base: 58,
       );
+    case StringUtf8ValueBuilder:
+      return StringUtf8ValueBuilder(expression: ExpressionBuilder.withStringValue());
     case NullValueBuilder:
       return NullValueBuilder();
     case AccountValueBuilder:

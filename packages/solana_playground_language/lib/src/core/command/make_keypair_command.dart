@@ -12,10 +12,10 @@ class MakeKeyPairCommand extends Command {
   final String variable;
 
   @CommandPropertyBuildable()
-  final ExpressionBuilder publicKey;
+  final Expression publicKey;
 
   @CommandPropertyBuildable()
-  final ExpressionBuilder privateKey;
+  final Expression privateKey;
 
   const MakeKeyPairCommand({
     required this.variable,
