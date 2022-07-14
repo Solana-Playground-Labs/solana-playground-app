@@ -2,8 +2,11 @@
  *  Solana Playground  Copyright (C) 2022  Tran Giang Long
  */
 
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:solana/solana.dart';
@@ -22,6 +25,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (Platform.isAndroid) {
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.landscapeRight,
+        DeviceOrientation.landscapeLeft,
+      ]);
+    }
+
     return MultiProvider(
       providers: [
         Provider<SolanaNetworkCubit>(
@@ -38,6 +48,7 @@ class App extends StatelessWidget {
             create: (context) => PackageTemplatesCubit()..initialize(context)),
       ],
       child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
         routerDelegate: _appRouter.delegate(),
         routeInformationParser: _appRouter.defaultRouteParser(),
         theme: PlaygroundTheme.light(),
