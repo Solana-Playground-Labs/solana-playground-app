@@ -7,6 +7,7 @@ import 'dart:math';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:solana_playground_app/library/cubit_widget.dart';
 import 'package:solana_playground_app/scene/editor_v2/cubit/drag_cubit.dart';
 import 'package:solana_playground_language/solana_playground_language.dart';
@@ -46,7 +47,11 @@ class BlockCommandBuilderWidget
 
             // TODO: Remove duplicated code
             return FractionallySizedBox(
-              widthFactor: 0.9,
+              widthFactor: getValueForScreenType<double>(
+                context: context,
+                mobile: 0.96,
+                tablet: 0.90
+              ),
               child: Center(
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 800),

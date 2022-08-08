@@ -20,7 +20,11 @@ Route<T> popover<T>(BuildContext context, Widget child, CustomPage page) {
               child: Container(
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
-                child: child,
+                child: MediaQuery.removePadding(
+                  context: context,
+                  removeTop: true,
+                  child: child,
+                ),
               ),
             ),
           ),
@@ -44,9 +48,13 @@ Route<T> popoverWide<T>(BuildContext context, Widget child, CustomPage page) {
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 800, maxHeight: 600),
               child: Container(
-                clipBehavior: Clip.antiAlias,
+                clipBehavior: Clip.hardEdge,
                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(16)),
-                child: child,
+                child: MediaQuery.removePadding(
+                  context: context,
+                  removeTop: true,
+                  child: child,
+                ),
               ),
             ),
           ),

@@ -3,6 +3,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 class Component extends StatelessWidget {
   final Widget? header;
@@ -22,7 +23,15 @@ class Component extends StatelessWidget {
         if (header != null) header!,
         if (body.isNotEmpty)
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: header != null ? 40 : 0),
+            padding: EdgeInsets.symmetric(
+              horizontal: header != null
+                  ? getValueForScreenType<double>(
+                      context: context,
+                      mobile: 4,
+                      tablet: 40,
+                    )
+                  : 0,
+            ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,

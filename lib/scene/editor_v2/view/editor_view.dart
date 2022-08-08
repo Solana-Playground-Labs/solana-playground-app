@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 import 'package:solana_playground_app/model/package_edit_controller.dart';
 import 'package:solana_playground_app/scene/editor_v2/cubit/code_editor_cubit.dart';
 import 'package:solana_playground_app/scene/editor_v2/cubit/drag_cubit.dart';
@@ -39,24 +40,47 @@ class EditorView extends StatelessWidget {
               create: (_) => DragCubit(),
             ),
           ],
-          child: Scaffold(
-            body: Column(
-              children: [
-                const EditorAppBar(),
-                Expanded(
-                  child: Row(
-                    children: const [
-                      ToolsWidget(),
-                      VerticalDivider(width: 1),
-                      Expanded(child: CodeWidget())
-                    ],
-                  ),
-                )
-              ],
-            ),
+          child: ResponsiveBuilder(
+            builder: (builder, info) {
+              return info.isMobile ? mobile(context) : desktop(context);
+            },
           ),
         );
       }),
+    );
+  }
+
+  Widget mobile(BuildContext context) {
+    return ResponsiveBuilder(
+      builder: (context, size) {
+        return Scaffold(
+          body: Column(
+            children: const [
+              EditorAppBar(),
+              Expanded(child: CodeWidget()),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget desktop(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          const EditorAppBar(),
+          Expanded(
+            child: Row(
+              children: const [
+                ToolsWidget(),
+                VerticalDivider(width: 1),
+                Expanded(child: CodeWidget())
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }
